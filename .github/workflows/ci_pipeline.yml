@@ -42,3 +42,12 @@ jobs:
           portfolio-web:latest
         build-args: |
           VITE_ENV=prod
+
+    - name: Save Docker image
+      run: docker save portfolio-web:${{ github.sha }} -o portfolio-web.tar
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: docker-image
+        path: portfolio-web.tar
