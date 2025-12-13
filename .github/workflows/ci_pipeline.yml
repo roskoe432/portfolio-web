@@ -33,8 +33,12 @@ jobs:
       uses: docker/setup-buildx-action@v3
 
     - name: Build Docker image
-      run: docker build \
-            --build-arg VITE_ENV=prod \
-            -t portfolio-web:${{ github.sha }} \
-            -t portfolio-web:latest \
-            .
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: false
+        tags: |
+          portfolio-web:${{ github.sha }}
+          portfolio-web:latest
+        build-args: |
+          VITE_ENV=prod
