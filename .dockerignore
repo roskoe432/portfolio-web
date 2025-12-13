@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Development
+.git/
+.husky/
+.vscode/
+logs/
+certs/
+azurite/
+logs/
+
+# Files
+Dockerfile
+.dockerignore
+*.log
+.env
+.env.*
+stats.html
+
+# Documentation (optional)
+README.md
+*.md
