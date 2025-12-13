@@ -27,10 +27,16 @@ export default defineConfig({
 		sourcemap: true,
 		chunkSizeWarningLimit: 1000,
 		rollupOptions: {
-			chunkFileNames: 'assets/js/[name]-[hash].js',
-			entryFileNames: 'assets/js/[name]-[hash].js',
-			assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
-		},
+            output: {
+                manualChunks: {
+                    'react-vendor': ['react', 'react-dom'],
+                    'mantine-vendor': ['@mantine/core', '@mantine/form', '@mantine/hooks']
+                },
+                chunkFileNames: 'assets/js/[name]-[hash].js',
+                entryFileNames: 'assets/js/[name]-[hash].js',
+                assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+            },
+        },
 		minify: 'terser',
 		terserOptions: {
 			compress: {

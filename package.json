@@ -13,6 +13,9 @@
   "author": "Ben Snow",
   "license": "ISC",
   "dependencies": {
+    "@mantine/core": "^8.3.10",
+    "@mantine/form": "^8.3.10",
+    "@mantine/hooks": "^8.3.10",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
