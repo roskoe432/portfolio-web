@@ -1,0 +1,26 @@
+{
+  "name": "portfolio-web",
+  "version": "1.0.0",
+  "description": "React application for my portfolio",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "certs:win": "powershell -ExecutionPolicy Bypass -File dev-certs-win.ps1 -Domain \"portfolio.local\" -UpdateHosts"
+  },
+  "keywords": [],
+  "author": "Ben Snow",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
+    "less": "^4.4.2",
+    "rollup-plugin-visualizer": "^6.0.5",
+    "terser": "^5.44.1",
+    "vite": "^7.2.7"
+  }
+}
