@@ -62,8 +62,8 @@ export default defineConfig({
             key: keyPath,
             cert: certPath
         },
-        host: 'portfolio.local',
-        allowedHosts: ['portfolio.local'],
+        host: 'dev.local',
+        allowedHosts: ['dev.local'],
         port: 3000,
         open: true,
     }

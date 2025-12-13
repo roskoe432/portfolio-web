@@ -3,7 +3,7 @@
 
 param(
     [Parameter(Mandatory=$false)]
-    [string]$Domain = "localhost",
+    [string]$Domain = "dev.local",
     
     [Parameter(Mandatory=$false)]
     [int]$Days = 365,
