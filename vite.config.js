@@ -21,7 +21,8 @@ export default defineConfig({
 		alias: {
 			'@': path.resolve(__dirname, 'src'),
             '@shared': path.resolve(__dirname, 'src/shared'),
-            '@pages': path.resolve(__dirname, 'src/pages')
+            '@pages': path.resolve(__dirname, 'src/pages'),
+            '@app': path.resolve(__dirname, 'src/app')
 		},
 	},
 	build: {
@@ -32,6 +33,7 @@ export default defineConfig({
             output: {
                 manualChunks: {
                     'react-vendor': ['react', 'react-dom'],
+                    'redux-vendor': ['@reduxjs/toolkit', 'react-redux'],
                     'mantine-vendor': ['@mantine/core', '@mantine/form', '@mantine/hooks']
                 },
                 chunkFileNames: 'assets/js/[name]-[hash].js',
