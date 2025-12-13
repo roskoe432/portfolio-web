@@ -7,7 +7,8 @@
     "start": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "certs:win": "powershell -ExecutionPolicy Bypass -File dev-certs-win.ps1 -Domain \"portfolio.local\" -UpdateHosts"
+    "certs:win": "powershell -ExecutionPolicy Bypass -File dev-certs-win.ps1 -Domain \"portfolio.local\" -UpdateHosts",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "Ben Snow",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.2",
+    "husky": "^9.1.7",
     "less": "^4.4.2",
     "postcss": "^8.5.6",
     "postcss-preset-mantine": "^1.18.0",
