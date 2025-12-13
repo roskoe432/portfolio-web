@@ -1,3 +1,4 @@
+import Counter from '@/examples/counter/counter';
 import styles from './app.module.less';
 import Logo from '@/shared/components/logo/logo';
 
@@ -6,6 +7,7 @@ function App() {
 		<div className={styles.app}>
             <h1>Ben Snow's Portfolio</h1>
 			<Logo />
+            <Counter />
 		</div>
 	);
 }
