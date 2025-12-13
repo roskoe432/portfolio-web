@@ -1,4 +1,4 @@
-import reactLogo from '../../../assets/images/react-logo.svg';
+import reactLogo from '@shared/assets/images/react-logo.svg';
 import styles from './logo.module.less';
 
 function Logo() {
