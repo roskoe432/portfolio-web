@@ -1,0 +1,31 @@
+@import '../../styles/variables.less';
+
+.header-content {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	gap: 1rem;
+
+	@media (max-width: @breakpoint-sm) {
+		justify-content: flex-start;
+	}
+}
+
+.header-title {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+
+	@media (max-width: @breakpoint-sm) {
+		justify-content: flex-start;
+	}
+}
+
+.title {
+	font-size: 1.5rem;
+	font-weight: bold;
+
+	@media (max-width: 768px) {
+		font-size: 1.2rem;
+	}
+}

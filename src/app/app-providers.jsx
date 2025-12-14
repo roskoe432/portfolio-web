@@ -1,12 +1,21 @@
-import { MantineProvider } from '@mantine/core';
+import { createTheme, MantineProvider } from '@mantine/core';
 import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from '@/shared/store';
 
+const theme = createTheme({
+	// Define your custom theme properties here
+});
+
 function AppProviders({ children }) {
 	return (
 		<ReduxProvider store={store}>
-			<MantineProvider>
+			<MantineProvider
+				defaultColorScheme="dark"
+				theme={theme}
+				withGlobalStyles
+				withNormalizeCSS
+			>
 				<BrowserRouter>{children}</BrowserRouter>
 			</MantineProvider>
 		</ReduxProvider>

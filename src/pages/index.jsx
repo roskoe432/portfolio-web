@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-const Pages = {
+const pages = {
 	HOME: {
 		name: 'Home',
 		path: '/',
@@ -18,4 +18,4 @@ const Pages = {
 	},
 };
 
-export default Pages;
+export default pages;
