@@ -1,6 +1,6 @@
 import './config';
 import '@mantine/core/styles.css';
-import './index.less';
+import './styles/globals.less';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app/app';

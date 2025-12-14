@@ -24,6 +24,7 @@ export function AppLinks() {
 	const createLinks = () =>
 		Object.keys(pages).map((key) => (
 			<NavLink
+				className={styles['nav-link']}
 				key={key}
 				label={pages[key].name}
 				to={pages[key].path}

@@ -1,10 +1,19 @@
+import { Burger } from '@mantine/core';
 import styles from './app-header.module.less';
 
-function AppHeader() {
+function AppHeader({ navOpened, toggleNav }) {
 	return (
-		<header className={styles['app-header']}>
-			<h1>Ben Snow&apos;s Portfolio</h1>
-		</header>
+		<div className={styles['header-content']}>
+			<Burger
+				opened={navOpened}
+				onClick={toggleNav}
+				hiddenFrom="sm"
+				size="sm"
+			/>
+			<div className={styles['header-title']}>
+				<h1 className={styles['title']}>Ben Snow&apos;s Portfolio</h1>
+			</div>
+		</div>
 	);
 }
 

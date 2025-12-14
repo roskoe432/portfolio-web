@@ -1,17 +1,12 @@
+@import '../../styles/variables.less';
+
 .app-layout {
 	.header {
-		text-align: center;
-		// background: #f8f9fa;
-		border-bottom: 1px solid #dee2e6;
+		border-bottom: 1px solid var(--mantine-color-default-border);
 		padding: 1rem;
 	}
 
 	.nav-bar {
-		background: #ffffff;
-		border-right: 1px solid #dee2e6;
-	}
-
-	.main {
-		background: #ffffff;
+		max-width: @navbar-width;
 	}
 }
