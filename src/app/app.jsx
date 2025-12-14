@@ -9,7 +9,7 @@ console.log(NodeLogo);
 function App() {
 	return (
 		<div className={styles.app}>
-			<h1>Ben Snow's Portfolio</h1>
+			<h1>Ben Snow&apos;s Portfolio</h1>
 			<AppLinks />
 			<Logo logo={NodeLogo} />
 			<Counter />

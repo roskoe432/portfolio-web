@@ -1,37 +1,49 @@
 {
-  "name": "portfolio-web",
-  "version": "1.0.0",
-  "description": "React application for my portfolio",
-  "main": "index.js",
-  "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "serve": "vite preview",
-    "certs:win": "powershell -ExecutionPolicy Bypass -File dev-certs-win.ps1 -Domain \"dev.local\" -UpdateHosts",
-    "prepare": "husky"
-  },
-  "keywords": [],
-  "author": "Ben Snow",
-  "license": "ISC",
-  "dependencies": {
-    "@mantine/core": "^8.3.10",
-    "@mantine/form": "^8.3.10",
-    "@mantine/hooks": "^8.3.10",
-    "@reduxjs/toolkit": "^2.11.1",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "react-redux": "^9.2.0",
-    "react-router-dom": "^7.10.1"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^5.1.2",
-    "husky": "^9.1.7",
-    "less": "^4.4.2",
-    "postcss": "^8.5.6",
-    "postcss-preset-mantine": "^1.18.0",
-    "postcss-simple-vars": "^7.0.1",
-    "rollup-plugin-visualizer": "^6.0.5",
-    "terser": "^5.44.1",
-    "vite": "^7.2.7"
-  }
+	"name": "portfolio-web",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "React application for my portfolio",
+	"main": "index.js",
+	"scripts": {
+		"start": "vite",
+		"build": "vite build",
+		"serve": "vite preview",
+		"lint": "eslint . --ext .js,.jsx",
+		"lint:fix": "eslint . --ext .js,.jsx --fix",
+		"format": "prettier --write \"src/**/*.{js,jsx,css,less,json}\"",
+		"format:check": "prettier --check \"src/**/*.{js,jsx,css,less,json}\"",
+		"certs:win": "powershell -ExecutionPolicy Bypass -File dev-certs-win.ps1 -Domain \"dev.local\" -UpdateHosts",
+		"prepare": "husky"
+	},
+	"keywords": [],
+	"author": "Ben Snow",
+	"license": "ISC",
+	"dependencies": {
+		"@mantine/core": "^8.3.10",
+		"@mantine/form": "^8.3.10",
+		"@mantine/hooks": "^8.3.10",
+		"@reduxjs/toolkit": "^2.11.1",
+		"react": "^19.2.3",
+		"react-dom": "^19.2.3",
+		"react-redux": "^9.2.0",
+		"react-router-dom": "^7.10.1"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.39.2",
+		"@vitejs/plugin-react": "^5.1.2",
+		"eslint": "^9.39.2",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-react": "^7.37.5",
+		"eslint-plugin-react-hooks": "^7.0.1",
+		"globals": "^16.5.0",
+		"husky": "^9.1.7",
+		"less": "^4.4.2",
+		"postcss": "^8.5.6",
+		"postcss-preset-mantine": "^1.18.0",
+		"postcss-simple-vars": "^7.0.1",
+		"prettier": "^3.7.4",
+		"rollup-plugin-visualizer": "^6.0.5",
+		"terser": "^5.44.1",
+		"vite": "^7.2.7"
+	}
 }
