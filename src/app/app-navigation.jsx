@@ -7,7 +7,9 @@ export function AppRoutes() {
 	const createPageRoutes = () =>
 		Object.keys(Pages).map((key) => {
 			const PageComponent = Pages[key].entry;
-			return <Route key={key} path={Pages[key].path} element={<PageComponent />} />;
+			return (
+				<Route key={key} path={Pages[key].path} element={<PageComponent />} />
+			);
 		});
 
 	return (
