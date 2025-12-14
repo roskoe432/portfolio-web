@@ -10,9 +10,10 @@ function App() {
 	return (
 		<div className={styles.app}>
 			<h1>Ben Snow's Portfolio</h1>
+			<AppLinks />
 			<Logo logo={NodeLogo} />
 			<Counter />
-            <AppRoutes/>
+			<AppRoutes />
 		</div>
 	);
 }

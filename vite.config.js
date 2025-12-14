@@ -32,7 +32,7 @@ export default defineConfig({
 		rollupOptions: {
             output: {
                 manualChunks: {
-                    'react-vendor': ['react', 'react-dom'],
+                    'react-vendor': ['react', 'react-dom', 'react-dom/client', 'react-router-dom'],
                     'redux-vendor': ['@reduxjs/toolkit', 'react-redux'],
                     'mantine-vendor': ['@mantine/core', '@mantine/form', '@mantine/hooks']
                 },
