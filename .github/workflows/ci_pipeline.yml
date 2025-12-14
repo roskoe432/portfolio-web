@@ -1,10 +1,10 @@
 name: Portfolio Web - CI
 
 on:
-  push:
-    branches:
-        - 'feature/**'
-        - 'hotfix/**'
+#   push:
+#     branches:
+#         - 'feature/**'
+#         - 'hotfix/**'
   pull_request:
     branches:
         - main
