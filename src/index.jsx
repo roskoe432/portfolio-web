@@ -1,5 +1,5 @@
 import './config';
-// import '@mantine/core/styles.css';
+import '@mantine/core/styles.css';
 import './index.less';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
