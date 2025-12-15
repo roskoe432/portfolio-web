@@ -1,5 +1,12 @@
 @import '../../../../styles/variables.less';
 
+@win-color-start: #4ecdc4;
+@win-color-end: #44a8a0;
+@win-text-color: #ffffff;
+@lose-color-start: #ff0000;
+@lose-color-end: #ee5a52;
+@lose-text-color: #ffffff;
+
 .container {
 	max-width: 400px;
 	margin: 0 auto;
@@ -40,15 +47,17 @@
 	text-align: center;
 
 	&.win {
-		background: linear-gradient(135deg, #4ecdc4 0%, #44a8a0 100%);
-		color: white;
-		box-shadow: 0 4px 12px rgba(78, 205, 196, 0.4);
+		background: linear-gradient(135deg, @win-color-start 0%, #44a8a0 100%);
+		color: @win-text-color;
 	}
 
 	&.lose {
-		background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
-		color: white;
-		box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+		background: linear-gradient(
+			135deg,
+			@lose-color-start 0%,
+			@lose-color-end 100%
+		);
+		color: @lose-text-color;
 	}
 }
 

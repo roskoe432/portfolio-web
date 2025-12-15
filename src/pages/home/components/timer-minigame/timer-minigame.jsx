@@ -7,13 +7,14 @@ function TimerMinigame() {
 		formattedTime,
 		targetTime,
 		result,
-		gameState,
+		isIdleState,
+		isRunningState,
+		isStoppedState,
+		didWin,
 		handleStart,
 		handleStop,
 		handleReset,
-	} = useTimerMinigame({
-		speedFactor: 0.01,
-	});
+	} = useTimerMinigame();
 
 	return (
 		<Paper className={styles.container} shadow="md" p="xl" radius="md">
@@ -33,33 +34,33 @@ function TimerMinigame() {
 					<Text className={styles.time}>{formattedTime}</Text>
 				</div>
 
-				{result && (
-					<div
-						className={`${styles.result} ${result === 'win' ? styles.win : styles.lose}`}
-					>
-						<Text size="lg" fw={700}>
-							{result === 'win' ? '🎉 Perfect!' : '💔 Try Again!'}
-						</Text>
-					</div>
-				)}
-
 				<Group gap="md">
-					{gameState === 'idle' && (
+					{isIdleState() && (
 						<Button size="lg" onClick={handleStart}>
 							Start
 						</Button>
 					)}
-					{gameState === 'running' && (
+					{isRunningState() && (
 						<Button size="lg" color="red" onClick={handleStop}>
 							Stop!
 						</Button>
 					)}
-					{gameState === 'stopped' && (
+					{isStoppedState() && (
 						<Button size="lg" variant="light" onClick={handleReset}>
-							Play Again
+							Try Again
 						</Button>
 					)}
 				</Group>
+
+				{result && (
+					<div
+						className={`${styles.result} ${didWin() ? styles.win : styles.lose}`}
+					>
+						<Text size="lg" fw={700}>
+							{didWin() ? '🎉 Perfect!' : 'Try Again!'}
+						</Text>
+					</div>
+				)}
 			</Stack>
 		</Paper>
 	);
