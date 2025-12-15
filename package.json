@@ -15,7 +15,8 @@
 		"lint:fix": "eslint . --ext .js,.jsx --fix",
 		"format": "prettier --write \"src/**/*.{js,jsx,css,less,json}\"",
 		"format:check": "prettier --check \"src/**/*.{js,jsx,css,less,json}\"",
-		"certs:win": "powershell -ExecutionPolicy Bypass -File dev-certs-win.ps1 -Domain \"dev.local\" -UpdateHosts",
+		"copy-reports": "powershell -ExecutionPolicy Bypass -File scripts/post-build.ps1",
+		"certs:win": "powershell -ExecutionPolicy Bypass -File scripts/dev-certs-win.ps1 -Domain \"dev.local\" -UpdateHosts",
 		"prepare": "husky"
 	},
 	"keywords": [],
