@@ -1,0 +1,89 @@
+@import '../../../../styles/variables.less';
+
+@win-color-start: #4ecdc4;
+@win-color-end: #44a8a0;
+@win-text-color: #ffffff;
+@lose-color-start: #ff0000;
+@lose-color-end: #ee5a52;
+@lose-text-color: #ffffff;
+
+.container {
+	max-width: 400px;
+	margin: 0 auto;
+	background: var(--mantine-color-default);
+	border: 2px solid var(--mantine-color-default-border);
+}
+
+.title {
+	color: var(--mantine-color-text);
+	text-align: center;
+}
+
+.timerDisplay {
+	background: var(--mantine-color-dark-6);
+	padding: 2rem 3rem;
+	border-radius: var(--mantine-radius-md);
+	border: 3px solid var(--mantine-color-default-border);
+	box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+	min-width: 280px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.time {
+	font-family: 'Courier New', monospace;
+	font-size: 3rem;
+	font-weight: 700;
+	color: #4ecdc4;
+	text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+	letter-spacing: 0.1em;
+}
+
+.result {
+	padding: 1rem 2rem;
+	border-radius: var(--mantine-radius-md);
+	animation: slideIn 0.3s ease-out;
+	text-align: center;
+
+	&.win {
+		background: linear-gradient(135deg, @win-color-start 0%, #44a8a0 100%);
+		color: @win-text-color;
+	}
+
+	&.lose {
+		background: linear-gradient(
+			135deg,
+			@lose-color-start 0%,
+			@lose-color-end 100%
+		);
+		color: @lose-text-color;
+	}
+}
+
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (max-width: @breakpoint-sm) {
+	.container {
+		max-width: 100%;
+	}
+
+	.timerDisplay {
+		min-width: 240px;
+		padding: 1.5rem 2rem;
+	}
+
+	.time {
+		font-size: 2.5rem;
+	}
+}
