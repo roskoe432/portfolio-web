@@ -7,10 +7,11 @@ const theme = createTheme({
 	// Define your custom theme properties here
 });
 
-function AppProviders({ children }) {
+function AppProviders({ children, mantineEnv = 'production' }) {
 	return (
 		<ReduxProvider store={store}>
 			<MantineProvider
+				env={mantineEnv}
 				defaultColorScheme="dark"
 				theme={theme}
 				withGlobalStyles
