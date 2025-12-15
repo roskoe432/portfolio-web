@@ -19,4 +19,7 @@ npm run lint
 echo "Running format checks..."
 npm run format:check
 
+echo "Running tests..."
+npm run test
+
 echo "All checks passed. Proceeding with commit."

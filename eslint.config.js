@@ -13,6 +13,7 @@ export default [
 			'certs/**',
 			'logs/**',
 			'stats.html',
+			'tests/**',
 		],
 	},
 	{

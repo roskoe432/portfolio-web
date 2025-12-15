@@ -75,4 +75,22 @@ export default defineConfig({
 		port: 3000,
 		open: true,
 	},
+	test: {
+		globals: true, // Allows using test, expect, describe without importing
+		environment: 'jsdom',
+		setupFiles: './tests/setup.js',
+		css: false,
+		coverage: {
+			provider: 'v8',
+			reporter: ['text', 'json', 'html', 'json-summary'],
+			include: ['src/**/*.{js,jsx}'],
+			thresholds: {
+				statements: 1,
+				branches: 1,
+				functions: 1,
+				lines: 1,
+			},
+		},
+		include: ['tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+	},
 });

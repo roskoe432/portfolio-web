@@ -29,6 +29,18 @@ jobs:
     - name: Build Application
       run: npm run build
 
+    - name: Run Tests
+      run: npm run test
+
+    - name: Run Coverage
+      run: npm run test:coverage
+
+    - name: Post Coverage Report to PR
+      uses: davelosert/vitest-coverage-report-action@v2
+      if: always() # Ensures the report is posted even if tests fail
+      with:
+          check-coverage-threshold: false 
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
