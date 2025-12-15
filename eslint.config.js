@@ -14,6 +14,7 @@ export default [
 			'logs/**',
 			'stats.html',
 			'tests/**',
+			'coverage/**',
 		],
 	},
 	{

@@ -1,5 +1,7 @@
 function AppFooter() {
-	return <footer>© {new Date().getFullYear()} Ben Snow</footer>;
+	return (
+		<footer>&copy; {new Date().getFullYear()} Ben Snow&apos;s Portfolio</footer>
+	);
 }
 
 export default AppFooter;

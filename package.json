@@ -9,7 +9,7 @@
 		"build": "vite build",
 		"serve": "vite preview",
 		"test": "vitest",
-		"test:watch": "vitest --watch",
+		"test:verbose": "vitest --reporter=verbose",
 		"test:coverage": "vitest run --coverage",
 		"lint": "eslint . --ext .js,.jsx",
 		"lint:fix": "eslint . --ext .js,.jsx --fix",
