@@ -1,1 +1,0 @@
-docker build --build-arg VITE_ENV=prod -t portfolio-web .

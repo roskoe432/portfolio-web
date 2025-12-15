@@ -22,6 +22,7 @@ export default defineConfig({
 			'@shared': path.resolve(__dirname, 'src/shared'),
 			'@pages': path.resolve(__dirname, 'src/pages'),
 			'@app': path.resolve(__dirname, 'src/app'),
+			'@tests': path.resolve(__dirname, 'tests'),
 		},
 	},
 	build: {
@@ -74,5 +75,24 @@ export default defineConfig({
 		allowedHosts: ['dev.local'],
 		port: 3000,
 		open: true,
+	},
+	test: {
+		globals: true, // Allows using test, expect, describe without importing
+		environment: 'jsdom',
+		setupFiles: './tests/setup.js',
+		css: false,
+		coverage: {
+			provider: 'v8',
+			reporter: ['text', 'json', 'html', 'json-summary'],
+			include: ['src/**/*.{js,jsx}'],
+			exclude: ['src/index.jsx', 'src/config.js', 'src/pages/index.jsx'],
+			thresholds: {
+				statements: 65,
+				branches: 40,
+				functions: 67,
+				lines: 67,
+			},
+		},
+		include: ['tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
 	},
 });

@@ -8,6 +8,9 @@
 		"start": "vite",
 		"build": "vite build",
 		"serve": "vite preview",
+		"test": "vitest",
+		"test:verbose": "vitest --reporter=verbose",
+		"test:coverage": "vitest run --coverage",
 		"lint": "eslint . --ext .js,.jsx",
 		"lint:fix": "eslint . --ext .js,.jsx --fix",
 		"format": "prettier --write \"src/**/*.{js,jsx,css,less,json}\"",
@@ -30,13 +33,17 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.39.2",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/react": "^16.3.0",
 		"@vitejs/plugin-react": "^5.1.2",
+		"@vitest/coverage-v8": "^4.0.15",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-react": "^7.37.5",
 		"eslint-plugin-react-hooks": "^7.0.1",
 		"globals": "^16.5.0",
 		"husky": "^9.1.7",
+		"jsdom": "^27.3.0",
 		"less": "^4.4.2",
 		"postcss": "^8.5.6",
 		"postcss-preset-mantine": "^1.18.0",
@@ -44,6 +51,7 @@
 		"prettier": "^3.7.4",
 		"rollup-plugin-visualizer": "^6.0.5",
 		"terser": "^5.44.1",
-		"vite": "^7.2.7"
+		"vite": "^7.2.7",
+		"vitest": "^4.0.15"
 	}
 }

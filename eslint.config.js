@@ -13,6 +13,8 @@ export default [
 			'certs/**',
 			'logs/**',
 			'stats.html',
+			// 'tests/**', // Ignore until vi, it, test, describe, expect globals are added
+			'coverage/**',
 		],
 	},
 	{
@@ -34,6 +36,8 @@ export default [
 			globals: {
 				...globals.browser,
 				...globals.es2021,
+				...globals.jest,
+				vi: 'writable',
 			},
 			parserOptions: {
 				ecmaFeatures: { jsx: true },
