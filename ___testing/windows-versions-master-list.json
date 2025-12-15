@@ -1,0 +1,324 @@
+{
+	"metadata": {
+		"generatedDate": "2025-12-15",
+		"source": "Combined from OsVersion.cs (Installer) and operatingSystemHelpers.ts (Web App)",
+		"totalVersions": 38
+	},
+	"workstation": [
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "26100",
+			"productType": "Workstation",
+			"displayName": "Windows 11 (24H2)",
+			"source": "Installer only"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "22631",
+			"productType": "Workstation",
+			"displayName": "Windows 11 (23H2)",
+			"source": "Installer only"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "22621",
+			"productType": "Workstation",
+			"displayName": "Windows 11 (22H2)",
+			"source": "Installer only"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "22000",
+			"productType": "Workstation",
+			"displayName": "Windows 11 (21H2)",
+			"source": "Installer only"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "19045",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (22H2)",
+			"source": "Installer only"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "19044",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (21H2)",
+			"source": "Installer only"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "19043",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (21H1)",
+			"source": "Installer only"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "19042",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (20H2)",
+			"source": "Installer only"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "19041",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (2004)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "18363",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (1909)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "18362",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (1903)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "17763",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (1809)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "17134",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (1803)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "16299",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (1709)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "15063",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (1703)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "14393",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (1607)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "10586",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (1511)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "10240",
+			"productType": "Workstation",
+			"displayName": "Windows 10 (1507)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "3",
+			"buildNumber": "9600",
+			"productType": "Workstation",
+			"displayName": "Windows 8.1",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "2",
+			"buildNumber": "9200",
+			"productType": "Workstation",
+			"displayName": "Windows 8",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "1",
+			"buildNumber": "7600",
+			"productType": "Workstation",
+			"displayName": "Windows 7",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "1",
+			"buildNumber": "7601",
+			"productType": "Workstation",
+			"displayName": "Windows 7 (Service Pack 1)",
+			"source": "Both",
+			"note": "MISMATCH - Choose preferred name"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "0",
+			"buildNumber": "6000",
+			"productType": "Workstation",
+			"displayName": "Windows Vista",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "0",
+			"buildNumber": "6001",
+			"productType": "Workstation",
+			"displayName": "Windows Vista (SP 1)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "0",
+			"buildNumber": "6002",
+			"productType": "Workstation",
+			"displayName": "Windows Vista (SP 2)",
+			"source": "Both"
+		}
+	],
+	"server": [
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "26100",
+			"productType": "Server",
+			"displayName": "Windows Server 2025 (24H2)",
+			"source": "Installer only"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "20348",
+			"productType": "Server",
+			"displayName": "Windows Server 2022 (21H2)",
+			"source": "Installer only"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "17763",
+			"productType": "Server",
+			"displayName": "Windows Server 2019 (1809)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "16299",
+			"productType": "Server",
+			"displayName": "Windows Server 2016 (1709)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "10",
+			"minorVersion": "0",
+			"buildNumber": "14393",
+			"productType": "Server",
+			"displayName": "Windows Server 2016 (1607)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "3",
+			"buildNumber": "9600",
+			"productType": "Server",
+			"displayName": "Windows Server 2012 R2",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "2",
+			"buildNumber": "9200",
+			"productType": "Server",
+			"displayName": "Windows Server 2012",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "1",
+			"buildNumber": "7600",
+			"productType": "Server",
+			"displayName": "Windows Server 2008 (R2)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "1",
+			"buildNumber": "7601",
+			"productType": "Server",
+			"displayName": "Windows Server 2008 (R2, SP1)",
+			"source": "Both",
+			"note": "MISMATCH - Spacing difference in SP1 vs SP 1"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "1",
+			"buildNumber": "8400",
+			"productType": "Server",
+			"displayName": "Windows Home Server 2011",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "0",
+			"buildNumber": "6001",
+			"productType": "Server",
+			"displayName": "Windows Server 2008",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "0",
+			"buildNumber": "6002",
+			"productType": "Server",
+			"displayName": "Windows Server 2008 (SP 2)",
+			"source": "Both"
+		},
+		{
+			"majorVersion": "6",
+			"minorVersion": "0",
+			"buildNumber": "6003",
+			"productType": "Server",
+			"displayName": "Windows Server 2008 (SP2, Rollup KB4489887)",
+			"source": "Both"
+		}
+	],
+	"summary": {
+		"workstationVersions": 25,
+		"serverVersions": 13,
+		"totalUniqueVersions": 38,
+		"installerOnly": 10,
+		"inBoth": 28
+	}
+}
