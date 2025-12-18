@@ -23,6 +23,7 @@ export default defineConfig({
 			'@pages': path.resolve(__dirname, 'src/pages'),
 			'@app': path.resolve(__dirname, 'src/app'),
 			'@tests': path.resolve(__dirname, 'tests'),
+			'@i18n': path.resolve(__dirname, 'src/i18n'),
 		},
 	},
 	build: {

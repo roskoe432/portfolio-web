@@ -1,7 +1,10 @@
 import { Burger } from '@mantine/core';
 import styles from './app-header.module.less';
+import { useTranslation } from 'react-i18next';
 
 function AppHeader({ navOpened, toggleNav }) {
+	const { t } = useTranslation();
+
 	return (
 		<div className={styles['header-content']}>
 			<Burger
@@ -11,7 +14,7 @@ function AppHeader({ navOpened, toggleNav }) {
 				size="sm"
 			/>
 			<div className={styles['header-title']}>
-				<h1 className={styles['title']}>Ben Snow&apos;s Portfolio</h1>
+				<h1 className={styles['title']}>{t('appLayout.header.title')}</h1>
 			</div>
 		</div>
 	);

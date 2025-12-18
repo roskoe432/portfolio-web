@@ -1,5 +1,6 @@
 import 'jsdom';
 import '@testing-library/jest-dom';
+import '../src/i18n';
 
 Object.defineProperty(window, 'matchMedia', {
 	writable: true,

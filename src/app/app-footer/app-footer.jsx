@@ -1,6 +1,12 @@
+import { useTranslation } from 'react-i18next';
+
 function AppFooter() {
+	const { t } = useTranslation();
+
 	return (
-		<footer>&copy; {new Date().getFullYear()} Ben Snow&apos;s Portfolio</footer>
+		<footer>
+			{t('appLayout.footer.copyright', { year: new Date().getFullYear() })}
+		</footer>
 	);
 }
 

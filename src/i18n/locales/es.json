@@ -1,0 +1,43 @@
+{
+	"common": {
+		"loading": "Cargando...",
+		"error": "Ocurrió un error. Por favor, inténtelo de nuevo más tarde."
+	},
+	"appLayout": {
+		"header": {
+			"title": "Portafolio de Ben Snow"
+		},
+		"footer": {
+			"copyright": "© {{year}} Portafolio de Ben Snow"
+		}
+	},
+	"navigation": {
+		"home": "Inicio",
+		"about": "Acerca de",
+		"contact": "Contacto"
+	},
+	"pages": {
+		"home": {
+			"title": "Página de Inicio"
+		},
+		"about": {
+			"title": "Página Acerca de"
+		},
+		"contact": {
+			"title": "Página de Contacto"
+		}
+	},
+	"timerMinigame": {
+		"title": "⏱️ Desafío del Cartero",
+		"instructions": "Detén el cronómetro exactamente en",
+		"targetTime": "{{time}} segundos",
+		"buttons": {
+			"start": "Comenzar",
+			"stop": "¡Detener!",
+			"tryAgain": "Intentar de Nuevo"
+		},
+		"result": {
+			"perfect": "🎉 ¡Perfecto!"
+		}
+	}
+}
