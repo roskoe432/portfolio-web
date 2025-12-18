@@ -6,7 +6,7 @@ function TimerMinigame() {
 	const {
 		formattedTime,
 		targetTime,
-		result,
+		// result,
 		isIdleState,
 		isRunningState,
 		isStoppedState,
@@ -31,7 +31,9 @@ function TimerMinigame() {
 				</Text>
 
 				<div className={styles.timerDisplay}>
-					<Text className={styles.time}>{formattedTime}</Text>
+					<Text role="timer" className={styles.time}>
+						{formattedTime}
+					</Text>
 				</div>
 
 				<Group gap="md">
@@ -52,12 +54,10 @@ function TimerMinigame() {
 					)}
 				</Group>
 
-				{result && (
-					<div
-						className={`${styles.result} ${didWin() ? styles.win : styles.lose}`}
-					>
+				{didWin() && (
+					<div className={`${styles.result} ${styles.win}`}>
 						<Text size="lg" fw={700}>
-							{didWin() ? '🎉 Perfect!' : 'Try Again!'}
+							{'🎉 Perfect!'}
 						</Text>
 					</div>
 				)}
