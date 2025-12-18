@@ -13,7 +13,6 @@ export default [
 			'certs/**',
 			'logs/**',
 			'stats.html',
-			// 'tests/**', // Ignore until vi, it, test, describe, expect globals are added
 			'coverage/**',
 		],
 	},
