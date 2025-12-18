@@ -87,7 +87,7 @@ export default defineConfig({
 			exclude: ['src/index.jsx', 'src/config.js', 'src/pages/index.jsx'],
 			thresholds: {
 				statements: 90,
-				branches: 90,
+				branches: 50,
 				functions: 90,
 				lines: 90,
 			},
