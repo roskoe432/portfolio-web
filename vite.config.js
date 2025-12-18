@@ -38,7 +38,6 @@ export default defineConfig({
 						'react-dom/client',
 						'react-router-dom',
 					],
-					'redux-vendor': ['@reduxjs/toolkit', 'react-redux'],
 					'mantine-vendor': [
 						'@mantine/core',
 						'@mantine/form',
