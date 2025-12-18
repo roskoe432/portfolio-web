@@ -1,8 +1,10 @@
 import { Button, Paper, Text, Stack, Group } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
 import useTimerMinigame from '@/pages/home/components/timer-minigame/useTimerMinigame';
 import styles from './timer-minigame.module.less';
 
 function TimerMinigame() {
+	const { t } = useTranslation();
 	const {
 		formattedTime,
 		targetTime,
@@ -20,13 +22,13 @@ function TimerMinigame() {
 		<Paper className={styles.container} shadow="md" p="xl" radius="md">
 			<Stack align="center" gap="lg">
 				<Text className={styles.title} size="xl" fw={700}>
-					⏱️ Postman Challenge
+					{t('timerMinigame.title')}
 				</Text>
 
 				<Text size="sm" c="dimmed" ta="center">
-					Stop the timer at exactly{' '}
+					{t('timerMinigame.instructions')}{' '}
 					<Text span fw={700} c="blue">
-						{targetTime}.00 seconds
+						{t('timerMinigame.targetTime', { time: targetTime })}
 					</Text>
 				</Text>
 
@@ -39,17 +41,17 @@ function TimerMinigame() {
 				<Group gap="md">
 					{isIdleState() && (
 						<Button size="lg" onClick={handleStart}>
-							Start
+							{t('timerMinigame.buttons.start')}
 						</Button>
 					)}
 					{isRunningState() && (
 						<Button size="lg" color="red" onClick={handleStop}>
-							Stop!
+							{t('timerMinigame.buttons.stop')}
 						</Button>
 					)}
 					{isStoppedState() && (
 						<Button size="lg" variant="light" onClick={handleReset}>
-							Try Again
+							{t('timerMinigame.buttons.tryAgain')}
 						</Button>
 					)}
 				</Group>
@@ -57,7 +59,7 @@ function TimerMinigame() {
 				{didWin() && (
 					<div className={`${styles.result} ${styles.win}`}>
 						<Text size="lg" fw={700}>
-							{'🎉 Perfect!'}
+							{t('timerMinigame.result.perfect')}
 						</Text>
 					</div>
 				)}

@@ -1,0 +1,43 @@
+{
+	"common": {
+		"loading": "Loading...",
+		"error": "An error occurred. Please try again later."
+	},
+	"appLayout": {
+		"header": {
+			"title": "Ben Snow's Portfolio"
+		},
+		"footer": {
+			"copyright": "© {{year}} Ben Snow's Portfolio"
+		}
+	},
+	"navigation": {
+		"home": "Home",
+		"about": "About",
+		"contact": "Contact"
+	},
+	"pages": {
+		"home": {
+			"title": "Home Page"
+		},
+		"about": {
+			"title": "About Page"
+		},
+		"contact": {
+			"title": "Contact Page"
+		}
+	},
+	"timerMinigame": {
+		"title": "⏱️ Postman Challenge",
+		"instructions": "Stop the timer at exactly",
+		"targetTime": "{{time}} seconds",
+		"buttons": {
+			"start": "Start",
+			"stop": "Stop!",
+			"tryAgain": "Try Again"
+		},
+		"result": {
+			"perfect": "🎉 Perfect!"
+		}
+	}
+}

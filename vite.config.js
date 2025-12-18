@@ -23,6 +23,7 @@ export default defineConfig({
 			'@pages': path.resolve(__dirname, 'src/pages'),
 			'@app': path.resolve(__dirname, 'src/app'),
 			'@tests': path.resolve(__dirname, 'tests'),
+			'@i18n': path.resolve(__dirname, 'src/i18n'),
 		},
 	},
 	build: {
@@ -38,7 +39,6 @@ export default defineConfig({
 						'react-dom/client',
 						'react-router-dom',
 					],
-					'redux-vendor': ['@reduxjs/toolkit', 'react-redux'],
 					'mantine-vendor': [
 						'@mantine/core',
 						'@mantine/form',
@@ -87,10 +87,10 @@ export default defineConfig({
 			include: ['src/**/*.{js,jsx}'],
 			exclude: ['src/index.jsx', 'src/config.js', 'src/pages/index.jsx'],
 			thresholds: {
-				statements: 65,
-				branches: 40,
-				functions: 67,
-				lines: 67,
+				statements: 90,
+				branches: 50,
+				functions: 90,
+				lines: 90,
 			},
 		},
 		include: ['tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],

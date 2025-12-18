@@ -17,7 +17,7 @@ describe('TimerMinigame Component', () => {
 		renderWithProviders(<TimerMinigame />);
 
 		expect(screen.getByText(/Postman Challenge/i)).toBeInTheDocument();
-		expect(screen.getByText(/3\.00 seconds/i)).toBeInTheDocument();
+		expect(screen.getByText(/3 seconds/i)).toBeInTheDocument();
 		expect(screen.getByText(/00\.00/)).toBeInTheDocument();
 		expect(screen.getByText(/Start/i)).toBeInTheDocument();
 	});

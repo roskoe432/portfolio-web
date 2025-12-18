@@ -1,5 +1,9 @@
+import { useTranslation } from 'react-i18next';
+
 function ContactPage() {
-	return <h1>Contact Page</h1>;
+	const { t } = useTranslation();
+
+	return <h1>{t('pages.contact.title')}</h1>;
 }
 
 export default ContactPage;

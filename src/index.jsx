@@ -1,4 +1,5 @@
 import './config';
+import './i18n';
 import '@mantine/core/styles.css';
 import './styles/globals.less';
 import React from 'react';
