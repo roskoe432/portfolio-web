@@ -66,7 +66,7 @@ function useTimerMinigame({ targetTime = 3 } = {}) {
 	const isIdleState = () => currentGameState === GameState.IDLE;
 	const isRunningState = () => currentGameState === GameState.RUNNING;
 	const isStoppedState = () => currentGameState === GameState.STOPPED;
-	const didWin = () => result === WinStatus.WIN;
+	const didWin = () => result !== null && result === WinStatus.WIN;
 
 	return {
 		formattedTime: formatTime(elapsedTime),

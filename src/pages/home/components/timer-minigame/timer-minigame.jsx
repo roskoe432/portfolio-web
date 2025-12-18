@@ -10,7 +10,7 @@ function TimerMinigame() {
 		isIdleState,
 		isRunningState,
 		isStoppedState,
-		// didWin,
+		didWin,
 		handleStart,
 		handleStop,
 		handleReset,
@@ -54,15 +54,13 @@ function TimerMinigame() {
 					)}
 				</Group>
 
-				{/* {result && (
-					<div
-						className={`${styles.result} ${didWin() ? styles.win : styles.lose}`}
-					>
+				{didWin() && (
+					<div className={`${styles.result} ${styles.win}`}>
 						<Text size="lg" fw={700}>
-							{didWin() ? '🎉 Perfect!' : 'Try Again!'}
+							{'🎉 Perfect!'}
 						</Text>
 					</div>
-				)} */}
+				)}
 			</Stack>
 		</Paper>
 	);
