@@ -16,11 +16,12 @@ function AppLayout({ showFooter = false }) {
 				breakpoint: 'sm',
 				collapsed: { mobile: !navOpened },
 			}}
-			padding="md"
+			padding="xl"
 			classNames={{
 				root: styles['app-layout'],
 				header: styles['header'],
 				navbar: styles['nav-bar'],
+				main: styles['main'],
 			}}
 		>
 			<AppShell.Header>

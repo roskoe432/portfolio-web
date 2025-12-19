@@ -14,7 +14,8 @@
 	"navigation": {
 		"home": "Home",
 		"about": "About",
-		"contact": "Contact"
+		"contact": "Contact",
+		"resume": "Resume"
 	},
 	"pages": {
 		"home": {
@@ -22,6 +23,9 @@
 		},
 		"about": {
 			"title": "About Page"
+		},
+		"resume": {
+			"title": "Resume Page"
 		},
 		"contact": {
 			"title": "Contact Page"
