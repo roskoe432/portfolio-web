@@ -31,7 +31,7 @@ function MyDocument({ data }) {
 							<Text key={i}>
 								{i > 0 && ' | '}
 								{item.href ? (
-									<Link src={item.href} style={styles.link}>
+									<Link src={item.href} style={styles.link} target="_blank">
 										{item.text}
 									</Link>
 								) : (
