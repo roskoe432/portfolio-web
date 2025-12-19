@@ -26,6 +26,7 @@
 		"@mantine/core": "^8.3.10",
 		"@mantine/form": "^8.3.10",
 		"@mantine/hooks": "^8.3.10",
+		"@react-pdf/renderer": "^4.3.1",
 		"i18next": "^25.7.3",
 		"react": "^19.2.3",
 		"react-dom": "^19.2.3",

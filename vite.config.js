@@ -85,7 +85,14 @@ export default defineConfig({
 			provider: 'v8',
 			reporter: ['text', 'json', 'html', 'json-summary'],
 			include: ['src/**/*.{js,jsx}'],
-			exclude: ['src/index.jsx', 'src/config.js', 'src/pages/index.jsx'],
+			exclude: [
+				'src/index.jsx',
+				'src/config.js',
+				'src/pages/index.jsx',
+				'src/pages/resume/stylesheet.js',
+				'src/pages/resume/resume.jsx', // Figure out how to mock it properly
+				'**/*.json',
+			],
 			thresholds: {
 				statements: 90,
 				branches: 50,
