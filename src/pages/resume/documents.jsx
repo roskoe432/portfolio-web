@@ -1,11 +1,13 @@
 import { Document, Page, Text, View, Link } from '@react-pdf/renderer';
+import { useTranslation } from 'react-i18next';
 import styles from './stylesheet';
-import data from './default-data';
 
-function MyDocument() {
+function MyDocument({ data }) {
+	const { t } = useTranslation();
+
 	const renderSkillsCategory = (category, skills) => {
 		return (
-			<View style={{ marginBottom: 8 }}>
+			<View style={{ marginBottom: 8 }} key={category}>
 				<Text style={styles.subsectionTitle}>{category}</Text>
 				{skills.map((skill, index) => (
 					<Text key={index} style={styles.text}>
@@ -17,7 +19,10 @@ function MyDocument() {
 	};
 
 	return (
-		<Document title="Benjamin Snow - Resume" author="Benjamin Snow">
+		<Document
+			title={`${t('pages.resume.resume')} - Benjamin Snow`}
+			author="Benjamin Snow"
+		>
 			<Page size="A4" style={styles.page}>
 				<View style={styles.header}>
 					<Text style={styles.name}>{data.header.name}</Text>

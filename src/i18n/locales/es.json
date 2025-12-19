@@ -1,7 +1,8 @@
 {
 	"common": {
 		"loading": "Cargando...",
-		"error": "Ocurrió un error. Por favor, inténtelo de nuevo más tarde."
+		"error": "Ocurrió un error. Por favor, inténtelo de nuevo más tarde.",
+		"download": "Descargar"
 	},
 	"appLayout": {
 		"header": {
@@ -25,7 +26,8 @@
 			"title": "Página Acerca de"
 		},
 		"resume": {
-			"title": "Página de Currículum"
+			"resume": "Currículum",
+			"preparingDownload": "Preparando descarga..."
 		},
 		"contact": {
 			"title": "Página de Contacto"
