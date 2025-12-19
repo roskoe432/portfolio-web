@@ -1,17 +1,13 @@
 import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 import { Button } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import MyDocument from './documents';
+import MyDocument from './my-document';
 import useResume from './useResume';
 import styles from './resume.module.less';
 
 function Resume() {
 	const { t } = useTranslation();
-	const { data, loading } = useResume();
-
-	if (loading) {
-		return <div>{t('common.loading')}</div>;
-	}
+	const { data } = useResume();
 
 	if (!data) {
 		return <div>{t('common.error')}</div>;
