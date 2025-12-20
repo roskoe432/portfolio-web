@@ -1,4 +1,4 @@
-name: Portfolio Web - CI
+name: Portfolio Web - Check
 
 on:
   push:
