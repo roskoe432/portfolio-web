@@ -44,6 +44,7 @@ export default defineConfig({
 						'@mantine/form',
 						'@mantine/hooks',
 					],
+					'pdf-vendor': ['@react-pdf/renderer'],
 				},
 				chunkFileNames: 'assets/js/[name]-[hash].js',
 				entryFileNames: 'assets/js/[name]-[hash].js',
