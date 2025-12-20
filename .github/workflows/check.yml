@@ -1,13 +1,7 @@
 name: Portfolio Web - Check
 
 on:
-  push:
-    branches:
-      - 'feature/**'
-      - 'hotfix/**'
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   build_and_test:
