@@ -1,0 +1,79 @@
+name: Portfolio Web - Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to Azure
+    permissions:
+      contents: read
+      id-token: write # For Azure OIDC auth
+
+    env:
+      TF_VAR_azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      AZURE_CONTAINER_REGISTRY_NAME: ${{ vars.AZURE_CONTAINER_REGISTRY_NAME }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.12.2
+
+      - name: Terraform Init
+        run: |
+          terraform init \
+            -backend-config="resource_group_name=${{ vars.TF_RESOURCE_GROUP_NAME }}" \
+            -backend-config="storage_account_name=${{ vars.TF_STORAGE_ACCOUNT_NAME }}" \
+            -backend-config="container_name=${{ vars.TF_CONTAINER_NAME }}" \
+            -backend-config="key=portfolio.terraform.tfstate"
+        working-directory: ./terraform
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+        working-directory: ./terraform
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
+        working-directory: ./terraform
+
+      - name: Get ACR Login Server
+        id: acr
+        run: |
+          cd terraform
+          echo "login_server=$(terraform output -raw container_registry_login_server)" >> $GITHUB_OUTPUT
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Azure Container Registry
+        run: az acr login --name ${{ env.AZURE_CONTAINER_REGISTRY_NAME }}
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ steps.acr.outputs.login_server }}/portfolio-web:${{ github.sha }}
+            ${{ steps.acr.outputs.login_server }}/portfolio-web:latest
+          build-args: |
+            VITE_ENV=prod
+
+      - name: Update Container App
+        run: |
+          az containerapp update \
+            --name portfolio-web \
+            --resource-group portfolio-rg \
+            --image ${{ steps.acr.outputs.login_server }}/portfolio-web:${{ github.sha }}
