@@ -3,11 +3,10 @@ import { NavLink } from '@mantine/core';
 import { Suspense } from 'react';
 import pages from '@pages';
 import { useTranslation } from 'react-i18next';
+import CustomLoader from '@/shared/components/custom-loader/custom-loader';
 import styles from './app-navigation.module.less';
 
 export function AppRoutes() {
-	const { t } = useTranslation();
-
 	const createPageRoutes = () =>
 		Object.keys(pages)
 			.filter((key) => !pages[key].disabled)
@@ -17,7 +16,7 @@ export function AppRoutes() {
 			});
 
 	return (
-		<Suspense fallback={<div>{t('common.loading')}</div>}>
+		<Suspense fallback={<CustomLoader />}>
 			<div className={styles['app-routes-wrapper']}>
 				<Routes>{createPageRoutes()}</Routes>
 			</div>
