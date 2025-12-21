@@ -1,6 +1,6 @@
 import { Document, Page, Text, View, Link } from '@react-pdf/renderer';
 import { useTranslation } from 'react-i18next';
-import styles from './stylesheet';
+import styles from './my-document.stylesheet';
 
 function MyDocument({ data }) {
 	const { t } = useTranslation();
@@ -27,18 +27,19 @@ function MyDocument({ data }) {
 				<View style={styles.header}>
 					<Text style={styles.name}>{data.header.name}</Text>
 					<Text style={styles.contact}>
-						{data.header.contact.map((item, i) => (
-							<Text key={i}>
-								{i > 0 && ' | '}
-								{item.href ? (
-									<Link src={item.href} style={styles.link} target="_blank">
-										{item.text}
-									</Link>
-								) : (
-									item.text
-								)}
-							</Text>
-						))}
+						{data.header.contact &&
+							data.header.contact.map((item, i) => (
+								<Text key={i}>
+									{i > 0 && ' | '}
+									{item.href ? (
+										<Link src={item.href} style={styles.link} target="_blank">
+											{item.text}
+										</Link>
+									) : (
+										item.text
+									)}
+								</Text>
+							))}
 					</Text>
 				</View>
 				{

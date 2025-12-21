@@ -13,8 +13,9 @@ function AppHeader({ navOpened, toggleNav }) {
 				hiddenFrom="sm"
 				size="sm"
 			/>
-			<div className={styles['header-title']}>
+			<div className={styles['header-title-group']}>
 				<h1 className={styles['title']}>{t('appLayout.header.title')}</h1>
+				<h2 className={styles['subtitle']}>{t('appLayout.header.subtitle')}</h2>
 			</div>
 		</div>
 	);
