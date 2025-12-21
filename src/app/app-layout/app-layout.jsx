@@ -10,7 +10,7 @@ function AppLayout({ showFooter = false }) {
 
 	return (
 		<AppShell
-			header={{ height: 100 }}
+			header={{ height: 140 }}
 			navbar={{
 				width: { base: 200, sm: 250 },
 				breakpoint: 'sm',

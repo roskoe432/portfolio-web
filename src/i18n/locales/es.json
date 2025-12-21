@@ -2,11 +2,13 @@
 	"common": {
 		"loading": "Cargando...",
 		"error": "Ocurrió un error. Por favor, inténtelo de nuevo más tarde.",
-		"download": "Descargar"
+		"download": "Descargar",
+		"underConstruction": "En Construcción"
 	},
 	"appLayout": {
 		"header": {
-			"title": "Portafolio de Ben Snow"
+			"title": "Portafolio de Benjamin Snow",
+			"subtitle": "Ingeniero de Software"
 		},
 		"footer": {
 			"copyright": "© {{year}} Portafolio de Ben Snow"
@@ -16,7 +18,8 @@
 		"home": "Inicio",
 		"about": "Acerca de",
 		"contact": "Contacto",
-		"resume": "Currículum"
+		"resume": "Currículum",
+		"underTheHood": "Bajo el Capó"
 	},
 	"pages": {
 		"home": {

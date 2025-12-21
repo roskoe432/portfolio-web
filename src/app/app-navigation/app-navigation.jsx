@@ -37,7 +37,7 @@ export function AppLinks() {
 			/>
 		));
 
-	return <nav className={styles['app-navigation']}>{createLinks()}</nav>;
+	return <div className={styles['app-navigation']}>{createLinks()}</div>;
 }
 
 export default AppRoutes;

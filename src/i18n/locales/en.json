@@ -2,11 +2,13 @@
 	"common": {
 		"loading": "Loading...",
 		"error": "An error occurred. Please try again later.",
-		"download": "Download"
+		"download": "Download",
+		"underConstruction": "Under Construction"
 	},
 	"appLayout": {
 		"header": {
-			"title": "Ben Snow's Portfolio"
+			"title": "Benjamin Snow's Portfolio",
+			"subtitle": "Software Engineer"
 		},
 		"footer": {
 			"copyright": "© {{year}} Ben Snow's Portfolio"
@@ -16,7 +18,8 @@
 		"home": "Home",
 		"about": "About",
 		"contact": "Contact",
-		"resume": "Resume"
+		"resume": "Resume",
+		"underTheHood": "Under The Hood"
 	},
 	"pages": {
 		"home": {
