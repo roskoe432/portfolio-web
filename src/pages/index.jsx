@@ -7,14 +7,12 @@ const pages = {
 		path: '/',
 		entry: lazy(() => import('./home/home')),
 	},
-	// Not ready yet
-	// --------------------------------
-	// ABOUT: {
-	// 	name: 'About',
-	// 	translationKey: 'navigation.about',
-	// 	path: '/about',
-	// 	entry: lazy(() => import('./about/about')),
-	// },
+	ABOUT: {
+		name: 'About',
+		translationKey: 'navigation.about',
+		path: '/about',
+		entry: lazy(() => import('./about/about')),
+	},
 	RESUME: {
 		name: 'Resume',
 		translationKey: 'navigation.resume',

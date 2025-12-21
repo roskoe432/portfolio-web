@@ -1,3 +1,8 @@
+.app-routes-wrapper {
+	padding: 0 8rem;
+	font-size: 1.2rem;
+}
+
 .app-navigation {
 	display: flex;
 	flex-direction: column;
@@ -14,5 +19,18 @@
 		span {
 			font-size: 1rem;
 		}
+	}
+}
+
+@media (max-width: 1200px) {
+	.app-routes-wrapper {
+		padding: 0 3rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.app-routes-wrapper {
+		padding: 0 0.5rem;
+		font-size: 1rem;
 	}
 }

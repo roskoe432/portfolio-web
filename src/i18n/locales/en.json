@@ -23,7 +23,11 @@
 			"title": "Home Page"
 		},
 		"about": {
-			"title": "About Page"
+			"title": "From Saving Princesses to Building Full-Stack Solutions",
+			"zeldaParagraph": "It started with The Legend of Zelda: A Link to the Past. As a nine-year-old, I was captivated by the grand adventure of rescuing Princess Zelda from Ganon. I didn`t know it then, but navigating those digital worlds would eventually spark a lifelong obsession with how they were built.",
+			"perlenspielParagraph": "My professional path into engineering began with a similar challenge: a player, a key, and a locked door. Implementing that logic in the <perlenspielLink>Perlenspiel gameclavier</perlenspielLink> was my first real taste of programming. Today, I translate that same problem-solving drive into building full-stack applications—currently specializing in React frontends, .NET Core backends, and Azure cloud services.",
+			"quoteParagraph": "I am a firm believer in the iterative nature of software craftsmanship. My goal with every project is to bring raw ideas to fruition through a disciplined workflow: <quoteStyle>\"Make it work, make it right, make it fast.\" —Kent Beck</quoteStyle>",
+			"introToMiniLevelParagraph": "Below is a small piece of where it all started—a mini-level I rebuilt to honor the engine that first launched my career."
 		},
 		"resume": {
 			"resume": "Resume",

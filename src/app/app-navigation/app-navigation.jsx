@@ -18,7 +18,9 @@ export function AppRoutes() {
 
 	return (
 		<Suspense fallback={<div>{t('common.loading')}</div>}>
-			<Routes>{createPageRoutes()}</Routes>
+			<div className={styles['app-routes-wrapper']}>
+				<Routes>{createPageRoutes()}</Routes>
+			</div>
 		</Suspense>
 	);
 }
