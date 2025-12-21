@@ -10,13 +10,13 @@ const pages = {
 		translationKey: 'navigation.about',
 		entry: lazy(() => import('./about/about')),
 	},
-	'/under-the-hood': {
-		translationKey: 'navigation.underTheHood',
-		entry: lazy(() => import('./under-the-hood/under-the-hood')),
-	},
 	'/resume': {
 		translationKey: 'navigation.resume',
 		entry: lazy(() => import('./resume/resume')),
+	},
+	'/links': {
+		translationKey: 'navigation.links',
+		entry: lazy(() => import('./links/links')),
 	},
 	'/contact': {
 		disabled: true,
