@@ -9,12 +9,12 @@ export function AppRoutes() {
 	const { t } = useTranslation();
 
 	const createPageRoutes = () =>
-		Object.keys(pages).map((key) => {
-			const PageComponent = pages[key].entry;
-			return (
-				<Route key={key} path={pages[key].path} element={<PageComponent />} />
-			);
-		});
+		Object.keys(pages)
+			.filter((key) => !pages[key].disabled)
+			.map((key) => {
+				const PageComponent = pages[key].entry;
+				return <Route key={key} path={key} element={<PageComponent />} />;
+			});
 
 	return (
 		<Suspense fallback={<div>{t('common.loading')}</div>}>
@@ -27,17 +27,19 @@ export function AppLinks() {
 	const { t } = useTranslation();
 
 	const createLinks = () =>
-		Object.keys(pages).map((key) => (
-			<NavLink
-				className={styles['nav-link']}
-				key={key}
-				label={t(pages[key].translationKey)}
-				to={pages[key].path}
-				component={Link}
-			/>
-		));
+		Object.keys(pages)
+			.filter((key) => !pages[key].disabled)
+			.map((key) => (
+				<NavLink
+					className={styles['nav-link']}
+					key={key}
+					label={t(pages[key].translationKey)}
+					to={key}
+					component={Link}
+				/>
+			));
 
-	return <nav className={styles['app-navigation']}>{createLinks()}</nav>;
+	return <div className={styles['app-navigation']}>{createLinks()}</div>;
 }
 
 export default AppRoutes;

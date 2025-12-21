@@ -1,18 +1,13 @@
 {
 	"header": {
-		"name": "Benjamin Roscoe Snow",
-		"contact": [
-			{
-				"text": "LinkedIn",
-				"href": "https://linkedin.com/in/benjamin-snow-7159a387"
-			}
-		]
+		"name": "Benjamin R. Snow",
+		"contact": []
 	},
 	"skills": {
 		"Frontend": [
 			"React, Redux, Vue, TypeScript, JavaScript, HTML5/CSS3, LESS",
 			"Mobile Development: React Native, Expo",
-			"UI Libraries:Mantine UI, Ant Design, Material UI",
+			"UI Libraries: Mantine UI, Ant Design, Material UI",
 			"Build Tools: Vite, Webpack, Babel",
 			"Tes`ting: Jest, Vitest, React Testing Library",
 			"Localization: i18n/Internationalization",
@@ -22,6 +17,7 @@
 			".NET Core, C#, C++, Node.js, Express",
 			"RESTful API Development",
 			"Azure Entra ID, Authentication & Authorization",
+			"IaC, Terraform, Azure",
 			"Microservice Architecture"
 		],
 		"DevOps & Tools": [

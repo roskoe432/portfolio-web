@@ -1,35 +1,29 @@
 import { lazy } from 'react';
 
 const pages = {
-	HOME: {
-		name: 'Home',
+	'/home': {
 		translationKey: 'navigation.home',
-		path: '/',
 		entry: lazy(() => import('./home/home')),
 	},
-	// Not ready yet
-	// --------------------------------
-	// ABOUT: {
-	// 	name: 'About',
-	// 	translationKey: 'navigation.about',
-	// 	path: '/about',
-	// 	entry: lazy(() => import('./about/about')),
-	// },
-	RESUME: {
-		name: 'Resume',
+	'/about': {
+		disabled: false,
+		translationKey: 'navigation.about',
+		entry: lazy(() => import('./about/about')),
+	},
+	'/resume': {
 		translationKey: 'navigation.resume',
-		path: '/resume',
 		entry: lazy(() => import('./resume/resume')),
 	},
-	UNDER_THE_HOOD: {},
-	// Not ready yet
-	// --------------------------------
-	// CONTACT: {
-	// 	name: 'Contact',
-	// 	translationKey: 'navigation.contact',
-	// 	path: '/contact',
-	// 	entry: lazy(() => import('./contact/contact')),
-	// },
+	'/links': {
+		disabled: true,
+		translationKey: 'navigation.links',
+		entry: lazy(() => import('./links/links')),
+	},
+	'/contact': {
+		disabled: true,
+		translationKey: 'navigation.contact',
+		entry: lazy(() => import('./contact/contact')),
+	},
 };
 
 export default pages;

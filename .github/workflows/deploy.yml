@@ -10,6 +10,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: production
     name: Deploy to Azure
     permissions:
       contents: read

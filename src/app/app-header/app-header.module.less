@@ -9,23 +9,36 @@
 	@media (max-width: @breakpoint-sm) {
 		justify-content: flex-start;
 	}
-}
 
-.header-title {
-	flex: 1;
-	display: flex;
-	justify-content: center;
+	.header-title-group {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 
-	@media (max-width: @breakpoint-sm) {
-		justify-content: flex-start;
-	}
-}
+		@media (max-width: @breakpoint-sm) {
+			justify-content: flex-start;
+		}
 
-.title {
-	font-size: 1.5rem;
-	font-weight: bold;
+		.title {
+			font-size: 2rem;
+			font-weight: bold;
+			margin: 0;
 
-	@media (max-width: 768px) {
-		font-size: 1.2rem;
+			@media (max-width: 768px) {
+				font-size: 1.2rem;
+			}
+		}
+
+		.subtitle {
+			font-size: 1rem;
+			font-weight: normal;
+			margin: 0;
+
+			@media (max-width: 768px) {
+				font-size: 0.8rem;
+			}
+		}
 	}
 }
