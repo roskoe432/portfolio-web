@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
 const pages = {
-	'/home': {
+	'/': {
 		translationKey: 'navigation.home',
 		entry: lazy(() => import('./home/home')),
 	},

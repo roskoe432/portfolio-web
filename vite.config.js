@@ -82,6 +82,12 @@ export default defineConfig({
 		environment: 'jsdom',
 		setupFiles: './tests/setup.js',
 		css: false,
+		env: {
+			VITE_ENV: 'test',
+			VITE_GITHUB_URL: 'https://github.com/test',
+			VITE_LINKEDIN_URL: 'https://linkedin.com/test',
+			VITE_PERLENSPIEL_URL: 'https://perlenspiel.test',
+		},
 		coverage: {
 			provider: 'v8',
 			reporter: ['text', 'json', 'html', 'json-summary'],

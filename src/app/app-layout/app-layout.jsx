@@ -16,7 +16,7 @@ function AppLayout({ showFooter = false }) {
 				breakpoint: 'sm',
 				collapsed: { mobile: !navOpened },
 			}}
-			padding="xl"
+			padding={{ base: 'md', sm: 'lg', md: 'xl' }}
 			classNames={{
 				root: styles['app-layout'],
 				header: styles['header'],

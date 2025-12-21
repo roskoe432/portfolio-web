@@ -75,6 +75,9 @@ jobs:
             ${{ steps.acr.outputs.login_server }}/portfolio-web:latest
           build-args: |
             VITE_ENV=prod
+            VITE_GITHUB_URL=${{ vars.VITE_GITHUB_URL }}
+            VITE_LINKEDIN_URL=${{ vars.VITE_LINKEDIN_URL }}
+            VITE_PERLENSPIEL_URL=${{ vars.VITE_PERLENSPIEL_URL }}
 
       - name: Update Container App
         run: |
