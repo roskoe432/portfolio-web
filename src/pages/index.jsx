@@ -7,24 +7,29 @@ const pages = {
 		path: '/',
 		entry: lazy(() => import('./home/home')),
 	},
-	ABOUT: {
-		name: 'About',
-		translationKey: 'navigation.about',
-		path: '/about',
-		entry: lazy(() => import('./about/about')),
-	},
+	// Not ready yet
+	// --------------------------------
+	// ABOUT: {
+	// 	name: 'About',
+	// 	translationKey: 'navigation.about',
+	// 	path: '/about',
+	// 	entry: lazy(() => import('./about/about')),
+	// },
 	RESUME: {
 		name: 'Resume',
 		translationKey: 'navigation.resume',
 		path: '/resume',
 		entry: lazy(() => import('./resume/resume')),
 	},
-	CONTACT: {
-		name: 'Contact',
-		translationKey: 'navigation.contact',
-		path: '/contact',
-		entry: lazy(() => import('./contact/contact')),
-	},
+	UNDER_THE_HOOD: {},
+	// Not ready yet
+	// --------------------------------
+	// CONTACT: {
+	// 	name: 'Contact',
+	// 	translationKey: 'navigation.contact',
+	// 	path: '/contact',
+	// 	entry: lazy(() => import('./contact/contact')),
+	// },
 };
 
 export default pages;
