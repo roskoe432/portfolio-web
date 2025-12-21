@@ -33,7 +33,8 @@ function AboutPage() {
 					}}
 				></Trans>
 			</p>
-			<p>{t('pages.about.introToMiniLevelParagraph')}</p>
+			{/* Commented out until I host perlenspiel mini game */}
+			{/* <p>{t('pages.about.introToMiniLevelParagraph')}</p> */}
 		</div>
 	);
 }
