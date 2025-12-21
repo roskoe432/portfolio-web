@@ -17,6 +17,7 @@
 			".NET Core, C#, C++, Node.js, Express",
 			"RESTful API Development",
 			"Azure Entra ID, Authentication & Authorization",
+			"IaC, Terraform, Azure",
 			"Microservice Architecture"
 		],
 		"DevOps & Tools": [

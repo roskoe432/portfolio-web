@@ -6,7 +6,7 @@ const pages = {
 		entry: lazy(() => import('./home/home')),
 	},
 	'/about': {
-		disabled: true,
+		disabled: false,
 		translationKey: 'navigation.about',
 		entry: lazy(() => import('./about/about')),
 	},
