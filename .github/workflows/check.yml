@@ -44,7 +44,7 @@ jobs:
 
       - name: Post Coverage Report to PR
         uses: davelosert/vitest-coverage-report-action@v2
-        if: always()
+        if: github.event_name == 'pull_request'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN}}
 
