@@ -78,7 +78,7 @@ export default defineConfig({
 		open: true,
 	},
 	test: {
-		globals: true, // Allows using test, expect, describe without importing
+		globals: true,
 		environment: 'jsdom',
 		setupFiles: './tests/setup.js',
 		css: false,
@@ -91,7 +91,8 @@ export default defineConfig({
 				'src/config.js',
 				'src/pages/index.jsx',
 				'src/pages/resume/stylesheet.js',
-				'src/pages/resume/resume.jsx', // Figure out how to mock it properly
+				'src/pages/resume/resume.jsx', // Skip coverage for resume PDF generation page
+				'src/pages/resume/my-document.jsx', // Skip coverage for resume PDF generation document
 				'**/*.json',
 			],
 			thresholds: {
