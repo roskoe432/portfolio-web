@@ -15,6 +15,7 @@ export default [
 			'logs/**',
 			'stats.html',
 			'coverage/**',
+			'public/ps3/**',
 		],
 	},
 	{
