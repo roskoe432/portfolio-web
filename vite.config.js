@@ -45,7 +45,6 @@ export default defineConfig({
 						'@mantine/hooks',
 					],
 					'pdf-vendor': ['@react-pdf/renderer'],
-					'spline-vendor': ['@splinetool/react-spline'],
 				},
 				chunkFileNames: 'assets/js/[name]-[hash].js',
 				entryFileNames: 'assets/js/[name]-[hash].js',
