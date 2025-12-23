@@ -5,7 +5,7 @@ import AppRoutes, { AppLinks } from '../app-navigation/app-navigation';
 import AppHeader from '../app-header/app-header';
 import AppFooter from '../app-footer/app-footer';
 
-function AppLayout({ showFooter = false }) {
+function AppLayout({ showFooter = true }) {
 	const [navOpened, { toggle: toggleNav, close: closeNav }] = useDisclosure();
 
 	return (
@@ -16,12 +16,14 @@ function AppLayout({ showFooter = false }) {
 				breakpoint: 'sm',
 				collapsed: { mobile: !navOpened },
 			}}
+			footer={{ height: 60 }}
 			padding={{ base: 'md', sm: 'lg', md: 'xl' }}
 			classNames={{
 				root: styles['app-layout'],
 				header: styles['header'],
 				navbar: styles['nav-bar'],
 				main: styles['main'],
+				footer: styles['footer'],
 			}}
 		>
 			<AppShell.Header>
@@ -34,7 +36,7 @@ function AppLayout({ showFooter = false }) {
 				<AppRoutes />
 			</AppShell.Main>
 			{showFooter && (
-				<AppShell.Footer height={60} p="md">
+				<AppShell.Footer>
 					<AppFooter />
 				</AppShell.Footer>
 			)}

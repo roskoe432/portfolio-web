@@ -16,7 +16,7 @@ describe('App Component', () => {
 				<App />
 			</MantineProvider>,
 		);
-		const linkElement = screen.getByText(/portfolio/i);
-		expect(linkElement).toBeInTheDocument();
+		const linkElements = screen.getAllByText(/portfolio/i);
+		expect(linkElements.length).toBeGreaterThan(0);
 	});
 });
