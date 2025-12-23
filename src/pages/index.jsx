@@ -9,11 +9,6 @@ const pages = {
 		translationKey: 'navigation.resume',
 		entry: lazy(() => import('./resume/resume')),
 	},
-	'/links': {
-		disabled: true,
-		translationKey: 'navigation.links',
-		entry: lazy(() => import('./links/links')),
-	},
 	'/contact': {
 		disabled: true,
 		translationKey: 'navigation.contact',

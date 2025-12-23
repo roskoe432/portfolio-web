@@ -1,6 +1,7 @@
 import { useTranslation, Trans } from 'react-i18next';
 import config from '@/config';
 import styles from './about.module.less';
+import ExternalLink from '@/shared/components/link/external-link';
 
 function AboutPage() {
 	const { t } = useTranslation();
@@ -36,6 +37,9 @@ function AboutPage() {
 			<p className={styles['mini-level-intro']}>
 				{t('pages.about.introToMiniLevelParagraph')}
 			</p>
+			<ExternalLink href={config.urls.github}>
+				{t('pages.about.sourceCodeLinkText')}
+			</ExternalLink>
 			<iframe
 				title="Mini Level"
 				className={styles['mini-level-iframe']}
