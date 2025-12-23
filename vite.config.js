@@ -45,6 +45,7 @@ export default defineConfig({
 						'@mantine/hooks',
 					],
 					'pdf-vendor': ['@react-pdf/renderer'],
+					'spline-vendor': ['@splinetool/react-spline'],
 				},
 				chunkFileNames: 'assets/js/[name]-[hash].js',
 				entryFileNames: 'assets/js/[name]-[hash].js',
@@ -99,6 +100,7 @@ export default defineConfig({
 				'src/pages/resume/stylesheet.js',
 				'src/pages/resume/resume.jsx', // Skip coverage for resume PDF generation page
 				'src/pages/resume/my-document.jsx', // Skip coverage for resume PDF generation document
+				'src/pages/links/links.jsx', // Just keeping until I move links elsewhere.
 				'**/*.json',
 			],
 			thresholds: {

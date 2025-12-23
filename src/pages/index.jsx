@@ -2,11 +2,6 @@ import { lazy } from 'react';
 
 const pages = {
 	'/': {
-		translationKey: 'navigation.home',
-		entry: lazy(() => import('./home/home')),
-	},
-	'/about': {
-		disabled: false,
 		translationKey: 'navigation.about',
 		entry: lazy(() => import('./about/about')),
 	},
