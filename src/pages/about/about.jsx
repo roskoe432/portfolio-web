@@ -33,18 +33,16 @@ function AboutPage() {
 					}}
 				></Trans>
 			</p>
-			{!navigator?.userAgentData?.mobile && (
-				<>
-					<p>{t('pages.about.introToMiniLevelParagraph')}</p>
-					<iframe
-						title="Mini Level"
-						className={styles['mini-level-iframe']}
-						src="./ps3/index.html"
-						frameBorder="0"
-						allow="fullscreen; vr; vrhmd; gyroscope; accelerometer"
-					></iframe>
-				</>
-			)}
+			<p className={styles['mini-level-intro']}>
+				{t('pages.about.introToMiniLevelParagraph')}
+			</p>
+			<iframe
+				title="Mini Level"
+				className={styles['mini-level-iframe']}
+				src="./ps3/index.html"
+				frameBorder="0"
+				allow="fullscreen; vr; vrhmd; gyroscope; accelerometer"
+			></iframe>
 		</div>
 	);
 }
