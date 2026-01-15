@@ -44,7 +44,7 @@ export default defineConfig({
 						'@mantine/form',
 						'@mantine/hooks',
 					],
-					'pdf-vendor': ['@react-pdf/renderer'],
+					'pdf-vendor': ['react-pdf', 'pdfjs-dist'],
 				},
 				chunkFileNames: 'assets/js/[name]-[hash].js',
 				entryFileNames: 'assets/js/[name]-[hash].js',
@@ -96,9 +96,7 @@ export default defineConfig({
 				'src/index.jsx',
 				'src/config.js',
 				'src/pages/index.jsx',
-				'src/pages/resume/stylesheet.js',
-				'src/pages/resume/resume.jsx', // Skip coverage for resume PDF generation page
-				'src/pages/resume/my-document.jsx', // Skip coverage for resume PDF generation document
+				'src/pages/resume/resume-v2.jsx', // Skip coverage for resume PDF generation page
 				'src/pages/links/links.jsx', // Just keeping until I move links elsewhere.
 				'**/*.json',
 			],
