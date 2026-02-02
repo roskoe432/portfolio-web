@@ -79,9 +79,17 @@ jobs:
             VITE_LINKEDIN_URL=${{ vars.VITE_LINKEDIN_URL }}
             VITE_PERLENSPIEL_URL=${{ vars.VITE_PERLENSPIEL_URL }}
 
-      - name: Update Container App
+      - name: Update Container App (Force New Revision)
         run: |
           az containerapp update \
             --name portfolio-web \
             --resource-group portfolio-rg \
-            --image ${{ steps.acr.outputs.login_server }}/portfolio-web:${{ github.sha }}
+            --image ${{ steps.acr.outputs.login_server }}/portfolio-web:${{ github.sha }} \
+            --revision-suffix "rev-${{ github.run_number }}" \
+            --set-env-vars "CACHE_BUST=${{ github.sha }}"
+
+          # Restart to ensure fresh container
+          az containerapp revision restart \
+            --name portfolio-web \
+            --resource-group portfolio-rg \
+            --revision portfolio-web--rev-${{ github.run_number }}
