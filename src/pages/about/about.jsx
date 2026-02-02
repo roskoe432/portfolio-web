@@ -40,6 +40,9 @@ function AboutPage() {
 			<ExternalLink href={config.urls.github}>
 				{t('pages.about.sourceCodeLinkText')}
 			</ExternalLink>
+			<ExternalLink href="Benjamin_Snow_Resume.pdf" download>
+				{t('pages.resume.resume')}
+			</ExternalLink>
 			<iframe
 				title="Mini Level"
 				className={styles['mini-level-iframe']}
