@@ -22,6 +22,7 @@ const config = {
 		linkedin: import.meta.env.VITE_LINKEDIN_URL,
 		perlenspiel: import.meta.env.VITE_PERLENSPIEL_URL,
 	},
+	serverUrl: import.meta.env.VITE_SERVER_URL,
 };
 
 export default config;
