@@ -159,3 +159,6 @@ terraform/*.tfvars
 
 # Prototyping
 prototyping/*
+
+# Eslint reports
+eslint-report.html
