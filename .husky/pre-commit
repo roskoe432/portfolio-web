@@ -13,13 +13,7 @@ if [ "$BRANCH" = "main" ] || [ "$BRANCH" = "master" ]; then
   exit 1
 fi
 
-echo "Running lint checks..."
-npm run lint
-
-echo "Running format checks..."
-npm run format:check
-
-echo "Running tests..."
-npm run test
+echo "Running lint-staged to format and lint staged files..."
+npm run lint:staged
 
 echo "All checks passed. Proceeding with commit."

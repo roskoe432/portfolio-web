@@ -72,9 +72,21 @@ export default defineConfig({
 			cert: certPath,
 		},
 		host: 'dev.local',
-		allowedHosts: ['dev.local'],
+		allowedHosts: ['dev.local', 'localhost'],
 		port: 3000,
 		open: true,
+		proxy: {
+			'/api/v1': {
+				target: 'http://localhost:5000',
+				changeOrigin: true,
+				secure: false,
+			},
+			'/health': {
+				target: 'http://localhost:5000',
+				changeOrigin: true,
+				secure: false,
+			},
+		},
 	},
 	test: {
 		globals: true,
