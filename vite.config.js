@@ -80,6 +80,19 @@ export default defineConfig({
 				target: 'http://localhost:5000',
 				changeOrigin: true,
 				secure: false,
+				configure: (proxy) => {
+					proxy.on('proxyReq', (proxyReq, req) => {
+						console.log(`[Proxy] Sending ${req.method} request to: ${req.url}`);
+					});
+					proxy.on('proxyRes', (proxyRes, req) => {
+						console.log(
+							`[Proxy] Received ${proxyRes.statusCode} from: ${req.url}`,
+						);
+					});
+					proxy.on('error', (err) => {
+						console.error('[Proxy] Error:', err);
+					});
+				},
 			},
 			'/health': {
 				target: 'http://localhost:5000',
