@@ -46,6 +46,12 @@
 		time {
 			font-style: italic;
 		}
+
+		:global(.mantine-Badge-root) {
+			background-color: #ffd43b !important;
+			color: #7d5300 !important;
+			font-weight: 600;
+		}
 	}
 
 	.content {
@@ -123,12 +129,26 @@
 			0 2px 8px rgba(0, 0, 0, 0.3),
 			0 1px 3px rgba(0, 0, 0, 0.2);
 
+		.backButton {
+			color: #adb5bd !important;
+
+			&:hover {
+				color: #f1f3f5 !important;
+				background-color: rgba(255, 255, 255, 0.05) !important;
+			}
+		}
+
 		.title {
 			color: #f1f3f5;
 		}
 
 		.meta {
 			color: #adb5bd;
+
+			:global(.mantine-Badge-root) {
+				background-color: #fab005 !important;
+				color: #2b2006 !important;
+			}
 		}
 
 		.content {
