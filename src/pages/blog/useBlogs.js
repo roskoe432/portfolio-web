@@ -10,12 +10,6 @@ function useBlogs() {
 		fetchBlogs();
 	}, [fetchBlogs]);
 
-	useEffect(() => {
-		if (blogs?.length) {
-			console.log('Blogs fetched successfully:', blogs);
-		}
-	}, [blogs]);
-
 	const selectedBlog = blogs.find((blog) => blog.slug === slug);
 
 	return { blogs, selectedBlog, slug };
