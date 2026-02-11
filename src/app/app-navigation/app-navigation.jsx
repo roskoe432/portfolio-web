@@ -29,7 +29,9 @@ export function AppLinks() {
 
 	const createLinks = () =>
 		Object.keys(pages)
-			.filter((key) => !pages[key].disabled)
+			.filter(
+				(key) => !pages[key].disabled && pages[key].createNavLink !== false,
+			)
 			.map((key) => (
 				<NavLink
 					className={styles['nav-link']}
