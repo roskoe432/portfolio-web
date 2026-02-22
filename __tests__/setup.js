@@ -24,3 +24,9 @@ class ResizeObserverMock {
 }
 
 vi.stubGlobal('ResizeObserver', ResizeObserverMock);
+
+// Mock Phaser
+vi.mock('phaser', async () => {
+	const phaserMock = await import('./__mocks__/phaser.js');
+	return phaserMock;
+});
