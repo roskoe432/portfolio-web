@@ -44,6 +44,7 @@ export default defineConfig({
 						'@mantine/form',
 						'@mantine/hooks',
 					],
+					'phaser-vendor': ['phaser'],
 				},
 				chunkFileNames: 'assets/js/[name]-[hash].js',
 				entryFileNames: 'assets/js/[name]-[hash].js',

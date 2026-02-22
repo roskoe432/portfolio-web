@@ -1,12 +1,28 @@
 @import '../../styles/variables.less';
 
 .app-layout {
+	position: relative;
+	z-index: 1;
+
 	.header {
 		border-bottom: 1px solid var(--mantine-color-default-border);
 		padding: 1rem;
+		background: rgba(var(--mantine-color-body-rgb), 0.95);
+		backdrop-filter: blur(10px);
+	}
+
+	.nav-bar {
+		background: rgba(var(--mantine-color-body-rgb), 0.95);
+		backdrop-filter: blur(10px);
+	}
+
+	.main {
+		background: transparent;
 	}
 
 	.footer {
 		border-top: 1px solid var(--mantine-color-default-border);
+		background: rgba(var(--mantine-color-body-rgb), 0.95);
+		backdrop-filter: blur(10px);
 	}
 }
