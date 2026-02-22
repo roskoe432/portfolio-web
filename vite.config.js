@@ -22,7 +22,7 @@ export default defineConfig({
 			'@shared': path.resolve(__dirname, 'src/shared'),
 			'@pages': path.resolve(__dirname, 'src/pages'),
 			'@app': path.resolve(__dirname, 'src/app'),
-			'@tests': path.resolve(__dirname, 'tests'),
+			'@tests': path.resolve(__dirname, '__tests__'),
 			'@i18n': path.resolve(__dirname, 'src/i18n'),
 		},
 	},
@@ -104,7 +104,7 @@ export default defineConfig({
 	test: {
 		globals: true,
 		environment: 'jsdom',
-		setupFiles: './tests/setup.js',
+		setupFiles: './__tests__/setup.js',
 		css: false,
 		env: {
 			VITE_ENV: 'test',
@@ -130,6 +130,6 @@ export default defineConfig({
 				lines: 25,
 			},
 		},
-		include: ['tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+		include: ['__tests__/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
 	},
 });

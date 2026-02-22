@@ -21,7 +21,7 @@
 			"@shared/*": ["src/shared/*"],
 			"@pages/*": ["src/pages/*"],
 			"@app/*": ["src/app/*"],
-			"@tests/*": ["tests/*"],
+			"@tests/*": ["__tests__/*"],
 			"@i18n/*": ["src/i18n/*"]
 		}
 	},
