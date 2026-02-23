@@ -26,5 +26,5 @@
 		}
 	},
 	"include": ["src"],
-	"exclude": ["node_modules", "dist", "build", "stats.html"]
+	"exclude": ["node_modules", "dist", "build", "stats.html", "**/*.tsx"]
 }

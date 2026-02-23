@@ -6,9 +6,27 @@ import path from 'path';
 const certPath = path.resolve(__dirname, 'certs/server.crt');
 const keyPath = path.resolve(__dirname, 'certs/server.key');
 
+// Tiled Application JSON (TMJ) plugin
+const tmjPlugin = () => {
+	return {
+		name: 'tmj-plugin',
+		transform(src, id) {
+			if (id.endsWith('.tmj')) {
+				try {
+					JSON.parse(src);
+					return { code: `export default ${src};`, map: null };
+				} catch {
+					this.error(`Invalid JSON in ${id}`);
+				}
+			}
+		},
+	};
+};
+
 export default defineConfig({
 	plugins: [
 		react(),
+		tmjPlugin(),
 		visualizer({
 			open: false,
 			gzipSize: true,

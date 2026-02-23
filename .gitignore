@@ -162,3 +162,6 @@ prototyping/*
 
 # Eslint reports
 eslint-report.html
+
+#Tiled application files
+**/*.tsx
