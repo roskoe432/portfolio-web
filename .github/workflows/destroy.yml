@@ -6,6 +6,7 @@ on:
 jobs:
   destroy:
     runs-on: ubuntu-latest
+    environment: production
     name: Destroy Azure Infrastructure
     permissions:
       contents: read
