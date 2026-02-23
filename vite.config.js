@@ -44,6 +44,7 @@ export default defineConfig({
 						'@mantine/form',
 						'@mantine/hooks',
 					],
+					'phaser-vendor': ['phaser'],
 				},
 				chunkFileNames: 'assets/js/[name]-[hash].js',
 				entryFileNames: 'assets/js/[name]-[hash].js',
@@ -53,7 +54,7 @@ export default defineConfig({
 		minify: 'terser',
 		terserOptions: {
 			compress: {
-				drop_console: true,
+				drop_console: false,
 				drop_debugger: true,
 				passes: 2,
 			},

@@ -2,23 +2,22 @@ name: Portfolio Web - Deploy
 
 on:
   # Manually trigger deployments only
-  #   push:
-  #     branches:
-  #       - main
   workflow_dispatch:
 
 jobs:
-  deploy:
+  deploy_infrastructure:
     runs-on: ubuntu-latest
     environment: production
-    name: Deploy to Azure
+    name: Deploy Infrastructure
     permissions:
       contents: read
-      id-token: write # For Azure OIDC auth
+      id-token: write
 
     env:
       TF_VAR_azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      AZURE_CONTAINER_REGISTRY_NAME: ${{ vars.AZURE_CONTAINER_REGISTRY_NAME }}
+
+    outputs:
+      deployment_token: ${{ steps.terraform_outputs.outputs.deployment_token }}
 
     steps:
       - name: Checkout code
@@ -35,6 +34,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.12.2
+          terraform_wrapper: false
 
       - name: Terraform Init
         run: |
@@ -53,43 +53,50 @@ jobs:
         run: terraform apply -auto-approve tfplan
         working-directory: ./terraform
 
-      - name: Get ACR Login Server
-        id: acr
+      - name: Get Static Web App Deployment Token
+        id: terraform_outputs
         run: |
           cd terraform
-          echo "login_server=$(terraform output -raw container_registry_login_server)" >> $GITHUB_OUTPUT
+          DEPLOYMENT_TOKEN=$(terraform output -raw static_web_app_api_key)
+          echo "deployment_token=$DEPLOYMENT_TOKEN" >> $GITHUB_OUTPUT
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+  deploy_static_site:
+    needs: deploy_infrastructure
+    runs-on: ubuntu-latest
+    environment: production
+    name: Build and Deploy Static Site
+    permissions:
+      contents: read
 
-      - name: Log in to Azure Container Registry
-        run: az acr login --name ${{ env.AZURE_CONTAINER_REGISTRY_NAME }}
-
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
         with:
-          context: .
-          push: true
-          tags: |
-            ${{ steps.acr.outputs.login_server }}/portfolio-web:${{ github.sha }}
-            ${{ steps.acr.outputs.login_server }}/portfolio-web:latest
-          build-args: |
-            VITE_ENV=prod
-            VITE_GITHUB_URL=${{ vars.VITE_GITHUB_URL }}
-            VITE_LINKEDIN_URL=${{ vars.VITE_LINKEDIN_URL }}
-            VITE_PERLENSPIEL_URL=${{ vars.VITE_PERLENSPIEL_URL }}
+          submodules: true
+          lfs: false
 
-      - name: Update Container App (Force New Revision)
-        run: |
-          az containerapp update \
-            --name portfolio-web \
-            --resource-group portfolio-rg \
-            --image ${{ steps.acr.outputs.login_server }}/portfolio-web:${{ github.sha }} \
-            --revision-suffix "rev-${{ github.run_number }}" \
-            --set-env-vars "CACHE_BUST=${{ github.sha }}"
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
 
-          # Restart to ensure fresh container
-          az containerapp revision restart \
-            --name portfolio-web \
-            --resource-group portfolio-rg \
-            --revision portfolio-web--rev-${{ github.run_number }}
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Application
+        run: npm run build
+        env:
+          VITE_ENV: prod
+          VITE_GITHUB_URL: ${{ vars.VITE_GITHUB_URL }}
+          VITE_LINKEDIN_URL: ${{ vars.VITE_LINKEDIN_URL }}
+          VITE_PERLENSPIEL_URL: ${{ vars.VITE_PERLENSPIEL_URL }}
+
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ needs.deploy_infrastructure.outputs.deployment_token }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: 'upload'
+          app_location: 'dist'
+          skip_app_build: true
