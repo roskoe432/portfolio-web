@@ -40,7 +40,11 @@ function AboutPage() {
 			<ExternalLink href={config.urls.github}>
 				{t('pages.about.sourceCodeLinkText')}
 			</ExternalLink>
-			<ExternalLink href="Benjamin_Snow_Resume.pdf" download>
+			<ExternalLink
+				href={`${config.serverUrl}api/v1/resume/preview`}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				{t('pages.resume.resume')}
 			</ExternalLink>
 			<iframe
