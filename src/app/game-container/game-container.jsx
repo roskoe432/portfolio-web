@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import Phaser from 'phaser';
-import ExampleScene from '../../game/scenes/example.scene';
+import ExampleScene from '../../game/scenes/main/main.scene';
 import styles from './game-container.module.less';
 
 function GameContainer(props) {
