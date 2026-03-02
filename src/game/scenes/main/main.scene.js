@@ -1,9 +1,6 @@
 import Phaser from 'phaser';
 import Player from './player';
-import officeTileset from '../../assets/images/office-tileset.png';
 import officeMap from '../../assets/images/office-map.tmj';
-import computerDesk from '../../assets/images/first-cpu-desk.png';
-console.log(computerDesk);
 
 export default class MainScene extends Phaser.Scene {
 	player = null;
@@ -20,8 +17,8 @@ export default class MainScene extends Phaser.Scene {
 
 	async preload() {
 		this.load.tilemapTiledJSON('officeMap', officeMap);
-		this.load.image('officeTileset', officeTileset);
-		this.load.image('computerDesk', computerDesk);
+		this.load.image('officeTileset', 'assets/images/office-tileset.png');
+		this.load.image('computerDesk', 'assets/images/first-cpu-desk.png');
 		this.player = new Player(this);
 		await this.player.onPreload();
 	}
