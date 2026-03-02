@@ -9,7 +9,7 @@ const config = {
 	description: 'Welcome to the virtual office!',
 	parent: 'game-container',
 	width: 640,
-	height: 384,
+	height: 480,
 	backgroundColor: '#000000',
 	pixelArt: true,
 	scene: [MainScene],
@@ -17,7 +17,7 @@ const config = {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 0 },
-			debug: false,
+			debug: true,
 		},
 	},
 	scale: {
