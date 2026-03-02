@@ -1,40 +1,36 @@
 import Phaser from 'phaser';
+import Player from './player';
 import officeTileset from '../../assets/images/office-tileset.png';
 import officeMap from '../../assets/images/office-map.tmj';
-import idleAnim1 from '../../assets/images/animations/animations/breathing-idle/south/frame_000.png';
-import idleAnim2 from '../../assets/images/animations/animations/breathing-idle/south/frame_001.png';
-import idleAnim3 from '../../assets/images/animations/animations/breathing-idle/south/frame_002.png';
-import idleAnim4 from '../../assets/images/animations/animations/breathing-idle/south/frame_003.png';
+import computerDesk from '../../assets/images/first-cpu-desk.png';
+console.log(computerDesk);
 
 export default class MainScene extends Phaser.Scene {
+	player = null;
 	map = null;
 	tileset = null;
 	floorLayer = null;
 	floorOuterLayer = null;
 	wallsLayer = null;
-	player = null;
+	cursors = null;
 
 	constructor() {
 		super({ key: 'MainScene' });
 	}
 
-	preload() {
+	async preload() {
 		this.load.tilemapTiledJSON('officeMap', officeMap);
 		this.load.image('officeTileset', officeTileset);
-
-		this.load.image('idle_1', idleAnim1);
-		this.load.image('idle_2', idleAnim2);
-		this.load.image('idle_3', idleAnim3);
-		this.load.image('idle_4', idleAnim4);
+		this.load.image('computerDesk', computerDesk);
+		this.player = new Player(this);
+		await this.player.onPreload();
 	}
 
 	create() {
 		this.cameras.main.setZoom(1);
 
 		this.map = this.make.tilemap({ key: 'officeMap' });
-
 		this.tileset = this.map.addTilesetImage('office-tileset', 'officeTileset');
-
 		this.floorLayer = this.map.createLayer('floor-layer', this.tileset, 0, 0);
 		this.wallsLayer = this.map.createLayer('wall-layer', this.tileset, 0, 0);
 
@@ -52,31 +48,21 @@ export default class MainScene extends Phaser.Scene {
 			this.map.heightInPixels,
 		);
 
-		this.anims.create({
-			key: 'idle',
-			frames: [
-				{ key: 'idle_1' },
-				{ key: 'idle_2' },
-				{ key: 'idle_3' },
-				{ key: 'idle_4' },
-			],
-			frameRate: 4,
-			repeat: -1,
-		});
+		this.player.onCreate();
 
-		this.player = this.physics.add.sprite(250, 250, 'idle_1');
-		this.player.setScale(2);
-		this.player.refreshBody();
-		this.player.body.setSize(18, 36);
-		this.player.play('idle');
+		const cpuDesk = this.physics.add.image(315, 175, 'computerDesk');
+		cpuDesk.body.setSize(81, 100, true);
+		cpuDesk.refreshBody();
 
-		console.log(this.player.width, this.player.height);
+		cpuDesk.setZ(1); // Ensure the desk is above the floor layer
 
 		this.wallsLayer.setCollisionBetween(1, 1000);
-		this.physics.add.collider(this.player, this.wallsLayer);
+		this.player.addCollisions([this.wallsLayer, cpuDesk]);
+
+		this.cursors = this.input.keyboard.createCursorKeys();
 	}
 
 	update() {
-		// Game loop logic here
+		this.player.onUpdate(this.cursors);
 	}
 }
