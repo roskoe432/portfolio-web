@@ -3,6 +3,7 @@ const requiredEnvVars = [
 	'VITE_GITHUB_URL',
 	'VITE_LINKEDIN_URL',
 	'VITE_PERLENSPIEL_URL',
+	'VITE_DEBUG_GAME',
 ];
 
 const validateEnvVars = () => {
@@ -23,6 +24,7 @@ const config = {
 		perlenspiel: import.meta.env.VITE_PERLENSPIEL_URL,
 	},
 	serverUrl: import.meta.env.VITE_SERVER_URL,
+	debugGame: import.meta.env.VITE_DEBUG_GAME === 'true',
 };
 
 export default config;

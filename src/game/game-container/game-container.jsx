@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { createConfig } from '../config';
+import { createConfig } from '../game-config';
 import styles from './game-container.module.less';
 
 function GameContainer(props) {

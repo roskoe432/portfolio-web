@@ -1,9 +1,10 @@
 import Phaser from 'phaser';
 import MainScene from './scenes/main/main.scene';
+import config from '../config';
 
 let game;
 
-const config = {
+const gameConfig = {
 	type: Phaser.AUTO,
 	title: 'The Office',
 	description: 'Welcome to the virtual office!',
@@ -17,7 +18,7 @@ const config = {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 0 },
-			debug: true,
+			debug: config.debugGame,
 		},
 	},
 	scale: {
@@ -28,9 +29,9 @@ const config = {
 
 export const createConfig = () => {
 	if (!game) {
-		game = new Phaser.Game(config);
+		game = new Phaser.Game(gameConfig);
 	}
 	return game;
 };
 
-export default config;
+export default gameConfig;
