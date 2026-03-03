@@ -1,9 +1,13 @@
 import Phaser from 'phaser';
 import Player from './player';
 import officeMap from '../../maps/office-map.tmj';
-import EventBus from '@/game/event-bus';
+import { EventBus } from '@game';
+import getSceneImageAnimLoader from './images';
 
 export default class MainScene extends Phaser.Scene {
+	loadImages = getSceneImageAnimLoader(this);
+	loadAnimations = null;
+
 	player = null;
 	map = null;
 	tileset = null;
@@ -20,15 +24,14 @@ export default class MainScene extends Phaser.Scene {
 
 	async preload() {
 		this.load.tilemapTiledJSON('officeMap', officeMap);
-		this.load.image('officeTileset', 'assets/images/office-tileset.png');
-		this.load.image('computerDesk', 'assets/images/first-cpu-desk.png');
+		this.loadAnimations = this.loadImages();
 		this.player = new Player(this);
 		await this.player.onPreload();
 	}
 
 	create() {
 		this.cameras.main.setZoom(1);
-
+		this.loadAnimations(); // Create animations after loading images
 		this.map = this.make.tilemap({ key: 'officeMap' });
 		this.tileset = this.map.addTilesetImage('office-tileset', 'officeTileset');
 		this.floorLayer = this.map.createLayer('floor-layer', this.tileset, 0, 0);
