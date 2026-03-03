@@ -47,13 +47,16 @@ export default class MainScene extends Phaser.Scene {
 
 		this.player.onCreate();
 
-		const cpuDesk = this.physics.add.image(315, 175, 'computerDesk');
-		cpuDesk.body.setSize(81, 100, true);
-		cpuDesk.refreshBody();
+		const cpuDesk = this.physics.add.staticImage(315, 250, 'computerDesk');
+		cpuDesk.body.setSize(50, 100, true);
+		cpuDesk.body.setOffset(
+			(cpuDesk.width - 50) / 2,
+			(cpuDesk.height - 100) / 2,
+		);
+		cpuDesk.body.updateFromGameObject();
+		cpuDesk.setDepth(1); // Ensure the desk is above the floor layer
 
-		cpuDesk.setZ(1); // Ensure the desk is above the floor layer
-
-		this.wallsLayer.setCollisionBetween(1, 1000);
+		// this.wallsLayer.setCollisionBetween(1, 1000);
 		this.player.addCollisions([this.wallsLayer, cpuDesk]);
 
 		this.cursors = this.input.keyboard.createCursorKeys();
