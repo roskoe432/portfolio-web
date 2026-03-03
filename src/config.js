@@ -3,6 +3,7 @@ const requiredEnvVars = [
 	'VITE_GITHUB_URL',
 	'VITE_LINKEDIN_URL',
 	'VITE_PERLENSPIEL_URL',
+	'VITE_SERVER_URL',
 	'VITE_DEBUG_GAME',
 ];
 
