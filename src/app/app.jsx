@@ -24,10 +24,35 @@ function App() {
 	return (
 		<AppProviders>
 			<GameContainer />
-			<Modal show={showModal}>
+			<Modal
+				show={showModal}
+				onBackdropClick={() => setShowModal(false)}
+				onHide={() => setShowModal(false)}
+				centered="true"
+			>
 				<div
-					style={{ background: 'white', padding: '20px', borderRadius: '8px' }}
+					style={{
+						background: 'white',
+						color: 'black',
+						padding: '20px',
+						borderRadius: '8px',
+					}}
 				>
+					<button
+						style={{
+							position: 'absolute',
+							top: '10px',
+							right: '10px',
+							background: 'transparent',
+							border: 'none',
+							fontSize: '16px',
+							cursor: 'pointer',
+							color: 'black',
+						}}
+						onClick={() => setShowModal(false)}
+					>
+						X
+					</button>
 					<h2>Computer Desk Interaction</h2>
 					<p>
 						You have interacted with the computer desk! This is a placeholder
