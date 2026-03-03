@@ -1,0 +1,59 @@
+{
+    "activeFile": "C:/Users/bensn/Projects/my-projects/portfolio-2025/portfolio-web/src/game/assets/tiled/office-map.tmj",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "C:/Users/bensn/Projects/my-projects/portfolio-2025/portfolio-web/src/game/assets/tiled/office-map.tmj": {
+            "scale": 1.622421875,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 320.2003178119132,
+                "y": 239.76501179756346
+            }
+        },
+        "C:/Users/bensn/Projects/my-projects/portfolio-2025/portfolio-web/src/game/assets/tiled/office-map.tmj#office-tileset": {
+            "scaleInDock": 1
+        },
+        "office-interactables.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "office-items.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 1
+        },
+        "office-map.tmj": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 330,
+                "y": 306.66666666666663
+            }
+        },
+        "office-map.tmj#office-tileset": {
+            "scaleInDock": 1
+        },
+        "office-tileset.tiled.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "office-tileset.tsx": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/bensn/Projects/my-projects/portfolio-2025/portfolio-web/src/game/assets/images",
+    "openFiles": [
+        "office-tileset.tiled.tsx",
+        "C:/Users/bensn/Projects/my-projects/portfolio-2025/portfolio-web/src/game/assets/tiled/office-map.tmj"
+    ],
+    "project": "office-map.tiled-project",
+    "recentFiles": [
+        "office-tileset.tiled.tsx",
+        "C:/Users/bensn/Projects/my-projects/portfolio-2025/portfolio-web/src/game/assets/tiled/office-map.tmj",
+        "office-map.tmj",
+        "office-tileset.tsx",
+        "office-interactables.tsx",
+        "office-items.tsx"
+    ]
+}

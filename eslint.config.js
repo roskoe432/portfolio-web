@@ -16,6 +16,7 @@ export default [
 			'stats.html',
 			'coverage/**',
 			'public/ps3/**',
+			'**/*.tsx',
 		],
 	},
 	{

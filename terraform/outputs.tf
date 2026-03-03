@@ -3,29 +3,18 @@ output "resource_group_name" {
   value       = azurerm_resource_group.main.name
 }
 
-output "container_registry_login_server" {
-  description = "Login server for the container registry"
-  value       = azurerm_container_registry.acr.login_server
+output "static_web_app_default_hostname" {
+  description = "Default hostname of the Static Web App"
+  value       = azurerm_static_web_app.main.default_host_name
 }
 
-output "container_registry_admin_username" {
-  description = "Admin username for container registry"
-  value       = azurerm_container_registry.acr.admin_username
+output "static_web_app_url" {
+  description = "URL of the deployed Static Web App"
+  value       = "https://${azurerm_static_web_app.main.default_host_name}"
+}
+
+output "static_web_app_api_key" {
+  description = "API key for deploying to Static Web App"
+  value       = azurerm_static_web_app.main.api_key
   sensitive   = true
-}
-
-output "container_registry_admin_password" {
-  description = "Admin password for container registry"
-  value       = azurerm_container_registry.acr.admin_password
-  sensitive   = true
-}
-
-output "container_app_url" {
-  description = "URL of the deployed container app"
-  value       = "https://${azurerm_container_app.app.ingress[0].fqdn}"
-}
-
-output "container_app_fqdn" {
-  description = "FQDN of the container app"
-  value       = azurerm_container_app.app.ingress[0].fqdn
 }

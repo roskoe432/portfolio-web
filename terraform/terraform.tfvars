@@ -4,6 +4,11 @@ location                = "eastus"
 
 environment             = "prod"
 
-container_registry_name = "bensnowportfolio"
+static_web_app_name     = "portfolio-web"
 
-container_app_name      = "portfolio-web"
+static_web_app_location = "eastus2"
+
+static_web_app_sku      = "Free"
+
+# Uncomment and configure when ready to add custom domain
+# custom_domain = "yourdomain.com"
