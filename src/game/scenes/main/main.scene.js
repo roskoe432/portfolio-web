@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import Player from './player';
-import officeMap from '../../assets/images/office-map.tmj';
+import officeMap from '../../maps/office-map.tmj';
 import EventBus from '@/game/event-bus';
 
 export default class MainScene extends Phaser.Scene {
