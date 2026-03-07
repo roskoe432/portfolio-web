@@ -93,7 +93,7 @@ export default defineConfig({
 		},
 		host: 'dev.local',
 		allowedHosts: ['dev.local', 'localhost'],
-		port: 3000,
+		port: 4000,
 		open: true,
 		proxy: {
 			'/api/v1': {
