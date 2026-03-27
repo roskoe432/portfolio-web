@@ -8,6 +8,7 @@ export default class MainScene extends Phaser.Scene {
 	loadImages = getSceneImageAnimLoader(this);
 	loadAnimations = null;
 
+	paused = false;
 	player = null;
 	map = null;
 	tileset = null;
@@ -89,6 +90,7 @@ export default class MainScene extends Phaser.Scene {
 
 		this.cursors = this.input.keyboard.createCursorKeys();
 		this.eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+		this.pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 	}
 
 	update() {
