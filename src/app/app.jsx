@@ -3,6 +3,7 @@ import AppProviders from './app-providers';
 import { EventBus, GameContainer } from '@game';
 import { Modal } from 'react-overlays';
 import { useEffect, useState } from 'react';
+import AppRoutes from './app-navigation/app-navigation';
 
 function App() {
 	const [showModal, setShowModal] = useState(false);
@@ -32,10 +33,13 @@ function App() {
 			>
 				<div
 					style={{
+						margin: '30px',
 						background: 'white',
 						color: 'black',
 						padding: '20px',
 						borderRadius: '8px',
+						overflow: 'scroll',
+						maxHeight: '95vh',
 					}}
 				>
 					<button
@@ -53,12 +57,7 @@ function App() {
 					>
 						X
 					</button>
-					<h2>Computer Desk Interaction</h2>
-					<p>
-						You have interacted with the computer desk! This is a placeholder
-						modal.
-					</p>
-					{/* You can add more interactive content here, such as buttons or additional information */}
+					<AppRoutes />
 				</div>
 			</Modal>
 		</AppProviders>
