@@ -30,9 +30,9 @@
 	"author": "Ben Snow",
 	"license": "ISC",
 	"dependencies": {
-		"@mantine/core": "^8.3.10",
-		"@mantine/form": "^8.3.10",
-		"@mantine/hooks": "^8.3.10",
+		"@mantine/core": "^9.0.0",
+		"@mantine/form": "^9.0.0",
+		"@mantine/hooks": "^9.0.0",
 		"i18next": "^25.7.3",
 		"phaser": "^3.90.0",
 		"react": "^19.2.3",

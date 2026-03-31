@@ -1,6 +1,5 @@
 import styles from './blog.module.less';
-import { Link } from 'react-router-dom';
-import { NavLink } from '@mantine/core';
+import { NavLink } from 'react-router-dom';
 import BlogPost from './post';
 import useBlogs from './useBlogs';
 
@@ -10,11 +9,7 @@ function BlogPage() {
 	const generateLinksFromSlugs = (blogs) => {
 		return blogs.map((blog) => (
 			<li key={blog.slug}>
-				<NavLink
-					component={Link}
-					to={`/blog/${blog.slug}`}
-					label={blog.title}
-				/>
+				<NavLink to={`/blog/${blog.slug}`}>{blog.title}</NavLink>
 			</li>
 		));
 	};
