@@ -8,7 +8,7 @@ Object.defineProperty(import.meta, 'env', {
 		VITE_GITHUB_URL: 'https://github.com',
 		VITE_LINKEDIN_URL: 'https://www.linkedin.com/',
 		VITE_PERLENSPIEL_URL: 'https://perlenspiel.net/',
-		VITE_SERVER_URL: 'http://localhost:5000',
+		VITE_SERVER_URL: 'http://localhost:5500',
 		VITE_DEBUG_GAME: 'false',
 	},
 });

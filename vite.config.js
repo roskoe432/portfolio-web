@@ -97,7 +97,7 @@ export default defineConfig({
 		open: true,
 		proxy: {
 			'/api/v1': {
-				target: 'http://localhost:5000',
+				target: 'http://localhost:5500',
 				changeOrigin: true,
 				secure: false,
 				configure: (proxy) => {
@@ -115,7 +115,7 @@ export default defineConfig({
 				},
 			},
 			'/health': {
-				target: 'http://localhost:5000',
+				target: 'http://localhost:5500',
 				changeOrigin: true,
 				secure: false,
 			},

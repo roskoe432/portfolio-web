@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Badge, Button } from '@mantine/core';
+import Badge from '@/shared/components/badge/badge';
+import Button from '@/shared/components/button/button';
 import styles from './post.module.less';
 
 function BlogPost({ post }) {
