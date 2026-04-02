@@ -7,7 +7,7 @@ import styles from './app.module.less';
 import { useNavigate } from 'react-router-dom';
 
 function App() {
-	const [showModal, setShowModal] = useState(true);
+	const [showModal, setShowModal] = useState(false);
 	const navigate = useNavigate();
 	useEffect(() => {
 		const handleDeskInteract = () => {
@@ -15,7 +15,6 @@ function App() {
 			setShowModal(true);
 		};
 
-		// Any global initialization logic can go here
 		console.log('App component mounted');
 		EventBus.on('desk-interact', handleDeskInteract);
 
@@ -35,10 +34,7 @@ function App() {
 				centered="true"
 			>
 				<div className={styles.content}>
-					<button
-						className={styles.closeBtn}
-						onClick={() => setShowModal(false)}
-					>
+					<button className={styles.closeBtn} onClick={() => setShowModal(false)}>
 						X
 					</button>
 					<AppLinks />

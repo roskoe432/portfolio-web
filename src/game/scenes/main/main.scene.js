@@ -3,8 +3,10 @@ import Player from './player';
 import officeMap from '../../maps/office-map.tmj';
 import { EventBus } from '@game';
 import getSceneImageAnimLoader from './images';
+import { Interactable } from '../../entities/Interactable';
+import { createBoundaries } from './boundary-config';
 
-export default class MainScene extends Phaser.Scene {
+class MainScene extends Phaser.Scene {
 	loadImages = getSceneImageAnimLoader(this);
 	loadAnimations = null;
 
@@ -17,7 +19,7 @@ export default class MainScene extends Phaser.Scene {
 	wallsLayer = null;
 	cursors = null;
 
-	deskHit = false;
+	interactables = [];
 
 	constructor() {
 		super({ key: 'MainScene' });
@@ -32,96 +34,76 @@ export default class MainScene extends Phaser.Scene {
 
 	create() {
 		this.cameras.main.setZoom(1);
-		this.loadAnimations(); // Create animations after loading images
+		this.loadAnimations();
 		this.map = this.make.tilemap({ key: 'officeMap' });
 		this.tileset = this.map.addTilesetImage('office-tileset', 'officeTileset');
 		this.floorLayer = this.map.createLayer('floor-layer', this.tileset, 0, 0);
 		this.wallsLayer = this.map.createLayer('wall-layer', this.tileset, 0, 0);
 
-		this.physics.world.setBounds(
-			0,
-			0,
-			this.map.widthInPixels,
-			this.map.heightInPixels,
-		);
+		this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
-		this.cameras.main.setBounds(
-			0,
-			0,
-			this.map.widthInPixels,
-			this.map.heightInPixels,
-		);
+		this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
 		this.player.onCreate();
 
-		const cpuDesk = this.physics.add.image(315, 250, 'computerDesk');
-		cpuDesk.body.setSize(50, 50, true);
-		cpuDesk.body.setImmovable(true);
-		cpuDesk.body.setOffset(
-			(cpuDesk.width - 50) / 2,
-			(cpuDesk.height - 100) / 2,
-		);
-		cpuDesk.refreshBody();
-		cpuDesk.setDepth(1); // Ensure the desk is above the floor layer
+		this.setupInteractables();
 
-		const cpuDeskTrigger = this.add
-			.zone(cpuDesk.x, cpuDesk.y, cpuDesk.width, cpuDesk.height)
-			.setOrigin(0.5)
-			.setDepth(1);
-		this.physics.add.existing(cpuDeskTrigger);
-		cpuDeskTrigger.body.setAllowGravity(false);
-		cpuDeskTrigger.body.setImmovable(true);
+		const boundaries = createBoundaries(this, this.map);
 
-		this.physics.add.overlap(
-			this.player.player,
-			cpuDeskTrigger,
-			() => {
-				if (!this.deskHit) {
-					this.deskHit = true;
-					console.log('Player entered the computer desk trigger!');
-				}
-			},
-			null,
-			this,
-		);
-
-		// this.wallsLayer.setCollisionBetween(1, 1000);
-		this.player.addCollisions([this.wallsLayer, cpuDesk]);
+		const colliders = [...this.interactables.map((i) => i.getSprite()), ...boundaries];
+		this.player.addCollisions(colliders);
 
 		this.cursors = this.input.keyboard.createCursorKeys();
 		this.eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 		this.pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 	}
 
+	setupInteractables() {
+		const computerDesk = new Interactable(this, {
+			x: 315,
+			y: 250,
+			spriteKey: 'computerDesk',
+			bodySize: { width: 50, height: 50 },
+			bodyOffset: {
+				x: 40,
+				y: 8.5,
+			},
+			depth: 1,
+			triggerZone: {
+				x: 315,
+				y: 250,
+				width: 125,
+				height: 117,
+			},
+			onEnter: () => {
+				console.log('Player entered the computer desk trigger!');
+			},
+			onExit: () => {
+				console.log('Player left the computer desk trigger!');
+			},
+			onInteract: () => {
+				console.log('E key pressed while in computer desk trigger!');
+				EventBus.emit('on-interact', { type: 'computer', page: '/' });
+			},
+		});
+
+		computerDesk.setupPlayerOverlap(this.player.player);
+		this.interactables.push(computerDesk);
+
+		// Add more interactables here as needed
+		// Example:
+		// const anotherObject = new Interactable(this, { ... });
+		// anotherObject.setupPlayerOverlap(this.player.player);
+		// this.interactables.push(anotherObject);
+	}
+
 	update() {
 		this.player.onUpdate(this.cursors);
 
-		// Check if player has left the desk trigger area
-		if (this.deskHit) {
-			const deskBounds = new Phaser.Geom.Rectangle(
-				315 - 81 / 2,
-				250 - 117 / 2,
-				81,
-				117,
-			);
-			const playerBounds = this.player.player.getBounds();
-			// Check for E key press while in trigger
-			const ePressed = Phaser.Input.Keyboard.JustDown(this.eKey);
-			if (
-				!Phaser.Geom.Intersects.RectangleToRectangle(deskBounds, playerBounds)
-			) {
-				this.deskHit = false;
-				console.log('Player left the computer desk trigger!');
-			}
-			if (ePressed) {
-				console.log('E key pressed while in computer desk trigger!');
-				EventBus.emit('desk-interact'); // Emit an event for desk interaction
-				// You can also trigger any specific logic here, such as opening a UI or starting a mini-game
-				// For example: this.scene.start('ComputerDeskScene');
-				// Or: this.scene.launch('ComputerDeskUI');
-				// Or: this.startComputerDeskInteraction();
-				// Implement the actual interaction logic as needed
-			}
-		}
+		this.interactables.forEach((interactable) => {
+			interactable.update(this.player.player, this.eKey);
+		});
 	}
 }
+
+export default MainScene;
