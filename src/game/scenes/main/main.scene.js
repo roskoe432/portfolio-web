@@ -128,6 +128,12 @@ class MainScene extends Phaser.Scene {
 	}
 
 	update() {
+		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
+			console.log('P key pressed - toggling pause');
+			this.scene.pause();
+			this.scene.launch('PauseMenu');
+		}
+
 		this.player.onUpdate(this.cursors);
 
 		this.interactables.forEach((interactable) => {

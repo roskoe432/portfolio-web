@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import MainScene from './scenes/main/main.scene';
+import PauseMenu from './scenes/pause-menu/pause-menu.scene';
 import config from '../config';
 
 let game;
@@ -13,7 +14,7 @@ const gameConfig = {
 	height: 480,
 	backgroundColor: '#000000',
 	pixelArt: true,
-	scene: [MainScene],
+	scene: [MainScene, PauseMenu],
 	physics: {
 		default: 'arcade',
 		arcade: {
