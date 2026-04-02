@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
-import Player from './player';
-import officeMap from '../../maps/office-map.tmj';
+import Player from '@game/entities/player';
+import officeMap from '@game/asssets/maps/office-map.tmj';
 import { EventBus } from '@game';
-import getSceneImageAnimLoader from './images';
-import { Interactable } from '../../entities/Interactable';
+import getSceneImageAnimLoader from '@game/asssets/images';
+import { Interactable } from '@game/entities/Interactable';
 import { createBoundaries } from './boundary-config';
 
 class MainScene extends Phaser.Scene {

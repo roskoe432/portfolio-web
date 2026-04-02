@@ -1,4 +1,4 @@
-import GameContainer from '../game/game-container/game-container';
+import GameContainer from '@game/components/game-container/game-container';
 import PageModal from '@/pages/page-modal/page-modal';
 import styles from './app.module.less';
 
