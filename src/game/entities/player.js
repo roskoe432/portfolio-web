@@ -3,13 +3,11 @@ function Player(scene) {
 	this.player = null;
 	this.animLoader = null;
 
-	// C:\Users\bensn\Projects\my-projects\portfolio-2025\portfolio-web\public\assets\images\animations\idle\frame_0.png
-
 	this.onPreload = async () => {};
 
 	this.onCreate = () => {
 		this.player = this.scene.physics.add.sprite(200, 250, 'idle_0');
-		this.player.setDepth(2); // Ensure the player is above the desk and floor layers
+		this.player.setDepth(2);
 		this.player.setScale(2);
 		this.player.refreshBody();
 		this.player.body.setSize(18, 36);
