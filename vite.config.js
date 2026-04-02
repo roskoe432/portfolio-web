@@ -94,7 +94,7 @@ export default defineConfig({
 		host: 'dev.local',
 		allowedHosts: ['dev.local', 'localhost'],
 		port: 4000,
-		open: true,
+		open: false,
 		proxy: {
 			'/api/v1': {
 				target: 'http://localhost:5500',

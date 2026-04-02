@@ -1,5 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom';
-import { NavLink } from '@mantine/core';
+import { Routes, Route, NavLink } from 'react-router-dom';
 import { Suspense } from 'react';
 import pages from '@pages';
 import { useTranslation } from 'react-i18next';
@@ -33,13 +32,9 @@ export function AppLinks() {
 				(key) => !pages[key].disabled && pages[key].createNavLink !== false,
 			)
 			.map((key) => (
-				<NavLink
-					className={styles['nav-link']}
-					key={key}
-					label={t(pages[key].translationKey)}
-					to={key}
-					component={Link}
-				/>
+				<NavLink className={styles['nav-link']} key={key} to={key}>
+					{t(pages[key].translationKey)}
+				</NavLink>
 			));
 
 	return <div className={styles['app-navigation']}>{createLinks()}</div>;
