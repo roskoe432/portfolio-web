@@ -53,7 +53,7 @@ export class Interactable {
 			() => {
 				if (!this.isPlayerInRange) {
 					this.isPlayerInRange = true;
-					this.onEnter();
+					this.onEnter(this.scene);
 				}
 			},
 			null,
@@ -88,19 +88,19 @@ export class Interactable {
 
 	onEnter() {
 		if (this.config.onEnter) {
-			this.config.onEnter();
+			this.config.onEnter(this.scene);
 		}
 	}
 
 	onExit() {
 		if (this.config.onExit) {
-			this.config.onExit();
+			this.config.onExit(this.scene);
 		}
 	}
 
 	onInteract() {
 		if (this.config.onInteract) {
-			this.config.onInteract();
+			this.config.onInteract(this.scene);
 		}
 	}
 

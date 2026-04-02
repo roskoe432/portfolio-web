@@ -1,4 +1,4 @@
-export function createBoundaries(scene, map) {
+function createBoundaries(scene, map) {
 	const boundaries = [
 		// Top boundary
 		{
@@ -50,3 +50,5 @@ export function createBoundaries(scene, map) {
 		return zone;
 	});
 }
+
+export default createBoundaries;

@@ -26,19 +26,24 @@ function PageModal() {
 		};
 	}, [navigate]);
 
+	const handleOnModalClose = () => {
+		setShowModal(false);
+		EventBus.emit('resume-game');
+	};
+
 	return (
 		<React.Fragment>
 			<Modal
 				className={styles.modal}
 				show={showModal}
-				onBackdropClick={() => setShowModal(false)}
-				onHide={() => setShowModal(false)}
+				onBackdropClick={handleOnModalClose}
+				onHide={handleOnModalClose}
 				centered="true"
 			>
 				<div className={styles.content}>
 					<h1 className={styles.title}>{pageTitle}</h1>
 
-					<button className={styles.closeBtn} onClick={() => setShowModal(false)}>
+					<button className={styles.closeBtn} onClick={handleOnModalClose}>
 						X
 					</button>
 					<AppRoutes />

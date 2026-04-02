@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import EventBus from '@/game/system/event-bus';
 
 export default class PauseMenu extends Phaser.Scene {
 	pKey = null;
@@ -7,8 +8,18 @@ export default class PauseMenu extends Phaser.Scene {
 		super({ key: 'PauseMenu' });
 	}
 
+	resumeGame() {
+		console.log('Resuming game');
+		this.scene.stop();
+		this.scene.resume('MainScene');
+	}
+
 	preload() {
 		this.pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+
+		EventBus.on('resume-game', () => {
+			this.resumeGame();
+		});
 	}
 
 	create() {
@@ -28,8 +39,7 @@ export default class PauseMenu extends Phaser.Scene {
 
 	update() {
 		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
-			this.scene.stop();
-			this.scene.resume('MainScene');
+			this.resumeGame();
 		}
 	}
 }

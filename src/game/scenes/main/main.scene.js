@@ -1,10 +1,9 @@
 import Phaser from 'phaser';
 import Player from '@game/entities/player';
 import officeMap from '@game/asssets/maps/office-map.tmj';
-import { EventBus } from '@game';
 import getSceneImageAnimLoader from '@game/asssets/images';
-import { Interactable } from '@game/entities/Interactable';
-import { createBoundaries } from './boundary-config';
+import createBoundaries from './boundary-config';
+import createInteractables from './interactables.config';
 
 class MainScene extends Phaser.Scene {
 	loadImages = getSceneImageAnimLoader(this);
@@ -25,6 +24,19 @@ class MainScene extends Phaser.Scene {
 		super({ key: 'MainScene' });
 	}
 
+	pauseGame() {
+		console.log('Pausing game');
+		this.scene.pause();
+		this.scene.launch('PauseMenu');
+	}
+
+	setupTileMap() {
+		this.map = this.make.tilemap({ key: 'officeMap' });
+		this.tileset = this.map.addTilesetImage('office-tileset', 'officeTileset');
+		this.floorLayer = this.map.createLayer('floor-layer', this.tileset, 0, 0);
+		this.wallsLayer = this.map.createLayer('wall-layer', this.tileset, 0, 0);
+	}
+
 	async preload() {
 		this.load.tilemapTiledJSON('officeMap', officeMap);
 		this.loadAnimations = this.loadImages();
@@ -35,18 +47,13 @@ class MainScene extends Phaser.Scene {
 	create() {
 		this.cameras.main.setZoom(1);
 		this.loadAnimations();
-		this.map = this.make.tilemap({ key: 'officeMap' });
-		this.tileset = this.map.addTilesetImage('office-tileset', 'officeTileset');
-		this.floorLayer = this.map.createLayer('floor-layer', this.tileset, 0, 0);
-		this.wallsLayer = this.map.createLayer('wall-layer', this.tileset, 0, 0);
+		this.setupTileMap();
 
 		this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-
 		this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
 		this.player.onCreate();
-
-		this.setupInteractables();
+		createInteractables(this, this.player);
 
 		const boundaries = createBoundaries(this, this.map);
 
@@ -58,80 +65,9 @@ class MainScene extends Phaser.Scene {
 		this.pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 	}
 
-	setupInteractables() {
-		const computerDesk = new Interactable(this, {
-			x: 315,
-			y: 250,
-			spriteKey: 'computerDesk',
-			bodySize: { width: 50, height: 50 },
-			bodyOffset: {
-				x: 40,
-				y: 8.5,
-			},
-			depth: 1,
-			triggerZone: {
-				x: 315,
-				y: 250,
-				width: 125,
-				height: 117,
-			},
-			onEnter: () => {
-				console.log('Player entered the computer desk trigger!');
-			},
-			onExit: () => {
-				console.log('Player left the computer desk trigger!');
-			},
-			onInteract: () => {
-				console.log('E key pressed while in computer desk trigger!');
-				EventBus.emit('interact', { type: 'computer', page: '/', title: 'About' });
-			},
-		});
-
-		const blogInteractable = new Interactable(this, {
-			x: 500,
-			y: 250,
-			spriteKey: 'computerDesk',
-			bodySize: { width: 50, height: 50 },
-			bodyOffset: {
-				x: 40,
-				y: 8.5,
-			},
-			depth: 1,
-			triggerZone: {
-				x: 500,
-				y: 250,
-				width: 125,
-				height: 117,
-			},
-			onEnter: () => {
-				console.log('Player entered the computer desk trigger!');
-			},
-			onExit: () => {
-				console.log('Player left the computer desk trigger!');
-			},
-			onInteract: () => {
-				console.log('E key pressed while in computer desk trigger!');
-				EventBus.emit('interact', { type: 'computer', page: '/blog', title: 'Blog' });
-			},
-		});
-
-		computerDesk.setupPlayerOverlap(this.player.player);
-		blogInteractable.setupPlayerOverlap(this.player.player);
-		this.interactables.push(computerDesk);
-		this.interactables.push(blogInteractable);
-
-		// Add more interactables here as needed
-		// Example:
-		// const anotherObject = new Interactable(this, { ... });
-		// anotherObject.setupPlayerOverlap(this.player.player);
-		// this.interactables.push(anotherObject);
-	}
-
 	update() {
 		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
-			console.log('P key pressed - toggling pause');
-			this.scene.pause();
-			this.scene.launch('PauseMenu');
+			this.pauseGame();
 		}
 
 		this.player.onUpdate(this.cursors);
