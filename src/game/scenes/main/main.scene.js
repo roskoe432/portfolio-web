@@ -83,12 +83,42 @@ class MainScene extends Phaser.Scene {
 			},
 			onInteract: () => {
 				console.log('E key pressed while in computer desk trigger!');
-				EventBus.emit('on-interact', { type: 'computer', page: '/' });
+				EventBus.emit('interact', { type: 'computer', page: '/' });
+			},
+		});
+
+		const blogInteractable = new Interactable(this, {
+			x: 500,
+			y: 250,
+			spriteKey: 'computerDesk',
+			bodySize: { width: 50, height: 50 },
+			bodyOffset: {
+				x: 40,
+				y: 8.5,
+			},
+			depth: 1,
+			triggerZone: {
+				x: 500,
+				y: 250,
+				width: 125,
+				height: 117,
+			},
+			onEnter: () => {
+				console.log('Player entered the computer desk trigger!');
+			},
+			onExit: () => {
+				console.log('Player left the computer desk trigger!');
+			},
+			onInteract: () => {
+				console.log('E key pressed while in computer desk trigger!');
+				EventBus.emit('interact', { type: 'computer', page: '/blog' });
 			},
 		});
 
 		computerDesk.setupPlayerOverlap(this.player.player);
+		blogInteractable.setupPlayerOverlap(this.player.player);
 		this.interactables.push(computerDesk);
+		this.interactables.push(blogInteractable);
 
 		// Add more interactables here as needed
 		// Example:

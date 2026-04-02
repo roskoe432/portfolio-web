@@ -28,9 +28,7 @@ export function AppLinks() {
 
 	const createLinks = () =>
 		Object.keys(pages)
-			.filter(
-				(key) => !pages[key].disabled && pages[key].createNavLink !== false,
-			)
+			.filter((key) => !pages[key].disabled && pages[key].createNavLink !== false)
 			.map((key) => (
 				<NavLink className={styles['nav-link']} key={key} to={key}>
 					{t(pages[key].translationKey)}
