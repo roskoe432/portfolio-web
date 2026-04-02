@@ -83,7 +83,7 @@ class MainScene extends Phaser.Scene {
 			},
 			onInteract: () => {
 				console.log('E key pressed while in computer desk trigger!');
-				EventBus.emit('interact', { type: 'computer', page: '/' });
+				EventBus.emit('interact', { type: 'computer', page: '/', title: 'About' });
 			},
 		});
 
@@ -111,7 +111,7 @@ class MainScene extends Phaser.Scene {
 			},
 			onInteract: () => {
 				console.log('E key pressed while in computer desk trigger!');
-				EventBus.emit('interact', { type: 'computer', page: '/blog' });
+				EventBus.emit('interact', { type: 'computer', page: '/blog', title: 'Blog' });
 			},
 		});
 
