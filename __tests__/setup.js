@@ -2,6 +2,17 @@ import 'jsdom';
 import '@testing-library/jest-dom';
 import '../src/i18n';
 
+Object.defineProperty(import.meta, 'env', {
+	value: {
+		VITE_ENV: 'local',
+		VITE_GITHUB_URL: 'https://github.com',
+		VITE_LINKEDIN_URL: 'https://www.linkedin.com/',
+		VITE_PERLENSPIEL_URL: 'https://perlenspiel.net/',
+		VITE_SERVER_URL: 'http://localhost:5500',
+		VITE_DEBUG_GAME: 'false',
+	},
+});
+
 Object.defineProperty(window, 'matchMedia', {
 	writable: true,
 	value: vi.fn().mockImplementation((query) => ({

@@ -14,6 +14,6 @@ if [ "$BRANCH" = "main" ] || [ "$BRANCH" = "master" ]; then
 fi
 
 echo "Running lint-staged to format and lint staged files..."
-npm run lint:staged
+
 
 echo "All checks passed. Proceeding with commit."

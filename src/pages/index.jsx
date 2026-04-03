@@ -1,25 +1,32 @@
 import { lazy } from 'react';
 
+export const Page = {
+	HOME: '/',
+	CONTACT: '/contact',
+	BLOG: '/blog',
+	BLOG_DETAIL: '/blog/:slug',
+};
+
 const pages = {
-	'/': {
+	[Page.HOME]: {
 		translationKey: 'navigation.about',
 		entry: lazy(() => import('./about/about')),
 	},
-	'/contact': {
+	[Page.CONTACT]: {
 		disabled: true,
 		translationKey: 'navigation.contact',
 		entry: lazy(() => import('./contact/contact')),
 	},
-	'/blog': {
+	[Page.BLOG]: {
 		disabled: false,
 		translationKey: 'navigation.blog',
-		entry: lazy(() => import('./blog/blog')),
+		entry: lazy(() => import('./blog/components/blog')),
 	},
-	'/blog/:slug': {
+	[Page.BLOG_DETAIL]: {
 		disabled: false,
 		createNavLink: false,
 		translationKey: 'navigation.blog',
-		entry: lazy(() => import('./blog/blog')),
+		entry: lazy(() => import('./blog/components/blog')),
 	},
 };
 

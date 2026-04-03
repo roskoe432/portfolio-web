@@ -8,18 +8,14 @@ function AboutPage() {
 
 	return (
 		<div className={styles['about']}>
-			<h1 className={styles['title']}>{t('pages.about.title')}</h1>
+			<h2 className={styles['title']}>{t('pages.about.title')}</h2>
 			<p>{t('pages.about.zeldaParagraph')}</p>
 			<p>
 				<Trans
 					i18nKey="pages.about.perlenspielParagraph"
 					components={{
 						perlenspielLink: (
-							<a
-								href={config.urls.perlenspiel}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
+							<a href={config.urls.perlenspiel} target="_blank" rel="noopener noreferrer">
 								Perlenspiel
 							</a>
 						),
@@ -34,12 +30,8 @@ function AboutPage() {
 					}}
 				></Trans>
 			</p>
-			<p className={styles['mini-level-intro']}>
-				{t('pages.about.introToMiniLevelParagraph')}
-			</p>
-			<ExternalLink href={config.urls.github}>
-				{t('pages.about.sourceCodeLinkText')}
-			</ExternalLink>
+			<p className={styles['mini-level-intro']}>{t('pages.about.introToMiniLevelParagraph')}</p>
+			<ExternalLink href={config.urls.github}>{t('pages.about.sourceCodeLinkText')}</ExternalLink>
 			<ExternalLink
 				href={`${config.serverUrl}api/v1/resume/preview`}
 				target="_blank"

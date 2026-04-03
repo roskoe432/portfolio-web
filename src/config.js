@@ -3,6 +3,8 @@ const requiredEnvVars = [
 	'VITE_GITHUB_URL',
 	'VITE_LINKEDIN_URL',
 	'VITE_PERLENSPIEL_URL',
+	'VITE_SERVER_URL',
+	'VITE_DEBUG_GAME',
 ];
 
 const validateEnvVars = () => {
@@ -15,14 +17,19 @@ const validateEnvVars = () => {
 
 validateEnvVars();
 
+const env = import.meta.env.VITE_ENV;
+const serverUrl = env === 'local' ? '/' : import.meta.env.VITE_SERVER_URL;
+
 const config = {
-	env: import.meta.env.VITE_ENV,
+	env,
 	urls: {
 		github: import.meta.env.VITE_GITHUB_URL,
 		linkedin: import.meta.env.VITE_LINKEDIN_URL,
 		perlenspiel: import.meta.env.VITE_PERLENSPIEL_URL,
+		resumeUrl: ``,
 	},
-	serverUrl: import.meta.env.VITE_SERVER_URL,
+	serverUrl,
+	debugGame: import.meta.env.VITE_DEBUG_GAME === 'true',
 };
 
 export default config;

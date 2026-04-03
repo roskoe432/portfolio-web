@@ -42,6 +42,7 @@ export default defineConfig({
 			'@app': path.resolve(__dirname, 'src/app'),
 			'@tests': path.resolve(__dirname, '__tests__'),
 			'@i18n': path.resolve(__dirname, 'src/i18n'),
+			'@game': path.resolve(__dirname, 'src/game'),
 		},
 	},
 	build: {
@@ -92,11 +93,11 @@ export default defineConfig({
 		},
 		host: 'dev.local',
 		allowedHosts: ['dev.local', 'localhost'],
-		port: 3000,
-		open: true,
+		port: 4000,
+		open: false,
 		proxy: {
 			'/api/v1': {
-				target: 'http://localhost:5000',
+				target: 'http://localhost:5500',
 				changeOrigin: true,
 				secure: false,
 				configure: (proxy) => {
@@ -114,7 +115,7 @@ export default defineConfig({
 				},
 			},
 			'/health': {
-				target: 'http://localhost:5000',
+				target: 'http://localhost:5500',
 				changeOrigin: true,
 				secure: false,
 			},

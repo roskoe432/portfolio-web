@@ -1,28 +1,15 @@
-// import AppLayout from './app-layout/app-layout';
-import AppProviders from './app-providers';
-import GameContainer from '../game';
-import { useEffect } from 'react';
-import EventBus from '@/game/event-bus';
+import GameContainer from '@game/components/game-container/game-container';
+import PageModal from '@/pages/page-modal/page-modal';
+import styles from './app.module.less';
 
 function App() {
-	useEffect(() => {
-		// Any global initialization logic can go here
-		console.log('App component mounted');
-		EventBus.on('desk-interact', () => {
-			console.log('Desk interaction event received in App component!');
-			// You can handle global events here, such as showing a modal or updating state
-		});
-
-		return () => {
-			EventBus.off('desk-interact');
-		};
-	}, []);
-
 	return (
-		<AppProviders>
+		<div className={styles.app}>
+			{/* The GameContainer component is responsible for rendering the Phaser game canvas and managing the game instance. */}
 			<GameContainer />
-			{/* <AppLayout /> */}
-		</AppProviders>
+			{/* The PageModal component is responsible for rendering modal content when triggered by game events. */}
+			<PageModal />
+		</div>
 	);
 }
 

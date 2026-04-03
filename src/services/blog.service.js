@@ -4,7 +4,7 @@ const BlogService = (() => {
 
 		this.getBlogs = async () => {
 			try {
-				const response = await fetch(`${this.url}api/v1/blog`, {
+				const response = await fetch(`${this.url}api/v1/blogs`, {
 					method: 'GET',
 				});
 				if (!response.ok) {
