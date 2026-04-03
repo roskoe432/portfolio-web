@@ -1,30 +1,138 @@
 .modal {
-	background-color: #353535;
 	z-index: 1000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(4px);
+	padding: 2rem;
+	box-sizing: border-box;
 }
 
-.title {
-	font-size: 3rem;
-	font-weight: bold;
-	margin-bottom: 20px;
-	text-align: center;
+.content {
+	position: relative;
+	width: 100%;
+	max-width: 1000px;
+	max-height: 90vh;
+	background-color: #ffffff;
+	border-radius: 12px;
+	box-shadow:
+		0 10px 40px rgba(0, 0, 0, 0.15),
+		0 4px 12px rgba(0, 0, 0, 0.1);
+	border: 1px solid #e9ecef;
+	padding: 2.5rem;
+	overflow-y: auto;
+	box-sizing: border-box;
+
+	/* Custom scrollbar */
+	&::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #f1f3f5;
+		border-radius: 4px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #adb5bd;
+		border-radius: 4px;
+
+		&:hover {
+			background: #868e96;
+		}
+	}
 }
 
 .closeBtn {
 	position: absolute;
-	top: 50px;
-	right: 75px;
-	background: transparent;
+	top: 1.5rem;
+	right: 1.5rem;
+	width: 36px;
+	height: 36px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #f1f3f5;
 	border: none;
-	font-size: 16px;
+	border-radius: 8px;
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #495057;
 	cursor: pointer;
-	color: black;
+	transition: all 0.2s ease;
+	z-index: 10;
+
+	&:hover {
+		background-color: #e9ecef;
+		color: #212529;
+		transform: scale(1.05);
+	}
+
+	&:active {
+		transform: scale(0.98);
+	}
 }
 
-.content {
-	background-color: white;
-	padding: 20px;
-	border-radius: 8px;
-	overflow-y: scroll;
-	height: 90vh;
+// Dark mode adjustments
+@media (prefers-color-scheme: dark) {
+	.modal {
+		background-color: rgba(0, 0, 0, 0.8);
+	}
+
+	.content {
+		background-color: #2c2e33;
+		border-color: #373a40;
+		box-shadow:
+			0 10px 40px rgba(0, 0, 0, 0.4),
+			0 4px 12px rgba(0, 0, 0, 0.3);
+
+		&::-webkit-scrollbar-track {
+			background: #25262b;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: #5c5f66;
+
+			&:hover {
+				background: #6c757d;
+			}
+		}
+	}
+
+	.closeBtn {
+		background-color: #373a40;
+		color: #adb5bd;
+
+		&:hover {
+			background-color: #5c5f66;
+			color: #f1f3f5;
+		}
+	}
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+	.modal {
+		padding: 1rem;
+	}
+
+	.content {
+		max-height: 95vh;
+		padding: 2rem 1.5rem;
+		border-radius: 8px;
+	}
+
+	.closeBtn {
+		top: 1rem;
+		right: 1rem;
+		width: 32px;
+		height: 32px;
+		font-size: 1.1rem;
+	}
 }

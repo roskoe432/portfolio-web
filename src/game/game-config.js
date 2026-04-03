@@ -19,7 +19,7 @@ const gameConfig = {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 0 },
-			debug: config.debugGame,
+			debug: config.game.debug,
 		},
 	},
 	scale: {

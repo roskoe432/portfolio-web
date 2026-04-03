@@ -25,8 +25,6 @@ class MainScene extends Phaser.Scene {
 	}
 
 	pauseGame() {
-		console.log('Pausing game');
-		this.scene.pause();
 		this.scene.launch('PauseMenu');
 	}
 
