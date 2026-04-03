@@ -88,6 +88,14 @@ export class Interactable {
 
 	onEnter() {
 		if (this.config.onEnter) {
+			console.log(this.scene);
+			// this.scene.scene.add
+			// 	.text(this.sprite.x, this.sprite.y - 50, 'Interacted!', { fontSize: '16px', fill: '#fff' })
+			// 	.setOrigin(0.5)
+			// 	.setDepth(2)
+			// 	.setAlpha(0)
+			// 	.fadeIn(500)
+			// 	.fadeOut(500);
 			this.config.onEnter(this.scene);
 		}
 	}

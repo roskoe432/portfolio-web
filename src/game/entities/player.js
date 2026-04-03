@@ -10,7 +10,7 @@ function Player(scene) {
 		this.player.setDepth(2);
 		this.player.setScale(2);
 		this.player.refreshBody();
-		this.player.body.setSize(18, 36);
+		this.player.body.setSize(14, 36);
 		this.player.play('idle');
 	};
 
