@@ -1,7 +1,7 @@
 import styles from './blog.module.less';
 import { NavLink } from 'react-router-dom';
 import BlogPost from './post';
-import useBlogs from './useBlogs';
+import useBlogs from '../useBlogs';
 
 function BlogPage() {
 	const { blogs, selectedBlog, slug } = useBlogs();
@@ -31,16 +31,12 @@ function BlogPage() {
 							))}
 						</div>
 					) : (
-						<p className={styles['no-posts']}>
-							No posts available for this blog.
-						</p>
+						<p className={styles['no-posts']}>No posts available for this blog.</p>
 					)}
 				</div>
 			) : (
 				<div>
-					<ul className={styles['blog-list']}>
-						{generateLinksFromSlugs(blogs)}
-					</ul>
+					<ul className={styles['blog-list']}>{generateLinksFromSlugs(blogs)}</ul>
 				</div>
 			)}
 		</article>
