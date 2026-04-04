@@ -90,12 +90,12 @@ const gameObjectsConfig = {
 		},
 	},
 	waterCooler: {
-		position: new Vec(150, 165),
+		position: new Vec(150, 172),
 		spriteKey: 'waterCoolerItchio',
 		body: {
 			isStatic: true,
 			size: new Vec(12, 5),
-			offset: new Vec(10, -3),
+			offset: new Vec(10, -6),
 			scale: 2,
 		},
 	},
@@ -126,6 +126,7 @@ const createGameObjects = (scene, player) =>
 		const obj = new GameObject(scene, config);
 		if (config.trigger) {
 			obj.setupPlayerOverlap(player.player);
+			scene.interactables.push(obj); // Add to scene's interactables array
 		}
 
 		return [...acc, obj.getCollider()];

@@ -52,11 +52,9 @@ class MainScene extends Phaser.Scene {
 
 		this.player.onCreate(100);
 
-		// Create all game objects (static and interactive)
 		const gameObjects = createGameObjects(this, this.player);
 		const boundaries = createBoundaries(this, this.map);
 
-		// Setup collisions
 		const colliders = [...gameObjects, ...boundaries];
 		this.player.addCollisions(colliders);
 
