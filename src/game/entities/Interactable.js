@@ -5,6 +5,7 @@ export class Interactable {
 		this.scene = scene;
 		this.config = config;
 		this.isPlayerInRange = false;
+		this.text = null;
 
 		this.sprite = scene.physics.add.image(config.x, config.y, config.spriteKey);
 
@@ -30,6 +31,19 @@ export class Interactable {
 		this.sprite.setDepth(config.depth || 1);
 
 		this.createTriggerZone();
+
+		if (config.text) {
+			this.text = scene.add
+				.text(config.x + config.text.offsetX, config.y + config.text.offsetY, config.text.message, {
+					family: 'Arial',
+					fontStyle: 'bold',
+					fontSize: config.text.fontSize || '16px',
+					fill: config.text.color || '#000',
+				})
+				.setOrigin(0.5)
+				.setDepth(2)
+				.setVisible(config.text.showByDefault || false);
+		}
 	}
 
 	createTriggerZone() {
@@ -88,21 +102,19 @@ export class Interactable {
 
 	onEnter() {
 		if (this.config.onEnter) {
-			console.log(this.scene);
-			// this.scene.scene.add
-			// 	.text(this.sprite.x, this.sprite.y - 50, 'Interacted!', { fontSize: '16px', fill: '#fff' })
-			// 	.setOrigin(0.5)
-			// 	.setDepth(2)
-			// 	.setAlpha(0)
-			// 	.fadeIn(500)
-			// 	.fadeOut(500);
 			this.config.onEnter(this.scene);
+		}
+		if (this.text) {
+			this.text.setVisible(true);
 		}
 	}
 
 	onExit() {
 		if (this.config.onExit) {
 			this.config.onExit(this.scene);
+		}
+		if (this.text) {
+			this.text.setVisible(false);
 		}
 	}
 

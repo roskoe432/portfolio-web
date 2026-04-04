@@ -8,6 +8,10 @@ export const imagesConfig = [
 		path: '/assets/images/office-tileset.png',
 	},
 	{
+		name: 'deskItchio',
+		path: '/assets/images/desk-itchio.png',
+	},
+	{
 		name: 'idle',
 		path: '/assets/images/animations/idle',
 		anim: {

@@ -7,7 +7,7 @@ import styles from './page-modal.module.less';
 import config from '@/config';
 
 function PageModal() {
-	const [showModal, setShowModal] = useState(true);
+	const [showModal, setShowModal] = useState(config.showModalOnStart);
 
 	const navigate = useNavigate();
 	useEffect(() => {

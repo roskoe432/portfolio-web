@@ -7,6 +7,7 @@ const requiredEnvVars = [
 	'VITE_DEBUG_GAME',
 	'VITE_GAME_ENABLED',
 	'VITE_USE_NAVLINKS',
+	'VITE_SHOW_MODAL_ON_START',
 	'VITE_EMAIL',
 ];
 
@@ -38,6 +39,7 @@ const config = {
 		debug: import.meta.env.VITE_DEBUG_GAME === 'true',
 		enabled: import.meta.env.VITE_GAME_ENABLED === 'true',
 	},
+	showModalOnStart: import.meta.env.VITE_SHOW_MODAL_ON_START === 'true',
 };
 
 export default config;

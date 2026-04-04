@@ -18,14 +18,22 @@ const interactablesConfig = {
 			width: 125,
 			height: 117,
 		},
+		text: {
+			message: 'About (E)',
+			offsetX: 0,
+			offsetY: -60,
+			color: '#00ff00',
+			fontSize: '14px',
+			showByDefault: false,
+		},
 		onEnter: () => {
-			console.log('Player entered the computer desk trigger!');
+			console.log('Player entered the About trigger!');
 		},
 		onExit: () => {
-			console.log('Player left the computer desk trigger!');
+			console.log('Player left the About trigger!');
 		},
 		onInteract: (scene) => {
-			console.log('E key pressed while in computer desk trigger!');
+			console.log('E key pressed while in About trigger!');
 			EventBus.emit('interact', { type: 'computer', page: '/', title: 'About' });
 			scene.pauseGame();
 		},
@@ -46,14 +54,22 @@ const interactablesConfig = {
 			width: 125,
 			height: 117,
 		},
+		text: {
+			message: 'Blog (E)',
+			offsetX: 0,
+			offsetY: -60,
+			color: '#00ff00',
+			fontSize: '14px',
+			showByDefault: false,
+		},
 		onEnter: () => {
-			console.log('Player entered the computer desk trigger!');
+			console.log('Player entered the Blog trigger!');
 		},
 		onExit: () => {
-			console.log('Player left the computer desk trigger!');
+			console.log('Player left the Blog trigger!');
 		},
 		onInteract: (scene) => {
-			console.log('E key pressed while in computer desk trigger!');
+			console.log('E key pressed while in Blog trigger!');
 			EventBus.emit('interact', { type: 'computer', page: '/blog', title: 'Blog' });
 			scene.pauseGame();
 		},

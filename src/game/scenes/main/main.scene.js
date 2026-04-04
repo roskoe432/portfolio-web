@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import Player from '@game/entities/player';
-import officeMap from '@game/asssets/maps/office-map.tmj';
-import getSceneImageAnimLoader from '@game/asssets/images';
+import officeMap from '@game/assets/maps/office-map.tmj';
+import getSceneImageAnimLoader from '@game/assets/images';
 import createBoundaries from './boundary-config';
 import createInteractables from './interactables.config';
 
@@ -52,6 +52,10 @@ class MainScene extends Phaser.Scene {
 
 		this.player.onCreate();
 		createInteractables(this, this.player);
+
+		this.newSprite = this.add.image(100, 200, 'deskItchio').setDepth(1);
+		console.log(this.newSprite);
+		this.newSprite.setScale(3);
 
 		const boundaries = createBoundaries(this, this.map);
 
