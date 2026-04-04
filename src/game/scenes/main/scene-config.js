@@ -7,39 +7,33 @@ const gameObjectsConfig = {
 		position: new Vec(300, 250),
 		spriteKey: 'deskItchio',
 		body: {
-			// isStatic makes the physics body immovable and unaffected by forces, ideal for static objects like desks
 			isStatic: true,
 			size: new Vec(32, 10),
 			offset: new Vec(0, 0),
 			scale: 3,
 		},
 		depth: 1,
-		// (opt in) Creates a trigger zone for this object, with the specified size and offset from the object's position
 		trigger: {
 			size: new Vec(115, 85),
 			offset: new Vec(0, 25),
-		},
-		// (opt in) Creates a text label that appears when the player is in the trigger zone, with the specified message, offset, color, font size, and whether it's shown by default
-		text: {
-			message: 'About (E)',
-			offset: new Vec(0, -60),
-			color: '#1eff00',
-			fontSize: '14px',
-			showByDefault: false,
-		},
-		// (opt in) Callback for when the player enters the trigger zone
-		onEnter: () => {
-			console.log('Player entered the About trigger!');
-		},
-		// (opt in) Callback for when the player exits the trigger zone
-		onExit: () => {
-			console.log('Player left the About trigger!');
-		},
-		// (opt in) Callback for when the player interacts (presses E) while in the trigger zone
-		onInteract: (scene) => {
-			console.log('E key pressed while in About trigger!');
-			EventBus.emit('interact', { type: 'computer', page: '/' });
-			scene.pauseGame();
+			text: {
+				message: 'About (E)',
+				offset: new Vec(0, -60),
+				color: '#1eff00',
+				fontSize: '14px',
+				showByDefault: false,
+			},
+			onEnter: () => {
+				console.log('Player entered the About trigger!');
+			},
+			onExit: () => {
+				console.log('Player left the About trigger!');
+			},
+			onInteract: (scene) => {
+				console.log('E key pressed while in About trigger!');
+				EventBus.emit('interact', { type: 'computer', page: '/' });
+				scene.pauseGame();
+			},
 		},
 	},
 	fileCabinet: {
@@ -54,24 +48,24 @@ const gameObjectsConfig = {
 		depth: 1,
 		trigger: {
 			size: new Vec(80, 110),
-		},
-		text: {
-			message: 'Blog (E)',
-			offset: new Vec(0, -60),
-			color: '#0b5f00',
-			fontSize: '14px',
-			showByDefault: false,
-		},
-		onEnter: () => {
-			console.log('Player entered the Blog trigger!');
-		},
-		onExit: () => {
-			console.log('Player left the Blog trigger!');
-		},
-		onInteract: (scene) => {
-			console.log('E key pressed while in Blog trigger!');
-			EventBus.emit('interact', { type: 'computer', page: '/blog' });
-			scene.pauseGame();
+			text: {
+				message: 'Blog (E)',
+				offset: new Vec(0, -60),
+				color: '#0b5f00',
+				fontSize: '14px',
+				showByDefault: false,
+			},
+			onEnter: () => {
+				console.log('Player entered the Blog trigger!');
+			},
+			onExit: () => {
+				console.log('Player left the Blog trigger!');
+			},
+			onInteract: (scene) => {
+				console.log('E key pressed while in Blog trigger!');
+				EventBus.emit('interact', { type: 'computer', page: '/blog' });
+				scene.pauseGame();
+			},
 		},
 	},
 
@@ -128,8 +122,8 @@ const createGameObjects = (scene, player) =>
 			const objects = GameObject.factory(scene, config, config.positions);
 			return [...acc, ...objects];
 		}
-		const obj = new GameObject(scene, config);
 
+		const obj = new GameObject(scene, config);
 		if (config.trigger) {
 			obj.setupPlayerOverlap(player.player);
 		}

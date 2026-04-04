@@ -9,24 +9,19 @@ const GameObject = (() => {
 		this.text = null;
 		this.trigger = null;
 
-		// Create the sprite
 		this.sprite = scene.physics.add.image(config.position.x, config.position.y, config.spriteKey);
 
-		// Configure the physics body
 		if (config.body.size) {
 			this.sprite.body.setSize(config.body.size.x, config.body.size.y, true);
 		}
 
-		// Set immovable based on config, defaulting to false
 		this.sprite.body.setImmovable(config.body.isStatic || false);
 		this.sprite.setScale(config.body.scale || 1);
 
-		// Set depth if provided
 		if (config.depth) {
 			this.sprite.setDepth(config.depth || 1);
 		}
 
-		// Configure body offset if provided
 		if (config.body.offset) {
 			const offsetX =
 				config.body.offset.x ??
@@ -39,19 +34,15 @@ const GameObject = (() => {
 			this.sprite.body.setOffset(offsetX, offsetY);
 		}
 
-		// Refresh body if size or offset was set
 		if (config.body.size || config.body.offset) {
 			this.sprite.refreshBody();
 		}
 
-		// Optional: Create trigger zone for interactables
 		if (config.trigger) {
 			this.createTriggerZone();
-		}
-
-		// Optional: Create text label for interactables
-		if (config.text) {
-			this.createTextLabel();
+			if (config.trigger.text) {
+				this.createTextLabel();
+			}
 		}
 
 		this.getCollider = () => this.sprite;
@@ -61,7 +52,6 @@ const GameObject = (() => {
 	GameObject.prototype.createTriggerZone = function () {
 		const { size, offset } = this.config.trigger;
 
-		// Apply offset to zone position, not to body
 		const zoneX = this.config.position.x + (offset?.x || 0);
 		const zoneY = this.config.position.y + (offset?.y || 0);
 
@@ -72,7 +62,7 @@ const GameObject = (() => {
 	};
 
 	GameObject.prototype.createTextLabel = function () {
-		const textConfig = this.config.text;
+		const textConfig = this.config.trigger.text;
 		this.text = this.scene.add
 			.text(
 				this.config.position.x + textConfig.offset.x,
@@ -110,7 +100,6 @@ const GameObject = (() => {
 	GameObject.prototype.checkPlayerExit = function (player) {
 		if (!this.isPlayerInRange || !this.trigger) return;
 
-		// Use the physics body bounds instead of zone display properties
 		const triggerBounds = new Phaser.Geom.Rectangle(
 			this.trigger.body.x,
 			this.trigger.body.y,
@@ -141,8 +130,8 @@ const GameObject = (() => {
 	};
 
 	GameObject.prototype.onEnter = function () {
-		if (this.config.onEnter) {
-			this.config.onEnter(this.scene);
+		if (this.config.trigger?.onEnter) {
+			this.config.trigger.onEnter(this.scene);
 		}
 		if (this.text) {
 			this.text.setVisible(true);
@@ -150,8 +139,8 @@ const GameObject = (() => {
 	};
 
 	GameObject.prototype.onExit = function () {
-		if (this.config.onExit) {
-			this.config.onExit(this.scene);
+		if (this.config.trigger?.onExit) {
+			this.config.trigger.onExit(this.scene);
 		}
 		if (this.text) {
 			this.text.setVisible(false);
@@ -159,13 +148,13 @@ const GameObject = (() => {
 	};
 
 	GameObject.prototype.onInteract = function () {
-		if (this.config.onInteract) {
-			this.config.onInteract(this.scene);
+		if (this.config.trigger?.onInteract) {
+			this.config.trigger.onInteract(this.scene);
 		}
 	};
 
 	GameObject.prototype.update = function (player, interactKey) {
-		if (!this.trigger) return; // Skip if not an interactable
+		if (!this.trigger) return;
 
 		this.checkPlayerExit(player);
 		this.checkInteraction(interactKey);
