@@ -4,6 +4,8 @@ import officeMap from '@game/assets/maps/office-map.tmj';
 import getSceneImageAnimLoader from '@game/assets/images';
 import createBoundaries from './boundary-config';
 import createInteractables from './interactables.config';
+import Vec from '@/game/lib/vector';
+import GameObject from '@/game/entities/game-object';
 
 class MainScene extends Phaser.Scene {
 	loadImages = getSceneImageAnimLoader(this);
@@ -55,7 +57,53 @@ class MainScene extends Phaser.Scene {
 
 		const boundaries = createBoundaries(this, this.map);
 
-		const colliders = [...this.interactables.map((i) => i.getSprite()), ...boundaries];
+		const vendingMachine = new GameObject(this, {
+			position: new Vec(100, 155),
+			spriteKey: 'vendingMachineItchio',
+			body: {
+				isStatic: true,
+				size: new Vec(20, 10),
+				offset: new Vec(6, 0),
+				scale: 3,
+			},
+		});
+
+		new GameObject(this, {
+			position: new Vec(315, 100),
+			spriteKey: 'clockItchio',
+			body: {
+				isStatic: true,
+				size: Vec.zero(),
+				offset: Vec.zero(),
+				scale: 1.5,
+			},
+		});
+
+		const cabinets = GameObject.factory(
+			this,
+			{
+				position: new Vec(470, 155),
+				spriteKey: 'fileCabinetItchio',
+				body: {
+					isStatic: true,
+					size: new Vec(10, 10),
+					offset: new Vec(11, 0),
+					scale: 3,
+				},
+			},
+			[
+				{ x: 440, y: 155 },
+				{ x: 470, y: 155 },
+				{ x: 530, y: 155 },
+			],
+		);
+
+		const colliders = [
+			...this.interactables.map((i) => i.getSprite()),
+			vendingMachine.getCollider(),
+			...cabinets,
+			...boundaries,
+		];
 		this.player.addCollisions(colliders);
 
 		this.cursors = this.input.keyboard.createCursorKeys();

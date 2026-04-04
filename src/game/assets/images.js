@@ -9,11 +9,27 @@ export const imagesConfig = [
 	},
 	{
 		name: 'deskItchio',
-		path: '/assets/images/desk-itchio.png',
+		path: '/assets/images/itchio/office/desk.png',
 	},
 	{
 		name: 'fileCabinetItchio',
-		path: '/assets/images/file-cabinet-itchio.png',
+		path: '/assets/images/itchio/office/file-cabinet.png',
+	},
+	{
+		name: 'bookshelfItchio',
+		path: '/assets/images/itchio/office/tall-bookshelf.png',
+	},
+	{
+		name: 'vendingMachineItchio',
+		path: '/assets/images/itchio/office/vending-machine.png',
+	},
+	{
+		name: 'clockItchio',
+		path: '/assets/images/itchio/office/clock.png',
+	},
+	{
+		name: 'printerItchio',
+		path: '/assets/images/itchio/office/printer.png',
 	},
 	{
 		name: 'idle',
@@ -106,6 +122,15 @@ export const imagesConfig = [
 		},
 	},
 ];
+
+export const addImage = (scene, config) => {
+	const newImage = scene.add.image(config.position.x, config.position.y, config.name);
+	newImage.setScale(config.scale || 1);
+	if (config.depth) {
+		newImage.setDepth(config.depth);
+	}
+	return newImage;
+};
 
 const getSceneImageAnimLoader = (scene) => () => {
 	const animationLoaders = [];

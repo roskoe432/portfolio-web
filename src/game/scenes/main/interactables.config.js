@@ -4,7 +4,7 @@ import Vec from '@/game/lib/vector';
 
 const interactablesConfig = {
 	desk: {
-		position: new Vec(250, 250),
+		position: new Vec(300, 250),
 		spriteKey: 'deskItchio',
 		body: {
 			size: new Vec(32, 10),
@@ -18,11 +18,10 @@ const interactablesConfig = {
 		text: {
 			message: 'About (E)',
 			offset: new Vec(0, -60),
-			color: '#000000',
+			color: '#1eff00',
 			fontSize: '14px',
 			showByDefault: false,
 		},
-		onCreate: () => {},
 		onEnter: () => {
 			console.log('Player entered the About trigger!');
 		},
@@ -50,11 +49,10 @@ const interactablesConfig = {
 		text: {
 			message: 'Blog (E)',
 			offset: new Vec(0, -60),
-			color: '#000000',
+			color: '#0b5f00',
 			fontSize: '14px',
 			showByDefault: false,
 		},
-		onCreate: () => {},
 		onEnter: () => {
 			console.log('Player entered the Blog trigger!');
 		},
