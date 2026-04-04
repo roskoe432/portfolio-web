@@ -6,12 +6,24 @@ import CustomLoader from '@/shared/components/custom-loader/custom-loader';
 import styles from './app-navigation.module.less';
 
 export function AppRoutes() {
+	const { t } = useTranslation();
 	const createPageRoutes = () =>
 		Object.keys(pages)
 			.filter((key) => !pages[key].disabled)
 			.map((key) => {
 				const PageComponent = pages[key].entry;
-				return <Route key={key} path={key} element={<PageComponent />} />;
+				return (
+					<Route
+						key={key}
+						path={key}
+						element={
+							<div>
+								<h1 className={styles.pageTitle}>{t(pages[key].translationKey)}</h1>
+								<PageComponent />
+							</div>
+						}
+					/>
+				);
 			});
 
 	return (

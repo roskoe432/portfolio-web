@@ -13,7 +13,7 @@ const pages = {
 		entry: lazy(() => import('./about/about')),
 	},
 	[Page.CONTACT]: {
-		disabled: true,
+		disabled: false,
 		translationKey: 'navigation.contact',
 		entry: lazy(() => import('./contact/contact')),
 	},

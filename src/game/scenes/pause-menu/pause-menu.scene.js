@@ -20,6 +20,8 @@ export default class PauseMenu extends Phaser.Scene {
 		EventBus.on('resume-game', () => {
 			this.resumeGame();
 		});
+
+		this.scene.get('MainScene').scene.pause();
 	}
 
 	create() {

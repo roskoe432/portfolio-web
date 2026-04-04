@@ -19,7 +19,7 @@ const gameConfig = {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 0 },
-			debug: config.debugGame,
+			debug: config.game.debug,
 		},
 	},
 	scale: {
@@ -28,11 +28,25 @@ const gameConfig = {
 	},
 };
 
-export const createConfig = () => {
+export const createGame = () => {
 	if (!game) {
 		game = new Phaser.Game(gameConfig);
 	}
 	return game;
 };
+
+export const destroyGame = () => {
+	if (game) {
+		game.destroy(true);
+		game = null;
+	}
+};
+
+// HMR cleanup: destroy game instance when this module is replaced
+if (import.meta.hot) {
+	import.meta.hot.dispose(() => {
+		destroyGame();
+	});
+}
 
 export default gameConfig;

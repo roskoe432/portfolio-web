@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
 import Player from '@game/entities/player';
-import officeMap from '@game/asssets/maps/office-map.tmj';
-import getSceneImageAnimLoader from '@game/asssets/images';
-import createBoundaries from './boundary-config';
-import createInteractables from './interactables.config';
+import officeMap from '@game/assets/maps/office-map.tmj';
+import getSceneImageAnimLoader from '@game/assets/images';
+import createBoundaries from './boundaries';
+import createGameObjects from './scene-config';
 
 class MainScene extends Phaser.Scene {
 	loadImages = getSceneImageAnimLoader(this);
@@ -25,8 +25,6 @@ class MainScene extends Phaser.Scene {
 	}
 
 	pauseGame() {
-		console.log('Pausing game');
-		this.scene.pause();
 		this.scene.launch('PauseMenu');
 	}
 
@@ -52,12 +50,12 @@ class MainScene extends Phaser.Scene {
 		this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 		this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
-		this.player.onCreate();
-		createInteractables(this, this.player);
+		this.player.onCreate(100);
 
+		const gameObjects = createGameObjects(this, this.player);
 		const boundaries = createBoundaries(this, this.map);
 
-		const colliders = [...this.interactables.map((i) => i.getSprite()), ...boundaries];
+		const colliders = [...gameObjects, ...boundaries];
 		this.player.addCollisions(colliders);
 
 		this.cursors = this.input.keyboard.createCursorKeys();

@@ -1,4 +1,33 @@
 .external-link {
-	display: block;
+	display: inline-block;
 	margin-bottom: 1rem;
+	color: #228be6;
+	text-decoration: none;
+	font-weight: 500;
+	transition: all 0.2s ease;
+
+	&:hover {
+		color: #1971c2;
+		text-decoration: underline;
+		transform: translateX(2px);
+	}
+
+	&:active {
+		color: #1864ab;
+	}
+}
+
+// Dark mode adjustments
+@media (prefers-color-scheme: dark) {
+	.external-link {
+		color: #4dabf7;
+
+		&:hover {
+			color: #74c0fc;
+		}
+
+		&:active {
+			color: #a5d8ff;
+		}
+	}
 }
