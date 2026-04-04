@@ -12,6 +12,10 @@ export const imagesConfig = [
 		path: '/assets/images/desk-itchio.png',
 	},
 	{
+		name: 'fileCabinetItchio',
+		path: '/assets/images/file-cabinet-itchio.png',
+	},
+	{
 		name: 'idle',
 		path: '/assets/images/animations/idle',
 		anim: {

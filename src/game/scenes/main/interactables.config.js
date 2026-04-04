@@ -1,31 +1,28 @@
 import EventBus from '@/game/system/event-bus';
 import { Interactable } from '@/game/entities';
+import Vec from '@/game/lib/vector';
 
 const interactablesConfig = {
 	desk: {
-		x: 315,
-		y: 250,
-		spriteKey: 'computerDesk',
-		bodySize: { width: 50, height: 50 },
-		bodyOffset: {
-			x: 40,
-			y: 8.5,
+		position: new Vec(250, 250),
+		spriteKey: 'deskItchio',
+		body: {
+			size: new Vec(32, 10),
+			offset: new Vec(0, 0),
+			scale: 3,
 		},
 		depth: 1,
-		triggerZone: {
-			x: 315,
-			y: 250,
-			width: 125,
-			height: 117,
+		trigger: {
+			size: new Vec(125, 117),
 		},
 		text: {
 			message: 'About (E)',
-			offsetX: 0,
-			offsetY: -60,
-			color: '#00ff00',
+			offset: new Vec(0, -60),
+			color: '#000000',
 			fontSize: '14px',
 			showByDefault: false,
 		},
+		onCreate: () => {},
 		onEnter: () => {
 			console.log('Player entered the About trigger!');
 		},
@@ -34,34 +31,30 @@ const interactablesConfig = {
 		},
 		onInteract: (scene) => {
 			console.log('E key pressed while in About trigger!');
-			EventBus.emit('interact', { type: 'computer', page: '/', title: 'About' });
+			EventBus.emit('interact', { type: 'computer', page: '/' });
 			scene.pauseGame();
 		},
 	},
-	blogTest: {
-		x: 500,
-		y: 250,
-		spriteKey: 'computerDesk',
-		bodySize: { width: 50, height: 50 },
-		bodyOffset: {
-			x: 40,
-			y: 8.5,
+	fileCabinet: {
+		position: new Vec(500, 155),
+		spriteKey: 'fileCabinetItchio',
+		body: {
+			size: new Vec(10, 10),
+			offset: new Vec(11, 0),
+			scale: 3,
 		},
 		depth: 1,
-		triggerZone: {
-			x: 500,
-			y: 250,
-			width: 125,
-			height: 117,
+		trigger: {
+			size: new Vec(80, 110),
 		},
 		text: {
 			message: 'Blog (E)',
-			offsetX: 0,
-			offsetY: -60,
-			color: '#00ff00',
+			offset: new Vec(0, -60),
+			color: '#000000',
 			fontSize: '14px',
 			showByDefault: false,
 		},
+		onCreate: () => {},
 		onEnter: () => {
 			console.log('Player entered the Blog trigger!');
 		},
@@ -70,7 +63,7 @@ const interactablesConfig = {
 		},
 		onInteract: (scene) => {
 			console.log('E key pressed while in Blog trigger!');
-			EventBus.emit('interact', { type: 'computer', page: '/blog', title: 'Blog' });
+			EventBus.emit('interact', { type: 'computer', page: '/blog' });
 			scene.pauseGame();
 		},
 	},
@@ -81,6 +74,9 @@ const createInteractables = (scene, player) => {
 		const interactable = new Interactable(scene, config);
 		interactable.setupPlayerOverlap(player.player);
 		scene.interactables.push(interactable);
+		if (config.onCreate) {
+			config.onCreate(interactable);
+		}
 		return interactable;
 	});
 };

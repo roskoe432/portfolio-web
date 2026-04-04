@@ -7,24 +7,27 @@ export class Interactable {
 		this.isPlayerInRange = false;
 		this.text = null;
 
-		this.sprite = scene.physics.add.image(config.x, config.y, config.spriteKey);
+		this.sprite = scene.physics.add.image(config.position.x, config.position.y, config.spriteKey);
 
-		if (config.bodySize) {
-			this.sprite.body.setSize(config.bodySize.width, config.bodySize.height, true);
+		if (config.body.size) {
+			this.sprite.body.setSize(config.body.size.x, config.body.size.y, true);
 		}
+		this.sprite.setScale(config.body.scale || 1);
 		this.sprite.body.setImmovable(true);
 
-		if (config.bodyOffset) {
-			const offsetX = config.bodyOffset.x ?? (this.sprite.width - config.bodySize.width) / 2;
-			const offsetY = config.bodyOffset.y ?? (this.sprite.height - config.bodySize.height) / 2;
-			this.sprite.body.setOffset(offsetX, offsetY);
-		} else if (config.bodySize) {
-			const offsetX = (this.sprite.width - config.bodySize.width) / 2;
-			const offsetY = (this.sprite.height - config.bodySize.height) / 2;
+		if (config.body.offset) {
+			const offsetX =
+				config.body.offset.x ??
+				(this.sprite.width - (config.body.size?.x || this.sprite.width)) / 2;
+
+			const offsetY =
+				config.body.offset.y ??
+				(this.sprite.height - (config.body.size?.y || this.sprite.height)) / 2;
+
 			this.sprite.body.setOffset(offsetX, offsetY);
 		}
 
-		if (config.bodySize || config.bodyOffset) {
+		if (config.body.size || config.body.offset) {
 			this.sprite.refreshBody();
 		}
 
@@ -34,12 +37,17 @@ export class Interactable {
 
 		if (config.text) {
 			this.text = scene.add
-				.text(config.x + config.text.offsetX, config.y + config.text.offsetY, config.text.message, {
-					family: 'Arial',
-					fontStyle: 'bold',
-					fontSize: config.text.fontSize || '16px',
-					fill: config.text.color || '#000',
-				})
+				.text(
+					config.position.x + config.text.offset.x,
+					config.position.y + config.text.offset.y,
+					config.text.message,
+					{
+						family: 'Arial',
+						fontStyle: 'bold',
+						fontSize: config.text.fontSize || '16px',
+						fill: config.text.color || '#000',
+					},
+				)
 				.setOrigin(0.5)
 				.setDepth(2)
 				.setVisible(config.text.showByDefault || false);
@@ -47,14 +55,12 @@ export class Interactable {
 	}
 
 	createTriggerZone() {
-		const { x, y, width, height } = this.config.triggerZone || {
-			x: this.sprite.x,
-			y: this.sprite.y,
-			width: this.sprite.width,
-			height: this.sprite.height,
-		};
+		const { size } = this.config.trigger;
 
-		this.trigger = this.scene.add.zone(x, y, width, height).setOrigin(0.5).setDepth(1);
+		this.trigger = this.scene.add
+			.zone(this.config.position.x, this.config.position.y, size.x, size.y)
+			.setOrigin(0.5)
+			.setDepth(1);
 		this.scene.physics.add.existing(this.trigger);
 		this.trigger.body.setAllowGravity(false);
 		this.trigger.body.setImmovable(true);

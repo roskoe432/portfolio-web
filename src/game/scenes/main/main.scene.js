@@ -50,12 +50,8 @@ class MainScene extends Phaser.Scene {
 		this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 		this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
-		this.player.onCreate();
+		this.player.onCreate(100);
 		createInteractables(this, this.player);
-
-		this.newSprite = this.add.image(100, 200, 'deskItchio').setDepth(1);
-		console.log(this.newSprite);
-		this.newSprite.setScale(3);
 
 		const boundaries = createBoundaries(this, this.map);
 

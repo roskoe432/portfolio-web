@@ -1,10 +1,21 @@
 import { useEffect } from 'react';
-import { createConfig } from '@game/game-config';
+import { createGame, destroyGame } from '@game/game-config';
 import styles from './game-container.module.less';
+
+// Force full page reload on HMR for game files
+if (import.meta.hot) {
+	import.meta.hot.accept(() => {
+		window.location.reload();
+	});
+}
 
 function GameContainer(props) {
 	useEffect(() => {
-		createConfig();
+		createGame(false);
+
+		return () => {
+			destroyGame();
+		};
 	}, []);
 
 	return (

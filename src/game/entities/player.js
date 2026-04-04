@@ -5,8 +5,8 @@ function Player(scene) {
 
 	this.onPreload = async () => {};
 
-	this.onCreate = () => {
-		this.player = this.scene.physics.add.sprite(200, 250, 'idle_0');
+	this.onCreate = (startX = 200, startY = 250) => {
+		this.player = this.scene.physics.add.sprite(startX, startY, 'idle_0');
 		this.player.setDepth(2);
 		this.player.setScale(2);
 		this.player.refreshBody();
