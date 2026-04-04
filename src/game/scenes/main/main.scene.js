@@ -2,10 +2,8 @@ import Phaser from 'phaser';
 import Player from '@game/entities/player';
 import officeMap from '@game/assets/maps/office-map.tmj';
 import getSceneImageAnimLoader from '@game/assets/images';
-import createBoundaries from './boundary-config';
-import createInteractables from './interactables.config';
-import Vec from '@/game/lib/vector';
-import GameObject from '@/game/entities/game-object';
+import createBoundaries from './boundaries';
+import createGameObjects from './scene-config';
 
 class MainScene extends Phaser.Scene {
 	loadImages = getSceneImageAnimLoader(this);
@@ -53,57 +51,13 @@ class MainScene extends Phaser.Scene {
 		this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
 		this.player.onCreate(100);
-		createInteractables(this, this.player);
 
+		// Create all game objects (static and interactive)
+		const gameObjects = createGameObjects(this, this.player);
 		const boundaries = createBoundaries(this, this.map);
 
-		const vendingMachine = new GameObject(this, {
-			position: new Vec(100, 155),
-			spriteKey: 'vendingMachineItchio',
-			body: {
-				isStatic: true,
-				size: new Vec(20, 10),
-				offset: new Vec(6, 0),
-				scale: 3,
-			},
-		});
-
-		new GameObject(this, {
-			position: new Vec(315, 100),
-			spriteKey: 'clockItchio',
-			body: {
-				isStatic: true,
-				size: Vec.zero(),
-				offset: Vec.zero(),
-				scale: 1.5,
-			},
-		});
-
-		const cabinets = GameObject.factory(
-			this,
-			{
-				position: new Vec(470, 155),
-				spriteKey: 'fileCabinetItchio',
-				body: {
-					isStatic: true,
-					size: new Vec(10, 10),
-					offset: new Vec(11, 0),
-					scale: 3,
-				},
-			},
-			[
-				{ x: 440, y: 155 },
-				{ x: 470, y: 155 },
-				{ x: 530, y: 155 },
-			],
-		);
-
-		const colliders = [
-			...this.interactables.map((i) => i.getSprite()),
-			vendingMachine.getCollider(),
-			...cabinets,
-			...boundaries,
-		];
+		// Setup collisions
+		const colliders = [...gameObjects, ...boundaries];
 		this.player.addCollisions(colliders);
 
 		this.cursors = this.input.keyboard.createCursorKeys();

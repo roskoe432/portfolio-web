@@ -55,12 +55,13 @@ export class Interactable {
 	}
 
 	createTriggerZone() {
-		const { size } = this.config.trigger;
+		const { size, offset } = this.config.trigger;
 
-		this.trigger = this.scene.add
-			.zone(this.config.position.x, this.config.position.y, size.x, size.y)
-			.setOrigin(0.5)
-			.setDepth(1);
+		// Apply offset to zone position, not to body
+		const zoneX = this.config.position.x + (offset?.x || 0);
+		const zoneY = this.config.position.y + (offset?.y || 0);
+
+		this.trigger = this.scene.add.zone(zoneX, zoneY, size.x, size.y).setOrigin(0.5).setDepth(1);
 		this.scene.physics.add.existing(this.trigger);
 		this.trigger.body.setAllowGravity(false);
 		this.trigger.body.setImmovable(true);
@@ -84,13 +85,19 @@ export class Interactable {
 	checkPlayerExit(player) {
 		if (!this.isPlayerInRange) return;
 
+		// Use the physics body bounds instead of zone display properties
 		const triggerBounds = new Phaser.Geom.Rectangle(
-			this.trigger.x - this.trigger.width / 2,
-			this.trigger.y - this.trigger.height / 2,
-			this.trigger.width,
-			this.trigger.height,
+			this.trigger.body.x,
+			this.trigger.body.y,
+			this.trigger.body.width,
+			this.trigger.body.height,
 		);
-		const playerBounds = player.getBounds();
+		const playerBounds = new Phaser.Geom.Rectangle(
+			player.body.x,
+			player.body.y,
+			player.body.width,
+			player.body.height,
+		);
 
 		if (!Phaser.Geom.Intersects.RectangleToRectangle(triggerBounds, playerBounds)) {
 			this.isPlayerInRange = false;

@@ -32,6 +32,10 @@ export const imagesConfig = [
 		path: '/assets/images/itchio/office/printer.png',
 	},
 	{
+		name: 'waterCoolerItchio',
+		path: '/assets/images/itchio/office/water-dispenser.png',
+	},
+	{
 		name: 'idle',
 		path: '/assets/images/animations/idle',
 		anim: {

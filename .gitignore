@@ -165,3 +165,6 @@ eslint-report.html
 
 #Tiled application files
 **/*.tsx
+
+# NOTES
+_notes/

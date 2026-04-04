@@ -1,9 +1,13 @@
+import Phaser from 'phaser';
 import Vec from '../lib/vector';
 
 const GameObject = (() => {
 	function GameObject(scene, config) {
 		this.scene = scene;
 		this.config = config;
+		this.isPlayerInRange = false;
+		this.text = null;
+		this.trigger = null;
 
 		// Create the sprite
 		this.sprite = scene.physics.add.image(config.position.x, config.position.y, config.spriteKey);
@@ -40,8 +44,132 @@ const GameObject = (() => {
 			this.sprite.refreshBody();
 		}
 
+		// Optional: Create trigger zone for interactables
+		if (config.trigger) {
+			this.createTriggerZone();
+		}
+
+		// Optional: Create text label for interactables
+		if (config.text) {
+			this.createTextLabel();
+		}
+
 		this.getCollider = () => this.sprite;
+		this.getSprite = () => this.sprite;
 	}
+
+	GameObject.prototype.createTriggerZone = function () {
+		const { size, offset } = this.config.trigger;
+
+		// Apply offset to zone position, not to body
+		const zoneX = this.config.position.x + (offset?.x || 0);
+		const zoneY = this.config.position.y + (offset?.y || 0);
+
+		this.trigger = this.scene.add.zone(zoneX, zoneY, size.x, size.y).setOrigin(0.5).setDepth(1);
+		this.scene.physics.add.existing(this.trigger);
+		this.trigger.body.setAllowGravity(false);
+		this.trigger.body.setImmovable(true);
+	};
+
+	GameObject.prototype.createTextLabel = function () {
+		const textConfig = this.config.text;
+		this.text = this.scene.add
+			.text(
+				this.config.position.x + textConfig.offset.x,
+				this.config.position.y + textConfig.offset.y,
+				textConfig.message,
+				{
+					fontFamily: 'Arial',
+					fontStyle: 'bold',
+					fontSize: textConfig.fontSize || '16px',
+					fill: textConfig.color || '#000',
+				},
+			)
+			.setOrigin(0.5)
+			.setDepth(2)
+			.setVisible(textConfig.showByDefault || false);
+	};
+
+	GameObject.prototype.setupPlayerOverlap = function (player) {
+		if (!this.trigger) return;
+
+		this.scene.physics.add.overlap(
+			player,
+			this.trigger,
+			() => {
+				if (!this.isPlayerInRange) {
+					this.isPlayerInRange = true;
+					this.onEnter();
+				}
+			},
+			null,
+			this.scene,
+		);
+	};
+
+	GameObject.prototype.checkPlayerExit = function (player) {
+		if (!this.isPlayerInRange || !this.trigger) return;
+
+		// Use the physics body bounds instead of zone display properties
+		const triggerBounds = new Phaser.Geom.Rectangle(
+			this.trigger.body.x,
+			this.trigger.body.y,
+			this.trigger.body.width,
+			this.trigger.body.height,
+		);
+		const playerBounds = new Phaser.Geom.Rectangle(
+			player.body.x,
+			player.body.y,
+			player.body.width,
+			player.body.height,
+		);
+
+		if (!Phaser.Geom.Intersects.RectangleToRectangle(triggerBounds, playerBounds)) {
+			this.isPlayerInRange = false;
+			this.onExit();
+		}
+	};
+
+	GameObject.prototype.checkInteraction = function (key) {
+		if (!this.trigger) return false;
+
+		if (this.isPlayerInRange && Phaser.Input.Keyboard.JustDown(key)) {
+			this.onInteract();
+			return true;
+		}
+		return false;
+	};
+
+	GameObject.prototype.onEnter = function () {
+		if (this.config.onEnter) {
+			this.config.onEnter(this.scene);
+		}
+		if (this.text) {
+			this.text.setVisible(true);
+		}
+	};
+
+	GameObject.prototype.onExit = function () {
+		if (this.config.onExit) {
+			this.config.onExit(this.scene);
+		}
+		if (this.text) {
+			this.text.setVisible(false);
+		}
+	};
+
+	GameObject.prototype.onInteract = function () {
+		if (this.config.onInteract) {
+			this.config.onInteract(this.scene);
+		}
+	};
+
+	GameObject.prototype.update = function (player, interactKey) {
+		if (!this.trigger) return; // Skip if not an interactable
+
+		this.checkPlayerExit(player);
+		this.checkInteraction(interactKey);
+	};
 
 	GameObject.factory = (scene, config, positions) => {
 		const objs = [];
