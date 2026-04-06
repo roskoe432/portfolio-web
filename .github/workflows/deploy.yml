@@ -91,11 +91,23 @@ jobs:
           VITE_GITHUB_URL: ${{ vars.VITE_GITHUB_URL }}
           VITE_LINKEDIN_URL: ${{ vars.VITE_LINKEDIN_URL }}
           VITE_PERLENSPIEL_URL: ${{ vars.VITE_PERLENSPIEL_URL }}
+          VITE_SERVER_URL: ${{ vars.VITE_SERVER_URL }}
+          VITE_EMAIL: ${{ vars.VITE_EMAIL }}
+          # Hardcoded production flags
+          VITE_GAME_DEBUG_MODE: 'false'
+          VITE_GAME_ENABLED: 'true'
+          VITE_UI_USE_NAVLINKS: 'false'
+          VITE_UI_SHOW_MODAL_ON_START: 'false'
+          VITE_QUERY_CLIENT_STALE_TIME: '300000'
+          VITE_QUERY_CLIENT_REFETCH_ON_WINDOW_FOCUS: 'true'
+          VITE_QUERY_CLIENT_RETRY: '3'
+          VITE_QUERY_DEVTOOLS_INITIAL_IS_OPEN: 'false'
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ needs.deploy_infrastructure.outputs.deployment_token }}
+          azure_static_web_apps_api_token:
+            ${{ needs.deploy_infrastructure.outputs.deployment_token }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: 'upload'
           app_location: 'dist'
