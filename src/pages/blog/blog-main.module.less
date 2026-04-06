@@ -40,8 +40,7 @@
 				transition: all 0.2s ease;
 
 				&:hover {
-					background-color: var(--mantine-color-gray-0);
-					transform: translateX(4px);
+					background-color: var(--color-gray-50);
 				}
 			}
 		}
@@ -56,7 +55,7 @@
 	.no-posts {
 		text-align: center;
 		padding: 3rem 1rem;
-		color: var(--mantine-color-gray-6);
+		color: var(--color-gray-600);
 		font-size: 1.1rem;
 	}
 }
@@ -65,11 +64,11 @@
 @media (prefers-color-scheme: dark) {
 	.blog-page {
 		.subject-header {
-			border-bottom-color: var(--mantine-color-dark-4);
+			border-bottom-color: var(--color-dark-400);
 		}
 
 		.blog-list li :global(.mantine-NavLink-root):hover {
-			background-color: var(--mantine-color-dark-6);
+			background-color: var(--color-dark-600);
 		}
 	}
 }

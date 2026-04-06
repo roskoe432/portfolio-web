@@ -1,6 +1,7 @@
 # Portfolio Web
 
-A modern, production-ready portfolio website built with React, showcasing engineering best practices and full-stack deployment capabilities.
+A modern, production-ready portfolio website built with React, showcasing engineering best practices
+and full-stack deployment capabilities.
 
 🌐 **Live Site:** [https://bensnow.dev]
 
@@ -21,7 +22,6 @@ This portfolio demonstrates proficiency in modern web development, focusing on:
 - **React 19** - Modern component-based UI
 - **Vite** - Lightning-fast build tool
 - **React Router v7** - Client-side routing
-- **Mantine UI** - Component library
 - **LESS** - CSS preprocessing
 - **i18next** - Internationalization (English/Spanish)
 - **@react-pdf/renderer** - PDF resume generation

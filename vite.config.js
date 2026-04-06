@@ -56,9 +56,6 @@ export default defineConfig({
 						if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
 							return 'react-vendor';
 						}
-						if (id.includes('@mantine')) {
-							return 'mantine-vendor';
-						}
 						if (id.includes('phaser')) {
 							return 'phaser-vendor';
 						}
