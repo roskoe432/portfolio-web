@@ -4,10 +4,10 @@ const requiredEnvVars = [
 	'VITE_LINKEDIN_URL',
 	'VITE_PERLENSPIEL_URL',
 	'VITE_SERVER_URL',
-	'VITE_DEBUG_GAME',
+	'VITE_GAME_DEBUG_MODE',
 	'VITE_GAME_ENABLED',
-	'VITE_USE_NAVLINKS',
-	'VITE_SHOW_MODAL_ON_START',
+	'VITE_UI_USE_NAVLINKS',
+	'VITE_UI_SHOW_MODAL_ON_START',
 	'VITE_EMAIL',
 	'VITE_QUERY_CLIENT_STALE_TIME',
 	'VITE_QUERY_CLIENT_REFETCH_ON_WINDOW_FOCUS',
@@ -31,9 +31,9 @@ const serverUrl = env === 'local' ? '/' : import.meta.env.VITE_SERVER_URL;
 const config = {
 	env,
 	serverUrl,
-	useNavLinks: import.meta.env.VITE_USE_NAVLINKS === 'true',
+	useNavLinks: import.meta.env.VITE_UI_USE_NAVLINKS === 'true',
 	email: import.meta.env.VITE_EMAIL,
-	showModalOnStart: import.meta.env.VITE_SHOW_MODAL_ON_START === 'true',
+	showModalOnStart: import.meta.env.VITE_UI_SHOW_MODAL_ON_START === 'true',
 	urls: {
 		github: import.meta.env.VITE_GITHUB_URL,
 		linkedin: import.meta.env.VITE_LINKEDIN_URL,
@@ -41,7 +41,7 @@ const config = {
 		resumeUrl: ``,
 	},
 	game: {
-		debug: import.meta.env.VITE_DEBUG_GAME === 'true',
+		debug: import.meta.env.VITE_GAME_DEBUG_MODE === 'true',
 		enabled: import.meta.env.VITE_GAME_ENABLED === 'true',
 	},
 	reactQuery: {

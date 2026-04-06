@@ -1,4 +1,4 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router';
 import { Suspense } from 'react';
 import pages from '@pages';
 import { useTranslation } from 'react-i18next';

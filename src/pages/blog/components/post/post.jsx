@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Badge from '@/shared/components/badge/badge';
 import Button from '@/shared/components/button/button';
 import styles from './post.module.less';
@@ -24,12 +24,7 @@ function BlogPost({ post }) {
 
 	return (
 		<article className={styles.post}>
-			<Button
-				component={Link}
-				to="/blog"
-				variant="subtle"
-				className={styles.backButton}
-			>
+			<Button component={Link} to="/blog" variant="subtle" className={styles.backButton}>
 				← Back to Blog
 			</Button>
 

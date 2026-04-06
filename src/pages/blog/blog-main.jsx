@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 import BlogPost from './components/post/post';
 import useBlogs from './useBlogs';
 import styles from './blog-main.module.less';
