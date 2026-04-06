@@ -31,8 +31,11 @@ function AboutPage() {
 				></Trans>
 			</p>
 			<p className={styles['mini-level-intro']}>{t('pages.about.introToMiniLevelParagraph')}</p>
-			<ExternalLink href={config.urls.github}>{t('pages.about.sourceCodeLinkText')}</ExternalLink>
+			<ExternalLink className={styles.linkGroupItem} href={config.urls.github}>
+				{t('pages.about.sourceCodeLinkText')}
+			</ExternalLink>
 			<ExternalLink
+				className={styles.linkGroupItem}
 				href={`${config.serverUrl}api/v1/resume/preview`}
 				target="_blank"
 				rel="noopener noreferrer"

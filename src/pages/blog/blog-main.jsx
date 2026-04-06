@@ -2,16 +2,18 @@ import { NavLink } from 'react-router';
 import BlogPost from './components/post/post';
 import useBlogs from './useBlogs';
 import styles from './blog-main.module.less';
+import Error from '@/shared/components/error';
+import Loading from '@/shared/components/loading';
 
 function BlogPage() {
 	const { data: blogs, isLoading, error, selectedBlog, slug } = useBlogs();
 
 	if (isLoading) {
-		return <p className={styles['loading']}>Loading blogs...</p>;
+		return <Loading message="Loading blogs..." />;
 	}
 
 	if (error) {
-		return <p className={styles['error']}>Error loading blogs: {error.message}</p>;
+		return <Error message="Failed to load blogs. Please try again later." />;
 	}
 
 	const generateLinksFromSlugs = (blogs) => {
