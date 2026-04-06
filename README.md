@@ -15,7 +15,7 @@ This project demonstrates proficiency in:
 - **Clean, tested, maintainable code** - Comprehensive testing and quality tooling
 - **DevOps and CI/CD** - Automated pipelines with GitHub Actions
 - **Cloud infrastructure** - Infrastructure as Code with Terraform
-- **Production deployment** - Azure Container Apps with zero-downtime deploys
+- **Production deployment** - Azure Static Web Apps
 - **Internationalization** - Multi-language support with i18next
 
 ## ✨ Key Features
@@ -58,11 +58,9 @@ This project demonstrates proficiency in:
 
 ### DevOps & Infrastructure
 
-- **Docker** - Containerization with Nginx
 - **Terraform** - Infrastructure as Code (Azure)
 - **GitHub Actions** - CI/CD pipelines
-- **Azure Container Apps** - Serverless container hosting
-- **Azure Container Registry** - Private Docker registry
+- **Azure Static Web Apps** - Serverless static site hosting with global CDN
 - **OIDC Authentication** - Secure, keyless Azure deployment
 
 ## 🚀 Getting Started
@@ -104,40 +102,24 @@ npm run format:check   # Check code formatting
 
 ## 🧪 Testing
 
-The project maintains high test coverage with comprehensive unit and integration tests:
+> **Note:** Tests are currently being rewritten to reflect the new Phaser-based architecture and removed Mantine dependencies.
 
 ```bash
-# Run tests
+# Run tests (when available)
 npm test
 
 # Generate coverage report
 npm run test:coverage
-
-# View coverage report
-open coverage/index.html
 ```
 
-Test coverage includes:
+Planned test coverage:
 
 - Component rendering and behavior
-- User interactions and form validation
+- Phaser scene interactions
+- TanStack React Query data fetching
 - Routing and navigation
 - i18n translations
 - Custom hooks
-
-## 🐳 Docker
-
-Build and run the containerized application:
-
-```bash
-# Build image
-docker build -t portfolio-web .
-
-# Run container
-docker run -p 8080:80 portfolio-web
-
-# Access at http://localhost:8080
-```
 
 ## ☁️ Deployment
 
@@ -145,9 +127,8 @@ docker run -p 8080:80 portfolio-web
 
 The project uses **Terraform** to provision Azure infrastructure:
 
-- **Azure Container Registry** - Private Docker image storage
-- **Azure Container Apps** - Serverless container hosting
-- **Custom domain** with SSL/TLS
+- **Azure Static Web App** - Serverless static site hosting with global CDN
+- **Custom domain** with free SSL/TLS certificates
 - **Remote state** management in Azure Storage
 
 ```bash
@@ -161,20 +142,20 @@ terraform apply
 
 **GitHub Actions** automate the entire deployment workflow:
 
-#### Check Pipeline (Feature Branches)
+#### Check Pipeline (Pull Requests)
 
-- Runs on `feature/**` and `hotfix/**` branches
-- Executes tests with coverage reporting
-- Builds Docker image
+- Runs on pull requests to main branch
+- Builds Vite application
 - Validates Terraform configuration
-- Posts coverage report to PR
+- Tests disabled temporarily (being rewritten)
 
-#### Deploy Pipeline (Main Branch)
+#### Deploy Pipeline (Manual)
 
-- Provisions/updates Azure infrastructure
-- Builds and pushes Docker image to ACR
-- Deploys to Azure Container Apps
-- Zero-downtime deployments
+- Manually triggered via workflow_dispatch
+- Provisions/updates Azure Static Web App via Terraform
+- Builds optimized production bundle
+- Deploys `dist/` folder to Azure Static Web Apps
+- Zero-downtime deployments with automatic rollback
 
 ### Security
 
@@ -196,10 +177,9 @@ portfolio-web/
 │   ├── services/         # API services for data fetching
 │   ├── shared/           # Shared components and assets
 │   └── styles/           # Global styles and design system
-├── __tests__/            # Test files
+├── __tests__/            # Test files (being rewritten)
 ├── terraform/            # Infrastructure as Code
-├── public/               # Static assets
-└── Dockerfile            # Container configuration
+└── public/               # Static assets
 ```
 
 ## 🌍 Internationalization
@@ -248,12 +228,11 @@ This project showcases:
 ✅ **Modern React patterns** - Hooks, context, custom hooks  
 ✅ **Smart state management** - TanStack React Query for server state, Zustand for client state  
 ✅ **Custom design system** - LESS-based color system replacing component libraries  
-✅ **Comprehensive testing** - High coverage with Vitest  
-✅ **CI/CD automation** - Automated testing and deployment  
+✅ **CI/CD automation** - Automated deployment with GitHub Actions  
 ✅ **Infrastructure as Code** - Reproducible infrastructure with Terraform  
-✅ **Container orchestration** - Docker + Azure Container Apps  
+✅ **Static site deployment** - Azure Static Web Apps with global CDN  
 ✅ **Security best practices** - OIDC, secrets management  
-✅ **Performance optimization** - Manual code splitting, lazy loading  
+✅ **Performance optimization** - Manual code splitting, lazy loading, CDN delivery  
 ✅ **Code quality** - Linting, formatting, pre-commit hooks  
 ✅ **Internationalization** - Multi-language support
 
