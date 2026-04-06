@@ -37,13 +37,13 @@ function PageModal() {
 				onHide={handleOnModalClose}
 				centered="true"
 			>
-				<div className={styles.content}>
+				<main className={styles.content}>
 					{config.useNavLinks && <AppLinks />}
 					<button className={styles.closeBtn} onClick={handleOnModalClose}>
 						X
 					</button>
 					<AppRoutes />
-				</div>
+				</main>
 			</Modal>
 		</React.Fragment>
 	);
