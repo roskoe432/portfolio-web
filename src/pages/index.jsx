@@ -20,13 +20,13 @@ const pages = {
 	[Page.BLOG]: {
 		disabled: false,
 		translationKey: 'navigation.blog',
-		entry: lazy(() => import('./blog/components/blog')),
+		entry: lazy(() => import('./blog/blog-main')),
 	},
 	[Page.BLOG_DETAIL]: {
 		disabled: false,
 		createNavLink: false,
 		translationKey: 'navigation.blog',
-		entry: lazy(() => import('./blog/components/blog')),
+		entry: lazy(() => import('./blog/blog-main')),
 	},
 };
 

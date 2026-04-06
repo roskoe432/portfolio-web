@@ -1,10 +1,18 @@
-import styles from './blog.module.less';
 import { NavLink } from 'react-router-dom';
-import BlogPost from './post';
-import useBlogs from '../useBlogs';
+import BlogPost from './components/post/post';
+import useBlogs from './useBlogs';
+import styles from './blog-main.module.less';
 
 function BlogPage() {
-	const { blogs, selectedBlog, slug } = useBlogs();
+	const { data: blogs, isLoading, error, selectedBlog, slug } = useBlogs();
+
+	if (isLoading) {
+		return <p className={styles['loading']}>Loading blogs...</p>;
+	}
+
+	if (error) {
+		return <p className={styles['error']}>Error loading blogs: {error.message}</p>;
+	}
 
 	const generateLinksFromSlugs = (blogs) => {
 		return blogs.map((blog) => (
@@ -36,7 +44,11 @@ function BlogPage() {
 				</div>
 			) : (
 				<div>
-					<ul className={styles['blog-list']}>{generateLinksFromSlugs(blogs)}</ul>
+					{blogs?.length ? (
+						<ul className={styles['blog-list']}>{generateLinksFromSlugs(blogs)}</ul>
+					) : (
+						<p className={styles['no-blogs']}>No blogs available.</p>
+					)}
 				</div>
 			)}
 		</article>
