@@ -15,15 +15,14 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
-		"baseUrl": ".",
 		"paths": {
-			"@/*": ["src/*"],
-			"@shared/*": ["src/shared/*"],
-			"@pages/*": ["src/pages/*"],
-			"@app/*": ["src/app/*"],
-			"@tests/*": ["__tests__/*"],
-			"@i18n/*": ["src/i18n/*"],
-			"@game/*": ["src/game/*"]
+			"@/*": ["./src/*"],
+			"@shared/*": ["./src/shared/*"],
+			"@pages/*": ["./src/pages/*"],
+			"@app/*": ["./src/app/*"],
+			"@tests/*": ["./__tests__/*"],
+			"@i18n/*": ["./src/i18n/*"],
+			"@game/*": ["./src/game/*"]
 		}
 	},
 	"include": ["src"],

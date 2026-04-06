@@ -1,18 +1,12 @@
-import { useEffect } from 'react';
-import useBlogStore from './blog.store';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
+import { useBlogsQuery } from './blogQueries';
 
 function useBlogs() {
-	const { blogs, fetchBlogs } = useBlogStore();
+	const { data: blogs, isLoading, error } = useBlogsQuery();
 	const { slug } = useParams();
+	const selectedBlog = blogs?.find((blog) => blog.slug === slug);
 
-	useEffect(() => {
-		fetchBlogs();
-	}, [fetchBlogs]);
-
-	const selectedBlog = blogs.find((blog) => blog.slug === slug);
-
-	return { blogs, selectedBlog, slug };
+	return { data: blogs, isLoading, error, selectedBlog: selectedBlog || {}, slug };
 }
 
 export default useBlogs;
