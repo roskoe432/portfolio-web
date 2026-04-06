@@ -51,19 +51,15 @@ export default defineConfig({
 		chunkSizeWarningLimit: 1000,
 		rollupOptions: {
 			output: {
-				manualChunks: {
-					'react-vendor': [
-						'react',
-						'react-dom',
-						'react-dom/client',
-						'react-router-dom',
-					],
-					'mantine-vendor': [
-						'@mantine/core',
-						'@mantine/form',
-						'@mantine/hooks',
-					],
-					'phaser-vendor': ['phaser'],
+				manualChunks(id) {
+					if (id.includes('node_modules')) {
+						if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+							return 'react-vendor';
+						}
+						if (id.includes('phaser')) {
+							return 'phaser-vendor';
+						}
+					}
 				},
 				chunkFileNames: 'assets/js/[name]-[hash].js',
 				entryFileNames: 'assets/js/[name]-[hash].js',
@@ -105,9 +101,7 @@ export default defineConfig({
 						console.log(`[Proxy] Sending ${req.method} request to: ${req.url}`);
 					});
 					proxy.on('proxyRes', (proxyRes, req) => {
-						console.log(
-							`[Proxy] Received ${proxyRes.statusCode} from: ${req.url}`,
-						);
+						console.log(`[Proxy] Received ${proxyRes.statusCode} from: ${req.url}`);
 					});
 					proxy.on('error', (err) => {
 						console.error('[Proxy] Error:', err);

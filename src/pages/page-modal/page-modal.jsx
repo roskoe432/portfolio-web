@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-overlays';
 import AppRoutes, { AppLinks } from '@app/app-navigation/app-navigation';
 import { EventBus } from '@game';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import styles from './page-modal.module.less';
 import config from '@/config';
 

@@ -4,7 +4,7 @@ import Vec from '@/game/lib/vector';
 
 const gameObjectsConfig = {
 	desk: {
-		position: new Vec(300, 250),
+		position: new Vec(335, 175),
 		spriteKey: 'deskItchio',
 		body: {
 			isStatic: true,

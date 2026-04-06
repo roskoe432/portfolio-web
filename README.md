@@ -1,28 +1,49 @@
 # Portfolio Web
 
-A modern, production-ready portfolio website built with React, showcasing engineering best practices and full-stack deployment capabilities.
+A modern, interactive portfolio website built with React and Phaser, featuring game-based navigation and showcasing engineering best practices across full-stack development and deployment.
 
 🌐 **Live Site:** [https://bensnow.dev]
 
 ## 🎯 Project Overview
 
-This portfolio demonstrates proficiency in modern web development, focusing on:
+This portfolio takes a unique approach to web development by combining traditional React patterns with game-based interactions. Instead of conventional navigation, users explore an interactive Phaser scene where clicking objects navigates to different sections (About, Blog, Contact).
 
-- Clean, tested, and maintainable code
-- DevOps and CI/CD pipelines
-- Cloud infrastructure as code
-- Production deployment best practices
-- Internationalization and accessibility
+This project demonstrates proficiency in:
+
+- **Interactive UI/UX** - Game-based navigation with Phaser event bus integration
+- **Modern React architecture** - Server state management with TanStack React Query
+- **Clean, tested, maintainable code** - Comprehensive testing and quality tooling
+- **DevOps and CI/CD** - Automated pipelines with GitHub Actions
+- **Cloud infrastructure** - Infrastructure as Code with Terraform
+- **Production deployment** - Azure Container Apps with zero-downtime deploys
+- **Internationalization** - Multi-language support with i18next
+
+## ✨ Key Features
+
+### Interactive Navigation
+
+- **Phaser-powered scene** - Navigate by clicking interactive objects in a game world
+- **Event bus architecture** - Clean separation between game logic and React components
+- **Smooth transitions** - Seamless integration between game scenes and React pages
+
+### Modern Architecture
+
+- **Server state** - TanStack React Query manages blog data fetching, caching, and synchronization
+- **Client state** - Zustand ready for theme management and UI preferences
+- **Custom design system** - LESS-based color variables replacing third-party UI libraries
+- **Code splitting** - Manual vendor chunks for optimal caching (React, Phaser)
 
 ## 🛠️ Tech Stack
 
 ### Frontend
 
 - **React 19** - Modern component-based UI
-- **Vite** - Lightning-fast build tool
+- **Phaser 3** - Game engine for interactive scene-based navigation
+- **Vite 8** - Lightning-fast build tool with Rolldown bundler
 - **React Router v7** - Client-side routing
-- **Mantine UI** - Component library
-- **LESS** - CSS preprocessing
+- **TanStack React Query** - Server state management for blog data fetching
+- **Zustand** - Client state management (reserved for theme switching)
+- **LESS** - CSS preprocessing with custom design system
 - **i18next** - Internationalization (English/Spanish)
 - **@react-pdf/renderer** - PDF resume generation
 
@@ -169,11 +190,13 @@ portfolio-web/
 ├── .github/workflows/     # CI/CD pipelines
 ├── src/
 │   ├── app/              # App layout and components
-│   ├── pages/            # Page components
+│   ├── pages/            # Page components (About, Blog, Contact)
+│   ├── game/             # Phaser game scene and entities
 │   ├── i18n/             # Internationalization
+│   ├── services/         # API services for data fetching
 │   ├── shared/           # Shared components and assets
-│   └── styles/           # Global styles
-├── tests/                # Test files
+│   └── styles/           # Global styles and design system
+├── __tests__/            # Test files
 ├── terraform/            # Infrastructure as Code
 ├── public/               # Static assets
 └── Dockerfile            # Container configuration
@@ -221,14 +244,33 @@ ISC
 
 This project showcases:
 
+✅ **Interactive game-based navigation** - Phaser 3 scene with event bus integration  
 ✅ **Modern React patterns** - Hooks, context, custom hooks  
+✅ **Smart state management** - TanStack React Query for server state, Zustand for client state  
+✅ **Custom design system** - LESS-based color system replacing component libraries  
 ✅ **Comprehensive testing** - High coverage with Vitest  
 ✅ **CI/CD automation** - Automated testing and deployment  
-✅ **Infrastructure as Code** - Reproducible infrastructure  
+✅ **Infrastructure as Code** - Reproducible infrastructure with Terraform  
 ✅ **Container orchestration** - Docker + Azure Container Apps  
 ✅ **Security best practices** - OIDC, secrets management  
-✅ **Performance optimization** - Code splitting, lazy loading  
+✅ **Performance optimization** - Manual code splitting, lazy loading  
 ✅ **Code quality** - Linting, formatting, pre-commit hooks  
 ✅ **Internationalization** - Multi-language support
 
-_This portfolio is a living example of production-ready web application development._
+_This portfolio is a living example of production-ready web application development with a unique interactive twist._
+
+---
+
+## 📦 Package Updates
+
+### Packages Pending Major Version Updates
+
+**Last checked:** April 5, 2026
+
+The following packages have major version updates available. Review changelogs for breaking changes before upgrading:
+
+- **eslint**: 9.39.4 → 10.2.0
+- **i18next**: 25.10.10 → 26.0.3
+- **react-i18next**: 16.6.6 → 17.0.2
+- **jsdom**: 27.4.0 → 29.0.1
+- **globals**: 16.5.0 → 17.4.0
