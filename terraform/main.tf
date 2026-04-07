@@ -22,12 +22,15 @@ resource "azurerm_static_web_app" "main" {
     Environment = var.environment
     Project     = "Portfolio"
   }
+
+  lifecycle {
+    prevent_destroy = false
+    ignore_changes = [
+      tags["ManagedBy"],
+      tags["LastDeployed"]
+    ]
+  }
 }
 
-# Custom domain (optional - configure after deployment)
-# Uncomment and configure once you have your domain ready
-# resource "azurerm_static_web_app_custom_domain" "main" {
-#   static_web_app_id = azurerm_static_web_app.main.id
-#   domain_name       = var.custom_domain
-#   validation_type   = "cname-delegation"
-# }
+# Custom domain configuration
+# Note: Custom domains are managed manually in Azure Portal for simplicity
