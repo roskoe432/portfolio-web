@@ -40,9 +40,9 @@ variable "static_web_app_sku" {
   default     = "Free"
 }
 
-# Optional: Uncomment when ready to add custom domain
+# Custom domain - managed manually in Azure Portal
 # variable "custom_domain" {
 #   type        = string
 #   description = "Custom domain name for the static web app"
-#   default     = ""
+#   default     = "bensnow.dev"
 # }
