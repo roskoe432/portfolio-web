@@ -3,7 +3,7 @@ import GameObject from '@/game/entities/game-object';
 import Vec from '@/game/lib/vector';
 
 const defaultTextConfig = {
-	color: '#000',
+	color: '#2ec400',
 	fontSize: '14px',
 	offset: new Vec(0, -55),
 	showByDefault: false,
@@ -56,6 +56,7 @@ const gameObjectsConfig = {
 			text: {
 				message: 'Blog (E)',
 				...defaultTextConfig,
+				offset: new Vec(-5, -55),
 			},
 			onEnter: () => {
 				EventBus.emit('navigate', { page: '/blog' });

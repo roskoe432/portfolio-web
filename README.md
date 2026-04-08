@@ -249,7 +249,5 @@ _This portfolio is a living example of production-ready web application developm
 The following packages have major version updates available. Review changelogs for breaking changes before upgrading:
 
 - **eslint**: 9.39.4 → 10.2.0
-- **i18next**: 25.10.10 → 26.0.3
-- **react-i18next**: 16.6.6 → 17.0.2
 - **jsdom**: 27.4.0 → 29.0.1
 - **globals**: 16.5.0 → 17.4.0
