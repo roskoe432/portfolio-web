@@ -5,7 +5,7 @@ export const blogService = new BlogService(config.serverUrl);
 
 export const serverConnectionTest = async (retryIntervalSecs = 2, attempts = 3) => {
 	try {
-		const response = await fetch(`${config.serverUrl}/health`);
+		const response = await fetch(`${config.serverUrl}health`);
 		if (!response.ok) {
 			throw new Error(`Server responded with status ${response.status}`);
 		}
