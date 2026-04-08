@@ -18,12 +18,13 @@ const gameObjectsConfig = {
 			offset: new Vec(0, 25),
 			text: {
 				message: 'About (E)',
-				offset: new Vec(0, -60),
-				color: '#1eff00',
+				offset: new Vec(0, -55),
+				color: '#000',
 				fontSize: '14px',
 				showByDefault: false,
 			},
 			onEnter: () => {
+				EventBus.emit('navigate', { page: '/' });
 				console.log('Player entered the About trigger!');
 			},
 			onExit: () => {
@@ -50,12 +51,13 @@ const gameObjectsConfig = {
 			size: new Vec(80, 110),
 			text: {
 				message: 'Blog (E)',
-				offset: new Vec(0, -60),
-				color: '#0b5f00',
+				offset: new Vec(0, -55),
+				color: '#000',
 				fontSize: '14px',
 				showByDefault: false,
 			},
 			onEnter: () => {
+				EventBus.emit('navigate', { page: '/blog' });
 				console.log('Player entered the Blog trigger!');
 			},
 			onExit: () => {

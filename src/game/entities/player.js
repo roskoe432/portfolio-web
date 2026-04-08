@@ -14,48 +14,60 @@ function Player(scene) {
 		this.player.play('idle');
 	};
 
-	this.onUpdate = (cursors) => {
+	this.onUpdate = (cursors, wasdKeys) => {
 		const speed = 100;
 		let moving = false;
 
 		this.player.setVelocity(0);
 
 		// Check for diagonal movement first
-		if (cursors.left.isDown && cursors.up.isDown) {
+		if (
+			(cursors.left.isDown || wasdKeys.left.isDown) &&
+			(cursors.up.isDown || wasdKeys.up.isDown)
+		) {
 			this.player.setVelocityX(-speed);
 			this.player.setVelocityY(-speed);
 			this.player.play('walk-nw', true);
 			moving = true;
-		} else if (cursors.right.isDown && cursors.up.isDown) {
+		} else if (
+			(cursors.right.isDown || wasdKeys.right.isDown) &&
+			(cursors.up.isDown || wasdKeys.up.isDown)
+		) {
 			this.player.setVelocityX(speed);
 			this.player.setVelocityY(-speed);
 			this.player.play('walk-ne', true);
 			moving = true;
-		} else if (cursors.left.isDown && cursors.down.isDown) {
+		} else if (
+			(cursors.left.isDown || wasdKeys.left.isDown) &&
+			(cursors.down.isDown || wasdKeys.down.isDown)
+		) {
 			this.player.setVelocityX(-speed);
 			this.player.setVelocityY(speed);
 			this.player.play('walk-sw', true);
 			moving = true;
-		} else if (cursors.right.isDown && cursors.down.isDown) {
+		} else if (
+			(cursors.right.isDown || wasdKeys.right.isDown) &&
+			(cursors.down.isDown || wasdKeys.down.isDown)
+		) {
 			this.player.setVelocityX(speed);
 			this.player.setVelocityY(speed);
 			this.player.play('walk-se', true);
 			moving = true;
 		}
 		// Then check cardinal directions
-		else if (cursors.left.isDown) {
+		else if (cursors.left.isDown || wasdKeys.left.isDown) {
 			this.player.setVelocityX(-speed);
 			this.player.play('walk-left', true);
 			moving = true;
-		} else if (cursors.right.isDown) {
+		} else if (cursors.right.isDown || wasdKeys.right.isDown) {
 			this.player.setVelocityX(speed);
 			this.player.play('walk-right', true);
 			moving = true;
-		} else if (cursors.up.isDown) {
+		} else if (cursors.up.isDown || wasdKeys.up.isDown) {
 			this.player.setVelocityY(-speed);
 			this.player.play('walk-up', true);
 			moving = true;
-		} else if (cursors.down.isDown) {
+		} else if (cursors.down.isDown || wasdKeys.down.isDown) {
 			this.player.setVelocityY(speed);
 			this.player.play('walk-down', true);
 			moving = true;

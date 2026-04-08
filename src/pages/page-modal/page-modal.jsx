@@ -10,23 +10,29 @@ function PageModal() {
 	const [showModal, setShowModal] = useState(config.showModalOnStart);
 
 	const navigate = useNavigate();
-	useEffect(() => {
-		const handleObjectInteract = (payload) => {
-			navigate(payload.page);
-			setShowModal(true);
-		};
-
-		EventBus.on('interact', handleObjectInteract);
-
-		return () => {
-			EventBus.off('interact', handleObjectInteract);
-		};
-	}, [navigate]);
 
 	const handleOnModalClose = () => {
 		setShowModal(false);
 		EventBus.emit('resume-game');
 	};
+
+	useEffect(() => {
+		const handleObjectInteract = () => {
+			setShowModal(true);
+		};
+
+		const handleNavigate = (payload) => {
+			navigate(payload.page);
+		};
+
+		EventBus.on('navigate', handleNavigate);
+		EventBus.on('interact', handleObjectInteract);
+
+		return () => {
+			EventBus.off('interact', handleObjectInteract);
+			EventBus.off('navigate', handleNavigate);
+		};
+	}, [navigate]);
 
 	return (
 		<React.Fragment>
