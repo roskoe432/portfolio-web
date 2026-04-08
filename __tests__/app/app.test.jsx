@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import App from '@app/app.jsx';
 import { describe, it } from 'vitest';
 import { renderWithProviders } from '../utils';

@@ -249,5 +249,3 @@ _This portfolio is a living example of production-ready web application developm
 The following packages have major version updates available. Review changelogs for breaking changes before upgrading:
 
 - **eslint**: 9.39.4 → 10.2.0 (eslint-plugin-react doesnt have support yet for 10)
-- **jsdom**: 27.4.0 → 29.0.1
-- **globals**: 16.5.0 → 17.4.0
