@@ -1,4 +1,4 @@
-import AppProviders from '@/app/app-providers.jsx';
+import AppProviders from '@/app/providers';
 import { render } from '@testing-library/react';
 
 export const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

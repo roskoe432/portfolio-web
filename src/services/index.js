@@ -11,9 +11,7 @@ export const serverConnectionTest = async (retryIntervalSecs = 2, attempts = 3) 
 		}
 		return true;
 	} catch (error) {
-		console.error('Error connecting to server:', error);
 		if (attempts > 0) {
-			console.log(`Retrying... (${attempts} attempts left)`);
 			await new Promise((resolve) => setTimeout(resolve, retryIntervalSecs * 1000));
 			return serverConnectionTest(retryIntervalSecs, attempts - 1);
 		}
