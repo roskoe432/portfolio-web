@@ -59,6 +59,12 @@ class MainScene extends Phaser.Scene {
 		this.player.addCollisions(colliders);
 
 		this.cursors = this.input.keyboard.createCursorKeys();
+		this.wasdKeys = this.input.keyboard.addKeys({
+			up: Phaser.Input.Keyboard.KeyCodes.W,
+			down: Phaser.Input.Keyboard.KeyCodes.S,
+			left: Phaser.Input.Keyboard.KeyCodes.A,
+			right: Phaser.Input.Keyboard.KeyCodes.D,
+		});
 		this.eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 		this.pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 	}
@@ -68,7 +74,7 @@ class MainScene extends Phaser.Scene {
 			this.pauseGame();
 		}
 
-		this.player.onUpdate(this.cursors);
+		this.player.onUpdate(this.cursors, this.wasdKeys);
 
 		this.interactables.forEach((interactable) => {
 			interactable.update(this.player.player, this.eKey);

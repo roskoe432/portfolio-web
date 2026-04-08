@@ -1,10 +1,10 @@
-import { render } from '@testing-library/react';
 import App from '@app/app.jsx';
 import { describe, it } from 'vitest';
+import { renderWithProviders } from '../utils';
 
 describe('App Component', () => {
 	it('should render the App component without crashing', () => {
-		render(<App />);
+		renderWithProviders(<App />);
 		// Placeholder test - will be expanded during refactoring
 	});
 });

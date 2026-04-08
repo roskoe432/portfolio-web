@@ -2,6 +2,13 @@ import EventBus from '@/game/system/event-bus';
 import GameObject from '@/game/entities/game-object';
 import Vec from '@/game/lib/vector';
 
+const defaultTextConfig = {
+	color: '#2ec400',
+	fontSize: '14px',
+	offset: new Vec(0, -55),
+	showByDefault: false,
+};
+
 const gameObjectsConfig = {
 	desk: {
 		position: new Vec(335, 175),
@@ -18,12 +25,10 @@ const gameObjectsConfig = {
 			offset: new Vec(0, 25),
 			text: {
 				message: 'About (E)',
-				offset: new Vec(0, -60),
-				color: '#1eff00',
-				fontSize: '14px',
-				showByDefault: false,
+				...defaultTextConfig,
 			},
 			onEnter: () => {
+				EventBus.emit('navigate', { page: '/' });
 				console.log('Player entered the About trigger!');
 			},
 			onExit: () => {
@@ -50,12 +55,11 @@ const gameObjectsConfig = {
 			size: new Vec(80, 110),
 			text: {
 				message: 'Blog (E)',
-				offset: new Vec(0, -60),
-				color: '#0b5f00',
-				fontSize: '14px',
-				showByDefault: false,
+				...defaultTextConfig,
+				offset: new Vec(-5, -55),
 			},
 			onEnter: () => {
+				EventBus.emit('navigate', { page: '/blog' });
 				console.log('Player entered the Blog trigger!');
 			},
 			onExit: () => {

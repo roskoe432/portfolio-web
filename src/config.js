@@ -26,7 +26,7 @@ const validateEnvVars = () => {
 validateEnvVars();
 
 const env = import.meta.env.VITE_ENV;
-const serverUrl = env === 'local' ? '/' : import.meta.env.VITE_SERVER_URL;
+const serverUrl = env === 'local' ? '' : import.meta.env.VITE_SERVER_URL;
 
 const config = {
 	env,
