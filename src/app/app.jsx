@@ -1,5 +1,5 @@
-import GameContainer from '@/app/game-container/game-container';
-import PageModal from '@/features/page-modal/page-modal';
+import { GameContainer } from '@features/game';
+import PageModal from '@/pages/page-modal/page-modal';
 import styles from './app.module.less';
 import config from '@/config';
 import React from 'react';

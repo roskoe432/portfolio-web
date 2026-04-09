@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
-import Player from '@features/game/entities/player';
+import Player from '@/features/game/entities/player';
 import officeMap from '@features/game/assets/maps/office-map.tmj';
-import getSceneImageAnimLoader from '@features/game/assets/images';
+import getSceneImageAnimLoader from '@/features/game/assets/images';
 import createBoundaries from './boundaries';
 import createGameObjects from './scene-config';
 import { storageService } from '@/services';

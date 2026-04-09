@@ -10,23 +10,23 @@ export const Page = {
 const pages = {
 	[Page.HOME]: {
 		translationKey: 'navigation.about',
-		entry: lazy(() => import('@features/about/about')),
+		entry: lazy(() => import('./about/about')),
 	},
 	[Page.CONTACT]: {
 		disabled: false,
 		translationKey: 'navigation.contact',
-		entry: lazy(() => import('@features/contact/contact')),
+		entry: lazy(() => import('./contact/contact')),
 	},
 	[Page.BLOG]: {
 		disabled: false,
 		translationKey: 'navigation.blog',
-		entry: lazy(() => import('@features/blog/blog-main')),
+		entry: lazy(() => import('./blog/blog-main')),
 	},
 	[Page.BLOG_DETAIL]: {
 		disabled: false,
 		createNavLink: false,
 		translationKey: 'navigation.blog',
-		entry: lazy(() => import('@features/blog/blog-main')),
+		entry: lazy(() => import('./blog/blog-main')),
 	},
 };
 
