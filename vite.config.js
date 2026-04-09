@@ -43,6 +43,7 @@ export default defineConfig({
 			'@app': path.resolve(__dirname, 'src/app'),
 			'@tests': path.resolve(__dirname, '__tests__'),
 			'@i18n': path.resolve(__dirname, 'src/i18n'),
+			'@services': path.resolve(__dirname, 'src/services'),
 		},
 	},
 	build: {

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { blogService } from '@/services';
-import { unwrapQueryData } from '@/shared/query/query-client';
+import { blogService } from 'services';
+import { unwrapQueryData } from '@shared/query/query-client';
 
 export const blogQueryKeys = {
 	getAllBlogs: ['blogs'],

@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
-import Badge from '@/shared/components/badge/badge';
-import Button from '@/shared/components/button/button';
+import Badge from '@shared/components/badge/badge';
+import Button from '@shared/components/button/button';
 import styles from './post.module.less';
 
 function BlogPost({ post }) {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { storageService } from '@/services';
-import { EventBus } from '@/features/game';
+import { storageService } from '@services';
+import { EventBus } from '@features/game';
 
 function useTutorial(content) {
 	const [currentId, setCurrentId] = useState(0);

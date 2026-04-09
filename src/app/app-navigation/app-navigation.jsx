@@ -2,7 +2,7 @@ import { Routes, Route, NavLink } from 'react-router';
 import { Suspense } from 'react';
 import pages from '@pages';
 import { useTranslation } from 'react-i18next';
-import CustomLoader from '@/shared/components/custom-loader/custom-loader';
+import CustomLoader from '@shared/components/custom-loader/custom-loader';
 import styles from './app-navigation.module.less';
 
 export function AppRoutes() {

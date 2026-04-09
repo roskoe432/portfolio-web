@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { createGame, destroyGame } from '@/features/game/game-config';
+import { createGame, destroyGame } from '@features/game/game-config';
 import styles from './game-container.module.less';
 
 if (import.meta.hot) {
