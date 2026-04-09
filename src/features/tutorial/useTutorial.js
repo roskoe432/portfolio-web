@@ -9,6 +9,12 @@ function useTutorial(content) {
 		gameEvents.emitPauseGame();
 	}, [currentId]);
 
+	const prevItem = () => {
+		if (currentId > 0) {
+			setCurrentId(currentId - 1);
+		}
+	};
+
 	const nextItem = () => {
 		const next = currentId + 1;
 		if (next >= content.length) {
@@ -28,6 +34,7 @@ function useTutorial(content) {
 
 	return {
 		currentId,
+		prevItem,
 		nextItem,
 		getCurrentItem,
 	};

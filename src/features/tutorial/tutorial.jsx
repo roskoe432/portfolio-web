@@ -4,10 +4,14 @@ import styles from './tutorial.module.less';
 
 const content = [
 	{
-		message: 'Welcome! Here\u2019s a quick look at the controls before you start.',
+		message: "Welcome to Benjamin Snow's portfolio!",
 	},
 	{
-		message: 'Move your character around the scene:',
+		message:
+			"Since this is your first time here, let's go through a quick tutorial on how to navigate my site.",
+	},
+	{
+		message: 'Move the character around the scene:',
 		controls: [
 			{ keys: ['W', '↑'], label: 'Move Up' },
 			{ keys: ['A', '←'], label: 'Move Left' },
@@ -16,25 +20,27 @@ const content = [
 		],
 	},
 	{
-		message: 'Other actions:',
-		controls: [
-			{ keys: ['P'], label: 'Pause' },
-			{ keys: ['E'], label: 'Interact' },
-		],
+		message: 'When you see a prompt to interact with an object, press:',
+		controls: [{ keys: ['E'], label: 'Interact' }],
+	},
+	{
+		message:
+			'No idea why I decided to add this, but you can also pause the game at any time by pressing:',
+		controls: [{ keys: ['P'], label: 'Pause Game' }],
 	},
 ];
 
 function Tutorial() {
-	const { currentId, nextItem, getCurrentItem } = useTutorial(content);
-	const CurrentContent = getCurrentItem();
+	const { currentId, prevItem, nextItem, getCurrentItem } = useTutorial(content);
+	const currentContent = getCurrentItem();
 
 	return (
-		<Modal className={styles.tutorial} show={CurrentContent !== null} onHide={nextItem}>
+		<Modal className={styles.tutorial} show={currentContent !== null} onHide={nextItem}>
 			<div className={styles.content}>
-				{CurrentContent && <p className={styles.message}>{CurrentContent.message}</p>}
-				{CurrentContent?.controls && (
+				{currentContent && <p className={styles.message}>{currentContent.message}</p>}
+				{currentContent?.controls && (
 					<ul className={styles.controls}>
-						{CurrentContent.controls.map(({ keys, label }) => (
+						{currentContent.controls.map(({ keys, label }) => (
 							<li key={label} className={styles.controlRow}>
 								<span className={styles.keyGroup}>
 									{keys.map((k) => (
@@ -49,6 +55,13 @@ function Tutorial() {
 					</ul>
 				)}
 				<div className={styles.footer}>
+					<button
+						className={styles.backBtn}
+						onClick={prevItem}
+						disabled={currentId === 0}
+					>
+						Back
+					</button>
 					<span className={styles.steps}>
 						{currentId + 1} / {content.length}
 					</span>
