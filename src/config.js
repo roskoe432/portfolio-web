@@ -15,15 +15,10 @@ const requiredEnvVars = [
 	'VITE_QUERY_DEVTOOLS_INITIAL_IS_OPEN',
 ];
 
-const validateEnvVars = () => {
-	requiredEnvVars.forEach((varName) => {
-		if (!import.meta.env[varName]) {
-			throw new Error(`Missing required environment variable: ${varName}`);
-		}
-	});
-};
-
-validateEnvVars();
+const missingVars = requiredEnvVars.filter((varName) => !import.meta.env[varName]);
+if (missingVars.length > 0) {
+	throw new Error(`Missing required environment variables: ${missingVars.join(', ')}`);
+}
 
 const env = import.meta.env.VITE_ENV;
 const serverUrl = env === 'local' ? '' : import.meta.env.VITE_SERVER_URL;

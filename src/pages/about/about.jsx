@@ -1,7 +1,7 @@
 import { useTranslation, Trans } from 'react-i18next';
 import config from '@/config';
 import styles from './about.module.less';
-import ExternalLink from '@/shared/components/link/external-link';
+import ExternalLink from '@shared/components/link/external-link';
 
 function AboutPage() {
 	const { t } = useTranslation();

@@ -1,9 +1,10 @@
 import Phaser from 'phaser';
-import Player from '@game/entities/player';
-import officeMap from '@game/assets/maps/office-map.tmj';
-import getSceneImageAnimLoader from '@game/assets/images';
+import Player from '@features/game/entities/player';
+import officeMap from '@features/game/assets/maps/office-map.tmj';
+import getSceneImageAnimLoader from '@features/game/assets/images';
 import createBoundaries from './boundaries';
 import createGameObjects from './scene-config';
+import { storageService } from '@services';
 
 class MainScene extends Phaser.Scene {
 	loadImages = getSceneImageAnimLoader(this);
@@ -25,7 +26,11 @@ class MainScene extends Phaser.Scene {
 	}
 
 	pauseGame() {
-		this.scene.launch('PauseMenu');
+		try {
+			this.scene.launch('PauseMenu');
+		} catch (error) {
+			console.error('Error launching PauseMenu:', error);
+		}
 	}
 
 	setupTileMap() {
@@ -67,6 +72,10 @@ class MainScene extends Phaser.Scene {
 		});
 		this.eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 		this.pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+
+		if (!storageService.getTutorialViewed()) {
+			this.pauseGame();
+		}
 	}
 
 	update() {

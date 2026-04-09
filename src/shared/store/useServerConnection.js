@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { serverConnectionTest } from '@/services';
+import { serverConnectionTest } from '@services';
 
 const useServerConnection = create((set) => ({
 	connected: false,

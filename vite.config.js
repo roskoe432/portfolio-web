@@ -39,10 +39,11 @@ export default defineConfig({
 			'@': path.resolve(__dirname, 'src'),
 			'@shared': path.resolve(__dirname, 'src/shared'),
 			'@pages': path.resolve(__dirname, 'src/pages'),
+			'@features': path.resolve(__dirname, 'src/features'),
 			'@app': path.resolve(__dirname, 'src/app'),
 			'@tests': path.resolve(__dirname, '__tests__'),
 			'@i18n': path.resolve(__dirname, 'src/i18n'),
-			'@game': path.resolve(__dirname, 'src/game'),
+			'@services': path.resolve(__dirname, 'src/services'),
 		},
 	},
 	build: {

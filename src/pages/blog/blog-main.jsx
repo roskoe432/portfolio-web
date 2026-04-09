@@ -2,8 +2,8 @@ import { NavLink } from 'react-router';
 import BlogPost from './components/post/post';
 import useBlogs from './useBlogs';
 import styles from './blog-main.module.less';
-import Error from '@/shared/components/error';
-import Loading from '@/shared/components/loading';
+import Error from '@shared/components/error';
+import Loading from '@shared/components/loading';
 
 function BlogPage() {
 	const { data: blogs, isLoading, error, selectedBlog, slug } = useBlogs();

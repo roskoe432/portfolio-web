@@ -1,6 +1,6 @@
-import EventBus from '@/game/system/event-bus';
-import GameObject from '@/game/entities/game-object';
-import Vec from '@/game/lib/vector';
+import gameEvents from '@features/game/game-events';
+import GameObject from '@features/game/entities/game-object';
+import Vec from '@features/game/lib/vector';
 
 const defaultTextConfig = {
 	color: '#2ec400',
@@ -28,7 +28,7 @@ const gameObjectsConfig = {
 				...defaultTextConfig,
 			},
 			onEnter: () => {
-				EventBus.emit('navigate', { page: '/' });
+				gameEvents.emitNavigate({ page: '/' });
 				console.log('Player entered the About trigger!');
 			},
 			onExit: () => {
@@ -36,7 +36,7 @@ const gameObjectsConfig = {
 			},
 			onInteract: (scene) => {
 				console.log('E key pressed while in About trigger!');
-				EventBus.emit('interact', { type: 'computer', page: '/' });
+				gameEvents.emitInteract({ type: 'computer', page: '/' });
 				scene.pauseGame();
 			},
 		},
@@ -59,7 +59,7 @@ const gameObjectsConfig = {
 				offset: new Vec(-5, -55),
 			},
 			onEnter: () => {
-				EventBus.emit('navigate', { page: '/blog' });
+				gameEvents.emitNavigate({ page: '/blog' });
 				console.log('Player entered the Blog trigger!');
 			},
 			onExit: () => {
@@ -67,7 +67,7 @@ const gameObjectsConfig = {
 			},
 			onInteract: (scene) => {
 				console.log('E key pressed while in Blog trigger!');
-				EventBus.emit('interact', { type: 'computer', page: '/blog' });
+				gameEvents.emitInteract({ type: 'computer', page: '/blog' });
 				scene.pauseGame();
 			},
 		},
