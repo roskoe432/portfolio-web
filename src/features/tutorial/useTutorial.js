@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { storageService } from '@services';
-import { EventBus } from '@features/game';
+import gameEvents from '@features/game/game-events';
 
 function useTutorial(content) {
 	const [currentId, setCurrentId] = useState(0);
 
+	useEffect(() => {
+		gameEvents.emitPauseGame();
+	}, [currentId]);
+
 	const nextItem = () => {
 		const next = currentId + 1;
 		if (next >= content.length) {
-			// storageService.setTutorialViewed(true);
-			EventBus.emit('resume-game');
+			storageService.setTutorialViewed(true);
+			gameEvents.emitResumeGame();
 		}
 		setCurrentId(next);
 	};

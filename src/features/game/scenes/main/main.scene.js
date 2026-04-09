@@ -79,7 +79,7 @@ class MainScene extends Phaser.Scene {
 	}
 
 	update() {
-		if (Phaser.Input.Keyboard.JustDown(this.pKey) || !storageService.getTutorialViewed()) {
+		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
 			this.pauseGame();
 		}
 

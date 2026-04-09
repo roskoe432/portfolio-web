@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { EventBus } from '../../features/game';
+import gameEvents from '@features/game/game-events';
 import config from '@/config';
 
 function usePageModal() {
 	const [showModal, setShowModal] = useState(config.showModalOnStart);
-
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		gameEvents.emitPauseGame();
+	}, []);
 
 	const handleOnModalClose = () => {
 		setShowModal(false);
-		EventBus.emit('resume-game');
+		gameEvents.emitResumeGame();
 	};
 
 	useEffect(() => {
@@ -22,12 +25,12 @@ function usePageModal() {
 			navigate(payload.page);
 		};
 
-		EventBus.on('navigate', handleNavigate);
-		EventBus.on('interact', handleObjectInteract);
+		const offNavigate = gameEvents.onNavigate(handleNavigate);
+		const offInteract = gameEvents.onInteract(handleObjectInteract);
 
 		return () => {
-			EventBus.off('interact', handleObjectInteract);
-			EventBus.off('navigate', handleNavigate);
+			offInteract();
+			offNavigate();
 		};
 	}, [navigate]);
 

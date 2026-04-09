@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { EventBus } from '@features/game';
+import gameEvents from '@features/game/game-events';
 
 export default class PauseMenu extends Phaser.Scene {
 	pKey = null;
@@ -20,9 +20,7 @@ export default class PauseMenu extends Phaser.Scene {
 	}
 
 	create() {
-		EventBus.on('resume-game', () => {
-			this.resumeGame();
-		});
+		gameEvents.onResumeGame(this.resumeGame.bind(this));
 
 		const { width, height } = this.scale;
 
@@ -40,7 +38,7 @@ export default class PauseMenu extends Phaser.Scene {
 
 	update() {
 		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
-			this.resumeGame();
+			gameEvents.emitResumeGame();
 		}
 	}
 }
