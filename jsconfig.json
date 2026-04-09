@@ -18,12 +18,11 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"@shared/*": ["./src/shared/*"],
-			"@pages/*": ["src/features/*"],
+			"@pages/*": ["./src/features/*"],
 			"@features/*": ["./src/features/*"],
 			"@app/*": ["./src/app/*"],
 			"@tests/*": ["./__tests__/*"],
-			"@i18n/*": ["./src/i18n/*"],
-			"@game/*": ["./src/game/*"]
+			"@i18n/*": ["./src/i18n/*"]
 		}
 	},
 	"include": ["src"],

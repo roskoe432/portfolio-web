@@ -4,15 +4,12 @@ import styles from './tutorial.module.less';
 
 const content = [
 	{
-		key: 1,
 		message: 'Welcome to the tutorial!',
 	},
 	{
-		key: 2,
 		message: 'This is how you use the app.',
 	},
 	{
-		key: 3,
 		message: 'Enjoy exploring the features!',
 	},
 ];
@@ -20,7 +17,6 @@ const content = [
 function Tutorial() {
 	const { nextItem, getCurrentItem } = useTutorial(content);
 	const CurrentContent = getCurrentItem();
-	console.log('CurrentContent:', CurrentContent);
 
 	return (
 		<Modal className={styles.tutorial} show={CurrentContent !== null} onHide={nextItem}>

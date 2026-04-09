@@ -1,6 +1,6 @@
-import EventBus from '@/game/system/event-bus';
-import GameObject from '@/game/entities/game-object';
-import Vec from '@/game/lib/vector';
+import EventBus from '@/features/game/system/event-bus';
+import GameObject from '@/features/game/entities/game-object';
+import Vec from '@/features/game/lib/vector';
 
 const defaultTextConfig = {
 	color: '#2ec400',

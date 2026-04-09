@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { storageService } from '@/services';
-import { EventBus } from '@/game';
+import { EventBus } from '@/features/game';
 
 function useTutorial(content) {
 	const [currentId, setCurrentId] = useState(0);
@@ -8,7 +8,7 @@ function useTutorial(content) {
 	const nextItem = () => {
 		const next = currentId + 1;
 		if (next >= content.length) {
-			storageService.setTutorialViewed(true);
+			// storageService.setTutorialViewed(true);
 			EventBus.emit('resume-game');
 		}
 		setCurrentId(next);

@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import EventBus from '@/game/system/event-bus';
+import { EventBus } from '@/features/game';
 
 export default class PauseMenu extends Phaser.Scene {
 	pKey = null;
