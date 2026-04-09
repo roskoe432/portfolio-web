@@ -1,12 +1,20 @@
 function StorageService() {
 	const storage = window.localStorage;
 
-	this.setInstructionsViewed = () => {
-		storage.setItem('instructionsViewed', 'true');
+	this.setTutorialViewed = () => {
+		storage.setItem('tutorialViewed', 'true');
 	};
 
-	this.getInstructionsViewed = () => {
-		return storage.getItem('instructionsViewed') === 'true';
+	this.getTutorialViewed = () => {
+		const tutorialViewed = storage.getItem('tutorialViewed');
+		if (tutorialViewed === null) {
+			return false; // Default to false if not set
+		}
+		return tutorialViewed === 'true';
+	};
+
+	this.deleteTutorialViewed = () => {
+		storage.removeItem('tutorialViewed');
 	};
 }
 

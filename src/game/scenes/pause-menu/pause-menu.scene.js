@@ -16,15 +16,14 @@ export default class PauseMenu extends Phaser.Scene {
 
 	preload() {
 		this.pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
-
-		EventBus.on('resume-game', () => {
-			this.resumeGame();
-		});
-
 		this.scene.get('MainScene').scene.pause();
 	}
 
 	create() {
+		EventBus.on('resume-game', () => {
+			this.resumeGame();
+		});
+
 		const { width, height } = this.scale;
 
 		this.add.rectangle(0, 0, width, height, 0x000000, 0.5).setOrigin(0);
