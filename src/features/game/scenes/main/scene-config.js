@@ -42,7 +42,7 @@ const gameObjectsConfig = {
 		},
 	},
 	fileCabinet: {
-		position: new Vec(500, 155),
+		position: new Vec(555, 155),
 		spriteKey: 'fileCabinetItchio',
 		body: {
 			isStatic: true,
@@ -73,16 +73,38 @@ const gameObjectsConfig = {
 		},
 	},
 
-	vendingMachine: {
-		position: new Vec(100, 155),
-		spriteKey: 'vendingMachineItchio',
+	faxMachine: {
+		position: new Vec(100, 160),
+		spriteKey: 'printerItchio',
 		body: {
 			isStatic: true,
 			size: new Vec(20, 10),
 			offset: new Vec(6, 0),
 			scale: 3,
 		},
+		depth: 1,
+		trigger: {
+			size: new Vec(80, 110),
+			text: {
+				message: 'Contact (E)',
+				...defaultTextConfig,
+				offset: new Vec(-5, -55),
+			},
+			onEnter: () => {
+				gameEvents.emitNavigate({ page: '/contact' });
+				console.log('Player entered the Contact trigger!');
+			},
+			onExit: () => {
+				console.log('Player left the Contact trigger!');
+			},
+			onInteract: (scene) => {
+				console.log('E key pressed while in Contact trigger!');
+				gameEvents.emitInteract({ type: 'computer', page: '/contact' });
+				scene.pauseGame();
+			},
+		},
 	},
+
 	clock: {
 		position: new Vec(315, 100),
 		spriteKey: 'clockItchio',
@@ -91,16 +113,6 @@ const gameObjectsConfig = {
 			size: Vec.zero(),
 			offset: Vec.zero(),
 			scale: 1.5,
-		},
-	},
-	waterCooler: {
-		position: new Vec(150, 172),
-		spriteKey: 'waterCoolerItchio',
-		body: {
-			isStatic: true,
-			size: new Vec(12, 5),
-			offset: new Vec(10, -6),
-			scale: 2,
 		},
 	},
 
@@ -113,9 +125,9 @@ const gameObjectsConfig = {
 			scale: 3,
 		},
 		positions: [
-			{ x: 440, y: 155 },
-			{ x: 470, y: 155 },
-			{ x: 530, y: 155 },
+			{ x: 495, y: 155 },
+			{ x: 525, y: 155 },
+			{ x: 585, y: 155 },
 		],
 	},
 };

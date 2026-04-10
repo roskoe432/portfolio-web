@@ -51,6 +51,39 @@
 		flex-direction: column;
 		gap: 1rem;
 
+		.field {
+			display: flex;
+			flex-direction: column;
+			gap: 0.375rem;
+
+			label {
+				font-size: 0.9375rem;
+				font-weight: 600;
+				color: #212529;
+			}
+		}
+
+		input {
+			width: 100%;
+			padding: 0.75rem 1rem;
+			font-size: 1rem;
+			line-height: 1.5;
+			border: 2px solid #dee2e6;
+			border-radius: 8px;
+			font-family: inherit;
+			transition: border-color 0.2s ease;
+			box-sizing: border-box;
+
+			&:focus {
+				outline: none;
+				border-color: #228be6;
+			}
+
+			&::placeholder {
+				color: #adb5bd;
+			}
+		}
+
 		textarea {
 			width: 100%;
 			min-height: 200px;
@@ -139,6 +172,24 @@
 				&::placeholder {
 					color: #6c757d;
 				}
+			}
+
+			input {
+				background-color: #25262b;
+				border-color: #373a40;
+				color: #f8f9fa;
+
+				&:focus {
+					border-color: #4dabf7;
+				}
+
+				&::placeholder {
+					color: #6c757d;
+				}
+			}
+
+			.field label {
+				color: #c1c2c5;
 			}
 
 			button {

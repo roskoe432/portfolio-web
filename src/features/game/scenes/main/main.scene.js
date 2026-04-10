@@ -55,7 +55,7 @@ class MainScene extends Phaser.Scene {
 		this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 		this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
-		this.player.onCreate(100);
+		this.player.onCreate(300, 300);
 
 		const gameObjects = createGameObjects(this, this.player);
 		const boundaries = createBoundaries(this, this.map);

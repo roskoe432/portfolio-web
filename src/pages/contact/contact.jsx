@@ -1,17 +1,10 @@
 import { useState } from 'react';
 import styles from './contact.module.less';
-import config from '@/config';
-
-const MailtoLink = (props) => (
-	<a
-		href={`mailto:${props.email}?subject=${encodeURIComponent('Job Inquiry')}&body=${encodeURIComponent(props.message)}`}
-	>
-		Contact Support
-	</a>
-);
 
 function ContactPage() {
 	const [formData, setFormData] = useState({
+		senderEmail: '',
+		subject: '',
 		message: '',
 	});
 
@@ -22,25 +15,49 @@ function ContactPage() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// Here you would typically send the form data to your server or an email service
-		console.log('Form submitted:', formData);
-		alert('Thank you for your message! I will get back to you soon.');
-		setFormData({ message: '' });
 	};
 
 	return (
 		<div className={styles.contactPage}>
-			<p>You can reach me at:</p>
-			<MailtoLink email={config.email} message={formData.message} />
-			<p>Or send me a message directly:</p>
+			<div className={styles.header}>
+				<h1>Contact</h1>
+			</div>
 			<form onSubmit={handleSubmit} className={styles.contactForm}>
-				<textarea
-					name="message"
-					value={formData.message}
-					onChange={handleChange}
-					placeholder="Your message"
-					required
-				/>
+				<div className={styles.field}>
+					<label htmlFor="senderEmail">Your Email</label>
+					<input
+						id="senderEmail"
+						type="email"
+						name="senderEmail"
+						value={formData.senderEmail}
+						onChange={handleChange}
+						placeholder="you@example.com"
+						required
+					/>
+				</div>
+				<div className={styles.field}>
+					<label htmlFor="subject">Subject</label>
+					<input
+						id="subject"
+						type="text"
+						name="subject"
+						value={formData.subject}
+						onChange={handleChange}
+						placeholder="What's this about?"
+						required
+					/>
+				</div>
+				<div className={styles.field}>
+					<label htmlFor="message">Message</label>
+					<textarea
+						id="message"
+						name="message"
+						value={formData.message}
+						onChange={handleChange}
+						placeholder="Your message"
+						required
+					/>
+				</div>
 				<button type="submit">Send</button>
 			</form>
 		</div>

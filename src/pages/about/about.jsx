@@ -42,13 +42,13 @@ function AboutPage() {
 			>
 				{t('pages.resume.resume')}
 			</ExternalLink>
-			<iframe
+			{/* <iframe
 				title="Mini Level"
 				className={styles['mini-level-iframe']}
 				src="./ps3/index.html"
 				frameBorder="0"
 				allow="fullscreen; vr; vrhmd; gyroscope; accelerometer"
-			></iframe>
+			></iframe> */}
 		</div>
 	);
 }
