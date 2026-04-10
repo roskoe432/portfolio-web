@@ -9,6 +9,7 @@ export default class PauseMenu extends Phaser.Scene {
 	}
 
 	resumeGame() {
+		this.input.keyboard.enableGlobalCapture();
 		console.log('Resuming game');
 		this.scene.stop();
 		this.scene.resume('MainScene');
@@ -20,6 +21,7 @@ export default class PauseMenu extends Phaser.Scene {
 	}
 
 	create() {
+		this.input.keyboard.disableGlobalCapture();
 		gameEvents.onResumeGame(this.resumeGame.bind(this));
 
 		const { width, height } = this.scale;
@@ -37,7 +39,10 @@ export default class PauseMenu extends Phaser.Scene {
 	}
 
 	update() {
-		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
+		const active = document.activeElement;
+		const isInputFocused =
+			active instanceof HTMLInputElement || active instanceof HTMLTextAreaElement;
+		if (!isInputFocused && Phaser.Input.Keyboard.JustDown(this.pKey)) {
 			gameEvents.emitResumeGame();
 		}
 	}

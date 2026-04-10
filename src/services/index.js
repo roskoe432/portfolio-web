@@ -1,8 +1,10 @@
 import BlogService from './blog.service';
+import EmailService from './email.service';
 import StorageService from './storage.service';
 import config from '../config';
 
 export const blogService = new BlogService(config.serverUrl);
+export const emailService = new EmailService(config.serverUrl);
 export const storageService = new StorageService();
 
 export const serverConnectionTest = async (retryIntervalSecs = 2, attempts = 3) => {
