@@ -1,9 +1,11 @@
+import usePageModalStore from '../page-modal/usePageModalStore';
 import styles from './contact.module.less';
 import { useEmailMutation } from './contactQueries';
 import { getErrorMessageFromStatus } from '@/shared/utils/helpers';
 import { useForm } from 'react-hook-form';
 
 function ContactPage() {
+	const { closeModal } = usePageModalStore();
 	const { mutate, isPending, isSuccess, error } = useEmailMutation();
 	const {
 		register,
@@ -16,6 +18,22 @@ function ContactPage() {
 	};
 
 	const errorMessage = error ? getErrorMessageFromStatus(error.cause) : null;
+
+	if (isSuccess) {
+		return (
+			<div className={styles.contactPage}>
+				<div className={styles.header}>
+					<h1>Contact</h1>
+				</div>
+				<p className={`${styles.successMessage} ${styles.centeredMessage}`}>
+					Message sent successfully!
+				</p>
+				<button className={styles.okBtn} onClick={closeModal}>
+					OK
+				</button>
+			</div>
+		);
+	}
 
 	return (
 		<div className={styles.contactPage}>
