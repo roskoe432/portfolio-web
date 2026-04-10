@@ -29,13 +29,9 @@ const gameObjectsConfig = {
 			},
 			onEnter: () => {
 				gameEvents.emitNavigate({ page: '/' });
-				console.log('Player entered the About trigger!');
 			},
-			onExit: () => {
-				console.log('Player left the About trigger!');
-			},
+			onExit: () => {},
 			onInteract: (scene) => {
-				console.log('E key pressed while in About trigger!');
 				gameEvents.emitInteract({ type: 'computer', page: '/' });
 				scene.pauseGame();
 			},
@@ -60,13 +56,9 @@ const gameObjectsConfig = {
 			},
 			onEnter: () => {
 				gameEvents.emitNavigate({ page: '/blog' });
-				console.log('Player entered the Blog trigger!');
 			},
-			onExit: () => {
-				console.log('Player left the Blog trigger!');
-			},
+			onExit: () => {},
 			onInteract: (scene) => {
-				console.log('E key pressed while in Blog trigger!');
 				gameEvents.emitInteract({ type: 'computer', page: '/blog' });
 				scene.pauseGame();
 			},
@@ -92,13 +84,9 @@ const gameObjectsConfig = {
 			},
 			onEnter: () => {
 				gameEvents.emitNavigate({ page: '/contact' });
-				console.log('Player entered the Contact trigger!');
 			},
-			onExit: () => {
-				console.log('Player left the Contact trigger!');
-			},
+			onExit: () => {},
 			onInteract: (scene) => {
-				console.log('E key pressed while in Contact trigger!');
 				gameEvents.emitInteract({ type: 'computer', page: '/contact' });
 				scene.pauseGame();
 			},
@@ -142,7 +130,7 @@ const createGameObjects = (scene, player) =>
 		const obj = new GameObject(scene, config);
 		if (config.trigger) {
 			obj.setupPlayerOverlap(player.player);
-			scene.interactables.push(obj); // Add to scene's interactables array
+			scene.interactables.push(obj);
 		}
 
 		return [...acc, obj.getCollider()];
