@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import styles from './contact.module.less';
+import { useEmailMutation } from './contactQueries';
+import { getErrorMessageFromStatus } from '@/shared/utils/helpers';
 
 function ContactPage() {
+	const { mutate, isPending, isSuccess, error } = useEmailMutation();
 	const [formData, setFormData] = useState({
-		senderEmail: '',
+		email: '',
 		subject: '',
 		message: '',
 	});
@@ -15,7 +18,10 @@ function ContactPage() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		mutate(formData);
 	};
+
+	const errorMessage = error ? getErrorMessageFromStatus(error.cause) : null;
 
 	return (
 		<div className={styles.contactPage}>
@@ -24,12 +30,12 @@ function ContactPage() {
 			</div>
 			<form onSubmit={handleSubmit} className={styles.contactForm}>
 				<div className={styles.field}>
-					<label htmlFor="senderEmail">Your Email</label>
+					<label htmlFor="email">Your Email</label>
 					<input
-						id="senderEmail"
+						id="email"
 						type="email"
-						name="senderEmail"
-						value={formData.senderEmail}
+						name="email"
+						value={formData.email}
 						onChange={handleChange}
 						placeholder="you@example.com"
 						required
@@ -58,7 +64,11 @@ function ContactPage() {
 						required
 					/>
 				</div>
-				<button type="submit">Send</button>
+				<button type="submit" disabled={isPending}>
+					{isPending ? 'Sending...' : 'Send'}
+				</button>
+				{error && <p className={styles.errorMessage}>{errorMessage}</p>}
+				{isSuccess && <p className={styles.successMessage}>Message sent successfully!</p>}
 			</form>
 		</div>
 	);
