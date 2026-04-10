@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { visualizer } from 'rollup-plugin-visualizer';
 import path from 'path';
 
 const certPath = path.resolve(__dirname, 'certs/server.crt');
@@ -24,16 +23,7 @@ const tmjPlugin = () => {
 };
 
 export default defineConfig({
-	plugins: [
-		react(),
-		tmjPlugin(),
-		visualizer({
-			open: false,
-			gzipSize: true,
-			brotliSize: true,
-			filename: 'stats.html',
-		}),
-	],
+	plugins: [react(), tmjPlugin()],
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, 'src'),
@@ -67,6 +57,7 @@ export default defineConfig({
 				assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
 			},
 		},
+		// Swap out later...
 		minify: 'terser',
 		terserOptions: {
 			compress: {

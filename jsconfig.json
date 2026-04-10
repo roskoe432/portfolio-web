@@ -18,8 +18,8 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"@shared/*": ["./src/shared/*"],
-			"@pages/*": ["src/pages/*"],
-			"@features/*": ["src/pages/*"],
+			"@pages/*": ["./src/pages/*"],
+			"@features/*": ["./src/features/*"],
 			"@app/*": ["./src/app/*"],
 			"@tests/*": ["./__tests__/*"],
 			"@i18n/*": ["./src/i18n/*"],
