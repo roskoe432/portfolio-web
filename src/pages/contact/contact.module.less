@@ -128,16 +128,26 @@
 			}
 		}
 
+		.inputMessage {
+			font-size: 0.9rem;
+			font-weight: 500;
+		}
+
 		.successMessage {
-			margin-top: 1rem;
+			.inputMessage;
 			color: var(--color-green-500);
 			font-weight: 600;
+			font-size: 0.9rem;
 		}
 
 		.errorMessage {
+			.inputMessage;
 			color: var(--color-red-500);
-			margin-top: 1rem;
 			font-weight: 600;
+		}
+
+		.centeredMessage {
+			text-align: center;
 		}
 	}
 }

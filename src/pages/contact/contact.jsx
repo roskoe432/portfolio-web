@@ -1,24 +1,18 @@
-import { useState } from 'react';
 import styles from './contact.module.less';
 import { useEmailMutation } from './contactQueries';
 import { getErrorMessageFromStatus } from '@/shared/utils/helpers';
+import { useForm } from 'react-hook-form';
 
 function ContactPage() {
 	const { mutate, isPending, isSuccess, error } = useEmailMutation();
-	const [formData, setFormData] = useState({
-		email: '',
-		subject: '',
-		message: '',
-	});
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 
-	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setFormData((prevData) => ({ ...prevData, [name]: value }));
-	};
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		mutate(formData);
+	const onSubmit = (data) => {
+		mutate(data);
 	};
 
 	const errorMessage = error ? getErrorMessageFromStatus(error.cause) : null;
@@ -28,47 +22,47 @@ function ContactPage() {
 			<div className={styles.header}>
 				<h1>Contact</h1>
 			</div>
-			<form onSubmit={handleSubmit} className={styles.contactForm}>
+			<form onSubmit={handleSubmit(onSubmit)} className={styles.contactForm}>
 				<div className={styles.field}>
 					<label htmlFor="email">Your Email</label>
 					<input
-						id="email"
-						type="email"
-						name="email"
-						value={formData.email}
-						onChange={handleChange}
 						placeholder="you@example.com"
-						required
+						{...register('email', { required: true, pattern: /^\S+@\S+$/i })}
 					/>
 				</div>
+				{errors.email && (
+					<span className={styles.errorMessage}>Please enter a valid email address.</span>
+				)}
 				<div className={styles.field}>
 					<label htmlFor="subject">Subject</label>
 					<input
-						id="subject"
 						type="text"
-						name="subject"
-						value={formData.subject}
-						onChange={handleChange}
 						placeholder="What's this about?"
-						required
+						{...register('subject', { required: true })}
 					/>
 				</div>
+				{errors.subject && <span className={styles.errorMessage}>Subject is required.</span>}
 				<div className={styles.field}>
 					<label htmlFor="message">Message</label>
 					<textarea
-						id="message"
-						name="message"
-						value={formData.message}
-						onChange={handleChange}
 						placeholder="Your message"
-						required
+						{...register('message', { required: true, maxLength: 500 })}
 					/>
 				</div>
+				{errors.message && errors.message.type === 'required' && (
+					<span className={styles.errorMessage}>Message is required.</span>
+				)}
 				<button type="submit" disabled={isPending}>
 					{isPending ? 'Sending...' : 'Send'}
 				</button>
-				{error && <p className={styles.errorMessage}>{errorMessage}</p>}
-				{isSuccess && <p className={styles.successMessage}>Message sent successfully!</p>}
+				{error && (
+					<p className={`${styles.errorMessage} ${styles.centeredMessage}`}>{errorMessage}</p>
+				)}
+				{isSuccess && (
+					<p className={`${styles.successMessage} ${styles.centeredMessage}`}>
+						Message sent successfully!
+					</p>
+				)}
 			</form>
 		</div>
 	);
