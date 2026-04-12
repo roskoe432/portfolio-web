@@ -14,7 +14,7 @@ const gameConfig = {
 	parent: 'game-container',
 	width: 640,
 	height: 480,
-	backgroundColor: '#000000',
+	backgroundColor: '#ffffff',
 	pixelArt: true,
 	scene: [LoaderScene, MainScene, PauseMenu, TransitionScene],
 	physics: {
