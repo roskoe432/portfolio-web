@@ -22,9 +22,6 @@ function ContactPage() {
 	if (isSuccess) {
 		return (
 			<div className={styles.contactPage}>
-				<div className={styles.header}>
-					<h1>Contact</h1>
-				</div>
 				<p className={`${styles.successMessage} ${styles.centeredMessage}`}>
 					Message sent successfully!
 				</p>
@@ -37,9 +34,6 @@ function ContactPage() {
 
 	return (
 		<div className={styles.contactPage}>
-			<div className={styles.header}>
-				<h1>Contact</h1>
-			</div>
 			<form onSubmit={handleSubmit(onSubmit)} className={styles.contactForm}>
 				<div className={styles.field}>
 					<label htmlFor="email">Your Email</label>
