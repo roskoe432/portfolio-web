@@ -12,12 +12,12 @@ export default class PauseMenu extends Phaser.Scene {
 		this.input.keyboard.enableGlobalCapture();
 		console.log('Resuming game');
 		this.scene.stop();
-		this.scene.resume('MainScene');
+		this.scene.resume('Main');
 	}
 
 	preload() {
 		this.pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
-		this.scene.get('MainScene').scene.pause();
+		this.scene.get('Main').scene.pause();
 	}
 
 	create() {
@@ -29,7 +29,7 @@ export default class PauseMenu extends Phaser.Scene {
 		this.add.rectangle(0, 0, width, height, 0x000000, 0.5).setOrigin(0);
 
 		this.add
-			.text(width / 2, height / 2 - 20, 'Game Paused', {
+			.text(width / 2, height / 2 - 20, 'Paused', {
 				fontSize: '64px',
 				fontFamily: 'Arial',
 				color: '#ffffff',

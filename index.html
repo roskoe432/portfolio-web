@@ -22,10 +22,7 @@
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://bensnow.dev/" />
-		<meta
-			property="og:title"
-			content="Ben Snow - Software Engineer | Portfolio"
-		/>
+		<meta property="og:title" content="Ben Snow - Software Engineer | Portfolio" />
 		<meta
 			property="og:description"
 			content="Software Engineer specializing in React, Node.js, Azure, and DevOps. Explore my projects and engineering approach."
@@ -35,10 +32,7 @@
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content="https://bensnow.dev/" />
-		<meta
-			property="twitter:title"
-			content="Ben Snow - Software Engineer | Portfolio"
-		/>
+		<meta property="twitter:title" content="Ben Snow - Software Engineer | Portfolio" />
 		<meta
 			property="twitter:description"
 			content="Software Engineer specializing in React, Node.js, Azure, and DevOps. Explore my projects and engineering approach."
@@ -54,9 +48,24 @@
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="manifest" href="/site.webmanifest" />
+
+		<style>
+			#game-container {
+				position: fixed;
+				background-color: #353535;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: -1;
+				overflow: hidden;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="root"></div>
+		<!-- Moved game container to index.html -->
+		<div id="game-container"></div>
 		<script type="module" src="/src/index.jsx"></script>
 	</body>
 </html>

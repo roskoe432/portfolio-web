@@ -18,7 +18,7 @@ function GameContainer(props) {
 	}, []);
 
 	return (
-		<div id="game-container" className={styles.gameContainer}>
+		<div className={styles.gameContainer}>
 			{/* Phaser game will be injected here */}
 			{props.children}
 		</div>
