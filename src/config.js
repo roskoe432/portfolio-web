@@ -8,7 +8,6 @@ const requiredEnvVars = [
 	'VITE_GAME_ENABLED',
 	'VITE_UI_USE_NAVLINKS',
 	'VITE_UI_SHOW_MODAL_ON_START',
-	'VITE_EMAIL',
 	'VITE_QUERY_CLIENT_STALE_TIME',
 	'VITE_QUERY_CLIENT_REFETCH_ON_WINDOW_FOCUS',
 	'VITE_QUERY_CLIENT_RETRY',
@@ -27,7 +26,6 @@ const config = {
 	env,
 	serverUrl,
 	useNavLinks: import.meta.env.VITE_UI_USE_NAVLINKS === 'true',
-	email: import.meta.env.VITE_EMAIL,
 	showModalOnStart: import.meta.env.VITE_UI_SHOW_MODAL_ON_START === 'true',
 	urls: {
 		github: import.meta.env.VITE_GITHUB_URL,
