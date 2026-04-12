@@ -174,7 +174,7 @@ export const doSceneTransition = async (
 	const rect = createRect(transitionScene, { color: options.color ?? 0x000000, depth: 100 });
 
 	await transitions[startTransitionKey](transitionScene, rect, { ...options, destroy: false });
-	transitionScene.scene.launch(targetSceneKey);
+	transitionScene.scene.launch(targetSceneKey, options.payload);
 	transitionScene.scene.bringToTop();
 	await transitions[endTransitionKey](transitionScene, rect, {
 		...options,
@@ -227,6 +227,7 @@ export const transitionTo = (
 		startTransitionKey,
 		endTransitionKey,
 		options,
+		payload: options.payload || null,
 	});
 };
 

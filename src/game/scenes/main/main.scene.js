@@ -37,8 +37,19 @@ class MainScene extends Phaser.Scene {
 		this.wallsLayer = this.map.createLayer('wall-layer', this.tileset, 0, 0);
 	}
 
+	registerKeys() {
+		this.cursors = this.input.keyboard.createCursorKeys();
+		this.wasdKeys = this.input.keyboard.addKeys({
+			up: Phaser.Input.Keyboard.KeyCodes.W,
+			down: Phaser.Input.Keyboard.KeyCodes.S,
+			left: Phaser.Input.Keyboard.KeyCodes.A,
+			right: Phaser.Input.Keyboard.KeyCodes.D,
+		});
+		this.eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+		this.pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+	}
+
 	async preload() {
-		this.load.pack('gameAssets', '/assets/manifest.json');
 		this.player = new Player(this);
 		await this.player.onPreload();
 	}
@@ -55,18 +66,9 @@ class MainScene extends Phaser.Scene {
 		const gameObjects = createGameObjects(this, this.player);
 		const boundaries = createBoundaries(this, this.map);
 
-		const colliders = [...gameObjects, ...boundaries];
-		this.player.addCollisions(colliders);
+		this.player.addCollisions([...gameObjects, ...boundaries]);
 
-		this.cursors = this.input.keyboard.createCursorKeys();
-		this.wasdKeys = this.input.keyboard.addKeys({
-			up: Phaser.Input.Keyboard.KeyCodes.W,
-			down: Phaser.Input.Keyboard.KeyCodes.S,
-			left: Phaser.Input.Keyboard.KeyCodes.A,
-			right: Phaser.Input.Keyboard.KeyCodes.D,
-		});
-		this.eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-		this.pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+		this.registerKeys();
 
 		if (!storageService.getTutorialViewed()) {
 			this.pauseGame();

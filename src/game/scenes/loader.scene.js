@@ -24,6 +24,7 @@ class LoaderScene extends Phaser.Scene {
 		this.input.on('pointerdown', () => {
 			console.log('Pointer down, starting transition to Main scene');
 		});
+
 		transitionTo(this, 'Main', TransitionKey.fadeIn, TransitionKey.fadeOut, {
 			durationInSeconds: 1,
 			color: 0x000000,
