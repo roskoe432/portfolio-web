@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import MainScene from './scenes/main/main.scene';
-import PauseMenu from './scenes/pause-menu/pause-menu.scene';
+import PauseMenu from './scenes/pause-menu.scene';
 import config from '@/config';
 
 let game;

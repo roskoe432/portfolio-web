@@ -1,28 +1,30 @@
 import gameEvents from '@features/game/game-events';
 import GameObject from '@features/game/entities/game-object';
-import Vec from '@features/game/lib/vector';
+import { Math } from 'phaser';
+
+const { Vector2 } = Math;
 
 const defaultTextConfig = {
 	color: '#2ec400',
 	fontSize: '14px',
-	offset: new Vec(0, -55),
+	offset: new Vector2(0, -55),
 	showByDefault: false,
 };
 
 const gameObjectsConfig = {
 	desk: {
-		position: new Vec(335, 175),
+		position: new Vector2(335, 175),
 		spriteKey: 'desk',
 		body: {
 			isStatic: true,
-			size: new Vec(32, 10),
-			offset: new Vec(0, 0),
+			size: new Vector2(32, 10),
+			offset: new Vector2(0, 0),
 			scale: 3,
 		},
 		depth: 1,
 		trigger: {
-			size: new Vec(115, 85),
-			offset: new Vec(0, 25),
+			size: new Vector2(115, 85),
+			offset: new Vector2(0, 25),
 			text: {
 				message: 'About (E)',
 				...defaultTextConfig,
@@ -38,21 +40,21 @@ const gameObjectsConfig = {
 		},
 	},
 	fileCabinet: {
-		position: new Vec(555, 155),
+		position: new Vector2(555, 155),
 		spriteKey: 'fileCabinet',
 		body: {
 			isStatic: true,
-			size: new Vec(10, 10),
-			offset: new Vec(11, 0),
+			size: new Vector2(10, 10),
+			offset: new Vector2(11, 0),
 			scale: 3,
 		},
 		depth: 1,
 		trigger: {
-			size: new Vec(80, 110),
+			size: new Vector2(80, 110),
 			text: {
 				message: 'Blog (E)',
 				...defaultTextConfig,
-				offset: new Vec(-5, -55),
+				offset: new Vector2(-5, -55),
 			},
 			onEnter: () => {
 				gameEvents.emitNavigate({ page: '/blog' });
@@ -66,21 +68,21 @@ const gameObjectsConfig = {
 	},
 
 	faxMachine: {
-		position: new Vec(100, 160),
+		position: new Vector2(100, 160),
 		spriteKey: 'printer',
 		body: {
 			isStatic: true,
-			size: new Vec(20, 10),
-			offset: new Vec(6, 0),
+			size: new Vector2(20, 10),
+			offset: new Vector2(6, 0),
 			scale: 3,
 		},
 		depth: 1,
 		trigger: {
-			size: new Vec(80, 110),
+			size: new Vector2(80, 110),
 			text: {
 				message: 'Contact (E)',
 				...defaultTextConfig,
-				offset: new Vec(-5, -55),
+				offset: new Vector2(-5, -55),
 			},
 			onEnter: () => {
 				gameEvents.emitNavigate({ page: '/contact' });
@@ -94,12 +96,12 @@ const gameObjectsConfig = {
 	},
 
 	clock: {
-		position: new Vec(315, 100),
+		position: new Vector2(315, 100),
 		spriteKey: 'clock',
 		body: {
 			isStatic: true,
-			size: Vec.zero(),
-			offset: Vec.zero(),
+			size: new Vector2(),
+			offset: new Vector2(),
 			scale: 1.5,
 		},
 	},
@@ -108,8 +110,8 @@ const gameObjectsConfig = {
 		spriteKey: 'fileCabinet',
 		body: {
 			isStatic: true,
-			size: new Vec(10, 10),
-			offset: new Vec(11, 0),
+			size: new Vector2(10, 10),
+			offset: new Vector2(11, 0),
 			scale: 3,
 		},
 		positions: [

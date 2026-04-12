@@ -1,5 +1,5 @@
 import MainScene from './main/main.scene';
-import PauseMenu from './pause-menu/pause-menu.scene';
+import PauseMenu from './pause-menu.scene';
 
 const scenes = [MainScene, PauseMenu];
 

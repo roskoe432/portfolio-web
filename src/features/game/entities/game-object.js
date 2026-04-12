@@ -1,5 +1,5 @@
-import Phaser from 'phaser';
-import Vec from '../lib/vector';
+import Phaser, { Math } from 'phaser';
+const { Vector2 } = Math;
 
 const GameObject = (() => {
 	function GameObject(scene, config) {
@@ -165,7 +165,7 @@ const GameObject = (() => {
 		positions.forEach((pos) => {
 			const objConfig = {
 				...config,
-				position: new Vec(pos.x, pos.y),
+				position: new Vector2(pos.x, pos.y),
 			};
 			objs.push(new GameObject(scene, objConfig).getCollider());
 		});
