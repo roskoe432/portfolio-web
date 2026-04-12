@@ -19,7 +19,7 @@ class MainScene extends Phaser.Scene {
 	interactables = [];
 
 	constructor() {
-		super({ key: 'MainScene' });
+		super({ key: 'Main' });
 	}
 
 	pauseGame() {
