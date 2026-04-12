@@ -1,5 +1,5 @@
-import gameEvents from '@features/game/game-events';
-import GameObject from '@features/game/entities/game-object';
+import gameEvents from '@/game/game-events';
+import GameObject from '@/game/entities/game-object';
 import { Math } from 'phaser';
 
 const { Vector2 } = Math;

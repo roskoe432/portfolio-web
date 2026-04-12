@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { gameEvents } from '@features/game';
+import { gameEvents } from '@/game';
 import usePageModalStore from './usePageModalStore';
 
 function usePageModal() {

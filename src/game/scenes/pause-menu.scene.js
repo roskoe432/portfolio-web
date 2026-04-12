@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import gameEvents from '@features/game/game-events';
+import gameEvents from '@/game/game-events';
 
 export default class PauseMenu extends Phaser.Scene {
 	pKey = null;

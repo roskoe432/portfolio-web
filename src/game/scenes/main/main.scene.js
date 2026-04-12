@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Player from '@features/game/entities/player';
+import Player from '@/game/entities/player';
 import createBoundaries from './boundaries';
 import createGameObjects from './scene-config';
 import { storageService } from '@services';

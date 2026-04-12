@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app/app';
 import Providers from './app/providers';
-import { createGame } from './features/game/game-config';
+import { createGame } from './game/game-config';
 
 createGame();
 
