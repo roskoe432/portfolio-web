@@ -1,13 +1,10 @@
 import Phaser from 'phaser';
 import Player from '@features/game/entities/player';
-import officeMap from '@features/game/assets/maps/office-map.tmj';
-import getSceneImageAnimLoader from '@features/game/assets/images';
 import createBoundaries from './boundaries';
 import createGameObjects from './scene-config';
 import { storageService } from '@services';
 
 class MainScene extends Phaser.Scene {
-	loadImages = getSceneImageAnimLoader(this);
 	loadAnimations = null;
 
 	paused = false;
@@ -41,15 +38,13 @@ class MainScene extends Phaser.Scene {
 	}
 
 	async preload() {
-		this.load.tilemapTiledJSON('officeMap', officeMap);
-		this.loadAnimations = this.loadImages();
+		this.load.pack('gameAssets', '/assets/manifest.json');
 		this.player = new Player(this);
 		await this.player.onPreload();
 	}
 
 	create() {
 		this.cameras.main.setZoom(1);
-		this.loadAnimations();
 		this.setupTileMap();
 
 		this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);

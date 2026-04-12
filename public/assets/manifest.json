@@ -1,0 +1,147 @@
+{
+	"itchioPack": {
+		"path": "assets/images/itchio/office/",
+		"files": [
+			{
+				"type": "image",
+				"key": "clock",
+				"url": "clock.png"
+			},
+			{
+				"type": "image",
+				"key": "desk",
+				"url": "desk.png"
+			},
+			{
+				"type": "image",
+				"key": "fileCabinet",
+				"url": "file-cabinet.png"
+			},
+			{
+				"type": "image",
+				"key": "printer",
+				"url": "printer.png"
+			},
+			{
+				"type": "image",
+				"key": "bookshelf",
+				"url": "tall-bookshelf.png"
+			},
+			{
+				"type": "image",
+				"key": "vendingMachine",
+				"url": "vending-machine.png"
+			},
+			{
+				"type": "image",
+				"key": "waterDispenser",
+				"url": "water-dispenser.png"
+			}
+		]
+	},
+	"animPack": {
+		"path": "assets/images/animations/",
+		"files": [
+			{
+				"type": "spritesheet",
+				"key": "idle",
+				"url": "idle.png",
+				"frameConfig": {
+					"frameWidth": 48,
+					"frameHeight": 48
+				}
+			},
+			{
+				"type": "spritesheet",
+				"key": "walk-north",
+				"url": "walk-north.png",
+				"frameConfig": {
+					"frameWidth": 48,
+					"frameHeight": 48
+				}
+			},
+			{
+				"type": "spritesheet",
+				"key": "walk-ne",
+				"url": "walk-ne.png",
+				"frameConfig": {
+					"frameWidth": 48,
+					"frameHeight": 48
+				}
+			},
+			{
+				"type": "spritesheet",
+				"key": "walk-east",
+				"url": "walk-east.png",
+				"frameConfig": {
+					"frameWidth": 48,
+					"frameHeight": 48
+				}
+			},
+			{
+				"type": "spritesheet",
+				"key": "walk-se",
+				"url": "walk-se.png",
+				"frameConfig": {
+					"frameWidth": 48,
+					"frameHeight": 48
+				}
+			},
+			{
+				"type": "spritesheet",
+				"key": "walk-south",
+				"url": "walk-south.png",
+				"frameConfig": {
+					"frameWidth": 48,
+					"frameHeight": 48
+				}
+			},
+			{
+				"type": "spritesheet",
+				"key": "walk-sw",
+				"url": "walk-sw.png",
+				"frameConfig": {
+					"frameWidth": 48,
+					"frameHeight": 48
+				}
+			},
+			{
+				"type": "spritesheet",
+				"key": "walk-west",
+				"url": "walk-west.png",
+				"frameConfig": {
+					"frameWidth": 48,
+					"frameHeight": 48
+				}
+			},
+			{
+				"type": "spritesheet",
+				"key": "walk-nw",
+				"url": "walk-nw.png",
+				"frameConfig": {
+					"frameWidth": 48,
+					"frameHeight": 48
+				}
+			},
+			{
+				"key": "playerAnims",
+				"type": "animation",
+				"url": "anim.json"
+			}
+		]
+	},
+	"mapPack": {
+		"files": [
+			{
+				"type": "image",
+				"key": "officeTileset",
+				"url": "assets/images/tilesets/office.png"
+			},
+			{
+				"type": "tilemapTiledJSON",
+				"key": "officeMap",
+				"url": "assets/maps/office-map.tmj"
+			}
+		]
+	}
+}

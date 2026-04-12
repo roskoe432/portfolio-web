@@ -12,7 +12,7 @@ const defaultTextConfig = {
 const gameObjectsConfig = {
 	desk: {
 		position: new Vec(335, 175),
-		spriteKey: 'deskItchio',
+		spriteKey: 'desk',
 		body: {
 			isStatic: true,
 			size: new Vec(32, 10),
@@ -39,7 +39,7 @@ const gameObjectsConfig = {
 	},
 	fileCabinet: {
 		position: new Vec(555, 155),
-		spriteKey: 'fileCabinetItchio',
+		spriteKey: 'fileCabinet',
 		body: {
 			isStatic: true,
 			size: new Vec(10, 10),
@@ -67,7 +67,7 @@ const gameObjectsConfig = {
 
 	faxMachine: {
 		position: new Vec(100, 160),
-		spriteKey: 'printerItchio',
+		spriteKey: 'printer',
 		body: {
 			isStatic: true,
 			size: new Vec(20, 10),
@@ -95,7 +95,7 @@ const gameObjectsConfig = {
 
 	clock: {
 		position: new Vec(315, 100),
-		spriteKey: 'clockItchio',
+		spriteKey: 'clock',
 		body: {
 			isStatic: true,
 			size: Vec.zero(),
@@ -105,7 +105,7 @@ const gameObjectsConfig = {
 	},
 
 	cabinets: {
-		spriteKey: 'fileCabinetItchio',
+		spriteKey: 'fileCabinet',
 		body: {
 			isStatic: true,
 			size: new Vec(10, 10),

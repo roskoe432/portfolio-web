@@ -6,7 +6,7 @@ function Player(scene) {
 	this.onPreload = async () => {};
 
 	this.onCreate = (startX = 200, startY = 250) => {
-		this.player = this.scene.physics.add.sprite(startX, startY, 'idle_0');
+		this.player = this.scene.physics.add.sprite(startX, startY, 'idle');
 		this.player.setDepth(2);
 		this.player.setScale(2);
 		this.player.refreshBody();
@@ -57,19 +57,19 @@ function Player(scene) {
 		// Then check cardinal directions
 		else if (cursors.left.isDown || wasdKeys.left.isDown) {
 			this.player.setVelocityX(-speed);
-			this.player.play('walk-left', true);
+			this.player.play('walk-west', true);
 			moving = true;
 		} else if (cursors.right.isDown || wasdKeys.right.isDown) {
 			this.player.setVelocityX(speed);
-			this.player.play('walk-right', true);
+			this.player.play('walk-east', true);
 			moving = true;
 		} else if (cursors.up.isDown || wasdKeys.up.isDown) {
 			this.player.setVelocityY(-speed);
-			this.player.play('walk-up', true);
+			this.player.play('walk-north', true);
 			moving = true;
 		} else if (cursors.down.isDown || wasdKeys.down.isDown) {
 			this.player.setVelocityY(speed);
-			this.player.play('walk-down', true);
+			this.player.play('walk-south', true);
 			moving = true;
 		}
 
