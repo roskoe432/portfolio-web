@@ -60,12 +60,23 @@
 				z-index: -1;
 				overflow: hidden;
 			}
+
+			#joystick-zone {
+				position: fixed;
+				left: 16px;
+				bottom: 16px;
+				width: 140px;
+				height: 140px;
+				z-index: 9999;
+				pointer-events: auto;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="root"></div>
 		<!-- Moved game container to index.html -->
 		<div id="game-container"></div>
+		<div id="joystick-zone"></div>
 		<script type="module" src="/src/index.jsx"></script>
 	</body>
 </html>

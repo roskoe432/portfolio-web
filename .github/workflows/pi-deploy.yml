@@ -1,0 +1,36 @@
+name: Portfolio Web - PI Deployment
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, feature/041226.1-implement-mobile-input]
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, pi, port-web]
+    environment: roscoe-pi-server
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: |
+          echo '${{ secrets.ENV_FILE }}' > .env
+
+      - name: Install dependencies
+        run: |
+          npm ci
+
+      - name: Build project
+        run: |
+          npm run build
+
+      - name: Deploy to staging
+        run: |
+          # Make sure folder exists
+          sudo mkdir -p /home/bwin/hosting/apps/web-apps/portfolio-web
+          # Copy files to the server
+          sudo rsync -av --delete ./dist/ /home/bwin/hosting/apps/web-apps/portfolio-web/
+          # Set permissions
+          sudo chown -R caddy:caddy /home/bwin/hosting/apps/web-apps/portfolio-web
