@@ -28,6 +28,7 @@ class LoaderScene extends Phaser.Scene {
 			});
 
 			this.load.on('complete', () => {
+				fill.width = barWidth;
 				bg.destroy();
 				fill.destroy();
 				resolve();
