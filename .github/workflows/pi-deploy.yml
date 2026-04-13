@@ -32,5 +32,3 @@ jobs:
           sudo mkdir -p /var/www/portfolio-web
           # Copy files to the server
           sudo rsync -av --delete ./dist/ /var/www/portfolio-web/
-          # Set permissions
-          sudo chown -R caddy:caddy /var/www/portfolio-web
