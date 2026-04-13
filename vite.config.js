@@ -57,6 +57,7 @@ export default defineConfig({
 				assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
 			},
 		},
+		minify: 'oxc',
 		target: 'esnext',
 		cssCodeSplit: true,
 		reportCompressedSize: true,
