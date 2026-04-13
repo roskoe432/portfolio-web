@@ -12,7 +12,27 @@ class LoaderScene extends Phaser.Scene {
 
 	loadAssets = () =>
 		new Promise((resolve) => {
-			this.load.on('complete', resolve);
+			const { width, height } = this.cameras.main;
+			const barWidth = 320;
+			const barHeight = 20;
+			const cx = width / 2;
+			const cy = height / 2;
+
+			const bg = this.add.rectangle(cx, cy, barWidth + 4, barHeight + 4, 0x333333).setOrigin(0.5);
+			const fill = this.add
+				.rectangle(cx - barWidth / 2, cy, 0, barHeight, 0xffffff)
+				.setOrigin(0, 0.5);
+
+			this.load.on('progress', (value) => {
+				fill.width = barWidth * value;
+			});
+
+			this.load.on('complete', () => {
+				bg.destroy();
+				fill.destroy();
+				resolve();
+			});
+
 			this.load.pack('gameAssets', '/assets/manifest.json');
 		});
 
