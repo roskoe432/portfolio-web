@@ -57,18 +57,6 @@ export default defineConfig({
 				assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
 			},
 		},
-		// Swap out later...
-		minify: 'terser',
-		terserOptions: {
-			compress: {
-				drop_console: false,
-				drop_debugger: true,
-				passes: 2,
-			},
-			format: {
-				comments: false,
-			},
-		},
 		target: 'esnext',
 		cssCodeSplit: true,
 		reportCompressedSize: true,
