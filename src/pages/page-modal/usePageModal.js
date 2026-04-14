@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { gameEvents, Event } from '@game';
 import usePageModalStore from './usePageModalStore';
-import { useGameEvent } from '@shared/hooks/useGameEvent';
+import { useGameEvent } from '@/game/hooks/useGameEvent';
 
 function usePageModal() {
 	const { show, openModal, closeModal } = usePageModalStore();
