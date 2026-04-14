@@ -1,4 +1,4 @@
-import gameEvents from '@/game/game-events';
+import { gameEvents, Event } from '@game/events';
 import GameObject from '@/game/entities/game-object';
 import { Math } from 'phaser';
 
@@ -30,11 +30,11 @@ const gameObjectsConfig = {
 				...defaultTextConfig,
 			},
 			onEnter: () => {
-				gameEvents.emitNavigate({ page: '/' });
+				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/' });
 			},
 			onExit: () => {},
 			onInteract: (scene) => {
-				gameEvents.emitInteract({ type: 'computer', page: '/' });
+				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer', page: '/' });
 				scene.pauseGame();
 			},
 		},
@@ -57,11 +57,11 @@ const gameObjectsConfig = {
 				offset: new Vector2(-5, -55),
 			},
 			onEnter: () => {
-				gameEvents.emitNavigate({ page: '/blog' });
+				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/blog' });
 			},
 			onExit: () => {},
 			onInteract: (scene) => {
-				gameEvents.emitInteract({ type: 'computer', page: '/blog' });
+				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer', page: '/blog' });
 				scene.pauseGame();
 			},
 		},
@@ -85,11 +85,11 @@ const gameObjectsConfig = {
 				offset: new Vector2(-5, -55),
 			},
 			onEnter: () => {
-				gameEvents.emitNavigate({ page: '/contact' });
+				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/contact' });
 			},
 			onExit: () => {},
 			onInteract: (scene) => {
-				gameEvents.emitInteract({ type: 'computer', page: '/contact' });
+				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer', page: '/contact' });
 				scene.pauseGame();
 			},
 		},

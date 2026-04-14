@@ -35,6 +35,7 @@ export default defineConfig({
 			'@tests': path.resolve(__dirname, '__tests__'),
 			'@i18n': path.resolve(__dirname, 'src/i18n'),
 			'@services': path.resolve(__dirname, 'src/services'),
+			'@game': path.resolve(__dirname, 'src/game'),
 		},
 	},
 	build: {

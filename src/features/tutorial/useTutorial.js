@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { storageService } from '@services';
-import { gameEvents } from '@/game';
+import { gameEvents, Event } from '@game/events';
 
 function useTutorial(content) {
 	const [currentId, setCurrentId] = useState(0);
 
 	useEffect(() => {
-		gameEvents.emitPauseGame();
+		gameEvents.emit(Event.GAME_PAUSE);
 	}, [currentId]);
 
 	const prevItem = () => {
@@ -19,7 +19,7 @@ function useTutorial(content) {
 		const next = currentId + 1;
 		if (next >= content.length) {
 			storageService.setTutorialViewed(true);
-			gameEvents.emitResumeGame();
+			gameEvents.emit(Event.GAME_RESUME);
 		}
 		setCurrentId(next);
 	};

@@ -1,11 +1,12 @@
 import Phaser from 'phaser';
-import gameEvents from '@/game/game-events';
+import { gameEvents, Event } from '@game/events';
 
-export default class PauseMenu extends Phaser.Scene {
+export default class PauseScene extends Phaser.Scene {
 	pKey = null;
+	isPaused = false;
 
 	constructor() {
-		super({ key: 'PauseMenu' });
+		super({ key: 'PauseScene' });
 	}
 
 	resumeGame() {
@@ -22,20 +23,8 @@ export default class PauseMenu extends Phaser.Scene {
 
 	create() {
 		this.input.keyboard.disableGlobalCapture();
-		gameEvents.onResumeGame(this.resumeGame.bind(this));
-
-		const { width, height } = this.scale;
-
-		this.add.rectangle(0, 0, width, height, 0x000000, 0.5).setOrigin(0);
-
-		this.add
-			.text(width / 2, height / 2 - 20, 'Paused', {
-				fontSize: '64px',
-				fontFamily: 'Arial',
-				color: '#ffffff',
-				align: 'center',
-			})
-			.setOrigin(0.5);
+		gameEvents.emit(Event.GAME_PAUSE);
+		gameEvents.on(Event.GAME_RESUME, this.resumeGame.bind(this));
 	}
 
 	update() {
@@ -43,7 +32,7 @@ export default class PauseMenu extends Phaser.Scene {
 		const isInputFocused =
 			active instanceof HTMLInputElement || active instanceof HTMLTextAreaElement;
 		if (!isInputFocused && Phaser.Input.Keyboard.JustDown(this.pKey)) {
-			gameEvents.emitResumeGame();
+			gameEvents.emit(Event.GAME_RESUME);
 		}
 	}
 }
