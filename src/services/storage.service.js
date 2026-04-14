@@ -16,6 +16,14 @@ function StorageService() {
 	this.deleteTutorialViewed = () => {
 		storage.removeItem('tutorialViewed');
 	};
+
+	this.getLanguage = () => {
+		return storage.getItem('language');
+	};
+
+	this.setLanguage = (lang) => {
+		storage.setItem('language', lang);
+	};
 }
 
 export default StorageService;
