@@ -23,10 +23,7 @@ i18next.use(initReactI18next).init({
 });
 
 if (!storageService.getLanguage()) {
-	console.log('No language found in storage, using default:', i18next.language);
 	storageService.setLanguage(i18next.language);
-} else {
-	console.log('Loaded language from storage:', storageService.getLanguage());
 }
 
 export const changeLanguage = (lang) => {

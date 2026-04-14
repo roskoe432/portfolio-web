@@ -9,11 +9,16 @@ export default class PauseScene extends Phaser.Scene {
 		super({ key: 'PauseScene' });
 	}
 
-	resumeGame() {
+	init() {
+		gameEvents.on(Event.GAME_HANDLE_PAUSE, this.resumeGame.bind(this));
+	}
+
+	resumeGame(isPaused) {
+		if (isPaused) return;
+
 		this.input.keyboard.enableGlobalCapture();
-		console.log('Resuming game');
-		this.scene.stop();
 		this.scene.resume('Main');
+		this.scene.stop();
 	}
 
 	preload() {
@@ -24,14 +29,10 @@ export default class PauseScene extends Phaser.Scene {
 	create() {
 		this.input.keyboard.disableGlobalCapture();
 		gameEvents.emit(Event.GAME_HANDLE_PAUSE, true);
-		gameEvents.on(Event.GAME_HANDLE_PAUSE, this.resumeGame.bind(this));
 	}
 
 	update() {
-		const active = document.activeElement;
-		const isInputFocused =
-			active instanceof HTMLInputElement || active instanceof HTMLTextAreaElement;
-		if (!isInputFocused && Phaser.Input.Keyboard.JustDown(this.pKey)) {
+		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
 			gameEvents.emit(Event.GAME_HANDLE_PAUSE, false);
 		}
 	}

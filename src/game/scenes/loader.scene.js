@@ -43,7 +43,7 @@ class LoaderScene extends Phaser.Scene {
 
 	create() {
 		this.input.on('pointerdown', () => {
-			console.log('Pointer down, starting transition to Main scene');
+			// console.log('Pointer down, starting transition to Main scene');
 		});
 
 		transitionTo(this, 'Main', TransitionKey.fadeIn, TransitionKey.fadeOut, {
