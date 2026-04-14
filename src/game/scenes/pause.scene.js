@@ -23,8 +23,8 @@ export default class PauseScene extends Phaser.Scene {
 
 	create() {
 		this.input.keyboard.disableGlobalCapture();
-		gameEvents.emit(Event.GAME_PAUSE);
-		gameEvents.on(Event.GAME_RESUME, this.resumeGame.bind(this));
+		gameEvents.emit(Event.GAME_HANDLE_PAUSE, true);
+		gameEvents.on(Event.GAME_HANDLE_PAUSE, this.resumeGame.bind(this));
 	}
 
 	update() {
@@ -32,7 +32,7 @@ export default class PauseScene extends Phaser.Scene {
 		const isInputFocused =
 			active instanceof HTMLInputElement || active instanceof HTMLTextAreaElement;
 		if (!isInputFocused && Phaser.Input.Keyboard.JustDown(this.pKey)) {
-			gameEvents.emit(Event.GAME_RESUME);
+			gameEvents.emit(Event.GAME_HANDLE_PAUSE, false);
 		}
 	}
 }

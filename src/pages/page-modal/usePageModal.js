@@ -17,7 +17,7 @@ function usePageModal() {
 	});
 
 	useEffect(() => {
-		gameEvents.emit(Event.GAME_PAUSE);
+		gameEvents.emit(Event.GAME_HANDLE_PAUSE, true);
 	}, []);
 
 	const handleOnModalClose = () => {

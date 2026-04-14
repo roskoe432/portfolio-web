@@ -4,13 +4,8 @@ import { useState } from 'react';
 
 function PauseMenu() {
 	const [showPauseMenu, setShowPauseMenu] = useState(false);
-	useGameEvent(Event.GAME_PAUSE, () => {
-		setShowPauseMenu(true);
-	});
-
-	useGameEvent(Event.GAME_RESUME, () => {
-		console.log('Game resumed, hiding pause menu');
-		setShowPauseMenu(false);
+	useGameEvent(Event.GAME_HANDLE_PAUSE, (isPaused) => {
+		setShowPauseMenu(isPaused);
 	});
 
 	if (!showPauseMenu) {
