@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { gameEvents, Event } from '@game/events';
+import { gameEvents, Event } from '@game';
 import usePageModalStore from './usePageModalStore';
-import { useGameEvent } from '@/game/events/game.hooks';
+import { useGameEvent } from '@shared/hooks/useGameEvent';
 
 function usePageModal() {
 	const { show, openModal, closeModal } = usePageModalStore();

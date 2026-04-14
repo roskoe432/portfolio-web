@@ -1,5 +1,5 @@
 import config from '@/config';
-import { gameEvents, Event } from '@game/events';
+import { gameEvents, Event } from '@game';
 import { create } from 'zustand';
 
 const usePageModalStore = create((set) => ({

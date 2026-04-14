@@ -1,4 +1,5 @@
-import { useGameEvent, Event, gameEvents } from '@game/events';
+import { useGameEvent } from '@shared/hooks/useGameEvent';
+import { Event, gameEvents } from '@game';
 import styles from './pause-menu.module.less';
 import React, { useState } from 'react';
 import { Button, Select } from '@/shared/components';

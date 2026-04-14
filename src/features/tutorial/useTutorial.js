@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { storageService } from '@services';
-import { gameEvents, Event } from '@game/events';
+import { gameEvents, Event } from '@game';
 
 function useTutorial(content) {
 	const [currentId, setCurrentId] = useState(0);

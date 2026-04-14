@@ -20,7 +20,3 @@ export function useGameEvent(event, handler) {
 		};
 	}, [event]);
 }
-
-export const emit = (event, payload) => {
-	gameEvents.emit(event, payload);
-};
