@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import usePageModalStore from '../page-modal/usePageModalStore';
 import styles from './contact.module.less';
 import { useEmailMutation } from './contactQueries';
@@ -5,6 +6,7 @@ import { getErrorMessageFromStatus } from '@/shared/utils/helpers';
 import { useForm } from 'react-hook-form';
 
 function ContactPage() {
+	const { t } = useTranslation();
 	const { closeModal } = usePageModalStore();
 	const { mutate, isPending, isSuccess, error } = useEmailMutation();
 	const {
@@ -23,10 +25,10 @@ function ContactPage() {
 		return (
 			<div className={styles.contactPage}>
 				<p className={`${styles.successMessage} ${styles.centeredMessage}`}>
-					Message sent successfully!
+					{t('pages.contact.successMessage')}
 				</p>
 				<button className={styles.okBtn} onClick={closeModal}>
-					OK
+					{t('pages.contact.ok')}
 				</button>
 			</div>
 		);
@@ -36,43 +38,45 @@ function ContactPage() {
 		<div className={styles.contactPage}>
 			<form onSubmit={handleSubmit(onSubmit)} className={styles.contactForm}>
 				<div className={styles.field}>
-					<label htmlFor="email">Your Email</label>
+					<label htmlFor="email">{t('pages.contact.emailLabel')}</label>
 					<input
-						placeholder="you@example.com"
+						placeholder={t('pages.contact.emailPlaceholder')}
 						{...register('email', { required: true, pattern: /^\S+@\S+$/i })}
 					/>
 				</div>
 				{errors.email && (
-					<span className={styles.errorMessage}>Please enter a valid email address.</span>
+					<span className={styles.errorMessage}>{t('pages.contact.emailError')}</span>
 				)}
 				<div className={styles.field}>
-					<label htmlFor="subject">Subject</label>
+					<label htmlFor="subject">{t('pages.contact.subjectLabel')}</label>
 					<input
 						type="text"
-						placeholder="What's this about?"
+						placeholder={t('pages.contact.subjectPlaceholder')}
 						{...register('subject', { required: true })}
 					/>
 				</div>
-				{errors.subject && <span className={styles.errorMessage}>Subject is required.</span>}
+				{errors.subject && (
+					<span className={styles.errorMessage}>{t('pages.contact.subjectError')}</span>
+				)}
 				<div className={styles.field}>
-					<label htmlFor="message">Message</label>
+					<label htmlFor="message">{t('pages.contact.messageLabel')}</label>
 					<textarea
-						placeholder="Your message"
+						placeholder={t('pages.contact.messagePlaceholder')}
 						{...register('message', { required: true, maxLength: 500 })}
 					/>
 				</div>
 				{errors.message && errors.message.type === 'required' && (
-					<span className={styles.errorMessage}>Message is required.</span>
+					<span className={styles.errorMessage}>{t('pages.contact.messageError')}</span>
 				)}
 				<button type="submit" disabled={isPending}>
-					{isPending ? 'Sending...' : 'Send'}
+					{isPending ? t('pages.contact.sending') : t('pages.contact.send')}
 				</button>
 				{error && (
 					<p className={`${styles.errorMessage} ${styles.centeredMessage}`}>{errorMessage}</p>
 				)}
 				{isSuccess && (
 					<p className={`${styles.successMessage} ${styles.centeredMessage}`}>
-						Message sent successfully!
+						{t('pages.contact.successMessage')}
 					</p>
 				)}
 			</form>

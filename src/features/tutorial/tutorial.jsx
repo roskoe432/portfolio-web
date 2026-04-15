@@ -1,36 +1,37 @@
+import { useTranslation } from 'react-i18next';
 import { Modal } from 'react-overlays';
 import useTutorial from './useTutorial';
 import styles from './tutorial.module.less';
 
-const content = [
-	{
-		message: "Welcome to Benjamin Snow's portfolio!",
-	},
-	{
-		message:
-			"Since this is your first time here, let's go through a quick tutorial on how to navigate my site.",
-	},
-	{
-		message: 'Move the character around the scene:',
-		controls: [
-			{ keys: ['W', '↑'], label: 'Move Up' },
-			{ keys: ['A', '←'], label: 'Move Left' },
-			{ keys: ['S', '↓'], label: 'Move Down' },
-			{ keys: ['D', '→'], label: 'Move Right' },
-		],
-	},
-	{
-		message: 'When you see a prompt to interact with an object, press:',
-		controls: [{ keys: ['E'], label: 'Interact' }],
-	},
-	{
-		message:
-			'No idea why I decided to add this, but you can also pause the game at any time by pressing:',
-		controls: [{ keys: ['P'], label: 'Pause Game' }],
-	},
-];
-
 function Tutorial() {
+	const { t } = useTranslation();
+
+	const content = [
+		{
+			message: t('tutorial.steps.welcome'),
+		},
+		{
+			message: t('tutorial.steps.intro'),
+		},
+		{
+			message: t('tutorial.steps.moveCharacter'),
+			controls: [
+				{ keys: ['W', '↑'], label: t('tutorial.controls.moveUp') },
+				{ keys: ['A', '←'], label: t('tutorial.controls.moveLeft') },
+				{ keys: ['S', '↓'], label: t('tutorial.controls.moveDown') },
+				{ keys: ['D', '→'], label: t('tutorial.controls.moveRight') },
+			],
+		},
+		{
+			message: t('tutorial.steps.interact'),
+			controls: [{ keys: ['E'], label: t('tutorial.controls.interact') }],
+		},
+		{
+			message: t('tutorial.steps.pause'),
+			controls: [{ keys: ['P'], label: t('tutorial.controls.pauseGame') }],
+		},
+	];
+
 	const { currentId, prevItem, nextItem, getCurrentItem } = useTutorial(content);
 	const currentContent = getCurrentItem();
 
@@ -55,18 +56,16 @@ function Tutorial() {
 					</ul>
 				)}
 				<div className={styles.footer}>
-					<button
-						className={styles.backBtn}
-						onClick={prevItem}
-						disabled={currentId === 0}
-					>
-						Back
+					<button className={styles.backBtn} onClick={prevItem} disabled={currentId === 0}>
+						{t('tutorial.buttons.back')}
 					</button>
 					<span className={styles.steps}>
 						{currentId + 1} / {content.length}
 					</span>
 					<button className={styles.nextBtn} onClick={nextItem}>
-						{currentId + 1 >= content.length ? "Let's Play!" : 'Next'}
+						{currentId + 1 >= content.length
+							? t('tutorial.buttons.letsPlay')
+							: t('tutorial.buttons.next')}
 					</button>
 				</div>
 			</div>

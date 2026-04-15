@@ -22,6 +22,7 @@ function usePageModal() {
 
 	const handleOnModalClose = () => {
 		closeModal();
+		gameEvents.emit(Event.GAME_HANDLE_PAUSE, false);
 	};
 
 	return { showModal: show, handleOnModalClose };
