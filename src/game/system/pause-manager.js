@@ -25,8 +25,9 @@ const resumeAllScenes = () => {
 };
 
 class PauseManager {
-	constructor(scene) {
+	constructor(scene, logger) {
 		this.scene = scene;
+		this.logger = logger;
 		this.isPaused = false;
 
 		gameEvents.on(Event.GAME_P_KEY_PRESSED, () => {
@@ -53,7 +54,7 @@ class PauseManager {
 	}
 
 	handlePause = (isPaused) => {
-		console.log(`Handling pause: ${isPaused}`);
+		this.logger.debug(`Handling pause: ${isPaused}`);
 		this.isPaused = isPaused;
 		if (this.isPaused) {
 			return this.pauseGame();

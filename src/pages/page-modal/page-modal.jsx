@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { Modal } from 'react-overlays';
 import AppRoutes, { AppLinks } from '@app/app-navigation/app-navigation';
 import styles from './page-modal.module.less';
@@ -7,7 +6,6 @@ import config from '@/config';
 import usePageModal from './usePageModal';
 
 function PageModal() {
-	const { t } = useTranslation();
 	const { showModal, handleOnModalClose } = usePageModal();
 
 	return (
@@ -21,12 +19,8 @@ function PageModal() {
 			>
 				<main className={styles.content}>
 					{config.useNavLinks && <AppLinks />}
-					<button
-						className={styles.closeBtn}
-						onClick={handleOnModalClose}
-						aria-label={t('common.close')}
-					>
-						{t('common.close')}
+					<button className={styles.closeBtn} onClick={handleOnModalClose} aria-label="X">
+						X
 					</button>
 					<AppRoutes />
 				</main>
