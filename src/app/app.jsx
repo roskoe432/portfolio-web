@@ -1,9 +1,8 @@
 import PageModal from '@pages/page-modal/page-modal';
 import styles from './app.module.less';
 import React, { useEffect } from 'react';
-import PauseMenu from '@features/pause-menu/pause-menu';
-import LoadingScreen from '@features/loading-screen/loading-screen';
 import { gameEvents, Event } from '@game';
+import GameCanvas from '@/game/game-canvas/game-canvas';
 
 function App() {
 	useEffect(() => {
@@ -12,9 +11,8 @@ function App() {
 
 	return (
 		<div className={styles.app}>
+			<GameCanvas />
 			<PageModal />
-			<PauseMenu />
-			<LoadingScreen />
 		</div>
 	);
 }
