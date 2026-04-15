@@ -54,7 +54,7 @@ class PauseManager {
 	}
 
 	handlePause = (isPaused) => {
-		this.logger.debug(`Handling pause: ${isPaused}`);
+		this.logger.debug(`${isPaused ? 'Pausing' : 'Resuming'} game`);
 		this.isPaused = isPaused;
 		if (this.isPaused) {
 			return this.pauseGame();
