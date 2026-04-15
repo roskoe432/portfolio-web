@@ -29,8 +29,6 @@ jobs:
       - name: Deploy to staging
         run: |
           # Make sure folder exists
-          sudo mkdir -p /home/bwin/hosting/apps/web-apps/portfolio-web
+          sudo mkdir -p /var/www/portfolio-web
           # Copy files to the server
-          sudo rsync -av --delete ./dist/ /home/bwin/hosting/apps/web-apps/portfolio-web/
-          # Set permissions
-          sudo chown -R caddy:caddy /home/bwin/hosting/apps/web-apps/portfolio-web
+          sudo rsync -av --delete ./dist/ /var/www/portfolio-web/

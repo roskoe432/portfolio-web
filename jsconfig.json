@@ -23,7 +23,10 @@
 			"@app/*": ["./src/app/*"],
 			"@tests/*": ["./__tests__/*"],
 			"@i18n/*": ["./src/i18n/*"],
-			"@services/*": ["./src/services/*"]
+			"@services/*": ["./src/services/*"],
+			"@services": ["./src/services/index.js"],
+			"@game/*": ["./src/game/*"],
+			"@game": ["./src/game/index.js"]
 		}
 	},
 	"include": ["src"],

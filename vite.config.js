@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { analyzer } from 'vite-bundle-analyzer';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
@@ -23,7 +24,7 @@ const tmjPlugin = () => {
 };
 
 export default defineConfig({
-	plugins: [react(), tmjPlugin()],
+	plugins: [react(), tmjPlugin(), analyzer()],
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, 'src'),
@@ -34,6 +35,7 @@ export default defineConfig({
 			'@tests': path.resolve(__dirname, '__tests__'),
 			'@i18n': path.resolve(__dirname, 'src/i18n'),
 			'@services': path.resolve(__dirname, 'src/services'),
+			'@game': path.resolve(__dirname, 'src/game'),
 		},
 	},
 	build: {
@@ -42,6 +44,8 @@ export default defineConfig({
 		chunkSizeWarningLimit: 1000,
 		rollupOptions: {
 			output: {
+				// TODO: Need to check this with documentation
+				// now that Vite uses rolldown
 				manualChunks(id) {
 					if (id.includes('node_modules')) {
 						if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
@@ -57,18 +61,7 @@ export default defineConfig({
 				assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
 			},
 		},
-		// Swap out later...
-		minify: 'terser',
-		terserOptions: {
-			compress: {
-				drop_console: false,
-				drop_debugger: true,
-				passes: 2,
-			},
-			format: {
-				comments: false,
-			},
-		},
+		minify: 'oxc',
 		target: 'esnext',
 		cssCodeSplit: true,
 		reportCompressedSize: true,

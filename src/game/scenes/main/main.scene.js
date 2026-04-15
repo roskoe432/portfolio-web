@@ -19,15 +19,9 @@ class MainScene extends Phaser.Scene {
 	interactables = [];
 
 	constructor() {
-		super({ key: 'Main' });
-	}
+		super({ key: 'Main', active: false });
 
-	pauseGame() {
-		try {
-			this.scene.launch('PauseMenu');
-		} catch (error) {
-			console.error('Error launching PauseMenu:', error);
-		}
+		// registerForPause(this);
 	}
 
 	setupTileMap() {
@@ -46,7 +40,6 @@ class MainScene extends Phaser.Scene {
 			right: Phaser.Input.Keyboard.KeyCodes.D,
 		});
 		this.eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-		this.pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 	}
 
 	async preload() {
@@ -76,10 +69,6 @@ class MainScene extends Phaser.Scene {
 	}
 
 	update() {
-		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
-			this.pauseGame();
-		}
-
 		this.player.onUpdate(this.cursors, this.wasdKeys);
 
 		this.interactables.forEach((interactable) => {

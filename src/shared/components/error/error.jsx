@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import styles from './error.module.less';
 
-function Error({ message = 'Something went wrong', error, onRetry }) {
-	const displayMessage = error?.message || message;
+function Error({ message, error, onRetry }) {
+	const { t } = useTranslation();
+	const displayMessage = error?.message || message || t('common.error');
 
 	return (
 		<div className={styles.container}>
@@ -33,7 +35,7 @@ function Error({ message = 'Something went wrong', error, onRetry }) {
 				</svg>
 			</div>
 
-			<h3 className={styles.title}>Error</h3>
+			<h3 className={styles.title}>{t('common.errorTitle')}</h3>
 			<p className={styles.message}>{displayMessage}</p>
 
 			{onRetry && (

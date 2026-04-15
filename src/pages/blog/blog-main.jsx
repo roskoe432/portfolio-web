@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import BlogPost from './components/post/post';
 import useBlogs from './useBlogs';
 import styles from './blog-main.module.less';
@@ -6,14 +7,15 @@ import Error from '@shared/components/error';
 import Loading from '@shared/components/loading';
 
 function BlogPage() {
+	const { t } = useTranslation();
 	const { data: blogs, isLoading, error, selectedBlog, slug } = useBlogs();
 
 	if (isLoading) {
-		return <Loading message="Loading blogs..." />;
+		return <Loading message={t('pages.blog.loading')} />;
 	}
 
 	if (error) {
-		return <Error message="Failed to load blogs. Please try again later." />;
+		return <Error message={t('pages.blog.loadError')} />;
 	}
 
 	const generateLinksFromSlugs = (blogs) => {
@@ -41,7 +43,7 @@ function BlogPage() {
 							))}
 						</div>
 					) : (
-						<p className={styles['no-posts']}>No posts available for this blog.</p>
+						<p className={styles['no-posts']}>{t('pages.blog.noPosts')}</p>
 					)}
 				</div>
 			) : (
@@ -49,7 +51,7 @@ function BlogPage() {
 					{blogs?.length ? (
 						<ul className={styles['blog-list']}>{generateLinksFromSlugs(blogs)}</ul>
 					) : (
-						<p className={styles['no-blogs']}>No blogs available.</p>
+						<p className={styles['no-blogs']}>{t('pages.blog.noBlogs')}</p>
 					)}
 				</div>
 			)}

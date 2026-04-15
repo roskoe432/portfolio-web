@@ -1,15 +1,12 @@
 import config from '@/config';
-import { gameEvents } from '@/game';
 import { create } from 'zustand';
 
 const usePageModalStore = create((set) => ({
 	show: config.showModalOnStart,
 	openModal: () => {
-		gameEvents.emitPauseGame();
 		set({ show: true });
 	},
 	closeModal: () => {
-		gameEvents.emitResumeGame();
 		set({ show: false });
 	},
 }));

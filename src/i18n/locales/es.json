@@ -3,7 +3,11 @@
 		"loading": "Cargando...",
 		"error": "Ocurrió un error. Por favor, inténtelo de nuevo más tarde.",
 		"download": "Descargar",
-		"underConstruction": "En Construcción"
+		"underConstruction": "En Construcción",
+		"errorTitle": "Error",
+		"tryAgain": "Intentar de nuevo",
+		"back": "Atrás",
+		"close": "Cerrar"
 	},
 	"appLayout": {
 		"header": {
@@ -36,7 +40,36 @@
 			"preparingDownload": "Preparando descarga..."
 		},
 		"contact": {
-			"title": "Página de Contacto"
+			"title": "Página de Contacto",
+			"successMessage": "¡Mensaje enviado con éxito!",
+			"ok": "Aceptar",
+			"emailLabel": "Tu correo electrónico",
+			"emailPlaceholder": "tu@ejemplo.com",
+			"emailError": "Por favor, ingresa una dirección de correo electrónico válida.",
+			"subjectLabel": "Asunto",
+			"subjectPlaceholder": "¿De qué se trata?",
+			"subjectError": "El asunto es requerido.",
+			"messageLabel": "Mensaje",
+			"messagePlaceholder": "Tu mensaje",
+			"messageError": "El mensaje es requerido.",
+			"sending": "Enviando...",
+			"send": "Enviar"
+		},
+		"blog": {
+			"loading": "Cargando blogs...",
+			"loadError": "Error al cargar los blogs. Por favor, inténtelo de nuevo más tarde.",
+			"noPosts": "No hay publicaciones disponibles para este blog.",
+			"noBlogs": "No hay blogs disponibles.",
+			"postNotFound": "Publicación no encontrada",
+			"backToBlog": "← Volver al Blog",
+			"draft": "Borrador"
+		}
+	},
+	"game": {
+		"objects": {
+			"desk": "Sobre mí (E)",
+			"fileCabinet": "Blog (E)",
+			"faxMachine": "Contacto (E)"
 		}
 	},
 	"timerMinigame": {
@@ -50,6 +83,33 @@
 		},
 		"result": {
 			"perfect": "🎉 ¡Perfecto!"
+		}
+	},
+	"pauseMenu": {
+		"resume": "Reanudar",
+		"settings": "Ajustes",
+		"language": "Idioma"
+	},
+	"tutorial": {
+		"steps": {
+			"welcome": "¡Bienvenido al portafolio de Benjamin Snow!",
+			"intro": "Como es tu primera vez aquí, hagamos un tutorial rápido sobre cómo navegar por mi sitio.",
+			"moveCharacter": "Mueve el personaje por la escena:",
+			"interact": "Cuando veas un mensaje para interactuar con un objeto, presiona:",
+			"pause": "No sé por qué decidí agregar esto, pero también puedes pausar el juego en cualquier momento presionando:"
+		},
+		"controls": {
+			"moveUp": "Mover arriba",
+			"moveLeft": "Mover izquierda",
+			"moveDown": "Mover abajo",
+			"moveRight": "Mover derecha",
+			"interact": "Interactuar",
+			"pauseGame": "Pausar juego"
+		},
+		"buttons": {
+			"back": "Atrás",
+			"next": "Siguiente",
+			"letsPlay": "¡A jugar!"
 		}
 	}
 }

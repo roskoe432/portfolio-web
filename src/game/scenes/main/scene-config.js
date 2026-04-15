@@ -1,4 +1,5 @@
-import gameEvents from '@/game/game-events';
+import i18next from 'i18next';
+import { gameEvents, Event } from '@game/events';
 import GameObject from '@/game/entities/game-object';
 import { Math } from 'phaser';
 
@@ -26,16 +27,16 @@ const gameObjectsConfig = {
 			size: new Vector2(115, 85),
 			offset: new Vector2(0, 25),
 			text: {
-				message: 'About (E)',
+				message: 'game.objects.desk',
 				...defaultTextConfig,
 			},
 			onEnter: () => {
-				gameEvents.emitNavigate({ page: '/' });
+				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/' });
 			},
 			onExit: () => {},
-			onInteract: (scene) => {
-				gameEvents.emitInteract({ type: 'computer', page: '/' });
-				scene.pauseGame();
+			onInteract: () => {
+				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer', page: '/' });
+				gameEvents.emit(Event.GAME_PAUSE, true);
 			},
 		},
 	},
@@ -52,17 +53,17 @@ const gameObjectsConfig = {
 		trigger: {
 			size: new Vector2(80, 110),
 			text: {
-				message: 'Blog (E)',
+				message: 'game.objects.fileCabinet',
 				...defaultTextConfig,
 				offset: new Vector2(-5, -55),
 			},
 			onEnter: () => {
-				gameEvents.emitNavigate({ page: '/blog' });
+				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/blog' });
 			},
 			onExit: () => {},
-			onInteract: (scene) => {
-				gameEvents.emitInteract({ type: 'computer', page: '/blog' });
-				scene.pauseGame();
+			onInteract: () => {
+				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer' });
+				gameEvents.emit(Event.GAME_PAUSE, true);
 			},
 		},
 	},
@@ -80,17 +81,17 @@ const gameObjectsConfig = {
 		trigger: {
 			size: new Vector2(80, 110),
 			text: {
-				message: 'Contact (E)',
+				message: 'game.objects.faxMachine',
 				...defaultTextConfig,
 				offset: new Vector2(-5, -55),
 			},
 			onEnter: () => {
-				gameEvents.emitNavigate({ page: '/contact' });
+				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/contact' });
 			},
 			onExit: () => {},
-			onInteract: (scene) => {
-				gameEvents.emitInteract({ type: 'computer', page: '/contact' });
-				scene.pauseGame();
+			onInteract: () => {
+				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer', page: '/contact' });
+				gameEvents.emit(Event.GAME_PAUSE, true);
 			},
 		},
 	},
@@ -125,11 +126,11 @@ const gameObjectsConfig = {
 const createGameObjects = (scene, player) =>
 	Object.values(gameObjectsConfig).reduce((acc, config) => {
 		if (config.positions) {
-			const objects = GameObject.factory(scene, config, config.positions);
+			const objects = GameObject.factory(scene, config, config.positions, i18next);
 			return [...acc, ...objects];
 		}
 
-		const obj = new GameObject(scene, config);
+		const obj = new GameObject(scene, config, i18next);
 		if (config.trigger) {
 			obj.setupPlayerOverlap(player.player);
 			scene.interactables.push(obj);

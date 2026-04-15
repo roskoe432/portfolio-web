@@ -1,13 +1,21 @@
 import Phaser, { Math } from 'phaser';
 const { Vector2 } = Math;
+import { gameEvents, Event } from '@game';
 
 const GameObject = (() => {
-	function GameObject(scene, config) {
+	function GameObject(scene, config, i18next) {
 		this.scene = scene;
 		this.config = config;
+		this.i18next = i18next;
 		this.isPlayerInRange = false;
 		this.text = null;
 		this.trigger = null;
+
+		gameEvents.on(Event.LANGUAGE_CHANGE, () => {
+			if (this.config.trigger?.text) {
+				this.text.setText(this.i18next.t(this.config.trigger.text.message));
+			}
+		});
 
 		this.sprite = scene.physics.add.image(config.position.x, config.position.y, config.spriteKey);
 
@@ -67,7 +75,7 @@ const GameObject = (() => {
 			.text(
 				this.config.position.x + textConfig.offset.x,
 				this.config.position.y + textConfig.offset.y,
-				textConfig.message,
+				this.i18next.t(textConfig.message),
 				{
 					fontFamily: 'Arial',
 					fontStyle: 'bold',
@@ -160,14 +168,14 @@ const GameObject = (() => {
 		this.checkInteraction(interactKey);
 	};
 
-	GameObject.factory = (scene, config, positions) => {
+	GameObject.factory = (scene, config, positions, i18next) => {
 		const objs = [];
 		positions.forEach((pos) => {
 			const objConfig = {
 				...config,
 				position: new Vector2(pos.x, pos.y),
 			};
-			objs.push(new GameObject(scene, objConfig).getCollider());
+			objs.push(new GameObject(scene, objConfig, i18next).getCollider());
 		});
 		return objs;
 	};

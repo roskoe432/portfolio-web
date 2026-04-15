@@ -1,6 +1,7 @@
 import MainScene from './main/main.scene';
-import PauseMenu from './pause-menu.scene';
+import GameManager from './game-manager';
+import { TransitionScene } from '../lib/transitions';
 
-const scenes = [MainScene, PauseMenu];
+const scenes = [GameManager, MainScene, TransitionScene];
 
 export default scenes;

@@ -3,7 +3,11 @@
 		"loading": "Loading...",
 		"error": "An error occurred. Please try again later.",
 		"download": "Download",
-		"underConstruction": "Under Construction"
+		"underConstruction": "Under Construction",
+		"errorTitle": "Error",
+		"tryAgain": "Try Again",
+		"back": "Back",
+		"close": "Close"
 	},
 	"appLayout": {
 		"header": {
@@ -36,7 +40,36 @@
 			"preparingDownload": "Preparing download..."
 		},
 		"contact": {
-			"title": "Contact Page"
+			"title": "Contact Page",
+			"successMessage": "Message sent successfully!",
+			"ok": "OK",
+			"emailLabel": "Your Email",
+			"emailPlaceholder": "you@example.com",
+			"emailError": "Please enter a valid email address.",
+			"subjectLabel": "Subject",
+			"subjectPlaceholder": "What's this about?",
+			"subjectError": "Subject is required.",
+			"messageLabel": "Message",
+			"messagePlaceholder": "Your message",
+			"messageError": "Message is required.",
+			"sending": "Sending...",
+			"send": "Send"
+		},
+		"blog": {
+			"loading": "Loading blogs...",
+			"loadError": "Failed to load blogs. Please try again later.",
+			"noPosts": "No posts available for this blog.",
+			"noBlogs": "No blogs available.",
+			"postNotFound": "Post not found",
+			"backToBlog": "← Back to Blog",
+			"draft": "Draft"
+		}
+	},
+	"game": {
+		"objects": {
+			"desk": "About (E)",
+			"fileCabinet": "Blog (E)",
+			"faxMachine": "Contact (E)"
 		}
 	},
 	"timerMinigame": {
@@ -50,6 +83,33 @@
 		},
 		"result": {
 			"perfect": "🎉 Perfect!"
+		}
+	},
+	"pauseMenu": {
+		"resume": "Resume",
+		"settings": "Settings",
+		"language": "Language"
+	},
+	"tutorial": {
+		"steps": {
+			"welcome": "Welcome to Benjamin Snow's portfolio!",
+			"intro": "Since this is your first time here, let's go through a quick tutorial on how to navigate my site.",
+			"moveCharacter": "Move the character around the scene:",
+			"interact": "When you see a prompt to interact with an object, press:",
+			"pause": "No idea why I decided to add this, but you can also pause the game at any time by pressing:"
+		},
+		"controls": {
+			"moveUp": "Move Up",
+			"moveLeft": "Move Left",
+			"moveDown": "Move Down",
+			"moveRight": "Move Right",
+			"interact": "Interact",
+			"pauseGame": "Pause Game"
+		},
+		"buttons": {
+			"back": "Back",
+			"next": "Next",
+			"letsPlay": "Let's Play!"
 		}
 	}
 }
