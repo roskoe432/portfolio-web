@@ -53,6 +53,7 @@ class PauseManager {
 	}
 
 	handlePause = (isPaused) => {
+		console.log(`Handling pause: ${isPaused}`);
 		this.isPaused = isPaused;
 		if (this.isPaused) {
 			return this.pauseGame();

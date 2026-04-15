@@ -1,5 +1,4 @@
-import { useGameEvent } from '@/game/hooks/useGameEvent';
-import { Event, gameEvents } from '@game';
+import { useGameEvent, Event, gameEvents } from '@game';
 import styles from './pause-menu.module.less';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
