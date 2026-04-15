@@ -43,7 +43,6 @@ class MainScene extends Phaser.Scene {
 	}
 
 	async preload() {
-		console.log('Preloading MainScene...');
 		this.player = new Player(this);
 		await this.player.onPreload();
 	}
