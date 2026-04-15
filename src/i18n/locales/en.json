@@ -65,6 +65,13 @@
 			"draft": "Draft"
 		}
 	},
+	"game": {
+		"objects": {
+			"desk": "About (E)",
+			"fileCabinet": "Blog (E)",
+			"faxMachine": "Contact (E)"
+		}
+	},
 	"timerMinigame": {
 		"title": "⏱️ Postman Challenge",
 		"instructions": "Stop the timer at exactly",

@@ -65,6 +65,13 @@
 			"draft": "Borrador"
 		}
 	},
+	"game": {
+		"objects": {
+			"desk": "Sobre mí (E)",
+			"fileCabinet": "Blog (E)",
+			"faxMachine": "Contacto (E)"
+		}
+	},
 	"timerMinigame": {
 		"title": "⏱️ Desafío del Cartero",
 		"instructions": "Detén el cronómetro exactamente en",
