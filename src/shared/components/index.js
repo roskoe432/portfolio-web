@@ -4,3 +4,4 @@ export { default as Button } from './button/button';
 export { default as Error } from './error/error';
 export { default as Badge } from './badge/badge';
 export { default as Loading } from './loading/loading';
+export { default as ProgressBar } from './progress-bar/progress-bar';

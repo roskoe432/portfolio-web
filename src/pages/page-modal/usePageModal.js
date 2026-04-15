@@ -17,12 +17,12 @@ function usePageModal() {
 	});
 
 	useEffect(() => {
-		gameEvents.emit(Event.GAME_HANDLE_PAUSE, true);
+		gameEvents.emit(Event.GAME_PAUSE);
 	}, []);
 
 	const handleOnModalClose = () => {
 		closeModal();
-		gameEvents.emit(Event.GAME_HANDLE_PAUSE, false);
+		gameEvents.emit(Event.GAME_RESUME);
 	};
 
 	return { showModal: show, handleOnModalClose };

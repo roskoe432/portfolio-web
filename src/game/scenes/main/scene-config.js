@@ -34,9 +34,9 @@ const gameObjectsConfig = {
 				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/' });
 			},
 			onExit: () => {},
-			onInteract: (scene) => {
+			onInteract: () => {
 				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer', page: '/' });
-				scene.pauseGame();
+				gameEvents.emit(Event.GAME_PAUSE, true);
 			},
 		},
 	},
@@ -61,9 +61,9 @@ const gameObjectsConfig = {
 				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/blog' });
 			},
 			onExit: () => {},
-			onInteract: (scene) => {
-				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer', page: '/blog' });
-				scene.pauseGame();
+			onInteract: () => {
+				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer' });
+				gameEvents.emit(Event.GAME_PAUSE, true);
 			},
 		},
 	},
@@ -89,9 +89,9 @@ const gameObjectsConfig = {
 				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/contact' });
 			},
 			onExit: () => {},
-			onInteract: (scene) => {
+			onInteract: () => {
 				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer', page: '/contact' });
-				scene.pauseGame();
+				gameEvents.emit(Event.GAME_PAUSE, true);
 			},
 		},
 	},

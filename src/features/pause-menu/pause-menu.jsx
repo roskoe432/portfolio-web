@@ -11,7 +11,7 @@ function PauseMenu() {
 	const [showPauseMenu, setShowPauseMenu] = useState(false);
 	const [showSettings, setShowSettings] = useState(false);
 
-	useGameEvent(Event.GAME_HANDLE_PAUSE, (isPaused) => {
+	useGameEvent(Event.GAME_BROADCAST_PAUSE, (isPaused) => {
 		setShowPauseMenu(isPaused);
 	});
 
@@ -24,7 +24,7 @@ function PauseMenu() {
 			<div className={styles.hud}>
 				{!showSettings ? (
 					<div className={styles.buttonGroup}>
-						<Button onClick={() => gameEvents.emit(Event.GAME_HANDLE_PAUSE, false)}>
+						<Button onClick={() => gameEvents.emit(Event.GAME_RESUME)}>
 							{t('pauseMenu.resume')}
 						</Button>
 						<Button onClick={() => setShowSettings(true)}>{t('pauseMenu.settings')}</Button>

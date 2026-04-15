@@ -1,9 +1,6 @@
 import Phaser from 'phaser';
-import MainScene from './scenes/main/main.scene';
-import PauseMenu from './scenes/pause.scene';
 import config from '@/config';
-import LoaderScene from './scenes/loader.scene';
-import { TransitionScene } from './lib/transitions';
+import scenes from './scenes';
 
 let game;
 
@@ -16,7 +13,7 @@ const gameConfig = {
 	height: 480,
 	backgroundColor: '#000000',
 	pixelArt: true,
-	scene: [LoaderScene, MainScene, PauseMenu, TransitionScene],
+	scene: scenes,
 	physics: {
 		default: 'arcade',
 		arcade: {

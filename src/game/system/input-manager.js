@@ -1,35 +1,34 @@
 import Phaser from 'phaser';
 import { gameEvents, Event } from '../events';
 
-export default class InputManagerScene extends Phaser.Scene {
-	cursors = null;
-	wasdKeys = null;
-	eKey = null;
-	pKey = null;
-
-	constructor() {
-		super({ key: 'InputManager' });
+class InputManager {
+	constructor(scene) {
+		this.scene = scene;
+		this.cursors = null;
+		this.wasdKeys = null;
+		this.eKey = null;
+		this.pKey = null;
 	}
 
 	init() {
-		this.cursors = this.input.keyboard.createCursorKeys();
-		this.wasdKeys = this.input.keyboard.addKeys({
+		this.cursors = this.scene.input.keyboard.createCursorKeys();
+		this.wasdKeys = this.scene.input.keyboard.addKeys({
 			up: Phaser.Input.Keyboard.KeyCodes.W,
 			down: Phaser.Input.Keyboard.KeyCodes.S,
 			left: Phaser.Input.Keyboard.KeyCodes.A,
 			right: Phaser.Input.Keyboard.KeyCodes.D,
 		});
-		this.eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-		this.pKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+		this.eKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+		this.pKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 	}
 
 	update() {
 		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
-			gameEvents.emit(Event.GAME_HANDLE_PAUSE, true);
+			gameEvents.emit(Event.GAME_P_KEY_PRESSED);
 		}
 
 		if (Phaser.Input.Keyboard.JustDown(this.eKey)) {
-			gameEvents.emit(Event.GAME_INTERACT);
+			gameEvents.emit(Event.GAME_E_KEY_PRESSED);
 		}
 
 		const direction = {
@@ -40,7 +39,9 @@ export default class InputManagerScene extends Phaser.Scene {
 		};
 
 		if (direction.up || direction.down || direction.left || direction.right) {
-			gameEvents.emit(Event.GAME_NAVIGATE, direction);
+			gameEvents.emit(Event.GAME_NAV_KEYS_PRESSED, direction);
 		}
 	}
 }
+
+export default InputManager;
