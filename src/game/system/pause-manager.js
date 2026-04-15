@@ -54,7 +54,6 @@ class PauseManager {
 
 	handlePause = (isPaused) => {
 		this.isPaused = isPaused;
-		console.log('Pause state changed:', this.isPaused);
 		if (this.isPaused) {
 			return this.pauseGame();
 		}
