@@ -13,6 +13,8 @@ const Event = {
 	SYSTEM_ASSET_LOAD_PROGRESS: 'system:asset-load-progress',
 	SYSTEM_ASSET_LOAD_COMPLETE: 'system:asset-load-complete',
 	SYSTEM_UI_MOUNTED: 'system:ui-mounted',
+	SYSTEM_INPUT_ENABLED: 'system:input-enabled',
+	SYSTEM_INPUT_DISABLED: 'system:input-disabled',
 
 	LANGUAGE_CHANGE: 'ui:locale:changed',
 };
