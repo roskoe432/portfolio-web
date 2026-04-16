@@ -19,10 +19,14 @@ function PageModal() {
 			>
 				<main className={styles.content}>
 					{config.useNavLinks && <AppLinks />}
-					<button className={styles.closeBtn} onClick={handleOnModalClose} aria-label="X">
+					<button
+						className={styles.closeBtn}
+						onClick={handleOnModalClose}
+						aria-label="X"
+					>
 						X
 					</button>
-					<AppRoutes />
+					<AppRoutes closePageModal={handleOnModalClose} />
 				</main>
 			</Modal>
 		</React.Fragment>

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import CustomLoader from '@shared/components/custom-loader/custom-loader';
 import styles from './app-navigation.module.less';
 
-export function AppRoutes() {
+export function AppRoutes(props) {
 	const { t } = useTranslation();
 	const createPageRoutes = () =>
 		Object.keys(pages)
@@ -18,8 +18,10 @@ export function AppRoutes() {
 						path={key}
 						element={
 							<div>
-								<h1 className={styles.pageTitle}>{t(pages[key].translationKey)}</h1>
-								<PageComponent />
+								<h1 className={styles.pageTitle}>
+									{t(pages[key].translationKey)}
+								</h1>
+								<PageComponent {...props} />
 							</div>
 						}
 					/>
@@ -40,7 +42,9 @@ export function AppLinks() {
 
 	const createLinks = () =>
 		Object.keys(pages)
-			.filter((key) => !pages[key].disabled && pages[key].createNavLink !== false)
+			.filter(
+				(key) => !pages[key].disabled && pages[key].createNavLink !== false,
+			)
 			.map((key) => (
 				<NavLink className={styles['nav-link']} key={key} to={key}>
 					{t(pages[key].translationKey)}
