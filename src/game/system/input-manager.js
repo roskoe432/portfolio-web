@@ -2,6 +2,8 @@ import Phaser from 'phaser';
 import { gameEvents, Event } from '../events';
 
 class InputManager {
+	inputEnabled = true;
+
 	constructor(scene) {
 		this.scene = scene;
 		this.cursors = null;
@@ -11,6 +13,14 @@ class InputManager {
 	}
 
 	init() {
+		gameEvents.on(Event.SYSTEM_INPUT_ENABLED, () => {
+			this.inputEnabled = true;
+		});
+
+		gameEvents.on(Event.SYSTEM_INPUT_DISABLED, () => {
+			this.inputEnabled = false;
+		});
+
 		this.cursors = this.scene.input.keyboard.createCursorKeys();
 		this.wasdKeys = this.scene.input.keyboard.addKeys({
 			up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -18,11 +28,17 @@ class InputManager {
 			left: Phaser.Input.Keyboard.KeyCodes.A,
 			right: Phaser.Input.Keyboard.KeyCodes.D,
 		});
-		this.eKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-		this.pKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+		this.eKey = this.scene.input.keyboard.addKey(
+			Phaser.Input.Keyboard.KeyCodes.E,
+		);
+		this.pKey = this.scene.input.keyboard.addKey(
+			Phaser.Input.Keyboard.KeyCodes.P,
+		);
 	}
 
 	update() {
+		if (!this.inputEnabled) return;
+
 		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
 			gameEvents.emit(Event.GAME_P_KEY_PRESSED);
 		}
