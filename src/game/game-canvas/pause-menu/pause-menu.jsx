@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/shared/components';
 import Settings from './settings/settings';
 import Credits from './credits/credits';
+import useKeyInput from '@/shared/hooks/useKeyInput';
 
 function PauseMenu() {
 	const { t } = useTranslation();
@@ -14,6 +15,11 @@ function PauseMenu() {
 
 	useGameEvent(Event.GAME_BROADCAST_PAUSE, (isPaused) => {
 		setShowPauseMenu(isPaused);
+	});
+
+	useKeyInput('Escape', () => {
+		gameEvents.emit(Event.GAME_RESUME);
+		setShowSettings(false);
 	});
 
 	if (!showPauseMenu) {

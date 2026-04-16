@@ -15,7 +15,11 @@ function AboutPage() {
 					i18nKey="pages.about.perlenspielParagraph"
 					components={{
 						perlenspielLink: (
-							<a href={config.urls.perlenspiel} target="_blank" rel="noopener noreferrer">
+							<a
+								href={config.urls.perlenspiel}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								Perlenspiel
 							</a>
 						),
@@ -30,7 +34,9 @@ function AboutPage() {
 					}}
 				></Trans>
 			</p>
-			<p className={styles['mini-level-intro']}>{t('pages.about.introToMiniLevelParagraph')}</p>
+			<p className={styles['mini-level-intro']}>
+				{t('pages.about.introToMiniLevelParagraph')}
+			</p>
 			<ExternalLink className={styles.linkGroupItem} href={config.urls.github}>
 				{t('pages.about.sourceCodeLinkText')}
 			</ExternalLink>
