@@ -88,7 +88,15 @@
 	"pauseMenu": {
 		"resume": "Reanudar",
 		"settings": "Ajustes",
+		"credits": "Créditos",
 		"language": "Idioma"
+	},
+	"credits": {
+		"author": "Autor",
+		"category": "Categoría",
+		"license": "Licencia",
+		"source": "Fuente",
+		"viewSource": "Ver fuente"
 	},
 	"tutorial": {
 		"steps": {
