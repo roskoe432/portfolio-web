@@ -4,6 +4,8 @@ A modern, interactive portfolio website built with React and Phaser, featuring g
 
 🌐 **Live Site:** [https://www.bensnow.dev]
 
+## [Roadmap](https://trello.com/invite/b/69de00f97d998c6c86831f2c/ATTI89d9b4c0db75e90089081bae05560815CBB0F7EC/portfolio)
+
 ## 🎯 Project Overview
 
 This portfolio takes a unique approach to web development by combining traditional React patterns with game-based interactions. Instead of conventional navigation, users explore an interactive Phaser scene using keyboard controls, interacting with objects to navigate to different sections (About, Blog, Contact).
