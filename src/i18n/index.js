@@ -3,38 +3,27 @@ import { initReactI18next } from 'react-i18next';
 import enTranslation from './locales/en.json';
 import esTranslation from './locales/es.json';
 import { storageService } from '@services/index.js';
-// import LanguageDetector from 'i18next-browser-languagedetector'; // Not installed, just an example
+import { gameEvents, Event } from '@game';
+import I18nAdapter from './i18n-adapter';
 
 const languages = [
-	{ value: 'en', label: 'English' },
-	{ value: 'es', label: 'Español' },
+	{
+		value: 'en',
+		label: 'English',
+		translation: enTranslation,
+	},
+	{ value: 'es', label: 'Español', translation: esTranslation },
 ];
 
-i18next.use(initReactI18next).init({
-	resources: {
-		en: { translation: enTranslation },
-		es: { translation: esTranslation },
-	},
-	lng: storageService.getLanguage(),
-	fallbackLng: 'en',
-	interpolation: {
-		escapeValue: false,
-	},
+const i18n = new I18nAdapter({
+	languages,
+	i18n: i18next,
+	reactPlugin: initReactI18next,
+	storageService,
+	gameEvents,
+	Event,
 });
 
-if (!storageService.getLanguage()) {
-	storageService.setLanguage(i18next.language);
-}
+i18n.init();
 
-export const changeLanguage = (lang) => {
-	i18next.changeLanguage(lang);
-	storageService.setLanguage(lang);
-};
-
-export const getCurrentLanguage = () => {
-	return languages.find((lang) => lang.value === storageService.getLanguage()).value || 'en';
-};
-
-export const getAvailableLanguages = () => {
-	return languages;
-};
+export default i18n;

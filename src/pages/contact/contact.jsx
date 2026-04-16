@@ -1,13 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import usePageModalStore from '../page-modal/usePageModalStore';
 import styles from './contact.module.less';
 import { useEmailMutation } from './contactQueries';
 import { getErrorMessageFromStatus } from '@/shared/utils/helpers';
 import { useForm } from 'react-hook-form';
 
-function ContactPage() {
+function ContactPage({ closePageModal }) {
 	const { t } = useTranslation();
-	const { closeModal } = usePageModalStore();
 	const { mutate, isPending, isSuccess, error } = useEmailMutation();
 	const {
 		register,
@@ -27,7 +25,7 @@ function ContactPage() {
 				<p className={`${styles.successMessage} ${styles.centeredMessage}`}>
 					{t('pages.contact.successMessage')}
 				</p>
-				<button className={styles.okBtn} onClick={closeModal}>
+				<button className={styles.okBtn} onClick={closePageModal}>
 					{t('pages.contact.ok')}
 				</button>
 			</div>
@@ -45,7 +43,9 @@ function ContactPage() {
 					/>
 				</div>
 				{errors.email && (
-					<span className={styles.errorMessage}>{t('pages.contact.emailError')}</span>
+					<span className={styles.errorMessage}>
+						{t('pages.contact.emailError')}
+					</span>
 				)}
 				<div className={styles.field}>
 					<label htmlFor="subject">{t('pages.contact.subjectLabel')}</label>
@@ -56,7 +56,9 @@ function ContactPage() {
 					/>
 				</div>
 				{errors.subject && (
-					<span className={styles.errorMessage}>{t('pages.contact.subjectError')}</span>
+					<span className={styles.errorMessage}>
+						{t('pages.contact.subjectError')}
+					</span>
 				)}
 				<div className={styles.field}>
 					<label htmlFor="message">{t('pages.contact.messageLabel')}</label>
@@ -66,13 +68,17 @@ function ContactPage() {
 					/>
 				</div>
 				{errors.message && errors.message.type === 'required' && (
-					<span className={styles.errorMessage}>{t('pages.contact.messageError')}</span>
+					<span className={styles.errorMessage}>
+						{t('pages.contact.messageError')}
+					</span>
 				)}
 				<button type="submit" disabled={isPending}>
 					{isPending ? t('pages.contact.sending') : t('pages.contact.send')}
 				</button>
 				{error && (
-					<p className={`${styles.errorMessage} ${styles.centeredMessage}`}>{errorMessage}</p>
+					<p className={`${styles.errorMessage} ${styles.centeredMessage}`}>
+						{errorMessage}
+					</p>
 				)}
 				{isSuccess && (
 					<p className={`${styles.successMessage} ${styles.centeredMessage}`}>

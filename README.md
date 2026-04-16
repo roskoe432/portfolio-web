@@ -2,17 +2,16 @@
 
 A modern, interactive portfolio website built with React and Phaser, featuring game-based navigation and showcasing engineering best practices across full-stack development and deployment.
 
-🌐 **Live Site:** [https://bensnow.dev]
+🌐 **Live Site:** [https://www.bensnow.dev]
 
 ## 🎯 Project Overview
 
-This portfolio takes a unique approach to web development by combining traditional React patterns with game-based interactions. Instead of conventional navigation, users explore an interactive Phaser scene where clicking objects navigates to different sections (About, Blog, Contact).
+This portfolio takes a unique approach to web development by combining traditional React patterns with game-based interactions. Instead of conventional navigation, users explore an interactive Phaser scene using keyboard controls, interacting with objects to navigate to different sections (About, Blog, Contact).
 
 This project demonstrates proficiency in:
 
 - **Interactive UI/UX** - Game-based navigation with Phaser event bus integration
 - **Modern React architecture** - Server state management with TanStack React Query
-- **Clean, tested, maintainable code** - Comprehensive testing and quality tooling
 - **DevOps and CI/CD** - Automated pipelines with GitHub Actions
 - **Cloud infrastructure** - Infrastructure as Code with Terraform
 - **Production deployment** - Azure Static Web Apps
@@ -22,14 +21,13 @@ This project demonstrates proficiency in:
 
 ### Interactive Navigation
 
-- **Phaser-powered scene** - Navigate by clicking interactive objects in a game world
+- **Phaser-powered scene** - Navigate using keyboard controls and interact with objects in a game world
 - **Event bus architecture** - Clean separation between game logic and React components
 - **Smooth transitions** - Seamless integration between game scenes and React pages
 
 ### Modern Architecture
 
 - **Server state** - TanStack React Query manages blog data fetching, caching, and synchronization
-- **Client state** - Zustand ready for theme management and UI preferences
 - **Custom design system** - LESS-based color variables replacing third-party UI libraries
 - **Code splitting** - Manual vendor chunks for optimal caching (React, Phaser)
 
@@ -42,10 +40,10 @@ This project demonstrates proficiency in:
 - **Vite 8** - Lightning-fast build tool with Rolldown bundler
 - **React Router v7** - Client-side routing
 - **TanStack React Query** - Server state management for blog data fetching
-- **Zustand** - Client state management (reserved for theme switching)
 - **LESS** - CSS preprocessing with custom design system
 - **i18next** - Internationalization (English/Spanish)
-- **@react-pdf/renderer** - PDF resume generation
+- **react-hook-form** - Performant form state management and validation
+- **react-overlays** - Accessible modal and overlay primitives
 
 ### Testing & Quality
 
@@ -83,7 +81,7 @@ npm install
 # Start development server
 npm start
 
-# Open https://localhost:5173
+# Open https://localhost:4000
 ```
 
 ### Available Scripts
@@ -102,24 +100,12 @@ npm run format:check   # Check code formatting
 
 ## 🧪 Testing
 
-> **Note:** Tests are currently being rewritten to reflect the new Phaser-based architecture and removed Mantine dependencies.
+> **Note:** Tests exist for stable components but coverage is limited while the project is evolving quickly.
 
 ```bash
-# Run tests (when available)
-npm test
-
-# Generate coverage report
-npm run test:coverage
+npm test               # Run tests in watch mode
+npm run test:coverage  # Generate coverage report
 ```
-
-Planned test coverage:
-
-- Component rendering and behavior
-- Phaser scene interactions
-- TanStack React Query data fetching
-- Routing and navigation
-- i18n translations
-- Custom hooks
 
 ## ☁️ Deployment
 
@@ -155,7 +141,20 @@ terraform apply
 - Provisions/updates Azure Static Web App via Terraform
 - Builds optimized production bundle
 - Deploys `dist/` folder to Azure Static Web Apps
-- Zero-downtime deployments with automatic rollback
+
+#### PI Deploy Pipeline (Auto + Manual)
+
+- Triggers on push to `main` or manually via workflow_dispatch
+- Runs on a self-hosted Raspberry Pi runner
+- Builds the project and deploys to a local staging server (`/var/www/portfolio-web`)
+- Used for local network staging before production release
+
+#### Destroy Pipeline (Manual)
+
+- Manually triggered via workflow_dispatch
+- Tears down all Azure infrastructure provisioned by Terraform
+- Uses the same OIDC auth and backend config as the deploy pipeline
+- ⚠️ Destructive — permanently removes the Static Web App and resource group
 
 ### Security
 
@@ -163,24 +162,6 @@ terraform apply
 - **GitHub Secrets** - Encrypted secret management
 - **Environment-based** federated credentials
 - **HTTPS only** - SSL/TLS certificates
-
-## 📦 Project Structure
-
-```
-portfolio-web/
-├── .github/workflows/     # CI/CD pipelines
-├── src/
-│   ├── app/              # App layout and components
-│   ├── pages/            # Page components (About, Blog, Contact)
-│   ├── game/             # Phaser game scene and entities
-│   ├── i18n/             # Internationalization
-│   ├── services/         # API services for data fetching
-│   ├── shared/           # Shared components and assets
-│   └── styles/           # Global styles and design system
-├── __tests__/            # Test files (being rewritten)
-├── terraform/            # Infrastructure as Code
-└── public/               # Static assets
-```
 
 ## 🌍 Internationalization
 
@@ -191,26 +172,7 @@ The application supports multiple languages:
 
 Language files are located in `src/i18n/locales/`.
 
-## ♿ Accessibility
-
-Built with accessibility in mind:
-
-- Semantic HTML
-- ARIA labels and roles
-- Keyboard navigation
-- ESLint accessibility plugin
-- WCAG 2.1 compliance
-
-## 📊 Bundle Analysis
-
-View bundle size and composition:
-
-```bash
-npm run build
-# View stats.html in browser
-```
-
-## 📝 License
+## License
 
 ISC
 
@@ -224,9 +186,9 @@ ISC
 
 This project showcases:
 
-✅ **Interactive game-based navigation** - Phaser 3 scene with event bus integration  
+✅ **Interactive game-based navigation** - Phaser 3 scene with keyboard controls and event bus integration  
 ✅ **Modern React patterns** - Hooks, context, custom hooks  
-✅ **Smart state management** - TanStack React Query for server state, Zustand for client state  
+✅ **Smart state management** - TanStack React Query for server state  
 ✅ **Custom design system** - LESS-based color system replacing component libraries  
 ✅ **CI/CD automation** - Automated deployment with GitHub Actions  
 ✅ **Infrastructure as Code** - Reproducible infrastructure with Terraform  
@@ -244,8 +206,17 @@ _This portfolio is a living example of production-ready web application developm
 
 ### Packages Pending Major Version Updates
 
-**Last checked:** April 5, 2026
+The following packages have major version updates available. Review changelogs for breaking changes before upgrading.
 
-The following packages have major version updates available. Review changelogs for breaking changes before upgrading:
+---
 
-- **eslint**: 9.39.4 → 10.2.0 (eslint-plugin-react doesnt have support yet for 10)
+**Checked: April 16, 2026**
+
+- **eslint** + **@eslint/js**: 9.39.4 → 10.2.0 (`eslint-plugin-react` does not yet support v10)
+- **phaser**: 3.90.0 → 4.0.0 (major new release — review migration guide before upgrading)
+
+---
+
+**Checked: April 5, 2026**
+
+- **eslint**: 9.39.4 → 10.2.0 (`eslint-plugin-react` does not yet support v10)

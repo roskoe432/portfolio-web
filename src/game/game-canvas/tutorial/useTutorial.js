@@ -6,8 +6,9 @@ function useTutorial(content) {
 	const [currentId, setCurrentId] = useState(0);
 
 	useEffect(() => {
-		gameEvents.emit(Event.GAME_HANDLE_PAUSE, true);
-	}, [currentId]);
+		if (storageService.getTutorialViewed()) return;
+		gameEvents.emit(Event.GAME_PAUSE);
+	}, []);
 
 	const prevItem = () => {
 		if (currentId > 0) {
@@ -19,7 +20,8 @@ function useTutorial(content) {
 		const next = currentId + 1;
 		if (next >= content.length) {
 			storageService.setTutorialViewed(true);
-			gameEvents.emit(Event.GAME_HANDLE_PAUSE, false);
+			console.log('Tutorial completed, resuming game...');
+			gameEvents.emit(Event.GAME_RESUME);
 		}
 		setCurrentId(next);
 	};

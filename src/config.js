@@ -24,6 +24,9 @@ const serverUrl = env === 'local' ? '' : import.meta.env.VITE_SERVER_URL;
 
 const config = {
 	env,
+	logging: {
+		level: import.meta.env.VITE_LOG_LEVEL || 'info',
+	},
 	serverUrl,
 	useNavLinks: import.meta.env.VITE_UI_USE_NAVLINKS === 'true',
 	showModalOnStart: import.meta.env.VITE_UI_SHOW_MODAL_ON_START === 'true',

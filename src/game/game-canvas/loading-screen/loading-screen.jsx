@@ -8,20 +8,18 @@ function LoadingScreen() {
 	const [progress, setProgress] = useState(0);
 
 	useGameEvent(Event.SYSTEM_ASSET_LOAD_START, () => {
-		console.log('Asset load started');
 		setShowProgress(true);
 		setProgress(0);
 	});
 
 	useGameEvent(Event.SYSTEM_ASSET_LOAD_PROGRESS, (value) => {
-		console.log('Asset load progress:', value);
 		setProgress(value);
 	});
 
 	useGameEvent(Event.SYSTEM_ASSET_LOAD_COMPLETE, () => {
 		setTimeout(() => {
 			setShowProgress(false);
-		}, 2000);
+		}, 500);
 	});
 
 	if (!showProgress) {

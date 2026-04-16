@@ -48,7 +48,11 @@ export default defineConfig({
 				// now that Vite uses rolldown
 				manualChunks(id) {
 					if (id.includes('node_modules')) {
-						if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+						if (
+							id.includes('react') ||
+							id.includes('react-dom') ||
+							id.includes('react-router')
+						) {
 							return 'react-vendor';
 						}
 						if (id.includes('phaser')) {
@@ -86,7 +90,9 @@ export default defineConfig({
 						console.log(`[Proxy] Sending ${req.method} request to: ${req.url}`);
 					});
 					proxy.on('proxyRes', (proxyRes, req) => {
-						console.log(`[Proxy] Received ${proxyRes.statusCode} from: ${req.url}`);
+						console.log(
+							`[Proxy] Received ${proxyRes.statusCode} from: ${req.url}`,
+						);
 					});
 					proxy.on('error', (err) => {
 						console.error('[Proxy] Error:', err);
@@ -102,7 +108,9 @@ export default defineConfig({
 						console.log(`[Proxy] Sending ${req.method} request to: ${req.url}`);
 					});
 					proxy.on('proxyRes', (proxyRes, req) => {
-						console.log(`[Proxy] Received ${proxyRes.statusCode} from: ${req.url}`);
+						console.log(
+							`[Proxy] Received ${proxyRes.statusCode} from: ${req.url}`,
+						);
 					});
 					proxy.on('error', (err) => {
 						console.error('[Proxy] Error:', err);

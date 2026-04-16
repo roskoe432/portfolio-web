@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import Player from '@/game/entities/player';
 import createBoundaries from './boundaries';
 import createGameObjects from './scene-config';
-import { storageService } from '@services';
+import { registerForPause } from '@game/system/pause-manager';
 
 class MainScene extends Phaser.Scene {
 	loadAnimations = null;
@@ -21,7 +21,7 @@ class MainScene extends Phaser.Scene {
 	constructor() {
 		super({ key: 'Main', active: false });
 
-		// registerForPause(this);
+		registerForPause(this);
 	}
 
 	setupTileMap() {
@@ -51,8 +51,18 @@ class MainScene extends Phaser.Scene {
 		this.cameras.main.setZoom(1);
 		this.setupTileMap();
 
-		this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-		this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+		this.physics.world.setBounds(
+			0,
+			0,
+			this.map.widthInPixels,
+			this.map.heightInPixels,
+		);
+		this.cameras.main.setBounds(
+			0,
+			0,
+			this.map.widthInPixels,
+			this.map.heightInPixels,
+		);
 
 		this.player.onCreate(300, 300);
 
@@ -62,10 +72,6 @@ class MainScene extends Phaser.Scene {
 		this.player.addCollisions([...gameObjects, ...boundaries]);
 
 		this.registerKeys();
-
-		if (!storageService.getTutorialViewed()) {
-			this.pauseGame();
-		}
 	}
 
 	update() {
