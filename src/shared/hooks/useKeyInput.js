@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 
-function useKeyInput(key, onPress) {
+// TODO: Add scope option to only listen when a specific element is focused (e.g. game canvas)
+function useKeyInput(key, onPress, { listenForInput = true } = {}) {
 	const handlerRef = useRef(onPress);
 
 	useEffect(() => {
@@ -8,13 +9,13 @@ function useKeyInput(key, onPress) {
 	}, [onPress]);
 
 	useEffect(() => {
+		if (!listenForInput) return;
+
 		const listener = (...args) => handlerRef?.current(...args);
 
 		window.addEventListener('keydown', listener);
-		return () => {
-			window.removeEventListener('keydown', listener);
-		};
-	}, [key]);
+		return () => window.removeEventListener('keydown', listener);
+	}, [key, listenForInput]);
 }
 
 export default useKeyInput;

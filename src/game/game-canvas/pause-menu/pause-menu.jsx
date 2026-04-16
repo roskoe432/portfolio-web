@@ -17,10 +17,14 @@ function PauseMenu() {
 		setShowPauseMenu(isPaused);
 	});
 
-	useKeyInput('Escape', () => {
-		gameEvents.emit(Event.GAME_RESUME);
-		setShowSettings(false);
-	});
+	useKeyInput(
+		'Escape',
+		() => {
+			gameEvents.emit(Event.GAME_RESUME);
+			setShowSettings(false);
+		},
+		{ listenForInput: showPauseMenu },
+	);
 
 	if (!showPauseMenu) {
 		return <React.Fragment />;
