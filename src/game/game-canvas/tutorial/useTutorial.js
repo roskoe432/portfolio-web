@@ -6,6 +6,7 @@ function useTutorial(content) {
 	const [currentId, setCurrentId] = useState(0);
 
 	useEffect(() => {
+		if (storageService.getTutorialViewed()) return;
 		gameEvents.emit(Event.GAME_PAUSE);
 	}, []);
 

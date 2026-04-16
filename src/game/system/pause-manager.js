@@ -29,7 +29,9 @@ class PauseManager {
 		this.scene = scene;
 		this.logger = logger;
 		this.isPaused = false;
+	}
 
+	init() {
 		gameEvents.on(Event.GAME_P_KEY_PRESSED, () => {
 			this.handlePause(!this.isPaused);
 		});

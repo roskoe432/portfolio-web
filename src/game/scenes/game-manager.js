@@ -22,6 +22,7 @@ export default class GameManager extends Phaser.Scene {
 		this.assetLoader = new AssetLoader(this, logger);
 
 		this.inputManager.init();
+		this.pauseManager.init();
 		this.assetLoader.init();
 	}
 
