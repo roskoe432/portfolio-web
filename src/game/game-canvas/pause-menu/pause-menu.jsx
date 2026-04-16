@@ -3,7 +3,7 @@ import styles from './pause-menu.module.less';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Select } from '@/shared/components';
-import { changeLanguage, getAvailableLanguages, getCurrentLanguage } from '@i18n/index.js';
+import i18n from '@i18n';
 
 function PauseMenu() {
 	const { t } = useTranslation();
@@ -26,7 +26,9 @@ function PauseMenu() {
 						<Button onClick={() => gameEvents.emit(Event.GAME_RESUME)}>
 							{t('pauseMenu.resume')}
 						</Button>
-						<Button onClick={() => setShowSettings(true)}>{t('pauseMenu.settings')}</Button>
+						<Button onClick={() => setShowSettings(true)}>
+							{t('pauseMenu.settings')}
+						</Button>
 					</div>
 				) : null}
 
@@ -40,9 +42,9 @@ function PauseMenu() {
 						</div>
 						<Select
 							label={t('pauseMenu.language')}
-							defaultValue={getCurrentLanguage()}
-							options={getAvailableLanguages()}
-							onChange={(value) => changeLanguage(value)}
+							defaultValue={i18n.getCurrentLanguage()}
+							options={i18n.getAvailableLanguages()}
+							onChange={(value) => i18n.changeLanguage(value)}
 						/>
 					</div>
 				) : null}

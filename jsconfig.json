@@ -22,7 +22,7 @@
 			"@features/*": ["./src/features/*"],
 			"@app/*": ["./src/app/*"],
 			"@tests/*": ["./__tests__/*"],
-			"@i18n/*": ["./src/i18n/*"],
+			"@i18n/": ["./src/i18n/index.js"],
 			"@services/*": ["./src/services/*"],
 			"@services": ["./src/services/index.js"],
 			"@game/*": ["./src/game/*"],
