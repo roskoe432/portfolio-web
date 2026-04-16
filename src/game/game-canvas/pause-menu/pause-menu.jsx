@@ -2,13 +2,15 @@ import { useGameEvent, Event, gameEvents } from '@game';
 import styles from './pause-menu.module.less';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Select } from '@/shared/components';
-import i18n from '@i18n';
+import { Button } from '@/shared/components';
+import Settings from './settings/settings';
+import Credits from './credits/credits';
 
 function PauseMenu() {
 	const { t } = useTranslation();
 	const [showPauseMenu, setShowPauseMenu] = useState(false);
 	const [showSettings, setShowSettings] = useState(false);
+	const [showCredits, setShowCredits] = useState(false);
 
 	useGameEvent(Event.GAME_BROADCAST_PAUSE, (isPaused) => {
 		setShowPauseMenu(isPaused);
@@ -18,10 +20,12 @@ function PauseMenu() {
 		return <React.Fragment />;
 	}
 
+	const showMenu = !showSettings && !showCredits;
+
 	return (
 		<div className={styles.pauseMenu}>
 			<div className={styles.hud}>
-				{!showSettings ? (
+				{showMenu ? (
 					<div className={styles.buttonGroup}>
 						<Button onClick={() => gameEvents.emit(Event.GAME_RESUME)}>
 							{t('pauseMenu.resume')}
@@ -29,25 +33,14 @@ function PauseMenu() {
 						<Button onClick={() => setShowSettings(true)}>
 							{t('pauseMenu.settings')}
 						</Button>
+						<Button variant="subtle" onClick={() => setShowCredits(true)}>
+							{t('pauseMenu.credits')}
+						</Button>
 					</div>
 				) : null}
 
-				{showSettings ? (
-					<div className={styles.settings}>
-						<div className={styles.settingsHeader}>
-							<h2>{t('pauseMenu.settings')}</h2>
-							<Button variant="subtle" onClick={() => setShowSettings(false)}>
-								{t('common.back')}
-							</Button>
-						</div>
-						<Select
-							label={t('pauseMenu.language')}
-							defaultValue={i18n.getCurrentLanguage()}
-							options={i18n.getAvailableLanguages()}
-							onChange={(value) => i18n.changeLanguage(value)}
-						/>
-					</div>
-				) : null}
+				<Settings show={showSettings} onBack={() => setShowSettings(false)} />
+				<Credits show={showCredits} onBack={() => setShowCredits(false)} />
 			</div>
 		</div>
 	);
