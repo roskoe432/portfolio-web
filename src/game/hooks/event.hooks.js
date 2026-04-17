@@ -32,3 +32,15 @@ export function useOnGamePaused(handler) {
 export function useOnGameResumed(handler) {
 	useGameEvent((callback) => eventBus.onGameResumed(callback), handler);
 }
+
+export function useOnAssetLoadStart(handler) {
+	useGameEvent((callback) => eventBus.onAssetLoadStart(callback), handler);
+}
+
+export function useOnAssetLoadProgress(handler) {
+	useGameEvent((callback) => eventBus.onAssetLoadProgress(callback), handler);
+}
+
+export function useOnAssetLoadComplete(handler) {
+	useGameEvent((callback) => eventBus.onAssetLoadComplete(callback), handler);
+}

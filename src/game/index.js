@@ -6,4 +6,7 @@ export {
 	useOnPageNavigate,
 	useOnGamePaused,
 	useOnGameResumed,
+	useOnAssetLoadStart,
+	useOnAssetLoadProgress,
+	useOnAssetLoadComplete,
 } from './hooks/event.hooks';
