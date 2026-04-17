@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-import { gameEvents, Event } from '@game/events';
+import { eventBus } from '@game/events';
 import GameObject from '@game/entities/game-object';
 import { Math } from 'phaser';
 
@@ -31,12 +31,12 @@ const gameObjectsConfig = {
 				...defaultTextConfig,
 			},
 			onEnter: () => {
-				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/' });
+				eventBus.emitPageNavigate({ page: '/' });
 			},
 			onExit: () => {},
 			onInteract: () => {
-				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer', page: '/' });
-				gameEvents.emit(Event.GAME_PAUSE, true);
+				eventBus.emitPageNavigate({ page: '/' });
+				eventBus.emitGamePaused();
 			},
 		},
 	},
@@ -58,12 +58,12 @@ const gameObjectsConfig = {
 				offset: new Vector2(-5, -55),
 			},
 			onEnter: () => {
-				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/blog' });
+				eventBus.emitPageNavigate({ page: '/blog' });
 			},
 			onExit: () => {},
 			onInteract: () => {
-				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer' });
-				gameEvents.emit(Event.GAME_PAUSE, true);
+				eventBus.emitPageNavigate({ page: '/blog' });
+				eventBus.emitGamePaused();
 			},
 		},
 	},
@@ -86,15 +86,12 @@ const gameObjectsConfig = {
 				offset: new Vector2(-5, -55),
 			},
 			onEnter: () => {
-				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/contact' });
+				eventBus.emitPageNavigate({ page: '/contact' });
 			},
 			onExit: () => {},
 			onInteract: () => {
-				gameEvents.emit(Event.GAME_INTERACT, {
-					type: 'computer',
-					page: '/contact',
-				});
-				gameEvents.emit(Event.GAME_PAUSE, true);
+				eventBus.emitPageNavigate({ page: '/contact' });
+				eventBus.emitGamePaused();
 			},
 		},
 	},

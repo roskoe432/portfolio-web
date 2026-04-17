@@ -21,6 +21,7 @@ function Player(scene, eventBus, settings = { speed: 100 }) {
 	this.onPreload = async () => {};
 
 	this.handleNavigation = ({ direction }) => {
+		console.log('Handling navigation with direction:', direction);
 		this.player.setVelocity(
 			direction.x * this.settings.speed,
 			direction.y * this.settings.speed,
@@ -42,7 +43,7 @@ function Player(scene, eventBus, settings = { speed: 100 }) {
 	};
 
 	this.onUpdate = () => {
-		// this.player.play(this.anims[this.currentAnimKey], true);
+		// Leave here for now - may need to add other player-related updates here in the future
 	};
 
 	this.addCollisions = (layers) => {

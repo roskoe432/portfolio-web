@@ -1,43 +1,60 @@
 import Phaser from 'phaser';
-import { gameEvents, Event, eventBus } from '../events';
 
 class InputManager {
 	inputEnabled = true;
-	navInputLastFrame = 0;
-	keys = {
-		up: false,
-		down: false,
-		left: false,
-		right: false,
-	};
+	lastDirection = { x: 0, y: 0 };
+	eventBus;
+	logger;
 
-	constructor(scene) {
+	constructor(scene, eventBus, logger) {
 		this.scene = scene;
+		this.eventBus = eventBus;
+		this.logger = logger;
 		this.cursors = null;
 		this.wasdKeys = null;
 		this.eKey = null;
 		this.pKey = null;
 	}
 
-	handleDirectionChange(keys) {
-		this.keys = keys;
+	handleDirectionChange(cursors, wasdKeys) {
+		const keys = {
+			up: cursors.up.isDown || wasdKeys.up.isDown,
+			down: cursors.down.isDown || wasdKeys.down.isDown,
+			left: cursors.left.isDown || wasdKeys.left.isDown,
+			right: cursors.right.isDown || wasdKeys.right.isDown,
+		};
 
 		const direction = {
 			x: (keys.right ? 1 : 0) - (keys.left ? 1 : 0),
 			y: (keys.down ? 1 : 0) - (keys.up ? 1 : 0),
 		};
 
-		eventBus.emitNavigationKeysPressed({ keys, direction });
+		if (
+			direction.x !== this.lastDirection.x ||
+			direction.y !== this.lastDirection.y
+		) {
+			this.lastDirection = direction;
+			this.eventBus.emitNavigationKeysPressed({ keys, direction });
+		}
+	}
+
+	onDisableInput() {
+		this.eventBus.emitNavigationKeysPressed({
+			keys: {},
+			direction: { x: 0, y: 0 },
+		});
+		this.lastDirection = { x: 0, y: 0 };
+		this.inputEnabled = false;
+	}
+
+	onEnableInput() {
+		this.inputEnabled = true;
 	}
 
 	init() {
-		gameEvents.on(Event.SYSTEM_INPUT_ENABLED, () => {
-			this.inputEnabled = true;
-		});
-
-		gameEvents.on(Event.SYSTEM_INPUT_DISABLED, () => {
-			this.inputEnabled = false;
-		});
+		console.log(this.eventBus);
+		this.eventBus.onInputDisabled(this.onDisableInput.bind(this));
+		this.eventBus.onInputEnabled(this.onEnableInput.bind(this));
 
 		this.cursors = this.scene.input.keyboard.createCursorKeys();
 		this.wasdKeys = this.scene.input.keyboard.addKeys({
@@ -58,32 +75,14 @@ class InputManager {
 		if (!this.inputEnabled) return;
 
 		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
-			gameEvents.emit(Event.GAME_P_KEY_PRESSED);
+			this.eventBus.emitPKeyPressed();
 		}
 
 		if (Phaser.Input.Keyboard.JustDown(this.eKey)) {
-			gameEvents.emit(Event.GAME_E_KEY_PRESSED);
+			this.eventBus.emitEKeyPressed();
 		}
 
-		const direction = {
-			up: this.cursors.up.isDown || this.wasdKeys.up.isDown,
-			down: this.cursors.down.isDown || this.wasdKeys.down.isDown,
-			left: this.cursors.left.isDown || this.wasdKeys.left.isDown,
-			right: this.cursors.right.isDown || this.wasdKeys.right.isDown,
-		};
-
-		if (direction.up || direction.down || direction.left || direction.right) {
-			this.navInputLastFrame = true;
-			this.handleDirectionChange(direction);
-		} else if (this.navInputLastFrame) {
-			this.navInputLastFrame = false;
-			this.handleDirectionChange({
-				up: false,
-				down: false,
-				left: false,
-				right: false,
-			});
-		}
+		this.handleDirectionChange(this.cursors, this.wasdKeys);
 	}
 }
 

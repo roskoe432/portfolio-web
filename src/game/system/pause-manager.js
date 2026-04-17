@@ -1,5 +1,3 @@
-import { gameEvents, Event } from '../events';
-
 const sceneRegistry = [];
 
 export const registerForPause = (scene) => {
@@ -25,33 +23,34 @@ const resumeAllScenes = () => {
 };
 
 class PauseManager {
-	constructor(scene, logger) {
+	constructor(scene, eventBus, logger) {
 		this.scene = scene;
+		this.eventBus = eventBus;
 		this.logger = logger;
 		this.isPaused = false;
 	}
 
 	init() {
-		gameEvents.on(Event.GAME_P_KEY_PRESSED, () => {
+		this.eventBus.onPKeyPressed(() => {
 			this.handlePause(!this.isPaused);
 		});
-		gameEvents.on(Event.GAME_PAUSE, () => {
+		this.eventBus.onGamePaused(() => {
 			this.handlePause(true);
 		});
-		gameEvents.on(Event.GAME_RESUME, () => {
+		this.eventBus.onGameResumed(() => {
 			this.handlePause(false);
 		});
 	}
 
 	pauseGame() {
 		this.scene.input.keyboard.disableGlobalCapture();
-		gameEvents.emit(Event.GAME_BROADCAST_PAUSE, true);
+		this.eventBus.broadcastGamePaused(true);
 		pauseAllScenes();
 	}
 
 	resumeGame() {
 		this.scene.input.keyboard.enableGlobalCapture();
-		gameEvents.emit(Event.GAME_BROADCAST_PAUSE, false);
+		this.eventBus.broadcastGamePaused(true);
 		resumeAllScenes();
 	}
 
