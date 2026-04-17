@@ -22,7 +22,7 @@ class AssetLoader {
 	loadAssets = () =>
 		new Promise((resolve) => {
 			this.scene.load.on('progress', (value) => {
-				this.eventBus.emitAssetLoadProgress(value);
+				this.eventBus.emitAssetLoadProgress({ progress: value });
 			});
 
 			this.scene.load.on('complete', () => {

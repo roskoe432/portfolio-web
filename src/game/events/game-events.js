@@ -66,8 +66,8 @@ function GameEvents(eventBus) {
 
 	// System Events
 	this.emitAssetLoadStart = () => this.emit(Events.SYSTEM_ASSET_LOAD_START);
-	this.emitAssetLoadProgress = (progress) =>
-		this.emit(Events.SYSTEM_ASSET_LOAD_PROGRESS, { progress });
+	this.emitAssetLoadProgress = (payload) =>
+		this.emit(Events.SYSTEM_ASSET_LOAD_PROGRESS, payload);
 	this.emitAssetLoadComplete = () =>
 		this.emit(Events.SYSTEM_ASSET_LOAD_COMPLETE);
 	this.emitLanguageChange = (locale) =>

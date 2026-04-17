@@ -16,8 +16,8 @@ function LoadingScreen() {
 		setProgress(0);
 	});
 
-	useOnAssetLoadProgress((value) => {
-		setProgress(value);
+	useOnAssetLoadProgress(({ progress }) => {
+		setProgress(progress);
 	});
 
 	useOnAssetLoadComplete(() => {
