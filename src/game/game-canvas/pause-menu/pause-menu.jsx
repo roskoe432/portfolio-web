@@ -2,10 +2,10 @@ import { useGameEvent, Event, gameEvents } from '@game';
 import styles from './pause-menu.module.less';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/shared/components';
+import { Button } from '@shared/components';
 import Settings from './settings/settings';
 import Credits from './credits/credits';
-import useKeyInput from '@/shared/hooks/useKeyInput';
+import useKeyInput from '@shared/hooks/useKeyInput';
 
 function PauseMenu() {
 	const { t } = useTranslation();

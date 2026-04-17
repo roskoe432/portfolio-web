@@ -27,7 +27,7 @@ export default defineConfig({
 	plugins: [react(), tmjPlugin(), analyzer()],
 	resolve: {
 		alias: {
-			'@': path.resolve(__dirname, 'src'),
+			'@config': path.resolve(__dirname, 'src/config.js'),
 			'@shared': path.resolve(__dirname, 'src/shared'),
 			'@pages': path.resolve(__dirname, 'src/pages'),
 			'@features': path.resolve(__dirname, 'src/features'),

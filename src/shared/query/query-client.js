@@ -1,4 +1,4 @@
-import config from '@/config';
+import config from '@config';
 import { QueryClient } from '@tanstack/react-query';
 
 export const unwrapQueryData = async (fn) => {

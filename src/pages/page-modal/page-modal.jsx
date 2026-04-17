@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from 'react-overlays';
 import AppRoutes, { AppLinks } from '@app/app-navigation/app-navigation';
 import styles from './page-modal.module.less';
-import config from '@/config';
+import config from '@config';
 import usePageModal from './usePageModal';
 
 function PageModal() {

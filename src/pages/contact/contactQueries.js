@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { emailService } from '@/services';
+import { emailService } from '@services';
 
 export function useEmailMutation() {
 	return useMutation({

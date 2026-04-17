@@ -1,6 +1,6 @@
 import i18next from 'i18next';
 import { gameEvents, Event } from '@game/events';
-import GameObject from '@/game/entities/game-object';
+import GameObject from '@game/entities/game-object';
 import { Math } from 'phaser';
 
 const { Vector2 } = Math;
@@ -90,7 +90,10 @@ const gameObjectsConfig = {
 			},
 			onExit: () => {},
 			onInteract: () => {
-				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer', page: '/contact' });
+				gameEvents.emit(Event.GAME_INTERACT, {
+					type: 'computer',
+					page: '/contact',
+				});
 				gameEvents.emit(Event.GAME_PAUSE, true);
 			},
 		},
@@ -126,7 +129,12 @@ const gameObjectsConfig = {
 const createGameObjects = (scene, player) =>
 	Object.values(gameObjectsConfig).reduce((acc, config) => {
 		if (config.positions) {
-			const objects = GameObject.factory(scene, config, config.positions, i18next);
+			const objects = GameObject.factory(
+				scene,
+				config,
+				config.positions,
+				i18next,
+			);
 			return [...acc, ...objects];
 		}
 
