@@ -26,7 +26,7 @@ function PauseMenu() {
 	useKeyInput(
 		'Escape',
 		() => {
-			eventBus.emitGameResumed();
+			eventBus.emitRequestResume();
 			setShowSettings(false);
 		},
 		{ listenForInput: showPauseMenu },
