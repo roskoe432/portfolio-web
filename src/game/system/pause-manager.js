@@ -34,23 +34,23 @@ class PauseManager {
 		this.eventBus.onPKeyPressed(() => {
 			this.handlePause(!this.isPaused);
 		});
-		this.eventBus.onGamePaused(() => {
+		this.eventBus.onRequestPause(() => {
 			this.handlePause(true);
 		});
-		this.eventBus.onGameResumed(() => {
+		this.eventBus.onRequestResume(() => {
 			this.handlePause(false);
 		});
 	}
 
 	pauseGame() {
 		this.scene.input.keyboard.disableGlobalCapture();
-		this.eventBus.broadcastGamePaused(true);
+		this.eventBus.emitGamePaused();
 		pauseAllScenes();
 	}
 
 	resumeGame() {
 		this.scene.input.keyboard.enableGlobalCapture();
-		this.eventBus.broadcastGamePaused(true);
+		this.eventBus.emitGameResumed();
 		resumeAllScenes();
 	}
 

@@ -1,3 +1,25 @@
+const Events = {
+	GAME_PAUSED: 'game-paused',
+	GAME_RESUMED: 'game-resumed',
+	GAME_REQUEST_PAUSE: 'game-request-pause',
+	GAME_REQUEST_RESUME: 'game-request-resume',
+	PLAYER_INTERACT: 'player-interact',
+
+	P_KEY_PRESSED: 'p-key-pressed',
+	E_KEY_PRESSED: 'e-key-pressed',
+	NAVIGATION_KEYS_PRESSED: 'navigation-keys-pressed',
+	INPUT_ENABLED: 'input-enabled',
+	INPUT_DISABLED: 'input-disabled',
+
+	SYSTEM_ASSET_LOAD_START: 'asset-load-start',
+	SYSTEM_ASSET_LOAD_PROGRESS: 'asset-load-progress',
+	SYSTEM_ASSET_LOAD_COMPLETE: 'asset-load-complete',
+	SYSTEM_LANGUAGE_CHANGE: 'language-change',
+	SYSTEM_UI_MOUNTED: 'ui-mounted',
+
+	UI_PAGE_NAVIGATE: 'page-navigate',
+};
+
 function GameEvents(eventBus) {
 	const _eventBus = eventBus;
 
@@ -11,54 +33,63 @@ function GameEvents(eventBus) {
 	this.emit = (event, payload) => _eventBus.emit(event, payload);
 
 	// Game State Events
-	this.emitGamePaused = () => this.emit('game-paused');
-	this.emitGameResumed = () => this.emit('game-resumed');
-	this.broadcastGamePaused = () => this.emit('game-paused-broadcast');
-	this.emitPlayerInteract = () => this.emit('player-interact');
+	this.emitGamePaused = () => this.emit(Events.GAME_PAUSED);
+	this.emitGameResumed = () => this.emit(Events.GAME_RESUMED);
+	this.emitRequestPause = () => this.emit(Events.GAME_REQUEST_PAUSE);
+	this.emitRequestResume = () => this.emit(Events.GAME_REQUEST_RESUME);
 
-	this.onGamePaused = (callback) => this.on('game-paused', callback);
-	this.onGameResumed = (callback) => this.on('game-resumed', callback);
-	this.onGamePausedBroadcast = (callback) =>
-		this.on('game-paused-broadcast', callback);
-	this.onPlayerInteract = (callback) => this.on('player-interact', callback);
+	this.emitPlayerInteract = () => this.emit(Events.PLAYER_INTERACT);
+
+	this.onGamePaused = (callback) => this.on(Events.GAME_PAUSED, callback);
+	this.onGameResumed = (callback) => this.on(Events.GAME_RESUMED, callback);
+	this.onPlayerInteract = (callback) =>
+		this.on(Events.PLAYER_INTERACT, callback);
+	this.onRequestPause = (callback) =>
+		this.on(Events.GAME_REQUEST_PAUSE, callback);
+	this.onRequestResume = (callback) =>
+		this.on(Events.GAME_REQUEST_RESUME, callback);
 
 	// Input Events
-	this.emitPKeyPressed = () => this.emit('p-key-pressed');
-	this.emitEKeyPressed = () => this.emit('e-key-pressed');
+	this.emitPKeyPressed = () => this.emit(Events.P_KEY_PRESSED);
+	this.emitEKeyPressed = () => this.emit(Events.E_KEY_PRESSED);
 	this.emitNavigationKeysPressed = (inputEventData) =>
-		this.emit('navigation-keys-pressed', inputEventData);
-	this.emitInputEnabled = () => this.emit('input-enabled');
-	this.emitInputDisabled = () => this.emit('input-disabled');
+		this.emit(Events.NAVIGATION_KEYS_PRESSED, inputEventData);
+	this.emitInputEnabled = () => this.emit(Events.INPUT_ENABLED);
+	this.emitInputDisabled = () => this.emit(Events.INPUT_DISABLED);
 
-	this.onPKeyPressed = (callback) => this.on('p-key-pressed', callback);
-	this.onEKeyPressed = (callback) => this.on('e-key-pressed', callback);
+	this.onPKeyPressed = (callback) => this.on(Events.P_KEY_PRESSED, callback);
+	this.onEKeyPressed = (callback) => this.on(Events.E_KEY_PRESSED, callback);
 	this.onNavigationKeysPressed = (callback) =>
-		this.on('navigation-keys-pressed', callback);
-	this.onInputEnabled = (callback) => this.on('input-enabled', callback);
-	this.onInputDisabled = (callback) => this.on('input-disabled', callback);
+		this.on(Events.NAVIGATION_KEYS_PRESSED, callback);
+	this.onInputEnabled = (callback) => this.on(Events.INPUT_ENABLED, callback);
+	this.onInputDisabled = (callback) => this.on(Events.INPUT_DISABLED, callback);
 
 	// System Events
-	this.emitAssetLoadStart = () => this.emit('asset-load-start');
+	this.emitAssetLoadStart = () => this.emit(Events.SYSTEM_ASSET_LOAD_START);
 	this.emitAssetLoadProgress = (progress) =>
-		this.emit('asset-load-progress', { progress });
-	this.emitAssetLoadComplete = () => this.emit('asset-load-complete');
+		this.emit(Events.SYSTEM_ASSET_LOAD_PROGRESS, { progress });
+	this.emitAssetLoadComplete = () =>
+		this.emit(Events.SYSTEM_ASSET_LOAD_COMPLETE);
 	this.emitLanguageChange = (locale) =>
-		this.emit('language-change', { locale });
+		this.emit(Events.SYSTEM_LANGUAGE_CHANGE, { locale });
 
-	this.onAssetLoadStart = (callback) => this.on('asset-load-start', callback);
+	this.onAssetLoadStart = (callback) =>
+		this.on(Events.SYSTEM_ASSET_LOAD_START, callback);
 	this.onAssetLoadProgress = (callback) =>
-		this.on('asset-load-progress', callback);
+		this.on(Events.SYSTEM_ASSET_LOAD_PROGRESS, callback);
 	this.onAssetLoadComplete = (callback) =>
-		this.on('asset-load-complete', callback);
-	this.onUIMounted = (callback) => this.on('ui-mounted', callback);
-	this.onLanguageChange = (callback) => this.on('language-change', callback);
+		this.on(Events.SYSTEM_ASSET_LOAD_COMPLETE, callback);
+	this.onUIMounted = (callback) => this.on(Events.SYSTEM_UI_MOUNTED, callback);
+	this.onLanguageChange = (callback) =>
+		this.on(Events.SYSTEM_LANGUAGE_CHANGE, callback);
 
 	// UI Events
-	this.emitPageNavigate = (page) => this.emit('page-navigate', { page });
-	this.emitUIMounted = () => this.emit('ui-mounted');
+	this.emitPageNavigate = (page) =>
+		this.emit(Events.UI_PAGE_NAVIGATE, { page });
+	this.emitUIMounted = () => this.emit(Events.SYSTEM_UI_MOUNTED);
 
-	this.emitUIMounted = () => this.emit('ui-mounted');
-	this.onPageNavigate = (callback) => this.on('page-navigate', callback);
+	this.onPageNavigate = (callback) =>
+		this.on(Events.UI_PAGE_NAVIGATE, callback);
 }
 
 export default GameEvents;

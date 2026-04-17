@@ -16,7 +16,7 @@ function usePageModal() {
 
 	const handleOnModalClose = () => {
 		setShowModal(false);
-		eventBus.emitGamePaused();
+		eventBus.emitRequestResume();
 	};
 
 	return { showModal, handleOnModalClose };
