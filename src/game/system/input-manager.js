@@ -1,8 +1,15 @@
 import Phaser from 'phaser';
-import { gameEvents, Event } from '../events';
+import { gameEvents, Event, eventBus } from '../events';
 
 class InputManager {
 	inputEnabled = true;
+	navInputLastFrame = 0;
+	keys = {
+		up: false,
+		down: false,
+		left: false,
+		right: false,
+	};
 
 	constructor(scene) {
 		this.scene = scene;
@@ -10,6 +17,17 @@ class InputManager {
 		this.wasdKeys = null;
 		this.eKey = null;
 		this.pKey = null;
+	}
+
+	handleDirectionChange(keys) {
+		this.keys = keys;
+
+		const direction = {
+			x: (keys.right ? 1 : 0) - (keys.left ? 1 : 0),
+			y: (keys.down ? 1 : 0) - (keys.up ? 1 : 0),
+		};
+
+		eventBus.emitNavigationKeysPressed({ keys, direction });
 	}
 
 	init() {
@@ -55,7 +73,16 @@ class InputManager {
 		};
 
 		if (direction.up || direction.down || direction.left || direction.right) {
-			gameEvents.emit(Event.GAME_NAV_KEYS_PRESSED, direction);
+			this.navInputLastFrame = true;
+			this.handleDirectionChange(direction);
+		} else if (this.navInputLastFrame) {
+			this.navInputLastFrame = false;
+			this.handleDirectionChange({
+				up: false,
+				down: false,
+				left: false,
+				right: false,
+			});
 		}
 	}
 }

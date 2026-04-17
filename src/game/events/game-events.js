@@ -25,8 +25,8 @@ function GameEvents(eventBus) {
 	// Input Events
 	this.emitPKeyPressed = () => this.emit('p-key-pressed');
 	this.emitEKeyPressed = () => this.emit('e-key-pressed');
-	this.emitNavigationKeysPressed = (keys) =>
-		this.emit('navigation-keys-pressed', { keys });
+	this.emitNavigationKeysPressed = (inputEventData) =>
+		this.emit('navigation-keys-pressed', inputEventData);
 	this.emitInputEnabled = () => this.emit('input-enabled');
 	this.emitInputDisabled = () => this.emit('input-disabled');
 
