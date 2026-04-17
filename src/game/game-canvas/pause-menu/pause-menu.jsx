@@ -1,4 +1,4 @@
-import { useGameEvent, Event, gameEvents } from '@game';
+import { eventBus, useOnGamePaused, useOnGameResumed } from '@game';
 import styles from './pause-menu.module.less';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,14 +13,18 @@ function PauseMenu() {
 	const [showSettings, setShowSettings] = useState(false);
 	const [showCredits, setShowCredits] = useState(false);
 
-	useGameEvent(Event.GAME_BROADCAST_PAUSE, (isPaused) => {
-		setShowPauseMenu(isPaused);
+	useOnGamePaused(() => {
+		setShowPauseMenu(true);
+	});
+
+	useOnGameResumed(() => {
+		setShowPauseMenu(false);
 	});
 
 	useKeyInput(
 		'Escape',
 		() => {
-			gameEvents.emit(Event.GAME_RESUME);
+			eventBus.emitGameResumed();
 			setShowSettings(false);
 		},
 		{ listenForInput: showPauseMenu },
@@ -37,7 +41,7 @@ function PauseMenu() {
 			<div className={styles.hud}>
 				{showMenu ? (
 					<div className={styles.buttonGroup}>
-						<Button onClick={() => gameEvents.emit(Event.GAME_RESUME)}>
+						<Button onClick={() => eventBus.emitGameResumed()}>
 							{t('pauseMenu.resume')}
 						</Button>
 						<Button onClick={() => setShowSettings(true)}>
