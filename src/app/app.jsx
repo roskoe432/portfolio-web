@@ -1,12 +1,12 @@
 import PageModal from '@pages/page-modal/page-modal';
 import styles from './app.module.less';
 import React, { useEffect } from 'react';
-import { gameEvents, Event } from '@game';
+import { eventBus } from '@game';
 import GameCanvas from '@game/game-canvas/game-canvas';
 
 function App() {
 	useEffect(() => {
-		gameEvents.emit(Event.SYSTEM_UI_MOUNTED);
+		eventBus.emitUIMounted();
 	}, []);
 
 	return (
