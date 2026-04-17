@@ -44,3 +44,12 @@ export function useOnAssetLoadProgress(handler) {
 export function useOnAssetLoadComplete(handler) {
 	useGameEvent((callback) => eventBus.onAssetLoadComplete(callback), handler);
 }
+
+export function useDisableGameInput() {
+	useEffect(() => {
+		eventBus.emitDisableInput();
+		return () => {
+			eventBus.emitEnableInput();
+		};
+	}, []);
+}

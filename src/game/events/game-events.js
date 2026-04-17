@@ -54,8 +54,8 @@ function GameEvents(eventBus) {
 	this.emitEKeyPressed = () => this.emit(Events.E_KEY_PRESSED);
 	this.emitNavigationKeysPressed = (inputEventData) =>
 		this.emit(Events.NAVIGATION_KEYS_PRESSED, inputEventData);
-	this.emitInputEnabled = () => this.emit(Events.INPUT_ENABLED);
-	this.emitInputDisabled = () => this.emit(Events.INPUT_DISABLED);
+	this.emitEnableInput = () => this.emit(Events.INPUT_ENABLED);
+	this.emitDisableInput = () => this.emit(Events.INPUT_DISABLED);
 
 	this.onPKeyPressed = (callback) => this.on(Events.P_KEY_PRESSED, callback);
 	this.onEKeyPressed = (callback) => this.on(Events.E_KEY_PRESSED, callback);
@@ -84,12 +84,13 @@ function GameEvents(eventBus) {
 		this.on(Events.SYSTEM_LANGUAGE_CHANGE, callback);
 
 	// UI Events
-	this.emitPageNavigate = (page) =>
-		this.emit(Events.UI_PAGE_NAVIGATE, { page });
+	this.emitPageNavigate = (payload) =>
+		this.emit(Events.UI_PAGE_NAVIGATE, payload);
 	this.emitUIMounted = () => this.emit(Events.SYSTEM_UI_MOUNTED);
 
 	this.onPageNavigate = (callback) =>
 		this.on(Events.UI_PAGE_NAVIGATE, callback);
+	this.onUIMounted = (callback) => this.on(Events.SYSTEM_UI_MOUNTED, callback);
 }
 
 export default GameEvents;

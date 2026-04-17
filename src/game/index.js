@@ -9,4 +9,5 @@ export {
 	useOnAssetLoadStart,
 	useOnAssetLoadProgress,
 	useOnAssetLoadComplete,
+	useDisableGameInput,
 } from './hooks/event.hooks';

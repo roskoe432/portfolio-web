@@ -7,11 +7,15 @@ function usePageModal() {
 	const navigate = useNavigate();
 
 	useOnPlayerInteract(() => {
+		console.log(
+			'Player interact event received in usePageModal, showing modal',
+		);
 		setShowModal(true);
 	});
 
-	useOnPageNavigate((payload) => {
-		navigate(payload.page);
+	useOnPageNavigate(({ page }) => {
+		console.log('Page navigate event received in usePageModal:', page);
+		navigate(page);
 	});
 
 	const handleOnModalClose = () => {

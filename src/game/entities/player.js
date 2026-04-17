@@ -21,7 +21,6 @@ function Player(scene, eventBus, settings = { speed: 100 }) {
 	this.onPreload = async () => {};
 
 	this.handleNavigation = ({ direction }) => {
-		console.log('Handling navigation with direction:', direction);
 		this.player.setVelocity(
 			direction.x * this.settings.speed,
 			direction.y * this.settings.speed,

@@ -14,6 +14,7 @@ class AssetLoader {
 		if (this.loaded) return;
 
 		this.eventBus.onUIMounted(() => {
+			console.log('UI Mounted, starting asset loading');
 			this.loadAssets();
 		});
 	}

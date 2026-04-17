@@ -52,7 +52,6 @@ class InputManager {
 	}
 
 	init() {
-		console.log(this.eventBus);
 		this.eventBus.onInputDisabled(this.onDisableInput.bind(this));
 		this.eventBus.onInputEnabled(this.onEnableInput.bind(this));
 

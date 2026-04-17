@@ -19,6 +19,8 @@ function PauseMenu() {
 
 	useOnGameResumed(() => {
 		setShowPauseMenu(false);
+		setShowSettings(false);
+		setShowCredits(false);
 	});
 
 	useKeyInput(
@@ -41,7 +43,7 @@ function PauseMenu() {
 			<div className={styles.hud}>
 				{showMenu ? (
 					<div className={styles.buttonGroup}>
-						<Button onClick={() => eventBus.emitGameResumed()}>
+						<Button onClick={() => eventBus.emitRequestResume()}>
 							{t('pauseMenu.resume')}
 						</Button>
 						<Button onClick={() => setShowSettings(true)}>

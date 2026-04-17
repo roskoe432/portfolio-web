@@ -35,7 +35,7 @@ const gameObjectsConfig = {
 			},
 			onExit: () => {},
 			onInteract: () => {
-				eventBus.emitPageNavigate({ page: '/' });
+				eventBus.emitPlayerInteract();
 				eventBus.emitRequestPause();
 			},
 		},
@@ -62,7 +62,7 @@ const gameObjectsConfig = {
 			},
 			onExit: () => {},
 			onInteract: () => {
-				eventBus.emitPageNavigate({ page: '/blog' });
+				eventBus.emitPlayerInteract();
 				eventBus.emitRequestPause();
 			},
 		},
@@ -90,7 +90,7 @@ const gameObjectsConfig = {
 			},
 			onExit: () => {},
 			onInteract: () => {
-				eventBus.emitPageNavigate({ page: '/contact' });
+				eventBus.emitPlayerInteract();
 				eventBus.emitRequestPause();
 			},
 		},
