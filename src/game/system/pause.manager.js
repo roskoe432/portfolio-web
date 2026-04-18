@@ -24,13 +24,15 @@ function PauseManager(eventBus, logger) {
 
 	this.onInit = function () {
 		this.eventBus.onPKeyPressed(() => {
-			console.debug('P key pressed, toggling pause');
+			this.logger.debug('P key pressed, toggling pause');
 			this.handlePause(!this.isPaused);
 		});
 		this.eventBus.onRequestPause(() => {
+			if (this.isPaused) return;
 			this.handlePause(true);
 		});
 		this.eventBus.onRequestResume(() => {
+			if (!this.isPaused) return;
 			this.handlePause(false);
 		});
 	};

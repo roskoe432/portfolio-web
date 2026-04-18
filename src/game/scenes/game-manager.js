@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import logger from '@game/system/logger';
 import { pauseManager, inputManager, assetManager } from '@game/system';
 
 const managerRegistry = [pauseManager, inputManager, assetManager];
@@ -7,12 +8,12 @@ function GameManager() {
 	Phaser.Scene.call(this, { key: 'GameManager' });
 
 	this.init = function () {
-		console.debug('GameManager: init');
+		logger.debug('GameManager: init');
 		this.scene.sendToBack(this.scene.key);
 		this.scene.setVisible(false);
 
 		this.events.once('shutdown', () => {
-			console.log('GameManager: shutdown, disposing managers');
+			logger.debug('GameManager: shutdown, disposing managers');
 			managerRegistry.forEach((manager) => manager.dispose());
 		});
 
@@ -21,7 +22,7 @@ function GameManager() {
 	};
 
 	this.create = function () {
-		console.debug('GameManager: create');
+		logger.debug('GameManager: create');
 		managerRegistry.forEach((manager) => manager.onCreate());
 	};
 
