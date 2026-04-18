@@ -86,6 +86,45 @@ describe('I18n Adapter Component', () => {
 		expect(adapter.getCurrentLanguage()).toBe('en');
 	});
 
+	it('should persist the current language when no language is stored during init', () => {
+		mockStorageService.getLanguage.mockReturnValue(undefined);
+
+		adapter.init();
+
+		expect(mockStorageService.setLanguage).toHaveBeenCalledWith('en');
+		expect(mockI18n.use).toHaveBeenCalledWith(mockReactPlugin);
+		expect(mockI18n.init).toHaveBeenCalledWith({
+			resources: {
+				en: { translation: { greeting: 'Hello' } },
+				es: { translation: { greeting: 'Hola' } },
+			},
+			lng: 'en',
+			fallbackLng: 'en',
+			interpolation: {
+				escapeValue: false,
+			},
+		});
+	});
+
+	it('should not overwrite the stored language during init when one exists', () => {
+		mockStorageService.getLanguage.mockReturnValue('es');
+
+		adapter.init();
+
+		expect(mockStorageService.setLanguage).not.toHaveBeenCalled();
+		expect(mockI18n.init).toHaveBeenCalledWith({
+			resources: {
+				en: { translation: { greeting: 'Hello' } },
+				es: { translation: { greeting: 'Hola' } },
+			},
+			lng: 'es',
+			fallbackLng: 'en',
+			interpolation: {
+				escapeValue: false,
+			},
+		});
+	});
+
 	it('it should return language if resolvedLanguage is null or empty string', async () => {
 		mockI18n = createI18nMock(null, 'es', false);
 

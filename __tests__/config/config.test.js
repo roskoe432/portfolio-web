@@ -60,6 +60,20 @@ describe('config', () => {
 		expect(config.reactQuery.devtools.enabled).toBe(false);
 	});
 
+	it('uses the provided log level when VITE_LOG_LEVEL is set', async () => {
+		const config = await loadConfig({
+			VITE_LOG_LEVEL: 'debug',
+		});
+
+		expect(config.logging.level).toBe('debug');
+	});
+
+	it('defaults log level to info when VITE_LOG_LEVEL is missing', async () => {
+		const config = await loadConfig({}, ['VITE_LOG_LEVEL']);
+
+		expect(config.logging.level).toBe('info');
+	});
+
 	it('parses booleans and numeric values from env strings', async () => {
 		const config = await loadConfig({
 			VITE_GAME_DEBUG_MODE: 'true',
