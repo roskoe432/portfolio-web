@@ -11,3 +11,4 @@ export {
 	useOnAssetLoadComplete,
 	useDisableGameInput,
 } from './hooks/event.hooks';
+export { default as GameCanvas } from './game-canvas/game-canvas';

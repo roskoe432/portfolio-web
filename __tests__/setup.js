@@ -41,3 +41,10 @@ vi.mock('phaser', async () => {
 	const phaserMock = await import('./__mocks__/phaser.js');
 	return phaserMock;
 });
+
+vi.mock('@config', async () => {
+	const configMock = await import('./__mocks__/config.js');
+	return {
+		default: configMock.default(),
+	};
+});

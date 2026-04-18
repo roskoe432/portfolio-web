@@ -124,28 +124,21 @@ export default defineConfig({
 		environment: 'jsdom',
 		setupFiles: './__tests__/setup.js',
 		css: false,
-		env: {
-			VITE_ENV: 'test',
-			VITE_GITHUB_URL: 'https://github.com/test',
-			VITE_LINKEDIN_URL: 'https://linkedin.com/test',
-			VITE_PERLENSPIEL_URL: 'https://perlenspiel.test',
-		},
 		coverage: {
 			provider: 'v8',
 			reporter: ['text', 'json', 'html', 'json-summary'],
 			include: ['src/**/*.{js,jsx}'],
 			exclude: [
 				'src/index.jsx',
-				'src/config.js',
 				'src/pages/index.jsx',
-				'src/pages/links/links.jsx', // Just keeping until I move links elsewhere.
+				'src/pages/links/links.jsx',
 				'**/*.json',
 			],
 			thresholds: {
-				statements: 5,
-				branches: 5,
-				functions: 5,
-				lines: 5,
+				statements: 30,
+				branches: 9,
+				functions: 20,
+				lines: 30,
 			},
 		},
 		include: ['__tests__/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],

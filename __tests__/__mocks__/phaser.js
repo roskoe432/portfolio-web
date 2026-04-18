@@ -27,6 +27,13 @@ class MockScene {
 	}
 }
 
+class MockVector2 {
+	constructor(x = 0, y = 0) {
+		this.x = x;
+		this.y = y;
+	}
+}
+
 class MockEventEmitter {
 	constructor() {
 		this.events = {};
@@ -53,6 +60,13 @@ class MockEventEmitter {
 }
 
 export const EventBus = new MockEventEmitter();
+export const Math = {
+	Vector2: MockVector2,
+};
+
+export const Events = {
+	EventEmitter: MockEventEmitter,
+};
 
 export default {
 	Game: MockGame,
