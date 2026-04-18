@@ -3,6 +3,7 @@ import { Modal } from 'react-overlays';
 import useTutorial from './useTutorial';
 import styles from './tutorial.module.less';
 import getTutorialContent from './content';
+import { useDisableGameInput } from '@game/hooks/event.hooks';
 
 function Tutorial() {
 	const { t } = useTranslation();
@@ -11,12 +12,12 @@ function Tutorial() {
 		useTutorial(content);
 	const currentContent = getCurrentItem();
 
+	const tutorialActive = currentContent !== null;
+
+	useDisableGameInput({ active: tutorialActive });
+
 	return (
-		<Modal
-			className={styles.tutorial}
-			show={currentContent !== null}
-			onHide={nextItem}
-		>
+		<Modal className={styles.tutorial} show={tutorialActive} onHide={nextItem}>
 			<div className={styles.content}>
 				{currentContent && (
 					<p className={styles.message}>{currentContent.message}</p>
