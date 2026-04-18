@@ -6,7 +6,7 @@ function AssetManager(eventBus, logger, assetPath) {
 	this.assetPath = assetPath;
 	this.loaded = false;
 
-	this.onInit = () => {
+	this.onInit = function () {
 		if (this.loaded) return;
 
 		this.eventBus.onUIMounted(() => {
@@ -15,8 +15,8 @@ function AssetManager(eventBus, logger, assetPath) {
 		});
 	};
 
-	this.loadAssets = () =>
-		new Promise((resolve) => {
+	this.loadAssets = function () {
+		return new Promise((resolve) => {
 			this.scene.load.on('progress', (value) => {
 				this.eventBus.emitAssetLoadProgress({ progress: value });
 			});
@@ -35,6 +35,7 @@ function AssetManager(eventBus, logger, assetPath) {
 			this.scene.load.pack('gameAssets', '/assets/manifest.json');
 			this.scene.load.start();
 		});
+	};
 }
 
 BaseManager.derive(AssetManager);

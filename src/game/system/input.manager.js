@@ -7,7 +7,7 @@ function InputManager(eventBus, logger) {
 	this.inputEnabled = true;
 	this.lastDirection = { x: 0, y: 0 };
 
-	this.handleDirectionChange = (cursors, wasdKeys) => {
+	this.handleDirectionChange = function (cursors, wasdKeys) {
 		const keys = {
 			up: cursors.up.isDown || wasdKeys.up.isDown,
 			down: cursors.down.isDown || wasdKeys.down.isDown,
@@ -29,7 +29,7 @@ function InputManager(eventBus, logger) {
 		}
 	};
 
-	this.onDisableInput = () => {
+	this.onDisableInput = function () {
 		this.eventBus.emitNavigationKeysPressed({
 			keys: {},
 			direction: { x: 0, y: 0 },
@@ -38,11 +38,11 @@ function InputManager(eventBus, logger) {
 		this.inputEnabled = false;
 	};
 
-	this.onEnableInput = () => {
+	this.onEnableInput = function () {
 		this.inputEnabled = true;
 	};
 
-	this.onInit = () => {
+	this.onInit = function () {
 		this.eventBus.onInputDisabled(this.onDisableInput.bind(this));
 		this.eventBus.onInputEnabled(this.onEnableInput.bind(this));
 
@@ -61,7 +61,7 @@ function InputManager(eventBus, logger) {
 		);
 	};
 
-	this.update = () => {
+	this.onUpdate = function () {
 		if (!this.inputEnabled) return;
 
 		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {

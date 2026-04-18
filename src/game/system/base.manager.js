@@ -3,7 +3,7 @@ function BaseManager(eventBus, logger) {
 	this.logger = logger;
 	this.scene = null;
 
-	this.register = (gameManager) => {
+	this.register = function (gameManager) {
 		if (this.scene) return;
 
 		this.scene = gameManager;
@@ -12,12 +12,12 @@ function BaseManager(eventBus, logger) {
 		);
 	};
 
-	this.onInit = () => {
+	this.onInit = function () {
 		throw new Error(`onInit not implemented in ${this.constructor.name}`);
 	};
 
-	this.onCreate = () => {};
-	this.onUpdate = () => {};
+	this.onCreate = function () {};
+	this.onUpdate = function () {};
 }
 
 BaseManager.derive = (Child) => {

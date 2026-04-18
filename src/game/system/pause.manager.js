@@ -6,7 +6,7 @@ function PauseManager(eventBus, logger) {
 	this.isPaused = false;
 	const _sceneRegistry = [];
 
-	const _pauseAllScenes = () => {
+	const _pauseAllScenes = function () {
 		_sceneRegistry.forEach((scene) => {
 			if (scene.scene.isActive()) {
 				scene.scene.pause();
@@ -14,7 +14,7 @@ function PauseManager(eventBus, logger) {
 		});
 	};
 
-	const _resumeAllScenes = () => {
+	const _resumeAllScenes = function () {
 		_sceneRegistry.forEach((scene) => {
 			if (scene.scene.isPaused()) {
 				scene.scene.resume();
@@ -22,8 +22,9 @@ function PauseManager(eventBus, logger) {
 		});
 	};
 
-	this.onInit = () => {
+	this.onInit = function () {
 		this.eventBus.onPKeyPressed(() => {
+			console.debug('P key pressed, toggling pause');
 			this.handlePause(!this.isPaused);
 		});
 		this.eventBus.onRequestPause(() => {
@@ -34,19 +35,19 @@ function PauseManager(eventBus, logger) {
 		});
 	};
 
-	this.pauseGame = () => {
+	this.pauseGame = function () {
 		this.scene.input.keyboard.disableGlobalCapture();
 		this.eventBus.emitGamePaused();
 		_pauseAllScenes();
 	};
 
-	this.resumeGame = () => {
+	this.resumeGame = function () {
 		this.scene.input.keyboard.enableGlobalCapture();
 		this.eventBus.emitGameResumed();
 		_resumeAllScenes();
 	};
 
-	this.handlePause = (isPaused) => {
+	this.handlePause = function (isPaused) {
 		this.logger.debug(`${isPaused ? 'Pausing' : 'Resuming'} game`);
 		this.isPaused = isPaused;
 		if (this.isPaused) {
@@ -55,16 +56,9 @@ function PauseManager(eventBus, logger) {
 		return this.resumeGame();
 	};
 
-	this.registerScene = (scene) => {
+	this.registerScene = function (scene) {
 		if (!_sceneRegistry.includes(scene)) {
 			_sceneRegistry.push(scene);
-		}
-	};
-
-	this.unregisterScene = (scene) => {
-		const index = _sceneRegistry.indexOf(scene);
-		if (index !== -1) {
-			_sceneRegistry.splice(index, 1);
 		}
 	};
 }
