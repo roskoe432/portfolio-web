@@ -1,8 +1,9 @@
 import Phaser from 'phaser';
-import Player from '@/game/entities/player';
+import Player from '@game/entities/player';
 import createBoundaries from './boundaries';
 import createGameObjects from './scene-config';
 import { registerForPause } from '@game/system/pause-manager';
+import { eventBus } from '@game/events';
 
 class MainScene extends Phaser.Scene {
 	loadAnimations = null;
@@ -43,7 +44,7 @@ class MainScene extends Phaser.Scene {
 	}
 
 	async preload() {
-		this.player = new Player(this);
+		this.player = new Player(this, eventBus);
 		await this.player.onPreload();
 	}
 

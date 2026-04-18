@@ -1,6 +1,6 @@
 import Phaser, { Math } from 'phaser';
 const { Vector2 } = Math;
-import { gameEvents, Event } from '@game';
+import { eventBus } from '@game';
 
 const GameObject = (() => {
 	function GameObject(scene, config, i18next) {
@@ -11,13 +11,17 @@ const GameObject = (() => {
 		this.text = null;
 		this.trigger = null;
 
-		gameEvents.on(Event.LANGUAGE_CHANGE, () => {
+		eventBus.onLanguageChange(() => {
 			if (this.config.trigger?.text) {
 				this.text.setText(this.i18next.t(this.config.trigger.text.message));
 			}
 		});
 
-		this.sprite = scene.physics.add.image(config.position.x, config.position.y, config.spriteKey);
+		this.sprite = scene.physics.add.image(
+			config.position.x,
+			config.position.y,
+			config.spriteKey,
+		);
 
 		if (config.body.size) {
 			this.sprite.body.setSize(config.body.size.x, config.body.size.y, true);
@@ -63,7 +67,10 @@ const GameObject = (() => {
 		const zoneX = this.config.position.x + (offset?.x || 0);
 		const zoneY = this.config.position.y + (offset?.y || 0);
 
-		this.trigger = this.scene.add.zone(zoneX, zoneY, size.x, size.y).setOrigin(0.5).setDepth(1);
+		this.trigger = this.scene.add
+			.zone(zoneX, zoneY, size.x, size.y)
+			.setOrigin(0.5)
+			.setDepth(1);
 		this.scene.physics.add.existing(this.trigger);
 		this.trigger.body.setAllowGravity(false);
 		this.trigger.body.setImmovable(true);
@@ -97,6 +104,7 @@ const GameObject = (() => {
 			() => {
 				if (!this.isPlayerInRange) {
 					this.isPlayerInRange = true;
+					console.log('Player entered trigger zone for', this.config.spriteKey);
 					this.onEnter();
 				}
 			},
@@ -121,7 +129,9 @@ const GameObject = (() => {
 			player.body.height,
 		);
 
-		if (!Phaser.Geom.Intersects.RectangleToRectangle(triggerBounds, playerBounds)) {
+		if (
+			!Phaser.Geom.Intersects.RectangleToRectangle(triggerBounds, playerBounds)
+		) {
 			this.isPlayerInRange = false;
 			this.onExit();
 		}

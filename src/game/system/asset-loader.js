@@ -1,17 +1,20 @@
-import { gameEvents, Event } from '../events';
-
 class AssetLoader {
 	loaded = false;
+	eventBus;
+	logger;
 
-	constructor(scene, assetPath = '/assets/manifest.json') {
+	constructor(scene, eventBus, logger, assetPath = '/assets/manifest.json') {
 		this.scene = scene;
+		this.eventBus = eventBus;
+		this.logger = logger;
 		this.assetPath = assetPath;
 	}
 
 	init() {
 		if (this.loaded) return;
 
-		gameEvents.on(Event.SYSTEM_UI_MOUNTED, () => {
+		this.eventBus.onUIMounted(() => {
+			console.log('UI Mounted, starting asset loading');
 			this.loadAssets();
 		});
 	}
@@ -19,19 +22,19 @@ class AssetLoader {
 	loadAssets = () =>
 		new Promise((resolve) => {
 			this.scene.load.on('progress', (value) => {
-				gameEvents.emit(Event.SYSTEM_ASSET_LOAD_PROGRESS, value);
+				this.eventBus.emitAssetLoadProgress({ progress: value });
 			});
 
 			this.scene.load.on('complete', () => {
 				if (this.loaded) return;
 
-				gameEvents.emit(Event.SYSTEM_ASSET_LOAD_COMPLETE);
+				this.eventBus.emitAssetLoadComplete();
 				this.scene.scene.launch('Main');
 				this.loaded = true;
 				resolve();
 			});
 
-			gameEvents.emit(Event.SYSTEM_ASSET_LOAD_START);
+			this.eventBus.emitAssetLoadStart();
 			this.scene.load.pack('gameAssets', '/assets/manifest.json');
 			this.scene.load.start();
 		});

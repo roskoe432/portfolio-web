@@ -1,23 +1,26 @@
 import { useNavigate } from 'react-router';
-import { gameEvents, Event } from '@game';
-import { useGameEvent } from '@/game/hooks/useGameEvent';
+import { eventBus, useOnPlayerInteract, useOnPageNavigate } from '@game';
 import { useState } from 'react';
 
 function usePageModal() {
 	const [showModal, setShowModal] = useState(false);
 	const navigate = useNavigate();
 
-	useGameEvent(Event.GAME_INTERACT, () => {
+	useOnPlayerInteract(() => {
+		console.log(
+			'Player interact event received in usePageModal, showing modal',
+		);
 		setShowModal(true);
 	});
 
-	useGameEvent(Event.GAME_NAVIGATE, (payload) => {
-		navigate(payload.page);
+	useOnPageNavigate(({ page }) => {
+		console.log('Page navigate event received in usePageModal:', page);
+		navigate(page);
 	});
 
 	const handleOnModalClose = () => {
 		setShowModal(false);
-		gameEvents.emit(Event.GAME_RESUME);
+		eventBus.emitRequestResume();
 	};
 
 	return { showModal, handleOnModalClose };

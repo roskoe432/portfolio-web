@@ -1,10 +1,11 @@
-import { useGameEvent, Event, gameEvents } from '@game';
+import { eventBus, useOnGamePaused, useOnGameResumed } from '@game';
 import styles from './pause-menu.module.less';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/shared/components';
+import { Button } from '@shared/components';
 import Settings from './settings/settings';
 import Credits from './credits/credits';
+import useKeyInput from '@shared/hooks/useKeyInput';
 
 function PauseMenu() {
 	const { t } = useTranslation();
@@ -12,9 +13,24 @@ function PauseMenu() {
 	const [showSettings, setShowSettings] = useState(false);
 	const [showCredits, setShowCredits] = useState(false);
 
-	useGameEvent(Event.GAME_BROADCAST_PAUSE, (isPaused) => {
-		setShowPauseMenu(isPaused);
+	useOnGamePaused(() => {
+		setShowPauseMenu(true);
 	});
+
+	useOnGameResumed(() => {
+		setShowPauseMenu(false);
+		setShowSettings(false);
+		setShowCredits(false);
+	});
+
+	useKeyInput(
+		'Escape',
+		() => {
+			eventBus.emitRequestResume();
+			setShowSettings(false);
+		},
+		{ listenForInput: showPauseMenu },
+	);
 
 	if (!showPauseMenu) {
 		return <React.Fragment />;
@@ -27,7 +43,7 @@ function PauseMenu() {
 			<div className={styles.hud}>
 				{showMenu ? (
 					<div className={styles.buttonGroup}>
-						<Button onClick={() => gameEvents.emit(Event.GAME_RESUME)}>
+						<Button onClick={() => eventBus.emitRequestResume()}>
 							{t('pauseMenu.resume')}
 						</Button>
 						<Button onClick={() => setShowSettings(true)}>

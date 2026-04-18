@@ -3,8 +3,7 @@ export function I18nAdapter({
 	i18n,
 	reactPlugin,
 	storageService,
-	gameEvents,
-	Event,
+	eventBus,
 }) {
 	this.init = () => {
 		const persistedLanguage = storageService.getLanguage();
@@ -30,7 +29,7 @@ export function I18nAdapter({
 		await i18n.changeLanguage(lang);
 		storageService.setLanguage(lang);
 		// Emit to Phaser to update in-game text immediately
-		gameEvents.emit(Event.LANGUAGE_CHANGE, lang);
+		eventBus.emitLanguageChange(lang);
 	};
 
 	this.getCurrentLanguage = () => {

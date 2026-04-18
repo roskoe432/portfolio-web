@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import enTranslation from './locales/en.json';
 import esTranslation from './locales/es.json';
 import { storageService } from '@services/index.js';
-import { gameEvents, Event } from '@game';
+import { eventBus } from '@game';
 import I18nAdapter from './i18n-adapter';
 
 const languages = [
@@ -20,8 +20,7 @@ const i18n = new I18nAdapter({
 	i18n: i18next,
 	reactPlugin: initReactI18next,
 	storageService,
-	gameEvents,
-	Event,
+	eventBus,
 });
 
 i18n.init();

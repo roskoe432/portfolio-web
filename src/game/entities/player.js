@@ -1,11 +1,38 @@
-function Player(scene) {
+function Player(scene, eventBus, settings = { speed: 100 }) {
 	this.scene = scene;
 	this.player = null;
 	this.animLoader = null;
+	this.settings = settings;
+
+	this.anims = {
+		'(0, 0)': 'idle',
+		'(0, -1)': 'walk-north',
+		'(1, -1)': 'walk-ne',
+		'(1, 0)': 'walk-east',
+		'(1, 1)': 'walk-se',
+		'(0, 1)': 'walk-south',
+		'(-1, 1)': 'walk-sw',
+		'(-1, 0)': 'walk-west',
+		'(-1, -1)': 'walk-nw',
+	};
+
+	this.currentAnimKey = `(0, 0)`;
 
 	this.onPreload = async () => {};
 
+	this.handleNavigation = ({ direction }) => {
+		this.player.setVelocity(
+			direction.x * this.settings.speed,
+			direction.y * this.settings.speed,
+		);
+
+		const animKey = `(${direction.x}, ${direction.y})`;
+		this.player.play(this.anims[animKey], true);
+	};
+
 	this.onCreate = (startX = 200, startY = 250) => {
+		eventBus.onNavigationKeysPressed(this.handleNavigation);
+
 		this.player = this.scene.physics.add.sprite(startX, startY, 'idle');
 		this.player.setDepth(2);
 		this.player.setScale(2);
@@ -14,68 +41,8 @@ function Player(scene) {
 		this.player.play('idle');
 	};
 
-	this.onUpdate = (cursors, wasdKeys) => {
-		const speed = 100;
-		let moving = false;
-
-		this.player.setVelocity(0);
-
-		// Check for diagonal movement first
-		if (
-			(cursors.left.isDown || wasdKeys.left.isDown) &&
-			(cursors.up.isDown || wasdKeys.up.isDown)
-		) {
-			this.player.setVelocityX(-speed);
-			this.player.setVelocityY(-speed);
-			this.player.play('walk-nw', true);
-			moving = true;
-		} else if (
-			(cursors.right.isDown || wasdKeys.right.isDown) &&
-			(cursors.up.isDown || wasdKeys.up.isDown)
-		) {
-			this.player.setVelocityX(speed);
-			this.player.setVelocityY(-speed);
-			this.player.play('walk-ne', true);
-			moving = true;
-		} else if (
-			(cursors.left.isDown || wasdKeys.left.isDown) &&
-			(cursors.down.isDown || wasdKeys.down.isDown)
-		) {
-			this.player.setVelocityX(-speed);
-			this.player.setVelocityY(speed);
-			this.player.play('walk-sw', true);
-			moving = true;
-		} else if (
-			(cursors.right.isDown || wasdKeys.right.isDown) &&
-			(cursors.down.isDown || wasdKeys.down.isDown)
-		) {
-			this.player.setVelocityX(speed);
-			this.player.setVelocityY(speed);
-			this.player.play('walk-se', true);
-			moving = true;
-		}
-		// Then check cardinal directions
-		else if (cursors.left.isDown || wasdKeys.left.isDown) {
-			this.player.setVelocityX(-speed);
-			this.player.play('walk-west', true);
-			moving = true;
-		} else if (cursors.right.isDown || wasdKeys.right.isDown) {
-			this.player.setVelocityX(speed);
-			this.player.play('walk-east', true);
-			moving = true;
-		} else if (cursors.up.isDown || wasdKeys.up.isDown) {
-			this.player.setVelocityY(-speed);
-			this.player.play('walk-north', true);
-			moving = true;
-		} else if (cursors.down.isDown || wasdKeys.down.isDown) {
-			this.player.setVelocityY(speed);
-			this.player.play('walk-south', true);
-			moving = true;
-		}
-
-		if (!moving) {
-			this.player.play('idle', true);
-		}
+	this.onUpdate = () => {
+		// Leave here for now - may need to add other player-related updates here in the future
 	};
 
 	this.addCollisions = (layers) => {

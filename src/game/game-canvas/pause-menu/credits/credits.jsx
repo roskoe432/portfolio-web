@@ -1,4 +1,4 @@
-import { Button } from '@/shared/components';
+import { Button } from '@shared/components';
 import styles from './credits.module.less';
 import { useTranslation } from 'react-i18next';
 import credits from './credits-data';

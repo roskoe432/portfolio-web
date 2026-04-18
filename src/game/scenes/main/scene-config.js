@@ -1,6 +1,6 @@
 import i18next from 'i18next';
-import { gameEvents, Event } from '@game/events';
-import GameObject from '@/game/entities/game-object';
+import { eventBus } from '@game/events';
+import GameObject from '@game/entities/game-object';
 import { Math } from 'phaser';
 
 const { Vector2 } = Math;
@@ -31,12 +31,12 @@ const gameObjectsConfig = {
 				...defaultTextConfig,
 			},
 			onEnter: () => {
-				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/' });
+				eventBus.emitPageNavigate({ page: '/' });
 			},
 			onExit: () => {},
 			onInteract: () => {
-				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer', page: '/' });
-				gameEvents.emit(Event.GAME_PAUSE, true);
+				eventBus.emitPlayerInteract();
+				eventBus.emitRequestPause();
 			},
 		},
 	},
@@ -58,12 +58,12 @@ const gameObjectsConfig = {
 				offset: new Vector2(-5, -55),
 			},
 			onEnter: () => {
-				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/blog' });
+				eventBus.emitPageNavigate({ page: '/blog' });
 			},
 			onExit: () => {},
 			onInteract: () => {
-				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer' });
-				gameEvents.emit(Event.GAME_PAUSE, true);
+				eventBus.emitPlayerInteract();
+				eventBus.emitRequestPause();
 			},
 		},
 	},
@@ -86,12 +86,12 @@ const gameObjectsConfig = {
 				offset: new Vector2(-5, -55),
 			},
 			onEnter: () => {
-				gameEvents.emit(Event.GAME_NAVIGATE, { page: '/contact' });
+				eventBus.emitPageNavigate({ page: '/contact' });
 			},
 			onExit: () => {},
 			onInteract: () => {
-				gameEvents.emit(Event.GAME_INTERACT, { type: 'computer', page: '/contact' });
-				gameEvents.emit(Event.GAME_PAUSE, true);
+				eventBus.emitPlayerInteract();
+				eventBus.emitRequestPause();
 			},
 		},
 	},
@@ -126,7 +126,12 @@ const gameObjectsConfig = {
 const createGameObjects = (scene, player) =>
 	Object.values(gameObjectsConfig).reduce((acc, config) => {
 		if (config.positions) {
-			const objects = GameObject.factory(scene, config, config.positions, i18next);
+			const objects = GameObject.factory(
+				scene,
+				config,
+				config.positions,
+				i18next,
+			);
 			return [...acc, ...objects];
 		}
 

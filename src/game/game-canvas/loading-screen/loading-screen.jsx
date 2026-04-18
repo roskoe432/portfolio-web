@@ -1,22 +1,26 @@
 import ProgressBar from '@shared/components/progress-bar/progress-bar';
 import styles from './loading-screen.module.less';
 import { useState } from 'react';
-import { useGameEvent, Event } from '@game';
+import {
+	useOnAssetLoadStart,
+	useOnAssetLoadProgress,
+	useOnAssetLoadComplete,
+} from '@game';
 
 function LoadingScreen() {
 	const [showProgress, setShowProgress] = useState(false);
 	const [progress, setProgress] = useState(0);
 
-	useGameEvent(Event.SYSTEM_ASSET_LOAD_START, () => {
+	useOnAssetLoadStart(() => {
 		setShowProgress(true);
 		setProgress(0);
 	});
 
-	useGameEvent(Event.SYSTEM_ASSET_LOAD_PROGRESS, (value) => {
-		setProgress(value);
+	useOnAssetLoadProgress(({ progress }) => {
+		setProgress(progress);
 	});
 
-	useGameEvent(Event.SYSTEM_ASSET_LOAD_COMPLETE, () => {
+	useOnAssetLoadComplete(() => {
 		setTimeout(() => {
 			setShowProgress(false);
 		}, 500);
@@ -29,7 +33,13 @@ function LoadingScreen() {
 	return (
 		<div className={styles.screen}>
 			<div className={styles.content}>
-				<ProgressBar value={progress} color="blue" size="large" dark className={styles.bar} />
+				<ProgressBar
+					value={progress}
+					color="blue"
+					size="large"
+					dark
+					className={styles.bar}
+				/>
 				<span className={styles.percent}>{Math.round(progress * 100)}%</span>
 			</div>
 		</div>

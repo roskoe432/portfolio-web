@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import styles from './contact.module.less';
 import { useEmailMutation } from './contactQueries';
-import { getErrorMessageFromStatus } from '@/shared/utils/helpers';
+import { getErrorMessageFromStatus } from '@shared/utils/helpers';
 import { useForm } from 'react-hook-form';
-import useDisableGameInput from '@/game/hooks/useDisableGameInput';
+import { useDisableGameInput } from '@game';
 
 function ContactPage({ closePageModal }) {
 	const { t } = useTranslation();
 	useDisableGameInput();
+
 	const { mutate, isPending, isSuccess, error } = useEmailMutation();
 	const {
 		register,
