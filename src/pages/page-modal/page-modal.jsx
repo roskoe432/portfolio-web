@@ -4,9 +4,11 @@ import AppRoutes, { AppLinks } from '@app/app-navigation/app-navigation';
 import styles from './page-modal.module.less';
 import config from '@config';
 import usePageModal from './usePageModal';
+import { useDisableGameInput } from '@game';
 
 function PageModal() {
 	const { showModal, handleOnModalClose } = usePageModal();
+	useDisableGameInput(showModal);
 
 	return (
 		<React.Fragment>

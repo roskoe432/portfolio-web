@@ -33,10 +33,12 @@ function GameEvents(eventBus) {
 	this.emit = (event, payload) => _eventBus.emit(event, payload);
 
 	// Game State Events
-	this.emitGamePaused = () => this.emit(Events.GAME_PAUSED);
-	this.emitGameResumed = () => this.emit(Events.GAME_RESUMED);
-	this.emitRequestPause = () => this.emit(Events.GAME_REQUEST_PAUSE);
-	this.emitRequestResume = () => this.emit(Events.GAME_REQUEST_RESUME);
+	this.emitGamePaused = (payload) => this.emit(Events.GAME_PAUSED, payload);
+	this.emitGameResumed = (payload) => this.emit(Events.GAME_RESUMED, payload);
+	this.emitRequestPause = (payload) =>
+		this.emit(Events.GAME_REQUEST_PAUSE, payload);
+	this.emitRequestResume = (payload) =>
+		this.emit(Events.GAME_REQUEST_RESUME, payload);
 
 	this.emitPlayerInteract = () => this.emit(Events.PLAYER_INTERACT);
 

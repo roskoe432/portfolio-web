@@ -14,7 +14,7 @@ class AssetLoader {
 		if (this.loaded) return;
 
 		this.eventBus.onUIMounted(() => {
-			console.log('UI Mounted, starting asset loading');
+			this.logger.debug('UI Mounted, starting asset loading');
 			this.loadAssets();
 		});
 	}
@@ -28,6 +28,7 @@ class AssetLoader {
 			this.scene.load.on('complete', () => {
 				if (this.loaded) return;
 
+				this.logger.debug('Asset loading complete');
 				this.eventBus.emitAssetLoadComplete();
 				this.scene.scene.launch('Main');
 				this.loaded = true;
