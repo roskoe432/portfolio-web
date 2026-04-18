@@ -57,7 +57,8 @@ function GameEvents(eventBus) {
 	this.emitNavigationKeysPressed = (inputEventData) =>
 		this.emit(Events.NAVIGATION_KEYS_PRESSED, inputEventData);
 	this.emitEnableInput = () => this.emit(Events.INPUT_ENABLED);
-	this.emitDisableInput = () => this.emit(Events.INPUT_DISABLED);
+	this.emitDisableInput = (payload) =>
+		this.emit(Events.INPUT_DISABLED, payload);
 
 	this.onPKeyPressed = (callback) => this.on(Events.P_KEY_PRESSED, callback);
 	this.onEKeyPressed = (callback) => this.on(Events.E_KEY_PRESSED, callback);

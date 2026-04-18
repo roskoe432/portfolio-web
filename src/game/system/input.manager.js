@@ -5,6 +5,7 @@ function InputManager(eventBus, logger) {
 	BaseManager.call(this, eventBus, logger);
 
 	this.inputEnabled = true;
+	this.pauseEnabled = true;
 	this.lastDirection = { x: 0, y: 0 };
 
 	this.handleDirectionChange = function (cursors, wasdKeys) {
@@ -29,17 +30,20 @@ function InputManager(eventBus, logger) {
 		}
 	};
 
-	this.onDisableInput = function () {
+	this.onDisableInput = function ({ disablePause }) {
 		this.eventBus.emitNavigationKeysPressed({
 			keys: {},
 			direction: { x: 0, y: 0 },
 		});
 		this.lastDirection = { x: 0, y: 0 };
+		console.debug('Disabling input', { disablePause });
+		this.pauseEnabled = !disablePause;
 		this.inputEnabled = false;
 	};
 
 	this.onEnableInput = function () {
 		this.inputEnabled = true;
+		this.pauseEnabled = true;
 	};
 
 	this.onInit = function () {
@@ -62,13 +66,15 @@ function InputManager(eventBus, logger) {
 	};
 
 	this.onUpdate = function () {
-		if (!this.inputEnabled) return;
-
-		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
+		if (Phaser.Input.Keyboard.JustDown(this.pKey) && this.pauseEnabled) {
+			this.logger.debug('P key pressed');
 			this.eventBus.emitPKeyPressed();
 		}
 
+		if (!this.inputEnabled) return;
+
 		if (Phaser.Input.Keyboard.JustDown(this.eKey)) {
+			this.logger.debug('E key pressed');
 			this.eventBus.emitEKeyPressed();
 		}
 

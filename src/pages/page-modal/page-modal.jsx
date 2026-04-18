@@ -8,7 +8,7 @@ import { useDisableGameInput } from '@game';
 
 function PageModal() {
 	const { showModal, handleOnModalClose } = usePageModal();
-	useDisableGameInput(showModal);
+	useDisableGameInput({ active: showModal });
 
 	return (
 		<React.Fragment>

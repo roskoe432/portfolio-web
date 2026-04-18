@@ -1,4 +1,9 @@
-import { eventBus, useOnGamePaused, useOnGameResumed } from '@game';
+import {
+	eventBus,
+	useDisableGameInput,
+	useOnGamePaused,
+	useOnGameResumed,
+} from '@game';
 import styles from './pause-menu.module.less';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +17,8 @@ function PauseMenu() {
 	const [showPauseMenu, setShowPauseMenu] = useState(false);
 	const [showSettings, setShowSettings] = useState(false);
 	const [showCredits, setShowCredits] = useState(false);
+
+	useDisableGameInput({ active: showPauseMenu, disablePause: false });
 
 	useOnGamePaused(() => {
 		setShowPauseMenu(true);
