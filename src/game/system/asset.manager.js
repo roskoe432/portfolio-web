@@ -1,25 +1,21 @@
-class AssetLoader {
-	loaded = false;
-	eventBus;
-	logger;
+import BaseManager from './base.manager';
 
-	constructor(scene, eventBus, logger, assetPath = '/assets/manifest.json') {
-		this.scene = scene;
-		this.eventBus = eventBus;
-		this.logger = logger;
-		this.assetPath = assetPath;
-	}
+function AssetManager(eventBus, logger, assetPath) {
+	BaseManager.call(this, eventBus, logger);
 
-	init() {
+	this.assetPath = assetPath;
+	this.loaded = false;
+
+	this.onInit = () => {
 		if (this.loaded) return;
 
 		this.eventBus.onUIMounted(() => {
 			this.logger.debug('UI Mounted, starting asset loading');
 			this.loadAssets();
 		});
-	}
+	};
 
-	loadAssets = () =>
+	this.loadAssets = () =>
 		new Promise((resolve) => {
 			this.scene.load.on('progress', (value) => {
 				this.eventBus.emitAssetLoadProgress({ progress: value });
@@ -41,4 +37,6 @@ class AssetLoader {
 		});
 }
 
-export default AssetLoader;
+BaseManager.derive(AssetManager);
+
+export default AssetManager;

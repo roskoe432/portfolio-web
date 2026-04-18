@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import Player from '@game/entities/player';
 import createBoundaries from './boundaries';
 import createGameObjects from './scene-config';
-import { registerForPause } from '@game/system/pause-manager';
+import { pauseManager } from '@game/system';
 import { eventBus } from '@game/events';
 
 class MainScene extends Phaser.Scene {
@@ -22,7 +22,7 @@ class MainScene extends Phaser.Scene {
 	constructor() {
 		super({ key: 'Main', active: false });
 
-		registerForPause(this);
+		pauseManager.registerScene(this);
 	}
 
 	setupTileMap() {

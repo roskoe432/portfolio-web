@@ -1,22 +1,13 @@
 import Phaser from 'phaser';
+import BaseManager from './base.manager';
 
-class InputManager {
-	inputEnabled = true;
-	lastDirection = { x: 0, y: 0 };
-	eventBus;
-	logger;
+function InputManager(eventBus, logger) {
+	BaseManager.call(this, eventBus, logger);
 
-	constructor(scene, eventBus, logger) {
-		this.scene = scene;
-		this.eventBus = eventBus;
-		this.logger = logger;
-		this.cursors = null;
-		this.wasdKeys = null;
-		this.eKey = null;
-		this.pKey = null;
-	}
+	this.inputEnabled = true;
+	this.lastDirection = { x: 0, y: 0 };
 
-	handleDirectionChange(cursors, wasdKeys) {
+	this.handleDirectionChange = (cursors, wasdKeys) => {
 		const keys = {
 			up: cursors.up.isDown || wasdKeys.up.isDown,
 			down: cursors.down.isDown || wasdKeys.down.isDown,
@@ -36,22 +27,22 @@ class InputManager {
 			this.lastDirection = direction;
 			this.eventBus.emitNavigationKeysPressed({ keys, direction });
 		}
-	}
+	};
 
-	onDisableInput() {
+	this.onDisableInput = () => {
 		this.eventBus.emitNavigationKeysPressed({
 			keys: {},
 			direction: { x: 0, y: 0 },
 		});
 		this.lastDirection = { x: 0, y: 0 };
 		this.inputEnabled = false;
-	}
+	};
 
-	onEnableInput() {
+	this.onEnableInput = () => {
 		this.inputEnabled = true;
-	}
+	};
 
-	init() {
+	this.onInit = () => {
 		this.eventBus.onInputDisabled(this.onDisableInput.bind(this));
 		this.eventBus.onInputEnabled(this.onEnableInput.bind(this));
 
@@ -68,9 +59,9 @@ class InputManager {
 		this.pKey = this.scene.input.keyboard.addKey(
 			Phaser.Input.Keyboard.KeyCodes.P,
 		);
-	}
+	};
 
-	update() {
+	this.update = () => {
 		if (!this.inputEnabled) return;
 
 		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
@@ -82,7 +73,8 @@ class InputManager {
 		}
 
 		this.handleDirectionChange(this.cursors, this.wasdKeys);
-	}
+	};
 }
+BaseManager.derive(InputManager);
 
 export default InputManager;
