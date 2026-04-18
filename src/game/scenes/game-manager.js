@@ -11,6 +11,11 @@ function GameManager() {
 		this.scene.sendToBack(this.scene.key);
 		this.scene.setVisible(false);
 
+		this.events.once('shutdown', () => {
+			console.log('GameManager: shutdown, disposing managers');
+			managerRegistry.forEach((manager) => manager.dispose());
+		});
+
 		managerRegistry.forEach((manager) => manager.register(this));
 		managerRegistry.forEach((manager) => manager.onInit(this));
 	};

@@ -18,6 +18,7 @@ function BaseManager(eventBus, logger) {
 
 	this.onCreate = function () {};
 	this.onUpdate = function () {};
+	this.dispose = function () {};
 }
 
 BaseManager.derive = (Child) => {
