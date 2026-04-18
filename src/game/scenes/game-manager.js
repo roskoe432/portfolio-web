@@ -1,33 +1,36 @@
 import Phaser from 'phaser';
-import logger from '../system/logger';
-import { eventBus } from '../events';
-import InputManager from '../system/input-manager';
-import PauseManager from '../system/pause-manager';
-import AssetLoader from '../system/asset-loader';
+import logger from '@game/system/logger';
+import { pauseManager, inputManager, assetManager } from '@game/system';
 
-export default class GameManager extends Phaser.Scene {
-	inputManager;
-	pauseManager;
-	assetLoader;
+const managerRegistry = [pauseManager, inputManager, assetManager];
 
-	constructor() {
-		super({ key: 'GameManager' });
-	}
+function GameManager() {
+	Phaser.Scene.call(this, { key: 'GameManager' });
 
-	init() {
+	this.init = function () {
+		logger.debug('GameManager: init');
 		this.scene.sendToBack(this.scene.key);
 		this.scene.setVisible(false);
 
-		this.inputManager = new InputManager(this, eventBus, logger);
-		this.pauseManager = new PauseManager(this, eventBus, logger);
-		this.assetLoader = new AssetLoader(this, eventBus, logger);
+		this.events.once('shutdown', () => {
+			logger.debug('GameManager: shutdown, disposing managers');
+			managerRegistry.forEach((manager) => manager.dispose());
+		});
 
-		this.inputManager.init();
-		this.pauseManager.init();
-		this.assetLoader.init();
-	}
+		managerRegistry.forEach((manager) => manager.register(this));
+		managerRegistry.forEach((manager) => manager.onInit(this));
+	};
 
-	update() {
-		this.inputManager.update();
-	}
+	this.create = function () {
+		logger.debug('GameManager: create');
+		managerRegistry.forEach((manager) => manager.onCreate());
+	};
+
+	this.update = function () {
+		managerRegistry.forEach((manager) => manager.onUpdate());
+	};
 }
+GameManager.prototype = Object.create(Phaser.Scene.prototype);
+GameManager.prototype.constructor = GameManager;
+
+export default GameManager;

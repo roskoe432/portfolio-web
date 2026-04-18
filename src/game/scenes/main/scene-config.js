@@ -36,7 +36,7 @@ const gameObjectsConfig = {
 			onExit: () => {},
 			onInteract: () => {
 				eventBus.emitPlayerInteract();
-				eventBus.emitRequestPause();
+				eventBus.emitRequestPause({ sender: 'desk' });
 			},
 		},
 	},
@@ -63,7 +63,7 @@ const gameObjectsConfig = {
 			onExit: () => {},
 			onInteract: () => {
 				eventBus.emitPlayerInteract();
-				eventBus.emitRequestPause();
+				eventBus.emitRequestPause({ sender: 'fileCabinet' });
 			},
 		},
 	},
@@ -91,7 +91,7 @@ const gameObjectsConfig = {
 			onExit: () => {},
 			onInteract: () => {
 				eventBus.emitPlayerInteract();
-				eventBus.emitRequestPause();
+				eventBus.emitRequestPause({ sender: 'faxMachine' });
 			},
 		},
 	},

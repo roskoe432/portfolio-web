@@ -33,10 +33,12 @@ function GameEvents(eventBus) {
 	this.emit = (event, payload) => _eventBus.emit(event, payload);
 
 	// Game State Events
-	this.emitGamePaused = () => this.emit(Events.GAME_PAUSED);
-	this.emitGameResumed = () => this.emit(Events.GAME_RESUMED);
-	this.emitRequestPause = () => this.emit(Events.GAME_REQUEST_PAUSE);
-	this.emitRequestResume = () => this.emit(Events.GAME_REQUEST_RESUME);
+	this.emitGamePaused = (payload) => this.emit(Events.GAME_PAUSED, payload);
+	this.emitGameResumed = (payload) => this.emit(Events.GAME_RESUMED, payload);
+	this.emitRequestPause = (payload) =>
+		this.emit(Events.GAME_REQUEST_PAUSE, payload);
+	this.emitRequestResume = (payload) =>
+		this.emit(Events.GAME_REQUEST_RESUME, payload);
 
 	this.emitPlayerInteract = () => this.emit(Events.PLAYER_INTERACT);
 
@@ -55,7 +57,8 @@ function GameEvents(eventBus) {
 	this.emitNavigationKeysPressed = (inputEventData) =>
 		this.emit(Events.NAVIGATION_KEYS_PRESSED, inputEventData);
 	this.emitEnableInput = () => this.emit(Events.INPUT_ENABLED);
-	this.emitDisableInput = () => this.emit(Events.INPUT_DISABLED);
+	this.emitDisableInput = (payload) =>
+		this.emit(Events.INPUT_DISABLED, payload);
 
 	this.onPKeyPressed = (callback) => this.on(Events.P_KEY_PRESSED, callback);
 	this.onEKeyPressed = (callback) => this.on(Events.E_KEY_PRESSED, callback);

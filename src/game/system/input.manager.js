@@ -1,22 +1,14 @@
 import Phaser from 'phaser';
+import BaseManager from './base.manager';
 
-class InputManager {
-	inputEnabled = true;
-	lastDirection = { x: 0, y: 0 };
-	eventBus;
-	logger;
+function InputManager(eventBus, logger) {
+	BaseManager.call(this, eventBus, logger);
 
-	constructor(scene, eventBus, logger) {
-		this.scene = scene;
-		this.eventBus = eventBus;
-		this.logger = logger;
-		this.cursors = null;
-		this.wasdKeys = null;
-		this.eKey = null;
-		this.pKey = null;
-	}
+	this.inputEnabled = true;
+	this.pauseEnabled = true;
+	this.lastDirection = { x: 0, y: 0 };
 
-	handleDirectionChange(cursors, wasdKeys) {
+	this.handleDirectionChange = function (cursors, wasdKeys) {
 		const keys = {
 			up: cursors.up.isDown || wasdKeys.up.isDown,
 			down: cursors.down.isDown || wasdKeys.down.isDown,
@@ -36,22 +28,25 @@ class InputManager {
 			this.lastDirection = direction;
 			this.eventBus.emitNavigationKeysPressed({ keys, direction });
 		}
-	}
+	};
 
-	onDisableInput() {
+	this.onDisableInput = function ({ disablePause }) {
 		this.eventBus.emitNavigationKeysPressed({
 			keys: {},
 			direction: { x: 0, y: 0 },
 		});
 		this.lastDirection = { x: 0, y: 0 };
+		console.debug('Disabling input', { disablePause });
+		this.pauseEnabled = !disablePause;
 		this.inputEnabled = false;
-	}
+	};
 
-	onEnableInput() {
+	this.onEnableInput = function () {
 		this.inputEnabled = true;
-	}
+		this.pauseEnabled = true;
+	};
 
-	init() {
+	this.onInit = function () {
 		this.eventBus.onInputDisabled(this.onDisableInput.bind(this));
 		this.eventBus.onInputEnabled(this.onEnableInput.bind(this));
 
@@ -68,21 +63,24 @@ class InputManager {
 		this.pKey = this.scene.input.keyboard.addKey(
 			Phaser.Input.Keyboard.KeyCodes.P,
 		);
-	}
+	};
 
-	update() {
-		if (!this.inputEnabled) return;
-
-		if (Phaser.Input.Keyboard.JustDown(this.pKey)) {
+	this.onUpdate = function () {
+		if (Phaser.Input.Keyboard.JustDown(this.pKey) && this.pauseEnabled) {
+			this.logger.debug('P key pressed');
 			this.eventBus.emitPKeyPressed();
 		}
 
+		if (!this.inputEnabled) return;
+
 		if (Phaser.Input.Keyboard.JustDown(this.eKey)) {
+			this.logger.debug('E key pressed');
 			this.eventBus.emitEKeyPressed();
 		}
 
 		this.handleDirectionChange(this.cursors, this.wasdKeys);
-	}
+	};
 }
+BaseManager.derive(InputManager);
 
 export default InputManager;

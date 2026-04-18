@@ -45,11 +45,16 @@ export function useOnAssetLoadComplete(handler) {
 	useGameEvent((callback) => eventBus.onAssetLoadComplete(callback), handler);
 }
 
-export function useDisableGameInput() {
+export function useDisableGameInput({
+	active = true,
+	disablePause = true,
+} = {}) {
 	useEffect(() => {
-		eventBus.emitDisableInput();
+		if (!active) return;
+
+		eventBus.emitDisableInput({ disablePause });
 		return () => {
 			eventBus.emitEnableInput();
 		};
-	}, []);
+	}, [active, disablePause]);
 }
