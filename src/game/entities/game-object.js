@@ -104,6 +104,7 @@ const GameObject = (() => {
 			() => {
 				if (!this.isPlayerInRange) {
 					this.isPlayerInRange = true;
+					console.log('Player entered trigger zone for', this.config.spriteKey);
 					this.onEnter();
 				}
 			},
