@@ -1,0 +1,27 @@
+{
+	"configurations": [
+		{
+			"name": "Launch Chrome",
+			"type": "chrome",
+			"request": "launch",
+			"url": "https://dev.local:4000",
+			"webRoot": "${workspaceFolder}/src",
+			"sourceMapPathOverrides": {
+				"/@fs/*": "${workspaceFolder}/*"
+			}
+		},
+		{
+			"name": "Start Dev Server",
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "npm start"
+		}
+	],
+	"compounds": [
+		{
+			"name": "Dev: Start + Debug",
+			"configurations": ["Start Dev Server", "Launch Chrome"],
+			"stopAll": true
+		}
+	]
+}
