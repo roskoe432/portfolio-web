@@ -137,10 +137,10 @@ export default defineConfig({
 				'src/game/**',
 			],
 			thresholds: {
-				statements: 35,
+				statements: 38,
 				branches: 14,
-				functions: 33,
-				lines: 38,
+				functions: 36,
+				lines: 40,
 			},
 		},
 		include: ['__tests__/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
