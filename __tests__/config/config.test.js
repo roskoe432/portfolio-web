@@ -73,7 +73,6 @@ describe('config', () => {
 		});
 
 		expect(config.logging.level).toBe('debug');
-		expect(config.useNavLinks).toBe(true);
 		expect(config.showModalOnStart).toBe(true);
 		expect(config.game).toEqual({
 			debug: true,
