@@ -4,7 +4,6 @@ const getMockConfig = (overrides = {}) => ({
 		level: 'debug',
 	},
 	serverUrl: 'http://localhost:5500',
-	useNavLinks: false,
 	showModalOnStart: false,
 	urls: {
 		github: 'https://github.com/test',

@@ -64,7 +64,6 @@ describe('config', () => {
 		const config = await loadConfig({
 			VITE_GAME_DEBUG_MODE: 'true',
 			VITE_GAME_ENABLED: 'true',
-			VITE_UI_USE_NAVLINKS: 'true',
 			VITE_UI_SHOW_MODAL_ON_START: 'true',
 			VITE_QUERY_CLIENT_STALE_TIME: '300000',
 			VITE_QUERY_CLIENT_REFETCH_ON_WINDOW_FOCUS: 'true',
@@ -89,9 +88,7 @@ describe('config', () => {
 	});
 
 	it('throws when a required env var is missing', async () => {
-		await expect(
-			loadConfig({}, ['VITE_QUERY_CLIENT_RETRY']),
-		).rejects.toThrow(
+		await expect(loadConfig({}, ['VITE_QUERY_CLIENT_RETRY'])).rejects.toThrow(
 			'Missing required environment variables: VITE_QUERY_CLIENT_RETRY',
 		);
 	});

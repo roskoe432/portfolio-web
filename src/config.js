@@ -6,7 +6,6 @@ const requiredEnvVars = [
 	'VITE_SERVER_URL',
 	'VITE_GAME_DEBUG_MODE',
 	'VITE_GAME_ENABLED',
-	'VITE_UI_USE_NAVLINKS',
 	'VITE_UI_SHOW_MODAL_ON_START',
 	'VITE_QUERY_CLIENT_STALE_TIME',
 	'VITE_QUERY_CLIENT_REFETCH_ON_WINDOW_FOCUS',
@@ -14,9 +13,13 @@ const requiredEnvVars = [
 	'VITE_QUERY_DEVTOOLS_INITIAL_IS_OPEN',
 ];
 
-const missingVars = requiredEnvVars.filter((varName) => !import.meta.env[varName]);
+const missingVars = requiredEnvVars.filter(
+	(varName) => !import.meta.env[varName],
+);
 if (missingVars.length > 0) {
-	throw new Error(`Missing required environment variables: ${missingVars.join(', ')}`);
+	throw new Error(
+		`Missing required environment variables: ${missingVars.join(', ')}`,
+	);
 }
 
 const env = import.meta.env.VITE_ENV;
@@ -28,7 +31,6 @@ const config = {
 		level: import.meta.env.VITE_LOG_LEVEL || 'info',
 	},
 	serverUrl,
-	useNavLinks: import.meta.env.VITE_UI_USE_NAVLINKS === 'true',
 	showModalOnStart: import.meta.env.VITE_UI_SHOW_MODAL_ON_START === 'true',
 	urls: {
 		github: import.meta.env.VITE_GITHUB_URL,
@@ -43,12 +45,14 @@ const config = {
 	reactQuery: {
 		client: {
 			staleTime: parseInt(import.meta.env.VITE_QUERY_CLIENT_STALE_TIME, 10),
-			refetchOnWindowFocus: import.meta.env.VITE_QUERY_CLIENT_REFETCH_ON_WINDOW_FOCUS === 'true',
+			refetchOnWindowFocus:
+				import.meta.env.VITE_QUERY_CLIENT_REFETCH_ON_WINDOW_FOCUS === 'true',
 			retry: parseInt(import.meta.env.VITE_QUERY_CLIENT_RETRY, 10),
 		},
 		devtools: {
 			enabled: env === 'local',
-			initialIsOpen: import.meta.env.VITE_QUERY_DEVTOOLS_INITIAL_IS_OPEN === 'true',
+			initialIsOpen:
+				import.meta.env.VITE_QUERY_DEVTOOLS_INITIAL_IS_OPEN === 'true',
 		},
 	},
 };
