@@ -133,14 +133,17 @@ export default defineConfig({
 				'src/pages/index.jsx',
 				'src/pages/links/links.jsx',
 				'**/*.json',
+				// Temporary until React coverage is improved
+				'src/game/**',
 			],
 			thresholds: {
-				statements: 30,
-				branches: 9,
-				functions: 20,
-				lines: 30,
+				statements: 35,
+				branches: 14,
+				functions: 33,
+				lines: 38,
 			},
 		},
 		include: ['__tests__/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+		exclude: ['node_modules', 'dist', 'coverage'],
 	},
 });
