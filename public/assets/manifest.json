@@ -147,9 +147,10 @@
 	"fontPack": {
 		"files": [
 			{
-				"type": "font",
-				"key": "pixelFont",
-				"url": "assets/fonts/PixelifySans-Regular.ttf"
+				"type": "bitmapFont",
+				"key": "minecraft",
+				"textureURL": "assets/fonts/minecraft_0.png",
+				"fontDataURL": "assets/fonts/minecraft.xml"
 			}
 		]
 	}

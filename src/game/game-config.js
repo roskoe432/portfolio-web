@@ -24,6 +24,13 @@ const gameConfig = {
 	scale: {
 		mode: Phaser.Scale.FIT,
 		autoCenter: Phaser.Scale.CENTER_BOTH,
+		autoRound: true,
+	},
+	render: {
+		pixelArt: true,
+		antialias: false,
+		antialiasGL: false,
+		roundPixels: true,
 	},
 };
 

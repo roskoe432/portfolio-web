@@ -5,7 +5,30 @@ import styles from './app.module.less';
 
 function App() {
 	useEffect(() => {
-		eventBus.emitUIMounted();
+		let cancelled = false;
+
+		const startGame = async () => {
+			if ('fonts' in document) {
+				try {
+					await Promise.all([
+						document.fonts.load('30px "pixelFont"'),
+						document.fonts.ready,
+					]);
+				} catch {
+					// Fall through and let the game boot with the browser fallback font.
+				}
+			}
+
+			if (!cancelled) {
+				eventBus.emitUIMounted();
+			}
+		};
+
+		startGame();
+
+		return () => {
+			cancelled = true;
+		};
 	}, []);
 
 	return (

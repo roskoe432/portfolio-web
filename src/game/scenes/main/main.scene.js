@@ -23,11 +23,8 @@ function MainScene() {
 
 	this.addTitle = function () {
 		this.add
-			.text(200, 50, "Ben Snow's Portfolio", {
-				fontFamily: 'pixelFont',
-				fontSize: '24px',
-				color: '#242424',
-			})
+			.bitmapText(200, 60, 'minecraft', "Ben Snow's Portfolio", 25)
+			.setTint(0x222222)
 			.setDepth(1000);
 	};
 
@@ -55,6 +52,7 @@ function MainScene() {
 	};
 
 	this.create = function () {
+		this.cameras.main.roundPixels = true;
 		this.addTitle();
 		this.cameras.main.setZoom(1);
 		this.setupTileMap();
