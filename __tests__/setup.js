@@ -28,10 +28,10 @@ Object.defineProperty(window, 'matchMedia', {
 });
 
 // Mock ResizeObserver
-class ResizeObserverMock {
-	observe = vi.fn();
-	unobserve = vi.fn();
-	disconnect = vi.fn();
+function ResizeObserverMock() {
+	this.observe = vi.fn();
+	this.unobserve = vi.fn();
+	this.disconnect = vi.fn();
 }
 
 vi.stubGlobal('ResizeObserver', ResizeObserverMock);

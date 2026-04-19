@@ -6,8 +6,8 @@ import { Math } from 'phaser';
 const { Vector2 } = Math;
 
 const defaultTextConfig = {
-	color: '#2ec400',
-	fontSize: '14px',
+	color: '#000000',
+	fontSize: '20px',
 	offset: new Vector2(0, -55),
 	showByDefault: false,
 };

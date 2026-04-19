@@ -1,8 +1,12 @@
-import Phaser from 'phaser';
-
 export const createRect = (scene, options) =>
 	scene.add
-		.rectangle(0, 0, scene.cameras.main.width, scene.cameras.main.height, options.color)
+		.rectangle(
+			0,
+			0,
+			scene.cameras.main.width,
+			scene.cameras.main.height,
+			options.color,
+		)
 		.setDepth(options.depth)
 		.setOrigin(0)
 		.setAlpha(1);
@@ -37,48 +41,96 @@ const runTween = (transitionScene, rect, tweenProps, options) =>
 
 export const fade = (transitionScene, rect, options) => {
 	setupRect(transitionScene, rect, { alpha: options.reverse ? 1 : 0 });
-	return runTween(transitionScene, rect, { alpha: options.reverse ? 0 : 1 }, options);
+	return runTween(
+		transitionScene,
+		rect,
+		{ alpha: options.reverse ? 0 : 1 },
+		options,
+	);
 };
 
 export const swipeDown = (transitionScene, rect, options) => {
 	const { height } = transitionScene.cameras.main;
 	setupRect(transitionScene, rect, { y: options.reverse ? 0 : -height });
-	return runTween(transitionScene, rect, { y: options.reverse ? -height : 0 }, options);
+	return runTween(
+		transitionScene,
+		rect,
+		{ y: options.reverse ? -height : 0 },
+		options,
+	);
 };
 
 export const swipeLeft = (transitionScene, rect, options) => {
 	const { width } = transitionScene.cameras.main;
 	setupRect(transitionScene, rect, { x: options.reverse ? 0 : width });
-	return runTween(transitionScene, rect, { x: options.reverse ? width : 0 }, options);
+	return runTween(
+		transitionScene,
+		rect,
+		{ x: options.reverse ? width : 0 },
+		options,
+	);
 };
 
 export const swipeUp = (transitionScene, rect, options) => {
 	const { height } = transitionScene.cameras.main;
 	setupRect(transitionScene, rect, { y: options.reverse ? 0 : height });
-	return runTween(transitionScene, rect, { y: options.reverse ? height : 0 }, options);
+	return runTween(
+		transitionScene,
+		rect,
+		{ y: options.reverse ? height : 0 },
+		options,
+	);
 };
 
 export const swipeRight = (transitionScene, rect, options) => {
 	const { width } = transitionScene.cameras.main;
 	setupRect(transitionScene, rect, { x: options.reverse ? 0 : -width });
-	return runTween(transitionScene, rect, { x: options.reverse ? -width : 0 }, options);
+	return runTween(
+		transitionScene,
+		rect,
+		{ x: options.reverse ? -width : 0 },
+		options,
+	);
 };
 
 export const growFromTopLeft = (transitionScene, rect, options) => {
 	setupRect(transitionScene, rect, { scale: options.reverse ? 1 : 0 });
-	return runTween(transitionScene, rect, { scale: options.reverse ? 0 : 1 }, options);
+	return runTween(
+		transitionScene,
+		rect,
+		{ scale: options.reverse ? 0 : 1 },
+		options,
+	);
 };
 
 export const growFromTopRight = (transitionScene, rect, options) => {
 	const { width } = transitionScene.cameras.main;
-	setupRect(transitionScene, rect, { originX: 1, x: width, scale: options.reverse ? 1 : 0 });
-	return runTween(transitionScene, rect, { scale: options.reverse ? 0 : 1 }, options);
+	setupRect(transitionScene, rect, {
+		originX: 1,
+		x: width,
+		scale: options.reverse ? 1 : 0,
+	});
+	return runTween(
+		transitionScene,
+		rect,
+		{ scale: options.reverse ? 0 : 1 },
+		options,
+	);
 };
 
 export const growFromBottomLeft = (transitionScene, rect, options) => {
 	const { height } = transitionScene.cameras.main;
-	setupRect(transitionScene, rect, { originY: 1, y: height, scale: options.reverse ? 1 : 0 });
-	return runTween(transitionScene, rect, { scale: options.reverse ? 0 : 1 }, options);
+	setupRect(transitionScene, rect, {
+		originY: 1,
+		y: height,
+		scale: options.reverse ? 1 : 0,
+	});
+	return runTween(
+		transitionScene,
+		rect,
+		{ scale: options.reverse ? 0 : 1 },
+		options,
+	);
 };
 
 export const growFromBottomRight = (transitionScene, rect, options) => {
@@ -90,7 +142,12 @@ export const growFromBottomRight = (transitionScene, rect, options) => {
 		y: height,
 		scale: options.reverse ? 1 : 0,
 	});
-	return runTween(transitionScene, rect, { scale: options.reverse ? 0 : 1 }, options);
+	return runTween(
+		transitionScene,
+		rect,
+		{ scale: options.reverse ? 0 : 1 },
+		options,
+	);
 };
 
 export const growFromCenter = (transitionScene, rect, options) => {
@@ -102,7 +159,12 @@ export const growFromCenter = (transitionScene, rect, options) => {
 		y: height / 2,
 		scale: options.reverse ? 1 : 0,
 	});
-	return runTween(transitionScene, rect, { scale: options.reverse ? 0 : 1 }, options);
+	return runTween(
+		transitionScene,
+		rect,
+		{ scale: options.reverse ? 0 : 1 },
+		options,
+	);
 };
 
 export const TransitionKey = {
@@ -134,31 +196,67 @@ const transitions = {
 		fade(transitionScene, rect, { ...options, reverse: true, destroy: true }),
 	[TransitionKey.swipeDownStart]: swipeDown,
 	[TransitionKey.swipeDownEnd]: (transitionScene, rect, options) =>
-		swipeDown(transitionScene, rect, { ...options, reverse: true, destroy: true }),
+		swipeDown(transitionScene, rect, {
+			...options,
+			reverse: true,
+			destroy: true,
+		}),
 	[TransitionKey.swipeLeftStart]: swipeLeft,
 	[TransitionKey.swipeLeftEnd]: (transitionScene, rect, options) =>
-		swipeLeft(transitionScene, rect, { ...options, reverse: true, destroy: true }),
+		swipeLeft(transitionScene, rect, {
+			...options,
+			reverse: true,
+			destroy: true,
+		}),
 	[TransitionKey.swipeUpStart]: swipeUp,
 	[TransitionKey.swipeUpEnd]: (transitionScene, rect, options) =>
-		swipeUp(transitionScene, rect, { ...options, reverse: true, destroy: true }),
+		swipeUp(transitionScene, rect, {
+			...options,
+			reverse: true,
+			destroy: true,
+		}),
 	[TransitionKey.swipeRightStart]: swipeRight,
 	[TransitionKey.swipeRightEnd]: (transitionScene, rect, options) =>
-		swipeRight(transitionScene, rect, { ...options, reverse: true, destroy: true }),
+		swipeRight(transitionScene, rect, {
+			...options,
+			reverse: true,
+			destroy: true,
+		}),
 	[TransitionKey.growFromTopLeftStart]: growFromTopLeft,
 	[TransitionKey.growFromTopLeftEnd]: (transitionScene, rect, options) =>
-		growFromTopLeft(transitionScene, rect, { ...options, reverse: true, destroy: true }),
+		growFromTopLeft(transitionScene, rect, {
+			...options,
+			reverse: true,
+			destroy: true,
+		}),
 	[TransitionKey.growFromTopRightStart]: growFromTopRight,
 	[TransitionKey.growFromTopRightEnd]: (transitionScene, rect, options) =>
-		growFromTopRight(transitionScene, rect, { ...options, reverse: true, destroy: true }),
+		growFromTopRight(transitionScene, rect, {
+			...options,
+			reverse: true,
+			destroy: true,
+		}),
 	[TransitionKey.growFromBottomLeftStart]: growFromBottomLeft,
 	[TransitionKey.growFromBottomLeftEnd]: (transitionScene, rect, options) =>
-		growFromBottomLeft(transitionScene, rect, { ...options, reverse: true, destroy: true }),
+		growFromBottomLeft(transitionScene, rect, {
+			...options,
+			reverse: true,
+			destroy: true,
+		}),
 	[TransitionKey.growFromBottomRightStart]: growFromBottomRight,
 	[TransitionKey.growFromBottomRightEnd]: (transitionScene, rect, options) =>
-		growFromBottomRight(transitionScene, rect, { ...options, reverse: true, destroy: true }),
+		growFromBottomRight(transitionScene, rect, {
+			...options,
+			reverse: true,
+			destroy: true,
+		}),
 	[TransitionKey.growFromCenterStart]: growFromCenter,
 	[TransitionKey.growFromCenterEnd]: (transitionScene, rect, options) =>
-		growFromCenter(transitionScene, rect, { ...options, reverse: true, destroy: true }),
+		growFromCenter(transitionScene, rect, {
+			...options,
+			reverse: true,
+			destroy: true,
+		}),
 };
 
 export const doSceneTransition = async (
@@ -171,9 +269,15 @@ export const doSceneTransition = async (
 	if (!transitions[startTransitionKey] || !transitions[endTransitionKey]) {
 		throw new Error('Invalid transition key(s) provided');
 	}
-	const rect = createRect(transitionScene, { color: options.color ?? 0x000000, depth: 100 });
+	const rect = createRect(transitionScene, {
+		color: options.color ?? 0x000000,
+		depth: 100,
+	});
 
-	await transitions[startTransitionKey](transitionScene, rect, { ...options, destroy: false });
+	await transitions[startTransitionKey](transitionScene, rect, {
+		...options,
+		destroy: false,
+	});
 	transitionScene.scene.launch(targetSceneKey, options.payload);
 	transitionScene.scene.bringToTop();
 	await transitions[endTransitionKey](transitionScene, rect, {
@@ -181,38 +285,39 @@ export const doSceneTransition = async (
 	});
 };
 
-export class TransitionScene extends Phaser.Scene {
-	transitionData = null;
-	requiredDataKeys = ['targetSceneKey', 'startTransitionKey', 'endTransitionKey'];
-	constructor() {
-		super('Transition');
-	}
-
-	validateData(data) {
-		const missingKeys = this.requiredDataKeys.filter((key) => !(key in data));
-		if (missingKeys.length > 0) {
-			throw new Error(`Missing required data keys: ${missingKeys.join(', ')}`);
-		}
-	}
-
-	init(data) {
-		this.validateData(data);
-		this.transitionData = data;
-	}
-
-	preload() {}
-
-	async create() {
-		await doSceneTransition(
-			this,
-			this.transitionData.targetSceneKey,
-			this.transitionData.startTransitionKey,
-			this.transitionData.endTransitionKey,
-			this.transitionData.options,
-		);
-		this.scene.stop();
-	}
+export function TransitionScene() {
+	this.transitionData = null;
+	this.requiredDataKeys = [
+		'targetSceneKey',
+		'startTransitionKey',
+		'endTransitionKey',
+	];
 }
+
+TransitionScene.prototype.validateData = function (data) {
+	const missingKeys = this.requiredDataKeys.filter((key) => !(key in data));
+	if (missingKeys.length > 0) {
+		throw new Error(`Missing required data keys: ${missingKeys.join(', ')}`);
+	}
+};
+
+TransitionScene.prototype.init = function (data) {
+	this.validateData(data);
+	this.transitionData = data;
+};
+
+TransitionScene.prototype.preload = function () {};
+
+TransitionScene.prototype.create = async function () {
+	await doSceneTransition(
+		this,
+		this.transitionData.targetSceneKey,
+		this.transitionData.startTransitionKey,
+		this.transitionData.endTransitionKey,
+		this.transitionData.options,
+	);
+	this.scene.stop();
+};
 
 export const transitionTo = (
 	callerScene,

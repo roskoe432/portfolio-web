@@ -78,21 +78,23 @@ const GameObject = (() => {
 
 	GameObject.prototype.createTextLabel = function () {
 		const textConfig = this.config.trigger.text;
+		const fontSize = Number.parseInt(textConfig.fontSize, 10) || 14;
+
 		this.text = this.scene.add
-			.text(
+			.bitmapText(
 				this.config.position.x + textConfig.offset.x,
 				this.config.position.y + textConfig.offset.y,
+				'pixelifySansSmall',
 				this.i18next.t(textConfig.message),
-				{
-					fontFamily: 'Arial',
-					fontStyle: 'bold',
-					fontSize: textConfig.fontSize || '16px',
-					fill: textConfig.color || '#000',
-				},
+				fontSize,
 			)
 			.setOrigin(0.5)
 			.setDepth(2)
 			.setVisible(textConfig.showByDefault || false);
+
+		if (textConfig.color) {
+			this.text.setTint(Phaser.Display.Color.HexStringToColor(textConfig.color).color);
+		}
 	};
 
 	GameObject.prototype.setupPlayerOverlap = function (player) {

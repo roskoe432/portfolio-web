@@ -143,5 +143,27 @@
 				"url": "assets/maps/office-map.tmj"
 			}
 		]
+	},
+	"fontPack": {
+		"files": [
+			{
+				"type": "bitmapFont",
+				"key": "minecraft",
+				"textureURL": "assets/fonts/minecraft/40px/minecraft_0.png",
+				"fontDataURL": "assets/fonts/minecraft/40px/minecraft.xml"
+			},
+			{
+				"type": "bitmapFont",
+				"key": "pixelifySans",
+				"textureURL": "assets/fonts/pixelifysans-regular/40px/pixelifysans-regular.png",
+				"fontDataURL": "assets/fonts/pixelifysans-regular/40px/pixelifysans-regular.xml"
+			},
+			{
+				"type": "bitmapFont",
+				"key": "pixelifySansSmall",
+				"textureURL": "assets/fonts/pixelifysans-regular/20px/pixelifysans-regular.png",
+				"fontDataURL": "assets/fonts/pixelifysans-regular/20px/pixelifysans-regular.xml"
+			}
+		]
 	}
 }

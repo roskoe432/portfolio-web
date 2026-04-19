@@ -67,9 +67,9 @@
 	},
 	"game": {
 		"objects": {
-			"desk": "About (E)",
-			"fileCabinet": "Blog (E)",
-			"faxMachine": "Contact (E)"
+			"desk": "About [E]",
+			"fileCabinet": "Blog [E]",
+			"faxMachine": "Contact [E]"
 		}
 	},
 	"timerMinigame": {

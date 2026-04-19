@@ -5,34 +5,37 @@ import createGameObjects from './scene-config';
 import { pauseManager } from '@game/system';
 import { eventBus } from '@game/events';
 
-class MainScene extends Phaser.Scene {
-	loadAnimations = null;
+function MainScene() {
+	Phaser.Scene.call(this, { key: 'Main', active: false });
 
-	paused = false;
-	player = null;
-	map = null;
-	tileset = null;
-	floorLayer = null;
-	floorOuterLayer = null;
-	wallsLayer = null;
-	cursors = null;
+	this.paused = false;
+	this.player = null;
+	this.map = null;
+	this.tileset = null;
+	this.floorLayer = null;
+	this.floorOuterLayer = null;
+	this.wallsLayer = null;
+	this.cursors = null;
 
-	interactables = [];
+	this.interactables = [];
 
-	constructor() {
-		super({ key: 'Main', active: false });
+	pauseManager.registerScene(this);
 
-		pauseManager.registerScene(this);
-	}
+	this.addTitle = function () {
+		this.add
+			.bitmapText(182, 50, 'pixelifySans', "Ben Snow's Portfolio", 35)
+			.setTint(0x444444)
+			.setDepth(1000);
+	};
 
-	setupTileMap() {
+	this.setupTileMap = function () {
 		this.map = this.make.tilemap({ key: 'officeMap' });
 		this.tileset = this.map.addTilesetImage('office-tileset', 'officeTileset');
 		this.floorLayer = this.map.createLayer('floor-layer', this.tileset, 0, 0);
 		this.wallsLayer = this.map.createLayer('wall-layer', this.tileset, 0, 0);
-	}
+	};
 
-	registerKeys() {
+	this.registerKeys = function () {
 		this.cursors = this.input.keyboard.createCursorKeys();
 		this.wasdKeys = this.input.keyboard.addKeys({
 			up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -41,14 +44,16 @@ class MainScene extends Phaser.Scene {
 			right: Phaser.Input.Keyboard.KeyCodes.D,
 		});
 		this.eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-	}
+	};
 
-	async preload() {
+	this.preload = async function () {
 		this.player = new Player(this, eventBus);
 		await this.player.onPreload();
-	}
+	};
 
-	create() {
+	this.create = function () {
+		this.cameras.main.roundPixels = true;
+		this.addTitle();
 		this.cameras.main.setZoom(1);
 		this.setupTileMap();
 
@@ -73,15 +78,17 @@ class MainScene extends Phaser.Scene {
 		this.player.addCollisions([...gameObjects, ...boundaries]);
 
 		this.registerKeys();
-	}
+	};
 
-	update() {
+	this.update = function () {
 		this.player.onUpdate(this.cursors, this.wasdKeys);
 
 		this.interactables.forEach((interactable) => {
 			interactable.update(this.player.player, this.eKey);
 		});
-	}
+	};
 }
+MainScene.prototype = Object.create(Phaser.Scene.prototype);
+MainScene.prototype.constructor = MainScene;
 
 export default MainScene;
