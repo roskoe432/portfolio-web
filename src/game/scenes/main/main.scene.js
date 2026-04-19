@@ -23,8 +23,8 @@ function MainScene() {
 
 	this.addTitle = function () {
 		this.add
-			.bitmapText(200, 60, 'minecraft', "Ben Snow's Portfolio", 25)
-			.setTint(0x333333)
+			.bitmapText(182, 50, 'pixelifySans', "Ben Snow's Portfolio", 35)
+			.setTint(0x444444)
 			.setDepth(1000);
 	};
 

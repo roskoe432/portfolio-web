@@ -149,8 +149,14 @@
 			{
 				"type": "bitmapFont",
 				"key": "minecraft",
-				"textureURL": "assets/fonts/minecraft_0.png",
-				"fontDataURL": "assets/fonts/minecraft.xml"
+				"textureURL": "assets/fonts/minecraft/40px/minecraft_0.png",
+				"fontDataURL": "assets/fonts/minecraft/40px/minecraft.xml"
+			},
+			{
+				"type": "bitmapFont",
+				"key": "pixelifySans",
+				"textureURL": "assets/fonts/pixelifysans-regular/40px/pixelifysans-regular.png",
+				"fontDataURL": "assets/fonts/pixelifysans-regular/40px/pixelifysans-regular.xml"
 			}
 		]
 	}
