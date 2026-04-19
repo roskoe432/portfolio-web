@@ -14,8 +14,8 @@
     <char id="37" x="72" y="0" width="13" height="11" xoffset="1" yoffset="4" xadvance="14" page="0" chnl="15" />
     <char id="38" x="120" y="0" width="9" height="11" xoffset="1" yoffset="4" xadvance="11" page="0" chnl="15" />
     <char id="39" x="216" y="24" width="3" height="4" xoffset="1" yoffset="4" xadvance="4" page="0" chnl="15" />
-    <char id="40" x="0" y="0" width="5" height="16" xoffset="1" yoffset="2" xadvance="6" page="0" chnl="15" />
-    <char id="41" x="6" y="0" width="4" height="16" xoffset="1" yoffset="2" xadvance="6" page="0" chnl="15" />
+    <char id="40" x="0" y="0" width="5" height="16" xoffset="0" yoffset="2" xadvance="7" page="0" chnl="15" />
+    <char id="41" x="6" y="0" width="4" height="16" xoffset="0" yoffset="2" xadvance="7" page="0" chnl="15" />
     <char id="42" x="212" y="24" width="3" height="4" xoffset="1" yoffset="4" xadvance="4" page="0" chnl="15" />
     <char id="43" x="144" y="24" width="8" height="8" xoffset="1" yoffset="6" xadvance="10" page="0" chnl="15" />
     <char id="44" x="208" y="24" width="3" height="4" xoffset="1" yoffset="13" xadvance="4" page="0" chnl="15" />

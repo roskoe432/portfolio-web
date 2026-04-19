@@ -157,6 +157,12 @@
 				"key": "pixelifySans",
 				"textureURL": "assets/fonts/pixelifysans-regular/40px/pixelifysans-regular.png",
 				"fontDataURL": "assets/fonts/pixelifysans-regular/40px/pixelifysans-regular.xml"
+			},
+			{
+				"type": "bitmapFont",
+				"key": "pixelifySansSmall",
+				"textureURL": "assets/fonts/pixelifysans-regular/20px/pixelifysans-regular.png",
+				"fontDataURL": "assets/fonts/pixelifysans-regular/20px/pixelifysans-regular.xml"
 			}
 		]
 	}
