@@ -143,5 +143,14 @@
 				"url": "assets/maps/office-map.tmj"
 			}
 		]
+	},
+	"fontPack": {
+		"files": [
+			{
+				"type": "font",
+				"key": "pixelFont",
+				"url": "assets/fonts/PixelifySans-Regular.ttf"
+			}
+		]
 	}
 }
