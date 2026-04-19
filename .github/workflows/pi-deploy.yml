@@ -2,8 +2,12 @@ name: Portfolio Web - Stage Deploy
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main, feature/041226.1-implement-mobile-input]
+  workflow_run:
+    workflows: ['Portfolio Web - Check']
+    types:
+      - completed
+    branches:
+      - main
 
 jobs:
   deploy:
