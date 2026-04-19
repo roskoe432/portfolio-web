@@ -1,9 +1,9 @@
-import { render } from '@testing-library/react';
 import AboutPage from '@pages/about/about.jsx';
-import { describe } from 'vitest';
+import { describe, it } from 'vitest';
+import { renderWithProviders } from '../../utils';
 
-describe('AboutPage Component', () => {
-	it('should render the AboutPage component without crashing', () => {
-		render(<AboutPage />);
+describe('About Page Component', () => {
+	it('should render the About Page component without crashing', () => {
+		renderWithProviders(<AboutPage />);
 	});
 });

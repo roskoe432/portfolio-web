@@ -1,8 +1,7 @@
 import React from 'react';
 import { Modal } from 'react-overlays';
-import AppRoutes, { AppLinks } from '@app/app-navigation/app-navigation';
+import AppRoutes from '@app/app-navigation/app-navigation';
 import styles from './page-modal.module.less';
-import config from '@config';
 import usePageModal from './usePageModal';
 import { useDisableGameInput } from '@game';
 
@@ -20,7 +19,6 @@ function PageModal() {
 				centered="true"
 			>
 				<main className={styles.content}>
-					{config.useNavLinks && <AppLinks />}
 					<button
 						className={styles.closeBtn}
 						onClick={handleOnModalClose}

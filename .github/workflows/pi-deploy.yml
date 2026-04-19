@@ -1,4 +1,4 @@
-name: Portfolio Web - PI Deployment
+name: Portfolio Web - Stage Deploy
 
 on:
   workflow_dispatch:

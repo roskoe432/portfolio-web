@@ -124,30 +124,25 @@ export default defineConfig({
 		environment: 'jsdom',
 		setupFiles: './__tests__/setup.js',
 		css: false,
-		env: {
-			VITE_ENV: 'test',
-			VITE_GITHUB_URL: 'https://github.com/test',
-			VITE_LINKEDIN_URL: 'https://linkedin.com/test',
-			VITE_PERLENSPIEL_URL: 'https://perlenspiel.test',
-		},
 		coverage: {
 			provider: 'v8',
 			reporter: ['text', 'json', 'html', 'json-summary'],
 			include: ['src/**/*.{js,jsx}'],
 			exclude: [
-				'src/index.jsx',
-				'src/config.js',
-				'src/pages/index.jsx',
-				'src/pages/links/links.jsx', // Just keeping until I move links elsewhere.
+				'src/**/index.{js,jsx}',
+				'src/pages/links/links.jsx',
 				'**/*.json',
+				// Temporary until React coverage is improved
+				'src/game/**',
 			],
 			thresholds: {
-				statements: 5,
-				branches: 5,
-				functions: 5,
-				lines: 5,
+				lines: 80,
+				branches: 80,
+				statements: 80,
+				functions: 80,
 			},
 		},
 		include: ['__tests__/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+		exclude: ['node_modules', 'dist', 'coverage'],
 	},
 });

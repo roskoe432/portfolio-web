@@ -8,14 +8,14 @@ const BlogService = (() => {
 					method: 'GET',
 				});
 				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
+					throw new Error(`Failed to fetch blog posts: ${response.status}`);
 				}
 
 				const data = await response.json();
 				return data;
 			} catch (error) {
 				console.error('Error fetching blogs:', error);
-				// throw error;
+				throw error;
 			}
 		};
 	}

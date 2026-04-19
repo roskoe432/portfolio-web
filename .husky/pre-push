@@ -1,0 +1,5 @@
+echo "Running unit tests..."
+npm test
+
+echo "Running linting and formatting checks on staged files..."
+npm run lint:staged

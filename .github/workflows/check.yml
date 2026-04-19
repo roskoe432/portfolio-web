@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -40,15 +43,14 @@ jobs:
           VITE_LINKEDIN_URL: ${{ vars.VITE_LINKEDIN_URL }}
           VITE_PERLENSPIEL_URL: ${{ vars.VITE_PERLENSPIEL_URL }}
 
-      # TODO: Re-enable tests after rewriting unit tests
-      # - name: Run Coverage
-      #   run: npm run test:coverage
+      - name: Run Coverage
+        run: npm run test:coverage
 
-      # - name: Post Coverage Report to PR
-      #   uses: davelosert/vitest-coverage-report-action@v2
-      #   if: github.event_name == 'pull_request'
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN}}
+      - name: Post Coverage Report to PR
+        uses: davelosert/vitest-coverage-report-action@v2
+        if: github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN}}
 
       - name: Azure Login
         uses: azure/login@v2
