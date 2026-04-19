@@ -129,18 +129,17 @@ export default defineConfig({
 			reporter: ['text', 'json', 'html', 'json-summary'],
 			include: ['src/**/*.{js,jsx}'],
 			exclude: [
-				'src/index.jsx',
-				'src/pages/index.jsx',
+				'src/**/index.{js,jsx}',
 				'src/pages/links/links.jsx',
 				'**/*.json',
 				// Temporary until React coverage is improved
 				'src/game/**',
 			],
 			thresholds: {
-				lines: 42,
-				branches: 18,
-				statements: 41,
-				functions: 40,
+				lines: 43,
+				branches: 20,
+				statements: 42,
+				functions: 45,
 			},
 		},
 		include: ['__tests__/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
