@@ -1,12 +1,10 @@
 name: Portfolio Web - Check
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
-    branches:
+    branches-ignore:
       - main
+      - 'release/**'
   workflow_dispatch:
 
 jobs:
