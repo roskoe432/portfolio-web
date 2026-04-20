@@ -28,6 +28,15 @@ function MockVector2(x = 0, y = 0) {
 	this.y = y;
 }
 
+function MockSprite() {}
+
+function MockRectangle(x = 0, y = 0, width = 0, height = 0) {
+	this.x = x;
+	this.y = y;
+	this.width = width;
+	this.height = height;
+}
+
 function MockEventEmitter() {
 	this.events = {};
 }
@@ -66,8 +75,28 @@ export default {
 	Events: {
 		EventEmitter: MockEventEmitter,
 	},
+	GameObjects: {
+		Sprite: MockSprite,
+	},
+	Geom: {
+		Rectangle: MockRectangle,
+		Intersects: {
+			RectangleToRectangle: vi.fn(() => false),
+		},
+	},
+	Display: {
+		Color: {
+			HexStringToColor: vi.fn((value) => ({ color: value })),
+		},
+	},
+	Input: {
+		Keyboard: {
+			JustDown: vi.fn(() => false),
+		},
+	},
 	Scale: {
 		FIT: 'fit',
+		CENTER_BOTH: 'center_both',
 		NONE: 'none',
 		RESIZE: 'resize',
 		SHOW_ALL: 'show_all',
