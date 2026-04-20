@@ -81,10 +81,10 @@ const GameObject = (() => {
 		const fontSize = Number.parseInt(textConfig.fontSize, 10) || 14;
 
 		this.text = this.scene.add
-			.bitmapText(
+			.text(
 				this.config.position.x + textConfig.offset.x,
 				this.config.position.y + textConfig.offset.y,
-				'pixelifySansSmall',
+				'Arial',
 				this.i18next.t(textConfig.message),
 				fontSize,
 			)
@@ -92,8 +92,38 @@ const GameObject = (() => {
 			.setDepth(2)
 			.setVisible(textConfig.showByDefault || false);
 
+		this.text = this.scene.add
+			.text(
+				this.config.position.x + textConfig.offset.x,
+				this.config.position.y + textConfig.offset.y,
+				this.i18next.t(textConfig.message),
+				{
+					fontFamily: 'Arial',
+					fontWeight: 'bold',
+					fontSize: `${fontSize}px`,
+					color: textConfig.color || '#ffffff',
+				},
+			)
+			.setOrigin(0.5)
+			.setDepth(2)
+			.setVisible(textConfig.showByDefault || false);
+
+		// this.text = this.scene.add
+		// 	.bitmapText(
+		// 		this.config.position.x + textConfig.offset.x,
+		// 		this.config.position.y + textConfig.offset.y,
+		// 		'pixelifySansSmall',
+		// 		this.i18next.t(textConfig.message),
+		// 		fontSize,
+		// 	)
+		// 	.setOrigin(0.5)
+		// 	.setDepth(2)
+		// 	.setVisible(textConfig.showByDefault || false);
+
 		if (textConfig.color) {
-			this.text.setTint(Phaser.Display.Color.HexStringToColor(textConfig.color).color);
+			this.text.setTint(
+				Phaser.Display.Color.HexStringToColor(textConfig.color).color,
+			);
 		}
 	};
 
