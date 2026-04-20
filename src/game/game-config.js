@@ -2,8 +2,6 @@ import Phaser from 'phaser';
 import config from '@config';
 import scenes from './scenes';
 
-let game;
-
 const gameConfig = {
 	type: Phaser.AUTO,
 	title: 'The Office',
@@ -33,26 +31,5 @@ const gameConfig = {
 		roundPixels: true,
 	},
 };
-
-export const createGame = () => {
-	if (!game) {
-		game = new Phaser.Game(gameConfig);
-	}
-	return game;
-};
-
-export const destroyGame = () => {
-	if (game) {
-		game.destroy(true);
-		game = null;
-	}
-};
-
-// HMR cleanup: destroy game instance when this module is replaced
-if (import.meta.hot) {
-	import.meta.hot.dispose(() => {
-		destroyGame();
-	});
-}
 
 export default gameConfig;
