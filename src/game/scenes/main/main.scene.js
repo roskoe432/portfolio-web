@@ -85,17 +85,17 @@ function MainScene() {
 		const gameObjects = createGameObjects(this, this.player);
 		const boundaries = createBoundaries(this, this.map);
 		[...gameObjects, ...boundaries].forEach((collider) => {
-			this.physics.add.collider(this.player.player, collider);
+			this.physics.add.collider(this.player, collider);
 		});
 
-		this.trigger.addOverlapWith(this.player.player);
+		this.trigger.addOverlapWith(this.player);
 
 		this.registerKeys();
 	};
 
 	this.update = function () {
 		this.interactables.forEach((interactable) => {
-			interactable.update(this.player.player, this.eKey);
+			interactable.update(this.player, this.eKey);
 		});
 	};
 }

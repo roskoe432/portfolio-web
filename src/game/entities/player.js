@@ -1,3 +1,5 @@
+import Phaser from 'phaser';
+
 const IDLE_KEY = '(0,0)';
 const ANIMS = {
 	'(0,0)': 'idle',
@@ -13,28 +15,30 @@ const ANIMS = {
 const getAnimKey = (direction) => `(${direction.x},${direction.y})`;
 
 function Player(scene, eventBus, settings = { speed: 100 }) {
-	this.player = null;
+	Phaser.Physics.Arcade.Sprite.call(this, scene, 250, 250, ANIMS[IDLE_KEY]);
+	scene.add.existing(this);
+	scene.physics.add.existing(this);
 
 	const handleNavigation = function ({ direction }) {
-		this.player.setVelocity(
+		this.setVelocity(
 			direction.x * settings.speed,
 			direction.y * settings.speed,
 		);
 
 		const animKey = getAnimKey(direction);
-		this.player.play(ANIMS[animKey], true);
+		this.play(ANIMS[animKey], true);
 	};
-
-	this.player = scene.physics.add.sprite(200, 250, ANIMS[IDLE_KEY]);
 
 	eventBus.onNavigationKeysPressed(handleNavigation.bind(this));
 
-	this.player.setDepth(2);
-	this.player.setScale(2);
-	this.player.refreshBody();
-	this.player.body.setSize(14, 36);
+	this.setDepth(2);
+	this.setScale(2);
+	this.refreshBody();
+	this.body.setSize(14, 36);
 
-	this.player.play(ANIMS[IDLE_KEY]);
+	this.play(ANIMS[IDLE_KEY]);
 }
+Player.prototype = Object.create(Phaser.Physics.Arcade.Sprite.prototype);
+Player.prototype.constructor = Player;
 
 export default Player;

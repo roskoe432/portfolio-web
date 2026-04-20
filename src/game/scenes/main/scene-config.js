@@ -137,7 +137,7 @@ const createGameObjects = (scene, player) =>
 
 		const obj = new GameObject(scene, config, i18next);
 		if (config.trigger) {
-			obj.setupPlayerOverlap(player.player);
+			obj.setupPlayerOverlap(player);
 			scene.interactables.push(obj);
 		}
 

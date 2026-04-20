@@ -11,9 +11,15 @@ function MockGame() {
 
 function MockScene() {
 	this.add = {
+		existing: vi.fn(),
 		image: vi.fn(),
 		text: vi.fn(),
 		sprite: vi.fn(),
+	};
+	this.physics = {
+		add: {
+			existing: vi.fn(),
+		},
 	};
 	this.cameras = { main: {} };
 	this.scene = {
@@ -29,6 +35,11 @@ function MockVector2(x = 0, y = 0) {
 }
 
 function MockSprite() {}
+MockSprite.prototype.setVelocity = vi.fn();
+MockSprite.prototype.play = vi.fn();
+MockSprite.prototype.setDepth = vi.fn();
+MockSprite.prototype.setScale = vi.fn();
+MockSprite.prototype.refreshBody = vi.fn();
 
 function MockRectangle(x = 0, y = 0, width = 0, height = 0) {
 	this.x = x;
@@ -77,6 +88,11 @@ export default {
 	},
 	GameObjects: {
 		Sprite: MockSprite,
+	},
+	Physics: {
+		Arcade: {
+			Sprite: MockSprite,
+		},
 	},
 	Geom: {
 		Rectangle: MockRectangle,
