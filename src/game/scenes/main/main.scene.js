@@ -4,7 +4,6 @@ import createBoundaries from './boundaries';
 import createGameObjects from './scene-config';
 import { pauseManager } from '@game/system';
 import { eventBus } from '@game/events';
-import { CircleTrigger, BoxTrigger } from '@game/entities/triggers';
 
 function MainScene() {
 	Phaser.Scene.call(this, { key: 'Main', active: false });
@@ -57,36 +56,6 @@ function MainScene() {
 		this.cameras.main.setZoom(1);
 		this.setupTileMap();
 
-		this.circleTrigger = new CircleTrigger(this, {
-			position: new Phaser.Math.Vector2(350, 300),
-			radius: 50,
-		});
-
-		this.circleTrigger.events.on('enter', () => {
-			console.log('Player entered trigger area');
-		});
-		this.circleTrigger.events.on('exit', () => {
-			console.log('Player exited trigger area');
-		});
-		this.circleTrigger.events.on('stay', () => {
-			console.log('Player is still in trigger area');
-		});
-
-		this.boxTrigger = new BoxTrigger(this, {
-			position: new Phaser.Math.Vector2(500, 300),
-			size: new Phaser.Math.Vector2(100, 100),
-		});
-
-		this.boxTrigger.events.on('enter', () => {
-			console.log('Player entered box trigger area');
-		});
-		this.boxTrigger.events.on('exit', () => {
-			console.log('Player exited box trigger area');
-		});
-		this.boxTrigger.events.on('stay', () => {
-			console.log('Player is still in box trigger area');
-		});
-
 		this.physics.world.setBounds(
 			0,
 			0,
@@ -105,9 +74,6 @@ function MainScene() {
 		[...gameObjects, ...boundaries].forEach((collider) => {
 			this.physics.add.collider(this.player, collider);
 		});
-
-		this.circleTrigger.addOverlapWith(this.player);
-		this.boxTrigger.addOverlapWith(this.player);
 
 		this.registerKeys();
 	};
