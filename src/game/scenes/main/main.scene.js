@@ -4,7 +4,7 @@ import createBoundaries from './boundaries';
 import createGameObjects from './scene-config';
 import { pauseManager } from '@game/system';
 import { eventBus } from '@game/events';
-import CircleTrigger from '@game/entities/circle-trigger';
+import { CircleTrigger, BoxTrigger } from '@game/entities/triggers';
 
 function MainScene() {
 	Phaser.Scene.call(this, { key: 'Main', active: false });
@@ -48,25 +48,43 @@ function MainScene() {
 	};
 
 	this.create = function () {
-		this.player = new Player(this, eventBus, { speed: 100 });
+		this.player = new Player(this, eventBus, {
+			speed: 100,
+			startPosition: new Phaser.Math.Vector2(250, 250),
+		});
 		this.cameras.main.roundPixels = true;
 		this.addTitle();
 		this.cameras.main.setZoom(1);
 		this.setupTileMap();
 
-		this.trigger = new CircleTrigger(this, eventBus, {
-			position: { x: 350, y: 300 },
+		this.circleTrigger = new CircleTrigger(this, {
+			position: new Phaser.Math.Vector2(350, 300),
 			radius: 50,
 		});
 
-		this.trigger.events.on('enter', () => {
+		this.circleTrigger.events.on('enter', () => {
 			console.log('Player entered trigger area');
 		});
-		this.trigger.events.on('exit', () => {
+		this.circleTrigger.events.on('exit', () => {
 			console.log('Player exited trigger area');
 		});
-		this.trigger.events.on('stay', () => {
+		this.circleTrigger.events.on('stay', () => {
 			console.log('Player is still in trigger area');
+		});
+
+		this.boxTrigger = new BoxTrigger(this, {
+			position: new Phaser.Math.Vector2(500, 300),
+			size: new Phaser.Math.Vector2(100, 100),
+		});
+
+		this.boxTrigger.events.on('enter', () => {
+			console.log('Player entered box trigger area');
+		});
+		this.boxTrigger.events.on('exit', () => {
+			console.log('Player exited box trigger area');
+		});
+		this.boxTrigger.events.on('stay', () => {
+			console.log('Player is still in box trigger area');
 		});
 
 		this.physics.world.setBounds(
@@ -88,7 +106,8 @@ function MainScene() {
 			this.physics.add.collider(this.player, collider);
 		});
 
-		this.trigger.addOverlapWith(this.player);
+		this.circleTrigger.addOverlapWith(this.player);
+		this.boxTrigger.addOverlapWith(this.player);
 
 		this.registerKeys();
 	};

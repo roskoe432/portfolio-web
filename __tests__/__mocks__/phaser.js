@@ -18,10 +18,22 @@ function MockScene() {
 	};
 	this.physics = {
 		add: {
-			existing: vi.fn(),
+			existing: vi.fn((gameObject) => {
+				gameObject.body = {
+					setImmovable: vi.fn(),
+					setAllowGravity: vi.fn(),
+					setSize: vi.fn(),
+					setCircle: vi.fn(),
+				};
+			}),
 		},
 	};
 	this.cameras = { main: {} };
+	this.events = {
+		on: vi.fn(),
+		off: vi.fn(),
+		once: vi.fn(),
+	};
 	this.scene = {
 		start: vi.fn(),
 		stop: vi.fn(),
@@ -40,6 +52,10 @@ MockSprite.prototype.play = vi.fn();
 MockSprite.prototype.setDepth = vi.fn();
 MockSprite.prototype.setScale = vi.fn();
 MockSprite.prototype.refreshBody = vi.fn();
+MockSprite.prototype.on = vi.fn();
+
+function MockZone() {}
+MockZone.prototype.on = vi.fn();
 
 function MockRectangle(x = 0, y = 0, width = 0, height = 0) {
 	this.x = x;
@@ -88,6 +104,7 @@ export default {
 	},
 	GameObjects: {
 		Sprite: MockSprite,
+		Zone: MockZone,
 	},
 	Physics: {
 		Arcade: {
