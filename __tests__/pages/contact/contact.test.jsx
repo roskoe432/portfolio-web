@@ -78,4 +78,38 @@ describe('ContactPage', () => {
 			),
 		).toBeInTheDocument();
 	});
+
+	it('shows validation errors and does not submit when required fields are empty', async () => {
+		const mutate = vi.fn();
+		mockUseEmailMutation.mockReturnValue({
+			mutate,
+			isPending: false,
+			isSuccess: false,
+			error: null,
+		});
+
+		render(<ContactPage closePageModal={vi.fn()} />);
+
+		fireEvent.click(screen.getByRole('button', { name: 'Send' }));
+
+		expect(
+			await screen.findByText('Please enter a valid email address.'),
+		).toBeInTheDocument();
+		expect(screen.getByText('Subject is required.')).toBeInTheDocument();
+		expect(screen.getByText('Message is required.')).toBeInTheDocument();
+		expect(mutate).not.toHaveBeenCalled();
+	});
+
+	it('disables submit and shows the pending label while sending', () => {
+		mockUseEmailMutation.mockReturnValue({
+			mutate: vi.fn(),
+			isPending: true,
+			isSuccess: false,
+			error: null,
+		});
+
+		render(<ContactPage closePageModal={vi.fn()} />);
+
+		expect(screen.getByRole('button', { name: 'Sending...' })).toBeDisabled();
+	});
 });
