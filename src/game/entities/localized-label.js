@@ -22,10 +22,10 @@ const LocalizedLabel = (() => {
 	 * @param {Phaser.Scene} scene
 	 * @param {Settings} settings
 	 */
-	function LocalizedLabel(scene, settings, i18next) {
+	function LocalizedLabel(scene, settings, translateFn) {
 		this.scene = scene;
 		this.settings = settings;
-		this.i18next = i18next;
+		this.translateFn = translateFn;
 		this.label = null;
 		this.unsubscribeLanguageChange = null;
 
@@ -36,7 +36,7 @@ const LocalizedLabel = (() => {
 	}
 
 	LocalizedLabel.prototype.getText = function () {
-		return this.i18next.t(this.settings.message);
+		return this.translateFn(this.settings.message);
 	};
 
 	LocalizedLabel.prototype.createLabel = function () {

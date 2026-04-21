@@ -37,7 +37,7 @@ function MainScene() {
 					color: '#000000',
 				},
 			},
-			i18next,
+			i18next.t.bind(i18next),
 		);
 	};
 
@@ -82,7 +82,11 @@ function MainScene() {
 			this.map.heightInPixels,
 		);
 
-		const gameObjects = createGameObjects(this, this.player);
+		const gameObjects = createGameObjects(
+			this,
+			this.player,
+			i18next.t.bind(i18next),
+		);
 		const boundaries = createBoundaries(this, this.map);
 		[...gameObjects, ...boundaries].forEach((collider) => {
 			this.physics.add.collider(this.player, collider);

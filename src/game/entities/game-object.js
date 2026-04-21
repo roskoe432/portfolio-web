@@ -3,10 +3,10 @@ import LocalizedLabel from './localized-label';
 const { Vector2 } = Math;
 
 const GameObject = (() => {
-	function GameObject(scene, config, i18next) {
+	function GameObject(scene, config, translateFn) {
 		this.scene = scene;
 		this.config = config;
-		this.i18next = i18next;
+		this.translateFn = translateFn;
 		this.isPlayerInRange = false;
 		this.label = null;
 		this.trigger = null;
@@ -87,7 +87,7 @@ const GameObject = (() => {
 				bitmapFont: textConfig.bitmapFont !== false,
 				fontKey: textConfig.fontKey || 'pixelifySansSmall',
 			},
-			this.i18next,
+			this.translateFn,
 		);
 	};
 
@@ -173,14 +173,14 @@ const GameObject = (() => {
 		this.checkInteraction(interactKey);
 	};
 
-	GameObject.factory = (scene, config, positions, i18next) => {
+	GameObject.factory = (scene, config, positions, translateFn) => {
 		const objs = [];
 		positions.forEach((pos) => {
 			const objConfig = {
 				...config,
 				position: new Vector2(pos.x, pos.y),
 			};
-			objs.push(new GameObject(scene, objConfig, i18next).getCollider());
+			objs.push(new GameObject(scene, objConfig, translateFn).getCollider());
 		});
 		return objs;
 	};
