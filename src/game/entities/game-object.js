@@ -1,6 +1,6 @@
 import Phaser, { Math } from 'phaser';
-const { Vector2 } = Math;
 import LocalizedLabel from './localized-label';
+const { Vector2 } = Math;
 
 const GameObject = (() => {
 	function GameObject(scene, config, i18next) {
