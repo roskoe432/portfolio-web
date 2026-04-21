@@ -67,7 +67,6 @@ const LocalizedLabel = (() => {
 	};
 
 	LocalizedLabel.prototype.refreshText = function () {
-		console.log('Refreshing text for', this.settings.message);
 		if (!this.label) return;
 
 		this.label.setText(this.getText());
