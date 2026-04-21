@@ -93,32 +93,16 @@ const GameObject = (() => {
 			.setVisible(textConfig.showByDefault || false);
 
 		this.text = this.scene.add
-			.text(
+			.bitmapText(
 				this.config.position.x + textConfig.offset.x,
 				this.config.position.y + textConfig.offset.y,
+				'pixelifySansSmall',
 				this.i18next.t(textConfig.message),
-				{
-					fontFamily: 'Arial',
-					fontWeight: 'bold',
-					fontSize: `${fontSize}px`,
-					color: textConfig.color || '#ffffff',
-				},
+				fontSize,
 			)
 			.setOrigin(0.5)
 			.setDepth(2)
 			.setVisible(textConfig.showByDefault || false);
-
-		// this.text = this.scene.add
-		// 	.bitmapText(
-		// 		this.config.position.x + textConfig.offset.x,
-		// 		this.config.position.y + textConfig.offset.y,
-		// 		'pixelifySansSmall',
-		// 		this.i18next.t(textConfig.message),
-		// 		fontSize,
-		// 	)
-		// 	.setOrigin(0.5)
-		// 	.setDepth(2)
-		// 	.setVisible(textConfig.showByDefault || false);
 
 		if (textConfig.color) {
 			this.text.setTint(
