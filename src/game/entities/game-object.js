@@ -1,6 +1,6 @@
 import Phaser, { Math } from 'phaser';
 const { Vector2 } = Math;
-import { eventBus } from '@game';
+import LocalizedLabel from './localized-label';
 
 const GameObject = (() => {
 	function GameObject(scene, config, i18next) {
@@ -8,14 +8,8 @@ const GameObject = (() => {
 		this.config = config;
 		this.i18next = i18next;
 		this.isPlayerInRange = false;
-		this.text = null;
+		this.label = null;
 		this.trigger = null;
-
-		eventBus.onLanguageChange(() => {
-			if (this.config.trigger?.text) {
-				this.text.setText(this.i18next.t(this.config.trigger.text.message));
-			}
-		});
 
 		this.sprite = scene.physics.add.image(
 			config.position.x,
@@ -78,37 +72,23 @@ const GameObject = (() => {
 
 	GameObject.prototype.createTextLabel = function () {
 		const textConfig = this.config.trigger.text;
-		const fontSize = Number.parseInt(textConfig.fontSize, 10) || 14;
 
-		this.text = this.scene.add
-			.text(
-				this.config.position.x + textConfig.offset.x,
-				this.config.position.y + textConfig.offset.y,
-				'Arial',
-				this.i18next.t(textConfig.message),
-				fontSize,
-			)
-			.setOrigin(0.5)
-			.setDepth(2)
-			.setVisible(textConfig.showByDefault || false);
-
-		this.text = this.scene.add
-			.bitmapText(
-				this.config.position.x + textConfig.offset.x,
-				this.config.position.y + textConfig.offset.y,
-				'pixelifySansSmall',
-				this.i18next.t(textConfig.message),
-				fontSize,
-			)
-			.setOrigin(0.5)
-			.setDepth(2)
-			.setVisible(textConfig.showByDefault || false);
-
-		if (textConfig.color) {
-			this.text.setTint(
-				Phaser.Display.Color.HexStringToColor(textConfig.color).color,
-			);
-		}
+		this.label = new LocalizedLabel(
+			this.scene,
+			{
+				position: this.config.position,
+				offset: textConfig.offset,
+				message: textConfig.message,
+				style: {
+					color: textConfig.color,
+					fontSize: textConfig.fontSize,
+				},
+				visible: textConfig.showByDefault || false,
+				bitmapFont: textConfig.bitmapFont !== false,
+				fontKey: textConfig.fontKey || 'pixelifySansSmall',
+			},
+			this.i18next,
+		);
 	};
 
 	GameObject.prototype.setupPlayerOverlap = function (player) {
@@ -166,8 +146,8 @@ const GameObject = (() => {
 		if (this.config.trigger?.onEnter) {
 			this.config.trigger.onEnter(this.scene);
 		}
-		if (this.text) {
-			this.text.setVisible(true);
+		if (this.label) {
+			this.label.setVisible(true);
 		}
 	};
 
@@ -175,8 +155,8 @@ const GameObject = (() => {
 		if (this.config.trigger?.onExit) {
 			this.config.trigger.onExit(this.scene);
 		}
-		if (this.text) {
-			this.text.setVisible(false);
+		if (this.label) {
+			this.label.setVisible(false);
 		}
 	};
 

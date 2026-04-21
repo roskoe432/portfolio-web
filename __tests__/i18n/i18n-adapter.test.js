@@ -52,7 +52,6 @@ const createI18nMock = (
 			if (setLanguageOnChange) {
 				state.language = lang;
 			}
-			console.log('Mock i18n state updated to:', state);
 		}),
 	};
 };
