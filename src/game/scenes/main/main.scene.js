@@ -4,7 +4,6 @@ import createBoundaries from './boundaries';
 import createGameObjects from './scene-config';
 import { pauseManager } from '@game/system';
 import { eventBus } from '@game/events';
-import CircleTrigger from '@game/entities/circle-trigger';
 
 function MainScene() {
 	Phaser.Scene.call(this, { key: 'Main', active: false });
@@ -48,26 +47,14 @@ function MainScene() {
 	};
 
 	this.create = function () {
-		this.player = new Player(this, eventBus, { speed: 100 });
+		this.player = new Player(this, eventBus, {
+			speed: 100,
+			startPosition: new Phaser.Math.Vector2(250, 250),
+		});
 		this.cameras.main.roundPixels = true;
 		this.addTitle();
 		this.cameras.main.setZoom(1);
 		this.setupTileMap();
-
-		this.trigger = new CircleTrigger(this, eventBus, {
-			position: { x: 350, y: 300 },
-			radius: 50,
-		});
-
-		this.trigger.events.on('enter', () => {
-			console.log('Player entered trigger area');
-		});
-		this.trigger.events.on('exit', () => {
-			console.log('Player exited trigger area');
-		});
-		this.trigger.events.on('stay', () => {
-			console.log('Player is still in trigger area');
-		});
 
 		this.physics.world.setBounds(
 			0,
@@ -85,17 +72,15 @@ function MainScene() {
 		const gameObjects = createGameObjects(this, this.player);
 		const boundaries = createBoundaries(this, this.map);
 		[...gameObjects, ...boundaries].forEach((collider) => {
-			this.physics.add.collider(this.player.player, collider);
+			this.physics.add.collider(this.player, collider);
 		});
-
-		this.trigger.addOverlapWith(this.player.player);
 
 		this.registerKeys();
 	};
 
 	this.update = function () {
 		this.interactables.forEach((interactable) => {
-			interactable.update(this.player.player, this.eKey);
+			interactable.update(this.player, this.eKey);
 		});
 	};
 }

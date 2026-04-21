@@ -36,7 +36,6 @@ function InputManager(eventBus, logger) {
 			direction: { x: 0, y: 0 },
 		});
 		this.lastDirection = { x: 0, y: 0 };
-		console.debug('Disabling input', { disablePause });
 		this.pauseEnabled = !disablePause;
 		this.inputEnabled = false;
 	};
