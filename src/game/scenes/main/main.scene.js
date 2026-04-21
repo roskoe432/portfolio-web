@@ -4,6 +4,8 @@ import createBoundaries from './boundaries';
 import createGameObjects from './scene-config';
 import { pauseManager } from '@game/system';
 import { eventBus } from '@game/events';
+import LocalizedLabel from '@game/entities/localized-label';
+import i18next from 'i18next';
 
 function MainScene() {
 	Phaser.Scene.call(this, { key: 'Main', active: false });
@@ -22,10 +24,21 @@ function MainScene() {
 	pauseManager.registerScene(this);
 
 	this.addTitle = function () {
-		this.add
-			.bitmapText(182, 50, 'pixelifySans', "Ben Snow's Portfolio", 35)
-			.setTint(0x444444)
-			.setDepth(1000);
+		new LocalizedLabel(
+			this,
+			{
+				bitmapFont: true,
+				fontKey: 'pixelifySans',
+				message: 'game.title',
+				depth: 2,
+				position: new Phaser.Math.Vector2(330, 70),
+				style: {
+					fontSize: '35px',
+					color: '#000000',
+				},
+			},
+			i18next,
+		);
 	};
 
 	this.setupTileMap = function () {

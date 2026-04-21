@@ -66,6 +66,7 @@
 		}
 	},
 	"game": {
+		"title": "Portafolio de Ben Snow",
 		"objects": {
 			"desk": "Sobre mí [E]",
 			"fileCabinet": "Blog [E]",

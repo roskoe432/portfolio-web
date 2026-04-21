@@ -45,7 +45,7 @@ const LocalizedLabel = (() => {
 			offset = { x: 0, y: 0 },
 			style = {},
 			bitmapFont = false,
-			visible = false,
+			visible = true,
 			fontKey = 'pixelifySansSmall',
 		} = this.settings;
 		const x = position.x + offset.x;
@@ -67,6 +67,7 @@ const LocalizedLabel = (() => {
 	};
 
 	LocalizedLabel.prototype.refreshText = function () {
+		console.log('Refreshing text for', this.settings.message);
 		if (!this.label) return;
 
 		this.label.setText(this.getText());
