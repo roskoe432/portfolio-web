@@ -25,8 +25,7 @@ const BoxTrigger = (() => {
 		BaseTrigger.call(this, scene, settings);
 		this.body.setSize(settings.size.x, settings.size.y);
 	}
-	BoxTrigger.prototype = Object.create(BaseTrigger.prototype);
-	BoxTrigger.prototype.constructor = BoxTrigger;
+	BaseTrigger.derive(BoxTrigger);
 
 	/**
 	 * @property {Settings} Settings

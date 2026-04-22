@@ -25,8 +25,7 @@ const CircleTrigger = (() => {
 		BaseTrigger.call(this, scene, settings);
 		this.body.setCircle(settings.radius);
 	}
-	CircleTrigger.prototype = Object.create(BaseTrigger.prototype);
-	CircleTrigger.prototype.constructor = CircleTrigger;
+	BaseTrigger.derive(CircleTrigger);
 
 	/**
 	 * @property {Settings} Settings

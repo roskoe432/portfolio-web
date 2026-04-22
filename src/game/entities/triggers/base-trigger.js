@@ -95,6 +95,11 @@ const BaseTrigger = (() => {
 	 */
 	BaseTrigger.Settings = Settings;
 
+	BaseTrigger.derive = (Child) => {
+		Child.prototype = Object.create(BaseTrigger.prototype);
+		Child.prototype.constructor = Child;
+	};
+
 	return BaseTrigger;
 })();
 
