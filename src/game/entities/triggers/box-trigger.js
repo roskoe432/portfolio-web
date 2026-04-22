@@ -1,13 +1,10 @@
-import { BaseTrigger } from './base-trigger';
+import BaseTrigger from './base-trigger';
 
-/**
- * @namespace BoxTrigger
- */
 const BoxTrigger = (() => {
 	/**
-	 * @constructor
 	 * @param {import('phaser').Math.Vector2} position
 	 * @param {import('phaser').Math.Vector2} size
+	 * @constructor
 	 */
 	function Settings(position, size) {
 		BaseTrigger.Settings.call(this, position);
@@ -17,9 +14,9 @@ const BoxTrigger = (() => {
 	Settings.prototype.constructor = Settings;
 
 	/**
-	 * @constructor
-	 * @param {Phaser.Scene} scene
+	 * @param {import('phaser').Scene} scene
 	 * @param {Settings} settings
+	 * @constructor
 	 */
 	function BoxTrigger(scene, settings) {
 		BaseTrigger.call(this, scene, settings);
@@ -28,9 +25,8 @@ const BoxTrigger = (() => {
 	BaseTrigger.derive(BoxTrigger);
 
 	/**
-	 * @property {Settings} Settings
-	 * @static
-	 * @memberof BoxTrigger
+	 * Box-specific settings constructor.
+	 * @type {typeof Settings}
 	 */
 	BoxTrigger.Settings = Settings;
 
