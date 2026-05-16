@@ -28,6 +28,7 @@ const LocalizedLabel = (() => {
 	 * @returns {string}
 	 */
 	LocalizedLabel.prototype.getText = function () {
+		console.log('Getting text for key:', this.settings.message);
 		return i18next.t(this.settings.message);
 	};
 

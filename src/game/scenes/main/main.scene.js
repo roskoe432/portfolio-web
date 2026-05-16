@@ -6,6 +6,7 @@ import { pauseManager } from '@game/system';
 import { eventBus } from '@game/events';
 import LocalizedLabel from '@game/entities/localized-label';
 import i18next from 'i18next';
+import Interactable from '@game/entities/interactable';
 
 function MainScene() {
 	Phaser.Scene.call(this, { key: 'Main', active: false });
@@ -41,6 +42,27 @@ function MainScene() {
 		);
 	};
 
+	this.testInteractable = function () {
+		this.interactable = new Interactable(this, 'desk', {
+			label: {
+				message: 'game.objects.desk',
+				position: { x: 400, y: 300 },
+				style: {
+					color: '#ff0000',
+					fontSize: '22px',
+				},
+			},
+			trigger: {
+				position: { x: 400, y: 300 },
+				radius: 50,
+			},
+		});
+
+		setTimeout(() => {
+			this.interactable.setLabelVisible(true);
+		}, 5000);
+	};
+
 	this.setupTileMap = function () {
 		this.map = this.make.tilemap({ key: 'officeMap' });
 		this.tileset = this.map.addTilesetImage('office-tileset', 'officeTileset');
@@ -60,6 +82,7 @@ function MainScene() {
 	};
 
 	this.create = function () {
+		this.testInteractable();
 		this.player = new Player(this, eventBus, {
 			speed: 100,
 			startPosition: new Phaser.Math.Vector2(250, 250),
