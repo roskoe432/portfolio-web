@@ -58,6 +58,8 @@ function MainScene() {
 			},
 		});
 
+		this.interactable.setLabelVisible(false);
+
 		setTimeout(() => {
 			this.interactable.setLabelVisible(true);
 		}, 5000);
