@@ -4,6 +4,9 @@ import createBoundaries from './boundaries';
 import createGameObjects from './scene-config';
 import { pauseManager } from '@game/system';
 import { eventBus } from '@game/events';
+import LocalizedLabel from '@game/entities/localized-label';
+import i18next from 'i18next';
+import Interactable from '@game/entities/interactable';
 
 function MainScene() {
 	Phaser.Scene.call(this, { key: 'Main', active: false });
@@ -22,10 +25,44 @@ function MainScene() {
 	pauseManager.registerScene(this);
 
 	this.addTitle = function () {
-		this.add
-			.bitmapText(182, 50, 'pixelifySans', "Ben Snow's Portfolio", 35)
-			.setTint(0x444444)
-			.setDepth(1000);
+		new LocalizedLabel(
+			this,
+			{
+				bitmapFont: true,
+				fontKey: 'pixelifySans',
+				message: 'game.title',
+				depth: 2,
+				position: new Phaser.Math.Vector2(330, 70),
+				style: {
+					fontSize: '35px',
+					color: '#000000',
+				},
+			},
+			i18next.t.bind(i18next),
+		);
+	};
+
+	this.testInteractable = function () {
+		this.interactable = new Interactable(this, 'desk', {
+			label: {
+				message: 'game.objects.desk',
+				position: { x: 400, y: 300 },
+				style: {
+					color: '#ff0000',
+					fontSize: '22px',
+				},
+			},
+			trigger: {
+				position: { x: 400, y: 300 },
+				radius: 50,
+			},
+		});
+
+		this.interactable.setLabelVisible(false);
+
+		setTimeout(() => {
+			this.interactable.setLabelVisible(true);
+		}, 5000);
 	};
 
 	this.setupTileMap = function () {
@@ -47,6 +84,7 @@ function MainScene() {
 	};
 
 	this.create = function () {
+		this.testInteractable();
 		this.player = new Player(this, eventBus, {
 			speed: 100,
 			startPosition: new Phaser.Math.Vector2(250, 250),
@@ -69,7 +107,11 @@ function MainScene() {
 			this.map.heightInPixels,
 		);
 
-		const gameObjects = createGameObjects(this, this.player);
+		const gameObjects = createGameObjects(
+			this,
+			this.player,
+			i18next.t.bind(i18next),
+		);
 		const boundaries = createBoundaries(this, this.map);
 		[...gameObjects, ...boundaries].forEach((collider) => {
 			this.physics.add.collider(this.player, collider);
