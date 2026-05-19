@@ -6,7 +6,7 @@ import { pauseManager } from '@game/system';
 import { eventBus } from '@game/events';
 import LocalizedLabel from '@game/entities/localized-label';
 import i18next from 'i18next';
-import Interactable from '@game/entities/interactable';
+import createInteractables from './scene-interactables';
 
 function MainScene() {
 	Phaser.Scene.call(this, { key: 'Main', active: false });
@@ -21,8 +21,6 @@ function MainScene() {
 	this.cursors = null;
 
 	this.interactables = [];
-
-	this.testInteractable = null;
 
 	pauseManager.registerScene(this);
 
@@ -42,36 +40,6 @@ function MainScene() {
 			},
 			i18next.t.bind(i18next),
 		);
-	};
-
-	this.testInteractable = function () {
-		this.testInteractable = new Interactable(this, 'desk', {
-			label: {
-				message: 'game.objects.desk',
-				position: { x: 400, y: 300 },
-				style: {
-					color: '#ff0000',
-					fontSize: '22px',
-				},
-				offset: { x: 55, y: -15 },
-			},
-			trigger: {
-				position: { x: 400, y: 300 },
-				radius: 50,
-				onEnter: () => {
-					console.log('Player entered the desk area');
-				},
-				onExit: () => {
-					console.log('Player left the desk area');
-				},
-			},
-			interaction: {
-				key: this.eKey,
-				onInteract: () => {
-					console.log('Player interacted with the desk');
-				},
-			},
-		});
 	};
 
 	this.setupTileMap = function () {
@@ -95,13 +63,10 @@ function MainScene() {
 	this.create = function () {
 		this.registerKeys();
 
-		this.testInteractable();
 		this.player = new Player(this, eventBus, {
 			speed: 100,
 			startPosition: new Phaser.Math.Vector2(250, 250),
 		});
-
-		this.testInteractable.addOverlapWith(this.player);
 
 		this.cameras.main.roundPixels = true;
 		this.addTitle();
@@ -126,6 +91,9 @@ function MainScene() {
 			this.player,
 			i18next.t.bind(i18next),
 		);
+		this.interactables.push(
+			...createInteractables(this, this.player, this.eKey),
+		);
 		const boundaries = createBoundaries(this, this.map);
 		[...gameObjects, ...boundaries].forEach((collider) => {
 			this.physics.add.collider(this.player, collider);
@@ -133,8 +101,6 @@ function MainScene() {
 	};
 
 	this.update = function () {
-		this.testInteractable.checkInteraction();
-
 		this.interactables.forEach((interactable) => {
 			interactable.update(this.player, this.eKey);
 		});
