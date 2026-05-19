@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import LocalizedLabel from './localized-label';
-import { CircleTrigger } from './triggers';
+import { BoxTrigger, CircleTrigger } from './triggers';
 
 const Interactable = (() => {
 	function Interactable(scene, name, settings) {
@@ -50,29 +50,32 @@ const Interactable = (() => {
 			);
 		}
 
-		this.trigger = new CircleTrigger(this.scene, {
+		const { position, radius, size, type = 'circle' } = this.settings.trigger;
+		const triggerSettings = {
 			position: {
-				x: this.settings.trigger.position.x,
-				y: this.settings.trigger.position.y,
+				x: position.x,
+				y: position.y,
 			},
-			radius: this.settings.trigger.radius,
+			radius,
+			size,
+		};
+
+		this.trigger =
+			type === 'box'
+				? new BoxTrigger(this.scene, triggerSettings)
+				: new CircleTrigger(this.scene, triggerSettings);
+
+		this.trigger.events.on('enter', () => {
+			this.inRange = true;
+			this.label?.setVisible(true);
+			this.settings.interaction?.onEnter?.();
 		});
 
-		if (this.settings.trigger.onEnter) {
-			this.trigger.events.on('enter', () => {
-				this.inRange = true;
-				this.label?.setVisible(true);
-				this.settings.trigger.onEnter();
-			});
-		}
-
-		if (this.settings.trigger.onExit) {
-			this.trigger.events.on('exit', () => {
-				this.inRange = false;
-				this.label?.setVisible(false);
-				this.settings.trigger.onExit();
-			});
-		}
+		this.trigger.events.on('exit', () => {
+			this.inRange = false;
+			this.label?.setVisible(false);
+			this.settings.interaction?.onExit?.();
+		});
 	};
 
 	Interactable.prototype.setLabelVisible = function (visible) {
@@ -95,6 +98,10 @@ const Interactable = (() => {
 		if (Phaser.Input.Keyboard.JustDown(this.settings.interaction.key)) {
 			this.settings.interaction.onInteract();
 		}
+	};
+
+	Interactable.prototype.update = function () {
+		this.checkInteraction();
 	};
 
 	return Interactable;
