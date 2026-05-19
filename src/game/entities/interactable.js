@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 import LocalizedLabel from './localized-label';
 import { CircleTrigger } from './triggers';
 
@@ -8,6 +9,7 @@ const Interactable = (() => {
 		this.settings = settings;
 		this.label = null;
 		this.trigger = null;
+		this.inRange = false;
 
 		this.createLabel();
 		this.createTrigger();
@@ -55,12 +57,44 @@ const Interactable = (() => {
 			},
 			radius: this.settings.trigger.radius,
 		});
+
+		if (this.settings.trigger.onEnter) {
+			this.trigger.events.on('enter', () => {
+				this.inRange = true;
+				this.label?.setVisible(true);
+				this.settings.trigger.onEnter();
+			});
+		}
+
+		if (this.settings.trigger.onExit) {
+			this.trigger.events.on('exit', () => {
+				this.inRange = false;
+				this.label?.setVisible(false);
+				this.settings.trigger.onExit();
+			});
+		}
 	};
 
 	Interactable.prototype.setLabelVisible = function (visible) {
 		if (!this.label) return;
 
 		this.label.setVisible(visible);
+	};
+
+	Interactable.prototype.addOverlapWith = function (other) {
+		if (!this.trigger) return;
+
+		this.trigger.addOverlapWith(other);
+	};
+
+	Interactable.prototype.checkInteraction = function () {
+		if (!this.inRange) return;
+
+		if (!this.settings.interaction?.onInteract) return;
+
+		if (Phaser.Input.Keyboard.JustDown(this.settings.interaction.key)) {
+			this.settings.interaction.onInteract();
+		}
 	};
 
 	return Interactable;

@@ -22,6 +22,8 @@ function MainScene() {
 
 	this.interactables = [];
 
+	this.testInteractable = null;
+
 	pauseManager.registerScene(this);
 
 	this.addTitle = function () {
@@ -43,7 +45,7 @@ function MainScene() {
 	};
 
 	this.testInteractable = function () {
-		this.interactable = new Interactable(this, 'desk', {
+		this.testInteractable = new Interactable(this, 'desk', {
 			label: {
 				message: 'game.objects.desk',
 				position: { x: 400, y: 300 },
@@ -51,18 +53,25 @@ function MainScene() {
 					color: '#ff0000',
 					fontSize: '22px',
 				},
+				offset: { x: 55, y: -15 },
 			},
 			trigger: {
 				position: { x: 400, y: 300 },
 				radius: 50,
+				onEnter: () => {
+					console.log('Player entered the desk area');
+				},
+				onExit: () => {
+					console.log('Player left the desk area');
+				},
+			},
+			interaction: {
+				key: this.eKey,
+				onInteract: () => {
+					console.log('Player interacted with the desk');
+				},
 			},
 		});
-
-		this.interactable.setLabelVisible(false);
-
-		setTimeout(() => {
-			this.interactable.setLabelVisible(true);
-		}, 5000);
 	};
 
 	this.setupTileMap = function () {
@@ -84,11 +93,16 @@ function MainScene() {
 	};
 
 	this.create = function () {
+		this.registerKeys();
+
 		this.testInteractable();
 		this.player = new Player(this, eventBus, {
 			speed: 100,
 			startPosition: new Phaser.Math.Vector2(250, 250),
 		});
+
+		this.testInteractable.addOverlapWith(this.player);
+
 		this.cameras.main.roundPixels = true;
 		this.addTitle();
 		this.cameras.main.setZoom(1);
@@ -116,11 +130,11 @@ function MainScene() {
 		[...gameObjects, ...boundaries].forEach((collider) => {
 			this.physics.add.collider(this.player, collider);
 		});
-
-		this.registerKeys();
 	};
 
 	this.update = function () {
+		this.testInteractable.checkInteraction();
+
 		this.interactables.forEach((interactable) => {
 			interactable.update(this.player, this.eKey);
 		});
