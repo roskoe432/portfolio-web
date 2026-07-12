@@ -1,13 +1,10 @@
-import { BaseTrigger } from './base-trigger';
+import BaseTrigger from './base-trigger';
 
-/**
- * @namespace CircleTrigger
- */
 const CircleTrigger = (() => {
 	/**
-	 * @constructor
 	 * @param {import('phaser').Math.Vector2} position
 	 * @param {number} radius
+	 * @constructor
 	 */
 	function Settings(position, radius) {
 		BaseTrigger.Settings.call(this, position);
@@ -17,21 +14,19 @@ const CircleTrigger = (() => {
 	Settings.prototype.constructor = Settings;
 
 	/**
-	 * @constructor
-	 * @param {Phaser.Scene} scene
+	 * @param {import('phaser').Scene} scene
 	 * @param {Settings} settings
+	 * @constructor
 	 */
 	function CircleTrigger(scene, settings) {
 		BaseTrigger.call(this, scene, settings);
 		this.body.setCircle(settings.radius);
 	}
-	CircleTrigger.prototype = Object.create(BaseTrigger.prototype);
-	CircleTrigger.prototype.constructor = CircleTrigger;
+	BaseTrigger.derive(CircleTrigger);
 
 	/**
-	 * @property {Settings} Settings
-	 * @static
-	 * @memberof CircleTrigger
+	 * Circle-specific settings constructor.
+	 * @type {typeof Settings}
 	 */
 	CircleTrigger.Settings = Settings;
 

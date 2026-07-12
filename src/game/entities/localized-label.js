@@ -1,31 +1,19 @@
 import Phaser from 'phaser';
 import { eventBus } from '@game/events';
+import i18next from 'i18next';
 
 /**
  * @namespace LocalizedLabel
  */
 const LocalizedLabel = (() => {
 	/**
-	 * @constructor Settings
-	 * @param {Phaser.Math.Vector2} position
-	 * @param {string} message
-	 * @param {Phaser.Types.GameObjects.Text.TextStyle} style
-	 */
-	function Settings(position, message, style) {
-		this.position = position;
-		this.message = message;
-		this.style = style;
-	}
-
-	/**
 	 * @constructor LocalizedLabel
 	 * @param {Phaser.Scene} scene
 	 * @param {Settings} settings
 	 */
-	function LocalizedLabel(scene, settings, i18next) {
+	function LocalizedLabel(scene, settings) {
 		this.scene = scene;
 		this.settings = settings;
-		this.i18next = i18next;
 		this.label = null;
 		this.unsubscribeLanguageChange = null;
 
@@ -35,8 +23,13 @@ const LocalizedLabel = (() => {
 		});
 	}
 
+	/**
+	 *
+	 * @returns {string}
+	 */
 	LocalizedLabel.prototype.getText = function () {
-		return this.i18next.t(this.settings.message);
+		console.log('Getting text for key:', this.settings.message);
+		return i18next.t(this.settings.message);
 	};
 
 	LocalizedLabel.prototype.createLabel = function () {
@@ -45,7 +38,7 @@ const LocalizedLabel = (() => {
 			offset = { x: 0, y: 0 },
 			style = {},
 			bitmapFont = false,
-			visible = false,
+			visible = true,
 			fontKey = 'pixelifySansSmall',
 		} = this.settings;
 		const x = position.x + offset.x;
@@ -83,14 +76,6 @@ const LocalizedLabel = (() => {
 		this.label?.destroy();
 		this.label = null;
 	};
-
-	/**
-	 * @property {Settings}
-	 * @memberof LocalizedLabel
-	 * @description The settings for the LocalizedLabel entity.
-	 * @static
-	 */
-	LocalizedLabel.Settings = Settings;
 
 	return LocalizedLabel;
 })();

@@ -23,22 +23,23 @@ const gameObjectsConfig = {
 			scale: 3,
 		},
 		depth: 1,
-		trigger: {
-			size: new Vector2(115, 85),
-			offset: new Vector2(0, 25),
-			text: {
-				message: 'game.objects.desk',
-				...defaultTextConfig,
-			},
-			onEnter: () => {
-				eventBus.emitPageNavigate({ page: '/' });
-			},
-			onExit: () => {},
-			onInteract: () => {
-				eventBus.emitPlayerInteract();
-				eventBus.emitRequestPause({ sender: 'desk' });
-			},
-		},
+		// Trigger behavior migrated to scene-interactables.js.
+		// trigger: {
+		// 	size: new Vector2(115, 85),
+		// 	offset: new Vector2(0, 25),
+		// 	text: {
+		// 		message: 'game.objects.desk',
+		// 		...defaultTextConfig,
+		// 	},
+		// 	onEnter: () => {
+		// 		eventBus.emitPageNavigate({ page: '/' });
+		// 	},
+		// 	onExit: () => {},
+		// 	onInteract: () => {
+		// 		eventBus.emitPlayerInteract();
+		// 		eventBus.emitRequestPause({ sender: 'desk' });
+		// 	},
+		// },
 	},
 	fileCabinet: {
 		position: new Vector2(555, 155),
@@ -130,12 +131,12 @@ const createGameObjects = (scene, player) =>
 				scene,
 				config,
 				config.positions,
-				i18next,
+				i18next.t.bind(i18next),
 			);
 			return [...acc, ...objects];
 		}
 
-		const obj = new GameObject(scene, config, i18next);
+		const obj = new GameObject(scene, config, i18next.t.bind(i18next));
 		if (config.trigger) {
 			obj.setupPlayerOverlap(player);
 			scene.interactables.push(obj);
