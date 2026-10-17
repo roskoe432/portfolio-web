@@ -1,0 +1,141 @@
+import { vi } from 'vitest';
+
+function MockGame() {
+	this.destroy = vi.fn();
+	this.scene = {
+		add: vi.fn(),
+		remove: vi.fn(),
+		start: vi.fn(),
+	};
+}
+
+function MockScene() {
+	this.add = {
+		existing: vi.fn(),
+		image: vi.fn(),
+		text: vi.fn(),
+		sprite: vi.fn(),
+	};
+	this.physics = {
+		add: {
+			existing: vi.fn((gameObject) => {
+				gameObject.body = {
+					setImmovable: vi.fn(),
+					setAllowGravity: vi.fn(),
+					setSize: vi.fn(),
+					setCircle: vi.fn(),
+				};
+			}),
+		},
+	};
+	this.cameras = { main: {} };
+	this.events = {
+		on: vi.fn(),
+		off: vi.fn(),
+		once: vi.fn(),
+	};
+	this.scene = {
+		start: vi.fn(),
+		stop: vi.fn(),
+		restart: vi.fn(),
+	};
+}
+
+function MockVector2(x = 0, y = 0) {
+	this.x = x;
+	this.y = y;
+}
+
+function MockSprite() {}
+MockSprite.prototype.setVelocity = vi.fn();
+MockSprite.prototype.play = vi.fn();
+MockSprite.prototype.setDepth = vi.fn();
+MockSprite.prototype.setScale = vi.fn();
+MockSprite.prototype.refreshBody = vi.fn();
+MockSprite.prototype.on = vi.fn();
+
+function MockZone() {}
+MockZone.prototype.on = vi.fn();
+
+function MockRectangle(x = 0, y = 0, width = 0, height = 0) {
+	this.x = x;
+	this.y = y;
+	this.width = width;
+	this.height = height;
+}
+
+function MockEventEmitter() {
+	this.events = {};
+}
+
+MockEventEmitter.prototype.on = function (event, listener) {
+	if (!this.events[event]) {
+		this.events[event] = [];
+	}
+	this.events[event].push(listener);
+};
+
+MockEventEmitter.prototype.emit = function (event, ...args) {
+	if (this.events[event]) {
+		this.events[event].forEach((listener) => listener(...args));
+	}
+};
+
+MockEventEmitter.prototype.off = function (event, listener) {
+	if (this.events[event]) {
+		this.events[event] = this.events[event].filter((l) => l !== listener);
+	}
+};
+
+export const EventBus = new MockEventEmitter();
+export const Math = {
+	Vector2: MockVector2,
+};
+
+export const Events = {
+	EventEmitter: MockEventEmitter,
+};
+
+export default {
+	Game: MockGame,
+	Scene: MockScene,
+	Events: {
+		EventEmitter: MockEventEmitter,
+	},
+	GameObjects: {
+		Sprite: MockSprite,
+		Zone: MockZone,
+	},
+	Physics: {
+		Arcade: {
+			Sprite: MockSprite,
+		},
+	},
+	Geom: {
+		Rectangle: MockRectangle,
+		Intersects: {
+			RectangleToRectangle: vi.fn(() => false),
+		},
+	},
+	Display: {
+		Color: {
+			HexStringToColor: vi.fn((value) => ({ color: value })),
+		},
+	},
+	Input: {
+		Keyboard: {
+			JustDown: vi.fn(() => false),
+		},
+	},
+	Scale: {
+		FIT: 'fit',
+		CENTER_BOTH: 'center_both',
+		NONE: 'none',
+		RESIZE: 'resize',
+		SHOW_ALL: 'show_all',
+		USER_SCALE: 'user_scale',
+	},
+	AUTO: 0,
+	WEBGL: 1,
+	CANVAS: 2,
+};

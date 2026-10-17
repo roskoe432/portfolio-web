@@ -122,7 +122,7 @@ export default defineConfig({
 	test: {
 		globals: true,
 		environment: 'jsdom',
-		setupFiles: './__tests__/setup.js',
+		setupFiles: './__v2tests__/test-setup.js',
 		css: false,
 		coverage: {
 			provider: 'v8',
@@ -142,7 +142,7 @@ export default defineConfig({
 				functions: 80,
 			},
 		},
-		include: ['__tests__/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+		include: ['__v2tests__/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
 		exclude: ['node_modules', 'dist', 'coverage'],
 	},
 });
