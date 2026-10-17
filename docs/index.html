@@ -1,28 +1,31 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>GH Page Refresher</title>
-		<link rel="stylesheet" href="./styles.css" />
-	</head>
-	<body>
-		<header class="header">
-			<h1 class="title">GitHub Page Refresher</h1>
-		</header>
-		<main class="main">
-			<section>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-					asperiores a sit, incidunt excepturi similique cum voluptatum non
-					inventore blanditiis quidem harum illum soluta ab debitis repellendus
-					repellat saepe ducimus!
-				</p>
-			</section>
-		</main>
-		<footer class="footer">
-			<small class="copyright">Copyright &copy;. All Rights Reserved</small>
-		</footer>
-	</body>
-	<script src="./main.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Pages Playground</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./main.js" defer></script>
+</head>
+<body>
+  <header class="wrap header"><a href="./" class="brand">ben snow / playground</a><button id="theme" type="button" hidden>Use dark theme</button></header>
+  <main class="wrap">
+    <section class="hero">
+      <p class="eyebrow">A small experiment on the web</p>
+      <h1>Hello, GitHub Pages<span>.</span></h1>
+      <p class="intro">A little HTML, a splash of CSS, and a few lines of JavaScript. A space to try things out and see what ships.</p>
+      <a class="button" href="#experiment">Try the experiment &rarr;</a>
+    </section>
+    <section class="cards" aria-label="What makes this page work">
+      <article><p class="eyebrow">01 / Structure</p><h2>Keep it simple.</h2><p>Plain HTML gives everything a place. No build step required.</p></article>
+      <article><p class="eyebrow">02 / Style</p><h2>Make it feel good.</h2><p>Responsive layouts, a little color, and room to breathe.</p></article>
+      <article><p class="eyebrow">03 / Interaction</p><h2>Add a little life.</h2><p>Try the theme switch and leave a few clicks below.</p></article>
+    </section>
+    <section id="experiment" class="experiment" aria-labelledby="experiment-title">
+      <div><p class="eyebrow">The click experiment</p><h2 id="experiment-title">Does this button work?</h2><p id="message" role="status">Enable JavaScript to try the counter and theme switch.</p></div>
+      <div class="controls"><button id="click" type="button" disabled>Give it a click: <span id="count">0</span></button><button id="reset" class="secondary" type="button" disabled>Reset</button></div>
+    </section>
+  </main>
+  <footer class="wrap"><small>&copy; <span id="year">2026</span> Ben Snow</small><small>Made for a little trial and error.</small></footer>
+</body>
 </html>
